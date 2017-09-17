@@ -1,13 +1,13 @@
 *~
 *.elc
-auto-save-list
+auto-save-list/
 ac-comphist.dat
 recentf
 savehist
 saveplace
 semanticdb/
-elpa
-url
+elpa/
+url/
 .DS_Store
 places
 savefile/
