@@ -347,8 +347,15 @@
      'org-babel-load-languages
      '((java . t)
        (sh   . t)
-       (shell . t)))))
+       (shell . t)
+       (lisp . t)))))
 
+
+(use-package ox-gfm
+    :load-path "elisp/ox-gfm/")
+
+(use-package ob-shell
+    :load-path "elisp/ob-shell/")
 
 
 (use-package org-bullets
