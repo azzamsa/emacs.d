@@ -111,7 +111,7 @@
 
 
 ;;;loading my org configuration
-(load "~/.emacs.d/elisp/myorg.el")
+(load "~/.emacs.d/elisp/my-elisp/myorg.el")
 
 
 
@@ -205,6 +205,7 @@
   (show-paren-mode +1))
 
 (use-package abbrev
+  ;:ensure t
   :config
   (setq-default abbrev-mode t)
    (cond ((file-exists-p "~/.abbrev_defs")
@@ -213,6 +214,7 @@
    (setq save-abbrevs 'silently))
 
 (use-package dired
+  :ensure nil
   :config
   ;; dired - reuse current buffer by pressing 'a'
   (put 'dired-find-alternate-file 'disabled nil)
@@ -239,22 +241,15 @@
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 (use-package undo-tree
-  :init
-  (global-undo-tree-mode)
-  :ensure t
-  :bind
+  :diminish undo-tree-mode
   :config
   (progn
-    (global-set-key (kbd "C-z") 'undo)
-    (defalias 'redo 'undo-tree-redo)
-    (global-set-key (kbd "C-S-z") 'redo)
-    ;; autosave the undo-tree history
-    (setq undo-tree-history-directory-alist
-          `((".*" . ,temporary-file-directory)))
-    (setq undo-tree-auto-save-history t)))
+    (global-undo-tree-mode)
+    (setq undo-tree-visualizer-timestamps t)
+    (setq undo-tree-visualizer-diff t)))
 
 (use-package helm
-  :ensure t
+  :ensure nil
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x C-f" . helm-find-files)
@@ -272,6 +267,7 @@
   (add-to-list 'helm-completing-read-handlers-alist '(find-file . helm-completing-read-symbols)))
 
 (use-package uniquify
+  :ensure nil
   :config
   (setq uniquify-buffer-name-style 'forward)
   (setq uniquify-separator "/")
@@ -295,7 +291,7 @@
 
 
 (use-package pomodoro
-  :load-path "elisp/"
+  :load-path "elisp/pomodoro/"
   :config
   (progn
      (pomodoro-add-to-mode-line)
@@ -332,8 +328,9 @@
                   " super-save"))
   (sml/setup))
 
-;;(global-set-key (kbd "C-z") 'undo)
+
 (use-package org
+  :ensure t
   :bind(
         :map org-mode-map
         ("C-c l" . org-store-link)
@@ -352,10 +349,10 @@
 
 
 (use-package ox-gfm
-    :load-path "elisp/ox-gfm/")
+  :load-path "/elisp/ox-gfm/")
 
-(use-package ob-shell
-    :load-path "elisp/ob-shell/")
+;;(use-package ob-shell
+;;    :load-path "elisp/ob-shell/")
 
 
 (use-package org-bullets
@@ -421,21 +418,17 @@
   :config
   (diredp-toggle-find-file-reuse-dir 1))
 
-(use-package stopwatch
-  :load-path "elisp/")
-
-
 
 ;; Modes for programming languages and such.
-
 (use-package web-mode
   :ensure t
-  :mode (("\\.html\\.erb\\'" . web-mode)
-         ("\\.eex\\'" . web-mode))
+  :mode ("\\.html\\'"
+         "\\.css\\'"
+         "\\.php\\'")
   :config
-  (setq web-mode-markup-indent-offset 2
-        web-mode-css-indent-offset 2
-        web-mode-code-indent-offset 2))
+  (progn
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-enable-auto-quoting nil)))
 
 (use-package js
   ;; built-in
@@ -466,7 +459,7 @@
 
 
 (use-package php-beautifier
-  :load-path "elisp/")
+  :load-path "elisp/php-beautifier/")
 
 (use-package emmet-mode
   :ensure t
@@ -474,8 +467,6 @@
 	      ("M-e" . emmet-expand-line))
   :config (add-hook 'web-mode-hook 'emmet-mode))
 
-(use-package indent-guide
-  :load-path "elisp/")
 
 (use-package php-mode
   :ensure t
@@ -488,16 +479,6 @@
              (ac-php-core-eldoc-setup) ;; enable eldoc
              (make-local-variable 'company-backends)
              (add-to-list 'company-backends 'company-ac-php-backend))))
-
-(use-package web-mode
-  :ensure t
-  :mode ("\\.html\\'"
-         "\\.css\\'"
-         "\\.php\\'")
-  :config
-  (progn
-    (setq web-mode-code-indent-offset 2)
-    (setq web-mode-enable-auto-quoting nil)))
 
 
 ;; Global keyboarding
