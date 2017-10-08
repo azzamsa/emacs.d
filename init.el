@@ -337,6 +337,7 @@
         ("C-c a" . org-agenda))
   :init
   (progn
+    (setq org-src-tab-acts-natively t)
     (setq org-log-done t)
     (setq org-startup-indented t)
     (setq org-agenda-files (list "~/.emacs.d/documents/planz.org"))
@@ -436,7 +437,8 @@
   (setq js-indent-level 2))
 
 (use-package slime
-  :ensure t
+  :ensure nil
+  ;:load-path "~/quicklisp/dists/quicklisp/software/slime-v2.20"
   :config
   ;; This breaks the default coloring of SLIME.  Net gain in my opinion.
   (add-hook 'slime-repl-mode-hook #'rainbow-delimiters-mode)
@@ -445,11 +447,11 @@
         slime-net-coding-system 'utf-8-unix))
 
 (use-package slime-company
-  :defer t
-  :ensure t)
+  :ensure nil
+  :config
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
+  (setq inferior-lisp-program "sbcl"))
 
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "sbcl")
 
 
 (use-package yasnippet
@@ -489,6 +491,11 @@
 
 (global-set-key (kbd "C-c n")
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/notes.org")))
+
+;; Unbind Pesky Sleep Button
+(global-unset-key [(control z)])
+(global-unset-key [(control x)(control z)])
+
 
 
 ;;; init.el ends here
