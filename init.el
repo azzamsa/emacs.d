@@ -296,12 +296,12 @@
   (progn
      (pomodoro-add-to-mode-line)
      (setq pomodoro-break-start-sound
-       "~/.emacs.d/elisp/pomodoro_baudtack/Wind-chime.wav")
+       "~/.emacs.d/elisp/pomodoro/Wind-chime.wav")
      (setq pomodoro-long-break-time 20)
      (setq pomodoro-show-number t)
      (setq pomodoro-sound-player "/usr/bin/aplay")
      (setq pomodoro-work-start-sound
-       "~/.emacs.d/elisp/pomodoro_baudtack/Sparkle.wav")
+       "~/.emacs.d/elisp/pomodoro/Sparkle.wav")
      ))
 
 
