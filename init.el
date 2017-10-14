@@ -47,7 +47,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq user-full-name "Azzamsa"
+(setq user-full-name "azzamsa"
       user-mail-address "me@azzamsa.com")
 
 ;; Always load newest byte code
@@ -190,6 +190,22 @@
   :config
   (load-theme 'zenburn t))
 
+
+;; hooks
+;; startup
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (helm-mode t)))
+
+;; Common Lisp
+(add-hook 'lisp-mode-hook
+  (lambda ()
+    (slime-mode t)
+    (visual-line-mode 1)
+    (rainbow-delimiters-mode 1)
+    (show-paren-mode 1)))
+
+;; packages
 (use-package projectile
   :ensure t
   :bind ("s-p" . projectile-command-map)
@@ -359,7 +375,9 @@
 (use-package org-bullets
   :ensure t
   :commands (org-bullets-mode)
-  :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  :init (add-hook 'org-mode-hook
+                  (lambda ()
+                    (org-bullets-mode 1))))
 
   
 (defun my-calendar ()
@@ -440,8 +458,12 @@
   :ensure nil
   ;:load-path "~/quicklisp/dists/quicklisp/software/slime-v2.20"
   :config
-  ;; This breaks the default coloring of SLIME.  Net gain in my opinion.
-  (add-hook 'slime-repl-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'slime-repl-mode-hook
+            (lambda ()
+              (visual-line-mode 1)              
+              (rainbow-delimiters-mode 1)
+              (show-paren-mode 1)
+              (slime-company 1)))
   (setq inferior-lisp-program (executable-find "sbcl")
         slime-contribs '(slime-company slime-fancy)
         slime-net-coding-system 'utf-8-unix))
@@ -451,7 +473,6 @@
   :config
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl"))
-
 
 
 (use-package yasnippet
