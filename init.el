@@ -203,7 +203,8 @@
     (slime-mode t)
     (visual-line-mode 1)
     (rainbow-delimiters-mode 1)
-    (show-paren-mode 1)))
+    (show-paren-mode 1)
+    (prettify-symbols-mode 1)))
 
 ;; packages
 (use-package projectile
@@ -317,8 +318,7 @@
      (setq pomodoro-show-number t)
      (setq pomodoro-sound-player "/usr/bin/aplay")
      (setq pomodoro-work-start-sound
-       "~/.emacs.d/elisp/pomodoro/Sparkle.wav")
-     ))
+       "~/.emacs.d/elisp/pomodoro/Sparkle.wav")))
 
 
 (use-package rainbow-delimiters
@@ -398,33 +398,28 @@
     (use-package calfw-cal)
     (use-package calfw-org)
     (use-package calfw-ical)
-  :config
-  (progn
-    ;; Unicode characters
-    ;; (setq cfw:fchar-junction ?╋
-    ;;       cfw:fchar-vertical-line ?┃
-    ;;       cfw:fchar-horizontal-line ?━
-    ;;       cfw:fchar-left-junction ?┣
-    ;;       cfw:fchar-right-junction ?┫
-    ;;       cfw:fchar-top-junction ?┯
-    ;;       cfw:fchar-top-left-corner ?┏
-    ;;       cfw:fchar-top-right-corner ?┓)
-
-    (custom-set-faces
-     '(cfw:face-title ((t (:foreground "#f0dfaf" :weight bold :height 2.0 :inherit variable-pitch))))
-     '(cfw:face-header ((t (:foreground "#d0bf8f" :weight bold))))
-     '(cfw:face-sunday ((t :foreground "#cc9393" :background "grey10" :weight bold)))
-     '(cfw:face-saturday ((t :foreground "#8cd0d3" :background "grey10" :weight bold)))
-     '(cfw:face-holiday ((t :background "grey10" :foreground "#8c5353" :weight bold)))
-     '(cfw:face-default-content ((t :foreground "#bfebbf")))
-     '(cfw:face-regions ((t :foreground "#366060")))
-     '(cfw:face-day-title ((t :background "grey10")))
-     '(cfw:face-periods ((t :foreground "#8cd0d3")))
-     '(cfw:face-today-title ((t :background "#7f9f7f" :weight bold)))
-     '(cfw:face-today ((t :background: "grey10" :weight bold)))
-     '(cfw:face-select ((t :background "#2f2f2f"))))
-    
-    (bind-key "g" 'cfw:refresh-calendar-buffer cfw:calendar-mode-map))))
+    :config
+    (progn
+      (bind-key "g" 'cfw:refresh-calendar-buffer cfw:calendar-mode-map)
+      (custom-set-faces
+       '(cfw:face-title ((t (:foreground "#f0dfaf" :weight bold :height 2.0 :inherit variable-pitch))))
+       '(cfw:face-header ((t (:foreground "#d0bf8f" :weight bold))))
+       '(cfw:face-sunday ((t :foreground "#cc9393" :background "grey10" :weight bold)))
+       '(cfw:face-saturday ((t :foreground "#8cd0d3" :background "grey10" :weight bold)))
+       '(cfw:face-holiday ((t :background "grey10" :foreground "#8c5353" :weight bold)))
+       '(cfw:face-grid ((t :foreground "#ffe259")))
+       '(cfw:face-default-content ((t :foreground "#bfebbf")))
+       '(cfw:face-periods ((t :foreground "#ffe259")))
+       '(cfw:face-day-title ((t :background "grey10")))
+       '(cfw:face-default-day ((t :weight bold :inherit cfw:face-day-title)))
+       '(cfw:face-annotation ((t :foreground "RosyBrown" :inherit cfw:face-day-title)))
+       '(cfw:face-disable ((t :foreground "DarkGray" :inherit cfw:face-day-title)))
+       '(cfw:face-today-title ((t :background "#7f9f7f" :weight bold)))
+       '(cfw:face-today ((t :background: "grey10" :weight bold)))
+       '(cfw:face-select ((t :background "#2f2f2f")))
+       '(cfw:face-toolbar ((t :foreground "Steelblue4" :background "Steelblue4")))
+       '(cfw:face-toolbar-button-off ((t :foreground "Gray10" :weight bold)))
+       '(cfw:face-toolbar-button-on ((t :foreground "Gray50" :weight bold)))))))
 
 (setq diary-file "~/.emacs.d/documents/diary")
 
