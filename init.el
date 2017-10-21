@@ -195,16 +195,16 @@
 ;; startup
 (add-hook 'emacs-startup-hook
   (lambda ()
-    (helm-mode t)))
+    (helm-mode t)
+    (visual-line-mode t)))
 
 ;; Common Lisp
 (add-hook 'lisp-mode-hook
   (lambda ()
     (slime-mode t)
-    (visual-line-mode 1)
-    (rainbow-delimiters-mode 1)
-    (show-paren-mode 1)
-    (prettify-symbols-mode 1)))
+    (rainbow-delimiters-mode t)
+    (show-paren-mode t)
+    (prettify-symbols-mode t)))
 
 ;; packages
 (use-package projectile
