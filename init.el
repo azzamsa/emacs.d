@@ -111,7 +111,7 @@
 
 
 ;;;loading my org configuration
-(load "~/.emacs.d/elisp/my-elisp/myorg.el")
+(load "~/.emacs.d/my-elisp/myorg.el")
 
 
 
