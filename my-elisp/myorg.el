@@ -20,6 +20,6 @@
 
 (defun hour ()
   (interactive)                 
-  (insert (format-time-string " %-I:%M %p")))
+  (insert (format-time-string "%-I:%M %p")))
 
 ;;; my.org ends here 
