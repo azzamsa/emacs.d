@@ -507,6 +507,9 @@
 (global-set-key (kbd "C-c n")
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/notes.org")))
 
+(global-set-key (kbd "C-c s")
+                (lambda () (interactive) (find-file "~/.emacs.d/documents/sletz.org")))
+
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
