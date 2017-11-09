@@ -462,11 +462,13 @@
         slime-contribs '(slime-company slime-fancy)
         slime-net-coding-system 'utf-8-unix))
 
+
 (use-package slime-company
   :ensure nil
   :config
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl"))
+
 
 
 (use-package yasnippet
@@ -475,14 +477,17 @@
   :config (yas-reload-all))
 
 
+
 (use-package php-beautifier
   :load-path "elisp/php-beautifier/")
+
 
 (use-package emmet-mode
   :ensure t
   :bind (:map emmet-mode-keymap
 	      ("M-e" . emmet-expand-line))
   :config (add-hook 'web-mode-hook 'emmet-mode))
+
 
 
 (use-package php-mode
@@ -497,7 +502,9 @@
              (make-local-variable 'company-backends)
              (add-to-list 'company-backends 'company-ac-php-backend))))
 
+
 (use-package parinfer
+  :disabled  
   :ensure t
   :bind
   (("C-," . parinfer-toggle-mode))
@@ -516,6 +523,10 @@
     (add-hook 'common-lisp-mode-hook #'parinfer-mode)
     (add-hook 'scheme-mode-hook #'parinfer-mode)
     (add-hook 'lisp-mode-hook #'parinfer-mode)))
+
+(use-package lispy
+  :ensure t
+  :disabled)
 
 
 ;; Global keyboarding
