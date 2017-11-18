@@ -66,13 +66,11 @@
 (unless (file-exists-p azzamsa-savefile-dir)
 	(make-directory azzamsa-savefile-dir))
 
-
 ;; the toolbar is just a waste of valuable screen estate
 ;; in a tty tool-bar-mode does not properly auto-load, and is
 ;; already disabled anyway
 (when (fboundp 'tool-bar-mode)
       (tool-bar-mode -1))
-
 
 ;; the blinking cursor is nothing, but an annoyance
 (blink-cursor-mode -1)
@@ -82,7 +80,6 @@
 (global-linum-mode t)
 ;; cursor color dissappear on emacs 25
 (set-cursor-color "#f0fff0")
-
 
 (set-frame-font "InconsolataGo-13")
 ;;evaluate this everytime load emacs from daemon.
@@ -109,11 +106,8 @@
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
-
 ;;;loading my org configuration
 (load "~/.emacs.d/my-elisp/myorg.el")
-
-
 
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
@@ -304,7 +298,6 @@
     (require 'smartparens-config)
     (smartparens-global-mode 1)))
 
-
 (use-package pomodoro
   :load-path "elisp/pomodoro/"
   :config
@@ -317,7 +310,6 @@
      (setq pomodoro-sound-player "/usr/bin/aplay")
      (setq pomodoro-work-start-sound
        "~/.emacs.d/elisp/pomodoro/Sparkle.wav")))
-
 
 (use-package rainbow-delimiters
   :ensure t)
@@ -342,7 +334,6 @@
                   " super-save"))
   (sml/setup))
 
-
 (use-package org
   :ensure t
   :bind(
@@ -362,13 +353,8 @@
        (shell . t)
        (lisp . t)))))
 
-
 (use-package ox-gfm
   :load-path "/elisp/ox-gfm/")
-
-;;(use-package ob-shell
-;;    :load-path "elisp/ob-shell/")
-
 
 (use-package org-bullets
   :ensure t
@@ -376,7 +362,6 @@
   :init (add-hook 'org-mode-hook
                   (lambda ()
                     (org-bullets-mode 1))))
-
   
 (defun my-calendar ()
   (interactive)
@@ -430,8 +415,8 @@
   :config
   (diredp-toggle-find-file-reuse-dir 1))
 
-
 ;; Modes for programming languages and such.
+
 (use-package web-mode
   :ensure t
   :mode ("\\.html\\'"
@@ -460,33 +445,25 @@
         slime-contribs '(slime-company slime-fancy)
         slime-net-coding-system 'utf-8-unix))
 
-
 (use-package slime-company
   :ensure nil
   :config
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl"))
 
-
-
 (use-package yasnippet
   :ensure t
   :init (add-hook 'prog-mode-hook #'yas-minor-mode)
   :config (yas-reload-all))
 
-
-
 (use-package php-beautifier
   :load-path "elisp/php-beautifier/")
-
 
 (use-package emmet-mode
   :ensure t
   :bind (:map emmet-mode-keymap
 	      ("M-e" . emmet-expand-line))
   :config (add-hook 'web-mode-hook 'emmet-mode))
-
-
 
 (use-package php-mode
   :ensure t
@@ -499,7 +476,6 @@
              (ac-php-core-eldoc-setup) ;; enable eldoc
              (make-local-variable 'company-backends)
              (add-to-list 'company-backends 'company-ac-php-backend))))
-
 
 (use-package parinfer
   :disabled  
@@ -564,7 +540,6 @@
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
-
 
 
 ;;; init.el ends here
