@@ -209,9 +209,7 @@
 ;; packages
 (use-package projectile
   :ensure t
-  :bind ("s-p" . projectile-command-map)
-  :config
-  (projectile-global-mode +1))
+  :bind ("s-p" . projectile-command-map))
 
 (use-package expand-region
   :ensure t
