@@ -528,6 +528,28 @@
   :ensure t
   :disabled)
 
+(use-package closure-template-html-mode
+  :ensure nil
+  :mode "\\.tmpl\\'"
+  :load-path "/elisp/closure-template/")
+
+(use-package neotree
+  :ensure nil
+  :bind ([f8] . neotree-toggle)
+  :config
+  (setq neo-theme
+        (if (display-graphic-p)
+            'icons
+          'arrow))
+  (setq neo-smart-open t)
+  ;;work with projectile
+  (setq projectile-switch-project-action 'neotree-projectile-action))
+
+(use-package all-the-icons
+  :ensure nil)
+
+(use-package markdown-toc
+  :ensure nil)
 
 ;; Global keyboarding
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
