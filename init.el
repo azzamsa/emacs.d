@@ -106,6 +106,9 @@
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; no need double click to insert, Yey!
+(delete-selection-mode +1)
+
 ;;;loading my org configuration
 (load "~/.emacs.d/my-elisp/myorg.el")
 
@@ -214,7 +217,7 @@
   (show-paren-mode +1))
 
 (use-package abbrev
-                                        ;:ensure t
+  :ensure nil
   :config
   (setq-default abbrev-mode t)
   (cond ((file-exists-p "~/.abbrev_defs")
@@ -331,7 +334,7 @@
                   " Projectile"
                   " Undo-Tree"
                   " Ind"
-                  " super-save")))
+                  " super-save"))
   (sml/setup))
 
 (use-package org
