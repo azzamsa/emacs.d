@@ -64,13 +64,13 @@
 
 ;; create the savefile dir if it doesn't exist
 (unless (file-exists-p azzamsa-savefile-dir)
-	(make-directory azzamsa-savefile-dir))
+  (make-directory azzamsa-savefile-dir))
 
 ;; the toolbar is just a waste of valuable screen estate
 ;; in a tty tool-bar-mode does not properly auto-load, and is
 ;; already disabled anyway
 (when (fboundp 'tool-bar-mode)
-      (tool-bar-mode -1))
+  (tool-bar-mode -1))
 
 ;; the blinking cursor is nothing, but an annoyance
 (blink-cursor-mode -1)
@@ -114,7 +114,7 @@
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
-		   "%b"))))
+                 "%b"))))
 
 ;; Emacs modes typically provide a standard means to change the
 ;; indentation width -- eg. c-basic-offset: use that to adjust your
@@ -136,7 +136,7 @@
       `((".*" ,temporary-file-directory t)))
 
 ;; revert buffers automatically when underlying files are changed externally
-;(global-auto-revert-mode t)
+                                        ;(global-auto-revert-mode t)
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -188,17 +188,17 @@
 ;; hooks
 ;; startup
 (add-hook 'emacs-startup-hook
-  (lambda ()
-    (helm-mode t)
-    (visual-line-mode t)))
+          (lambda ()
+            (helm-mode t)
+            (visual-line-mode t)))
 
 ;; Common Lisp
 (add-hook 'lisp-mode-hook
-  (lambda ()
-    (slime-mode t)
-    (rainbow-delimiters-mode t)
-    (show-paren-mode t)
-    (prettify-symbols-mode t)))
+          (lambda ()
+            (slime-mode t)
+            (rainbow-delimiters-mode t)
+            (show-paren-mode t)
+            (prettify-symbols-mode t)))
 
 ;; packages
 (use-package projectile
@@ -214,13 +214,13 @@
   (show-paren-mode +1))
 
 (use-package abbrev
-  ;:ensure t
+                                        ;:ensure t
   :config
   (setq-default abbrev-mode t)
-   (cond ((file-exists-p "~/.abbrev_defs")
-          (read-abbrev-file "~/.abbrev_defs")))
-   (setq save-abbrevs t)
-   (setq save-abbrevs 'silently))
+  (cond ((file-exists-p "~/.abbrev_defs")
+         (read-abbrev-file "~/.abbrev_defs")))
+  (setq save-abbrevs t)
+  (setq save-abbrevs 'silently))
 
 (use-package dired
   :ensure nil
@@ -302,14 +302,14 @@
   :load-path "elisp/pomodoro/"
   :config
   (progn
-     (pomodoro-add-to-mode-line)
-     (setq pomodoro-break-start-sound
-       "~/.emacs.d/elisp/pomodoro/Wind-chime.wav")
-     (setq pomodoro-long-break-time 20)
-     (setq pomodoro-show-number t)
-     (setq pomodoro-sound-player "/usr/bin/aplay")
-     (setq pomodoro-work-start-sound
-       "~/.emacs.d/elisp/pomodoro/Sparkle.wav")))
+    (pomodoro-add-to-mode-line)
+    (setq pomodoro-break-start-sound
+          "~/.emacs.d/elisp/pomodoro/Wind-chime.wav")
+    (setq pomodoro-long-break-time 20)
+    (setq pomodoro-show-number t)
+    (setq pomodoro-sound-player "/usr/bin/aplay")
+    (setq pomodoro-work-start-sound
+          "~/.emacs.d/elisp/pomodoro/Sparkle.wav")))
 
 (use-package rainbow-delimiters
   :ensure t)
@@ -338,8 +338,8 @@
   :ensure t
   :bind(
         :map org-mode-map
-        ("C-c l" . org-store-link)
-        ("C-c a" . org-agenda))
+             ("C-c l" . org-store-link)
+             ("C-c a" . org-agenda))
   :init
   (progn
     (setq org-src-tab-acts-natively t)
@@ -362,7 +362,7 @@
   :init (add-hook 'org-mode-hook
                   (lambda ()
                     (org-bullets-mode 1))))
-  
+
 (defun my-calendar ()
   (interactive)
   (let ((buf (get-buffer "*cfw-calendar*")))
@@ -419,13 +419,13 @@
 
 (use-package web-mode
   :ensure t
-  :mode ("\\.html\\'"
+  :mode ("\\.html?\\'"
          "\\.css\\'"
          "\\.php\\'")
+  :init (add-hook 'web-mode-hook
+                  (lambda ()
+                    (emmet-mode 1)))
   :config
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (emmet-mode   1)))  
   (progn
     (setq web-mode-code-indent-offset 2)
     (setq web-mode-enable-auto-quoting nil)))
