@@ -1,4 +1,4 @@
-;;; init.el --- Azzamsa  Emacs configuration
+;; init.el --- Azzamsa  Emacs configuration
 ;;
 ;; Copyright (c) 2016 Azzamsa
 ;;
@@ -423,6 +423,9 @@
          "\\.css\\'"
          "\\.php\\'")
   :config
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (emmet-mode   1)))  
   (progn
     (setq web-mode-code-indent-offset 2)
     (setq web-mode-enable-auto-quoting nil)))
@@ -461,6 +464,7 @@
 
 (use-package emmet-mode
   :ensure t
+  :mode "\\.html\\'"
   :bind (:map emmet-mode-keymap
 	      ("M-e" . emmet-expand-line))
   :config (add-hook 'web-mode-hook 'emmet-mode))
