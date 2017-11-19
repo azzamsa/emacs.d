@@ -331,7 +331,7 @@
                   " Projectile"
                   " Undo-Tree"
                   " Ind"
-                  " super-save"))
+                  " super-save")))
   (sml/setup))
 
 (use-package org
@@ -407,8 +407,9 @@
 (setq diary-file "~/.emacs.d/documents/diary")
 
 
-;;(use-package magit
-;; :ensure t)
+(use-package magit
+  :ensure t
+  :bind ("C-c g" . magit-status))
 
 (use-package dired+
   :ensure t
@@ -437,7 +438,7 @@
 
 (use-package slime
   :ensure nil
-  ;:load-path "~/quicklisp/dists/quicklisp/software/slime-v2.20"
+  ;;load-path "~/quicklisp/dists/quicklisp/software/slime-v2.20"
   :config
   (add-hook 'slime-repl-mode-hook
             (lambda ()
@@ -474,12 +475,12 @@
   :mode "\\.php\\'"
   :config
   (add-hook 'php-mode-hook
-          '(lambda ()
-             (require 'company-php)
-             (company-mode t)
-             (ac-php-core-eldoc-setup) ;; enable eldoc
-             (make-local-variable 'company-backends)
-             (add-to-list 'company-backends 'company-ac-php-backend))))
+            '(lambda ()
+               (require 'company-php)
+               (company-mode t)
+               (ac-php-core-eldoc-setup) ;; enable eldoc
+               (make-local-variable 'company-backends)
+               (add-to-list 'company-backends 'company-ac-php-backend))))
 
 (use-package parinfer
   :disabled  
@@ -490,12 +491,12 @@
   (progn
     (setq parinfer-extensions
           '(defaults       ; should be included.
-            pretty-parens  ; different paren styles for different modes.
-            evil           ; If you use Evil.
-            lispy          ; If you use Lispy. With this extension, you should install Lispy and do not enable lispy-mode directly.
-            paredit        ; Introduce some paredit commands.
-            smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
-            smart-yank))   ; Yank behavior depend on mode.
+             pretty-parens  ; different paren styles for different modes.
+             evil           ; If you use Evil.
+             lispy          ; If you use Lispy. With this extension, you should install Lispy and do not enable lispy-mode directly.
+             paredit        ; Introduce some paredit commands.
+             smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
+             smart-yank))   ; Yank behavior depend on mode.
     (add-hook 'clojure-mode-hook #'parinfer-mode)
     (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
     (add-hook 'common-lisp-mode-hook #'parinfer-mode)
@@ -528,6 +529,19 @@
 
 (use-package markdown-toc
   :ensure nil)
+
+(use-package flyspell
+  :ensure t)
+
+(use-package whitespace
+  :init
+  (dolist (hook '(prog-mode-hook text-mode-hook))
+    (add-hook hook #'whitespace-mode))
+  (add-hook 'before-save-hook #'whitespace-cleanup)
+  :config
+  (setq whitespace-line-column 80) ;; limit line length
+  (setq whitespace-style '(face tabs empty trailing lines-tail)))
+
 
 ;; Global keyboarding
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
