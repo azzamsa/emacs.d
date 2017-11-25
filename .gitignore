@@ -29,3 +29,4 @@ init_description.el
 *.html
 eshell/
 documents/
+.mc-lists.el
