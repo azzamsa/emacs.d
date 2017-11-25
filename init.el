@@ -445,7 +445,7 @@
   :config
   (add-hook 'slime-repl-mode-hook
             (lambda ()
-              (visual-line-mode 1)              
+              (visual-line-mode 1)
               (rainbow-delimiters-mode 1)
               (show-paren-mode 1)))
   (setq inferior-lisp-program (executable-find "sbcl")
@@ -486,7 +486,7 @@
                (add-to-list 'company-backends 'company-ac-php-backend))))
 
 (use-package parinfer
-  :disabled  
+  :disabled
   :ensure t
   :bind
   (("C-," . parinfer-toggle-mode))
@@ -534,7 +534,11 @@
   :ensure nil)
 
 (use-package flyspell
-  :ensure t)
+  :config
+  (setq ispell-program-name "aspell" ; use aspell instead of ispell
+        ispell-extra-args '("--sug-mode=ultra"))
+  (add-hook 'text-mode-hook #'flyspell-mode)
+  (add-hook 'prog-mode-hook #'flyspell-prog-mode))
 
 (use-package whitespace
   :init
@@ -544,6 +548,25 @@
   :config
   (setq whitespace-line-column 80) ;; limit line length
   (setq whitespace-style '(face tabs empty trailing lines-tail)))
+
+
+(use-package multiple-cursors
+  :init
+  (progn
+    ;; these need to be defined here - if they're lazily loaded with
+    ;; :bind they don't work.
+    (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
+
+(use-package avy
+  :ensure t
+  :bind (("s-." . avy-goto-word-or-subword-1)
+         ("s-," . avy-goto-char))
+  :config
+  (setq avy-background t))
 
 
 ;; Global keyboarding
