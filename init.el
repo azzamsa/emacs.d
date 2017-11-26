@@ -193,7 +193,8 @@
 (add-hook 'emacs-startup-hook
           (lambda ()
             (helm-mode t)
-            (visual-line-mode t)))
+            (visual-line-mode t)
+            (pomodoro-start 25))) ;25 is minutes for work
 
 ;; Common Lisp
 (add-hook 'lisp-mode-hook
@@ -568,6 +569,11 @@
   :config
   (setq avy-background t))
 
+(use-package skewer-mode
+  :ensure t)
+
+(use-package js2-mode
+  :mode ("\\.js$" . js2-mode))
 
 ;; Global keyboarding
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
