@@ -397,15 +397,15 @@
        '(cfw:face-grid ((t :foreground "#BADEAC")))
        '(cfw:face-default-content ((t :foreground "#ffffff")))
        '(cfw:face-periods ((t :foreground "#ffe259"))) ;;?
-       '(cfw:face-day-title ((t :background "grey10"))) ;;kotak hitam di header tanggal
+       '(cfw:face-day-title ((t :background "grey10"))) ;; rectangle in header
        '(cfw:face-default-day ((t :foreground "#ffffff" :weight bold :inherit cfw:face-day-title)))
-       '(cfw:face-annotation ((t :foreground "#ffffff" :inherit cfw:face-day-title))) ;;angka di kotak (23 - 24)
+       '(cfw:face-annotation ((t :foreground "#ffffff" :inherit cfw:face-day-title))) ;; data number in box(23 - 24)
        '(cfw:face-disable ((t :foreground "DarkGray" :inherit cfw:face-day-title)))
        '(cfw:face-today-title ((t :background "#7f9f7f" :weight bold)))
        '(cfw:face-today ((t :background: "grey10" :weight bold)))
        '(cfw:face-select ((t :background "#2f2f2f")))
        '(cfw:face-toolbar ((t :foreground "Steelblue4" :background "#3F3F3F")))
-       '(cfw:face-toolbar-button-off ((t :foreground "#f5f5f5" :weight bold))) ;;tombol-atas
+       '(cfw:face-toolbar-button-off ((t :foreground "#f5f5f5" :weight bold))) ;;top botton
        '(cfw:face-toolbar-button-on ((t :foreground "#ffffff" :weight bold)))))))
 
 (setq diary-file "~/.emacs.d/documents/diary")
