@@ -367,24 +367,29 @@
                   (lambda ()
                     (org-bullets-mode 1))))
 
-(defun my-calendar ()
-  (interactive)
-  (let ((buf (get-buffer "*cfw-calendar*")))
-    (if buf
-        (pop-to-buffer buf nil)
-      (cfw:open-calendar-buffer
-       :contents-sources
-       (list (cfw:org-create-source "Dark Blue")
-             (cfw:cal-create-source "Dark Orange"))
-       :view 'two-weeks))))
+;; *TODO* disable holiday does not work
+(setq holiday-bahai-holidays nil)
+(setq holiday-hebrew-holidays nil)
+(setq holiday-islamic-holidays nil)
 
-(use-package calfw
+(use-package calfw/
   :bind ("C-c A" . my-calendar)
   :init
   (progn
     (use-package calfw-cal)
     (use-package calfw-org)
     (use-package calfw-ical)
+    :preface
+    (defun my-calendar ()
+      (interactive)
+      (let ((buf (get-buffer "*cfw-calendar*")))
+        (if buf
+            (pop-to-buffer buf nil)
+          (cfw:open-calendar-buffer
+           :contents-sources
+           (list (cfw:org-create-source "Dark Blue")
+                 (cfw:cal-create-source "White"))
+           :view 'two-weeks))))
     :config
     (progn
       (bind-key "g" 'cfw:refresh-calendar-buffer cfw:calendar-mode-map)
@@ -398,7 +403,7 @@
        '(cfw:face-default-content ((t :foreground "#ffffff")))
        '(cfw:face-periods ((t :foreground "#ffe259"))) ;;?
        '(cfw:face-day-title ((t :background "grey10"))) ;; rectangle in header
-       '(cfw:face-default-day ((t :foreground "#ffffff" :weight bold :inherit cfw:face-day-title)))
+       '(cfw:face-default-day ((t :foreground "#b4eeb4" :weight bold :inherit cfw:face-day-title)))
        '(cfw:face-annotation ((t :foreground "#ffffff" :inherit cfw:face-day-title))) ;; data number in box(23 - 24)
        '(cfw:face-disable ((t :foreground "DarkGray" :inherit cfw:face-day-title)))
        '(cfw:face-today-title ((t :background "#7f9f7f" :weight bold)))
@@ -406,7 +411,12 @@
        '(cfw:face-select ((t :background "#2f2f2f")))
        '(cfw:face-toolbar ((t :foreground "Steelblue4" :background "#3F3F3F")))
        '(cfw:face-toolbar-button-off ((t :foreground "#f5f5f5" :weight bold))) ;;top botton
-       '(cfw:face-toolbar-button-on ((t :foreground "#ffffff" :weight bold)))))))
+       '(cfw:face-toolbar-button-on ((t :foreground "#ffffff" :weight bold))))
+      (setq holiday-christian-holidays nil)
+      (setq holiday-bahai-holidays nil)
+      (setq holiday-hebrew-holidays nil)
+      (setq holiday-islamic-holidays nil)
+      (setq holiday-oriental-holidays nil))))
 
 (setq diary-file "~/.emacs.d/documents/diary")
 
