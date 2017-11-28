@@ -367,12 +367,7 @@
                   (lambda ()
                     (org-bullets-mode 1))))
 
-;; *TODO* disable holiday does not work
-(setq holiday-bahai-holidays nil)
-(setq holiday-hebrew-holidays nil)
-(setq holiday-islamic-holidays nil)
-
-(use-package calfw/
+(use-package calfw
   :bind ("C-c A" . my-calendar)
   :init
   (progn
@@ -393,6 +388,7 @@
     :config
     (progn
       (bind-key "g" 'cfw:refresh-calendar-buffer cfw:calendar-mode-map)
+      (setq cfw:display-calendar-holidays nil)
       (custom-set-faces
        '(cfw:face-title ((t (:foreground "#f0dfaf" :weight bold :height 2.0 :inherit variable-pitch))))
        '(cfw:face-header ((t (:foreground "#d0bf8f" :weight bold))))
