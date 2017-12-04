@@ -383,8 +383,8 @@
           (cfw:open-calendar-buffer
            :contents-sources
            (list (cfw:org-create-source "Dark Blue")
-                 (cfw:cal-create-source "White"))
-           :view 'two-weeks))))
+                 (cfw:cal-create-source "White"))))))
+           ;;:view 'four-weeks))))
     :config
     (progn
       (bind-key "g" 'cfw:refresh-calendar-buffer cfw:calendar-mode-map)
