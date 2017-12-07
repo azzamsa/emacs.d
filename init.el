@@ -382,7 +382,7 @@
             (pop-to-buffer buf nil)
           (cfw:open-calendar-buffer
            :contents-sources
-           (list (cfw:org-create-source "Dark Blue")
+           (list (cfw:org-create-source "#d6c9a7")
                  (cfw:cal-create-source "White"))))))
            ;;:view 'four-weeks))))
     :config
