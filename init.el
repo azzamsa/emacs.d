@@ -475,9 +475,8 @@
 
 (use-package emmet-mode
   :ensure t
-  :mode "\\.html\\'"
   :bind (:map emmet-mode-keymap
-	      ("M-e" . emmet-expand-line))
+              ("M-e" . emmet-expand-line))
   :config (add-hook 'web-mode-hook 'emmet-mode))
 
 (use-package php-mode
