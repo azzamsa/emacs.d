@@ -355,6 +355,7 @@
      '((java . t)
        (sh   . t)
        (shell . t)
+       (python. t)
        (lisp . t)))))
 
 (use-package ox-gfm
@@ -435,7 +436,8 @@
          "\\.php\\'")
   :init (add-hook 'web-mode-hook
                   (lambda ()
-                    (emmet-mode 1)))
+                    (emmet-mode 1)
+                    (smartparens-mode nil)))
   :config
   (progn
     (setq web-mode-code-indent-offset 2)
@@ -579,6 +581,11 @@
 
 (use-package js2-mode
   :mode ("\\.js$" . js2-mode))
+
+(use-package indent-guide
+  :ensure t)
+
+(elpy-enable)
 
 ;; Global keyboarding
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
