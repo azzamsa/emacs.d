@@ -1,0 +1,23 @@
+alias c xclip $*
+alias du du -h $*
+alias e emacsclient -t $*
+alias ec emacsclient -c $*
+alias egrep egrep --color=auto $*
+alias es SUDO_EDITOR="emacsclient -t -a emacs" sudoedit $*
+alias fgrep fgrep --color=auto $*
+alias g git $*
+alias grep grep --color=auto $*
+alias hld hledger $*
+alias in sudo apt-get install $*
+alias inn sudo apt-get --no-install-recommends install $*
+alias l ls -lF --color $*
+alias la ls -laF --color $*
+alias lgh light -S  $*
+alias ls command ls --color $*
+alias lsd ls -lF --color | grep --color=never '^d' $*
+alias mc . /usr/share/mc/bin/mc-wrapper.sh $*
+alias rmd rm -rdf $*
+alias rvm-restart rvm_reload_flag=1 source '/home/azzamsya/.rvm/scripts/rvm' $*
+alias sbcl rlwrap sbcl $*
+alias sudo sudo  $*
+alias v xclip -o $*
