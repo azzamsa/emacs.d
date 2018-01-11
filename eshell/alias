@@ -10,7 +10,7 @@ alias inn sudo apt-get --no-install-recommends install $*
 alias l ls -lF --color $*
 alias la ls -laF --color $*
 alias lgh light -S  $*
-alias ls command ls --color $*
+alias ls ls --color $*
 alias lsd ls -lF --color | grep --color=never '^d' $*
 alias mc . /usr/share/mc/bin/mc-wrapper.sh $*
 alias rmd rm -rdf $*
