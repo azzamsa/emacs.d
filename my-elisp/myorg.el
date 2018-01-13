@@ -19,7 +19,10 @@
   (insert (format-time-string "%A, %B %e, %Y")))
 
 (defun hour ()
-  (interactive)                 
+  (interactive)
   (insert (format-time-string "%-I:%M %p")))
 
-;;; my.org ends here 
+(defun my-org-mode-hook ()
+  (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
+
+;;; my.org ends here

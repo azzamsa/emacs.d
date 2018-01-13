@@ -356,7 +356,9 @@
        (sh   . t)
        (shell . t)
        (python. t)
-       (lisp . t)))))
+       (lisp . t))))
+  :config
+  (add-hook 'org-mode-hook #'my-org-mode-hook))
 
 (use-package ox-gfm
   :load-path "/elisp/ox-gfm/")
