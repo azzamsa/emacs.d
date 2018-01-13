@@ -17,3 +17,4 @@ alias rmd rm -rdf $*
 alias sbcl rlwrap sbcl $*
 alias sudo sudo  $*
 alias v xclip -o $*
+alias j autojump $*
