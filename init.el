@@ -355,7 +355,6 @@
      '((java . t)
        (sh   . t)
        (shell . t)
-       (python. t)
        (lisp . t))))
   :config
   (add-hook 'org-mode-hook #'my-org-mode-hook))
@@ -579,7 +578,8 @@
   (setq avy-background t))
 
 (use-package skewer-mode
-  :ensure t)
+  :ensure t
+  :disabled)
 
 (use-package js2-mode
   :mode ("\\.js$" . js2-mode))
@@ -600,6 +600,9 @@
 
 (global-set-key (kbd "C-c s")
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/sletz.org")))
+
+(global-set-key (kbd "C-c b")
+                (lambda () (interactive) (find-file "~/.emacs.d/bookmarks.org")))
 
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
