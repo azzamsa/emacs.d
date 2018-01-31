@@ -193,8 +193,8 @@
 (add-hook 'emacs-startup-hook
           (lambda ()
             (helm-mode t)
-            (visual-line-mode t)
-            (pomodoro-start 25))) ;25 is minutes for work
+            (visual-line-mode t)))
+;;(pomodoro-start 25))) ;25 is minutes for work
 
 ;; Common Lisp
 (add-hook 'lisp-mode-hook
@@ -303,6 +303,7 @@
     (smartparens-global-mode 1)))
 
 (use-package pomodoro
+  :disabled
   :load-path "elisp/pomodoro/"
   :config
   (progn
@@ -386,7 +387,7 @@
            :contents-sources
            (list (cfw:org-create-source "#d6c9a7")
                  (cfw:cal-create-source "White"))))))
-           ;;:view 'four-weeks))))
+    ;;:view 'four-weeks))))
     :config
     (progn
       (bind-key "g" 'cfw:refresh-calendar-buffer cfw:calendar-mode-map)
@@ -610,3 +611,4 @@
 
 
 ;;; init.el ends here
+(put 'downcase-region 'disabled nil)
