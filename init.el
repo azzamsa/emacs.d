@@ -610,5 +610,9 @@
 (global-unset-key [(control x)(control z)])
 
 
-;;; init.el ends here
+;; from emacs
 (put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
+
+;;; init.el ends here
