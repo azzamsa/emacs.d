@@ -588,6 +588,25 @@
 (use-package indent-guide
   :ensure t)
 
+
+(use-package tex
+  :defer t
+  :ensure auctex
+  :config
+  (setq LaTeX-verbatim-environments
+        '("verbatim" "Verbatim" "lstlisting" "minted")))
+
+
+;; Unbind Pesky Sleep Button
+(global-unset-key [(control z)])
+(global-unset-key [(control x)(control z)])
+
+
+;; from emacs
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
+;; misc
 (elpy-enable)
 
 ;; Global keyboarding
@@ -604,15 +623,5 @@
 
 (global-set-key (kbd "C-c b")
                 (lambda () (interactive) (find-file "~/.emacs.d/bookmarks.org")))
-
-;; Unbind Pesky Sleep Button
-(global-unset-key [(control z)])
-(global-unset-key [(control x)(control z)])
-
-
-;; from emacs
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-
 
 ;;; init.el ends here
