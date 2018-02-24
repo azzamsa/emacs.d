@@ -173,6 +173,7 @@
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 
 ;; Make use-package available.
@@ -216,7 +217,6 @@
   (show-paren-mode +1))
 
 (use-package abbrev
-  :ensure nil
   :config
   (setq-default abbrev-mode t)
   (cond ((file-exists-p "~/.abbrev_defs")
@@ -264,6 +264,7 @@
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 (use-package undo-tree
+  :ensure t
   :diminish undo-tree-mode
   :config
   (progn
@@ -272,7 +273,7 @@
     (setq undo-tree-visualizer-diff t)))
 
 (use-package helm
-  :ensure nil
+  :ensure t
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x C-f" . helm-find-files)
@@ -290,7 +291,6 @@
   (add-to-list 'helm-completing-read-handlers-alist '(find-file . helm-completing-read-symbols)))
 
 (use-package uniquify
-  :ensure nil
   :config
   (setq uniquify-buffer-name-style 'forward)
   (setq uniquify-separator "/")
@@ -311,20 +311,6 @@
   (progn
     (require 'smartparens-config)
     (smartparens-global-mode 1)))
-
-(use-package pomodoro
-  :disabled
-  :load-path "elisp/pomodoro/"
-  :config
-  (progn
-    (pomodoro-add-to-mode-line)
-    (setq pomodoro-break-start-sound
-          "~/.emacs.d/elisp/pomodoro/Wind-chime.wav")
-    (setq pomodoro-long-break-time 20)
-    (setq pomodoro-show-number t)
-    (setq pomodoro-sound-player "/usr/bin/aplay")
-    (setq pomodoro-work-start-sound
-          "~/.emacs.d/elisp/pomodoro/Sparkle.wav")))
 
 (use-package rainbow-delimiters
   :ensure t)
@@ -371,7 +357,7 @@
   (add-hook 'org-mode-hook #'my-org-mode-hook))
 
 (use-package ox-gfm
-  :load-path "/elisp/ox-gfm/")
+  :ensure t)
 
 (use-package org-bullets
   :ensure t
@@ -381,12 +367,16 @@
                     (org-bullets-mode 1))))
 
 (use-package calfw
+  :ensure t
   :bind ("C-c A" . my-calendar)
   :init
   (progn
-    (use-package calfw-cal)
-    (use-package calfw-org)
-    (use-package calfw-ical)
+    (use-package calfw-cal
+      :ensure t)
+    (use-package calfw-org
+      :ensure t)
+    (use-package calfw-ical
+      :ensure t)
     :preface
     (defun my-calendar ()
       (interactive)
@@ -436,7 +426,7 @@
 (use-package windmove
   :config
   ;; use shift + arrow keys to switch between visible buffers
-(windmove-default-keybindings))
+  (windmove-default-keybindings))
 
 ;; Modes for programming languages and such.
 
@@ -460,7 +450,7 @@
   (setq js-indent-level 2))
 
 (use-package slime
-  :ensure nil
+  :ensure t
   ;;load-path "~/quicklisp/dists/quicklisp/software/slime-v2.20"
   :config
   (add-hook 'slime-repl-mode-hook
@@ -473,7 +463,7 @@
         slime-net-coding-system 'utf-8-unix))
 
 (use-package slime-company
-  :ensure nil
+  :ensure t
   :config
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl"))
@@ -509,12 +499,11 @@
   :disabled)
 
 (use-package closure-template-html-mode
-  :ensure nil
   :mode "\\.tmpl\\'"
   :load-path "/elisp/closure-template/")
 
 (use-package neotree
-  :ensure nil
+  :ensure t
   :bind ([f8] . neotree-toggle)
   :config
   (setq neo-theme
@@ -526,10 +515,10 @@
   (setq projectile-switch-project-action 'neotree-projectile-action))
 
 (use-package all-the-icons
-  :ensure nil)
+  :ensure t)
 
 (use-package markdown-toc
-  :ensure nil)
+  :ensure t)
 
 (use-package flyspell
   :config
@@ -539,6 +528,7 @@
   (add-hook 'prog-mode-hook #'flyspell-prog-mode))
 
 (use-package flyspell-correct-helm
+  :ensure t
   :config
   (define-key flyspell-mode-map (kbd "C-;")
     'flyspell-correct-previous-word-generic))
@@ -554,6 +544,7 @@
 
 
 (use-package multiple-cursors
+  :ensure t
   :init
   (progn
     ;; these need to be defined here - if they're lazily loaded with
