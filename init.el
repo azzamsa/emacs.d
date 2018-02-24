@@ -114,6 +114,7 @@
 (require 'my-timestamp)
 (require 'my-org)
 (require 'my-dired)
+(require 'dired-x)
 
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
@@ -228,11 +229,10 @@
 (use-package dired
   :ensure nil
   :bind ((:map dired-mode-map
-               ("C-'"     . ora-dired-up-directory))
-         ("Y"     . ora-dired-rsync))
+               ("C-'" . ora-dired-up-directory)
+               ("C-r" . ora-dired-rsync)))
   :config
   ;; enable some really cool extensions like C-x C-j(dired-jump)
-  (require 'dired-x)
   (use-package dired+
     :load-path "~/.emacs.d/elisp/diredp/"
     :config
@@ -558,6 +558,8 @@
 (use-package elpy
   :ensure t
   :config
+  (use-package auto-virtualenv
+    :ensure t)
   (elpy-enable))
 
 ;; Unbind Pesky Sleep Button
