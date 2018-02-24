@@ -229,8 +229,9 @@
 
 (use-package dired
   :ensure nil
-  :bind (("C-'" . azzamsa-dired-up-directory)
-         ("Y" . ora-dired-rsync))
+  :bind ((:map dired-mode-map
+               ("C-'"     . ora-dired-up-directory))
+         ("Y"     . ora-dired-rsync))
   :config
   ;; enable some really cool extensions like C-x C-j(dired-jump)
   (require 'dired-x)
