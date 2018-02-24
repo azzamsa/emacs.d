@@ -113,6 +113,7 @@
 (add-to-list 'load-path "~/.emacs.d/myelisp/")
 (require 'my-timestamp)
 (require 'my-org)
+(require 'my-dired)
 
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
@@ -228,14 +229,8 @@
 
 (use-package dired
   :ensure nil
-  :bind ("C-'" . azzamsa-dired-up-directory)
-  :preface
-  (defun azzamsa-dired-up-directory ()
-    (interactive)
-    (let ((buffer (current-buffer)))
-      (dired-up-directory)
-      (unless (equal buffer (current-buffer))
-        (kill-buffer buffer))))
+  :bind (("C-'" . azzamsa-dired-up-directory)
+         ("Y" . ora-dired-rsync))
   :config
   ;; enable some really cool extensions like C-x C-j(dired-jump)
   (require 'dired-x)
