@@ -225,6 +225,7 @@
   (setq save-abbrevs 'silently))
 
 (use-package dired
+  :bind ("C-'" . dired-up-directory)
   :ensure nil
   :config
   ;; dired - reuse current buffer by pressing 'a'
@@ -422,10 +423,10 @@
   :ensure t
   :bind ("C-c g" . magit-status))
 
-(use-package dired+
-  :ensure t
-  :config
-  (diredp-toggle-find-file-reuse-dir 1))
+;; (use-package dired+
+;;   :ensure t
+;;   :config
+;;   (diredp-toggle-find-file-reuse-dir 1))
 
 (use-package windmove
   :config
