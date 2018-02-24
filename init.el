@@ -196,8 +196,6 @@
           (lambda ()
             (helm-mode t)
             (visual-line-mode t)))
-;;(pomodoro-start 25))) ;25 is minutes for work
-
 ;; Common Lisp
 (add-hook 'lisp-mode-hook
           (lambda ()
