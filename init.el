@@ -109,8 +109,10 @@
 ;; no need double click to insert, Yey!
 (delete-selection-mode +1)
 
-;;;loading my org configuration
-(load "~/.emacs.d/my-elisp/myorg.el")
+;;;loading my  configuration
+(add-to-list 'load-path "~/.emacs.d/myelisp/")
+(require 'my-timestamp)
+(require 'my-org)
 
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
