@@ -150,8 +150,6 @@
 ;; misc useful keybindings
 (global-set-key (kbd "s-<") #'beginning-of-buffer)
 (global-set-key (kbd "s->") #'end-of-buffer)
-(global-set-key (kbd "s-q") #'fill-paragraph)
-(global-set-key (kbd "s-x") #'execute-extended-command)
 
 
 ;; hippie expand is dabbrev expand on steroids
