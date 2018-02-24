@@ -489,10 +489,6 @@
   :ensure t
   :disabled)
 
-(use-package closure-template-html-mode
-  :mode "\\.tmpl\\'"
-  :load-path "/elisp/closure-template/")
-
 (use-package neotree
   :ensure t
   :bind ([f8] . neotree-toggle)
