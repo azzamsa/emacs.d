@@ -351,7 +351,6 @@
      'org-babel-load-languages
      '((java . t)
        (sh   . t)
-       (shell . t)
        (lisp . t))))
   :config
   (add-hook 'org-mode-hook #'my-org-mode-hook))
@@ -535,7 +534,6 @@
   (setq whitespace-line-column 80) ;; limit line length
   (setq whitespace-style '(face tabs empty trailing lines-tail)))
 
-
 (use-package multiple-cursors
   :ensure t
   :init
@@ -555,9 +553,6 @@
   :config
   (setq avy-background t))
 
-(use-package indent-guide
-  :ensure t)
-
 (use-package tex
   :defer t
   :ensure auctex
@@ -565,18 +560,18 @@
   (setq LaTeX-verbatim-environments
         '("verbatim" "Verbatim" "lstlisting" "minted")))
 
+(use-package elpy
+  :ensure t
+  :config
+  (elpy-enable))
 
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
 
-
 ;; from emacs
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-
-;; misc
-(elpy-enable)
 
 ;; Global keyboarding
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
