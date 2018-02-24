@@ -550,6 +550,11 @@
   (add-hook 'text-mode-hook #'flyspell-mode)
   (add-hook 'prog-mode-hook #'flyspell-prog-mode))
 
+(use-package flyspell-correct-helm
+  :config
+  (define-key flyspell-mode-map (kbd "C-;")
+    'flyspell-correct-previous-word-generic))
+
 (use-package whitespace
   :init
   (dolist (hook '(prog-mode-hook text-mode-hook))
