@@ -462,7 +462,10 @@
 (use-package yasnippet
   :ensure t
   :init (add-hook 'prog-mode-hook #'yas-minor-mode)
-  :config (yas-reload-all))
+  :config
+  (use-package yasnippet-snippets
+    :ensure t)
+  (yas-reload-all))
 
 (use-package php-beautifier
   :load-path "elisp/php-beautifier/")
