@@ -427,6 +427,11 @@
   :config
   (diredp-toggle-find-file-reuse-dir 1))
 
+(use-package windmove
+  :config
+  ;; use shift + arrow keys to switch between visible buffers
+(windmove-default-keybindings))
+
 ;; Modes for programming languages and such.
 
 (use-package web-mode
@@ -590,7 +595,6 @@
 
 (use-package indent-guide
   :ensure t)
-
 
 (use-package tex
   :defer t
