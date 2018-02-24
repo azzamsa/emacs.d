@@ -225,9 +225,23 @@
   (setq save-abbrevs 'silently))
 
 (use-package dired
-  :bind ("C-'" . dired-up-directory)
   :ensure nil
+  :bind ("C-'" . azzamsa-dired-up-directory)
+  :preface
+  (defun azzamsa-dired-up-directory ()
+    (interactive)
+    (let ((buffer (current-buffer)))
+      (dired-up-directory)
+      (unless (equal buffer (current-buffer))
+        (kill-buffer buffer))))
   :config
+  ;; enable some really cool extensions like C-x C-j(dired-jump)
+  (require 'dired-x)
+  (use-package dired+
+    :ensure t
+    :config
+    (diredp-toggle-find-file-reuse-dir 1))
+
   ;; dired - reuse current buffer by pressing 'a'
   (put 'dired-find-alternate-file 'disabled nil)
 
@@ -237,10 +251,7 @@
 
   ;; if there is a dired buffer displayed in the next window, use its
   ;; current subdir, instead of the current subdir of this dired buffer
-  (setq dired-dwim-target t)
-
-  ;; enable some really cool extensions like C-x C-j(dired-jump)
-  (require 'dired-x))
+  (setq dired-dwim-target t))
 
 (use-package company
   :ensure t
@@ -418,15 +429,9 @@
 
 (setq diary-file "~/.emacs.d/documents/diary")
 
-
 (use-package magit
   :ensure t
   :bind ("C-c g" . magit-status))
-
-;; (use-package dired+
-;;   :ensure t
-;;   :config
-;;   (diredp-toggle-find-file-reuse-dir 1))
 
 (use-package windmove
   :config
