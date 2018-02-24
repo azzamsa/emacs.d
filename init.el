@@ -238,7 +238,7 @@
   ;; enable some really cool extensions like C-x C-j(dired-jump)
   (require 'dired-x)
   (use-package dired+
-    :ensure t
+    :load-path "~/.emacs.d/elisp/diredp/"
     :config
     (diredp-toggle-find-file-reuse-dir 1))
 
@@ -444,14 +444,8 @@
     (setq web-mode-code-indent-offset 2)
     (setq web-mode-enable-auto-quoting nil)))
 
-(use-package js
-  ;; built-in
-  :init
-  (setq js-indent-level 2))
-
 (use-package slime
   :ensure t
-  ;;load-path "~/quicklisp/dists/quicklisp/software/slime-v2.20"
   :config
   (add-hook 'slime-repl-mode-hook
             (lambda ()
@@ -522,16 +516,15 @@
 
 (use-package flyspell
   :config
+  (use-package flyspell-correct-helm
+    :ensure t
+    :config
+    (define-key flyspell-mode-map (kbd "C-;")
+      'flyspell-correct-previous-word-generic))
   (setq ispell-program-name "aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra"))
   (add-hook 'text-mode-hook #'flyspell-mode)
   (add-hook 'prog-mode-hook #'flyspell-prog-mode))
-
-(use-package flyspell-correct-helm
-  :ensure t
-  :config
-  (define-key flyspell-mode-map (kbd "C-;")
-    'flyspell-correct-previous-word-generic))
 
 (use-package whitespace
   :init
@@ -561,13 +554,6 @@
          ("s-," . avy-goto-char))
   :config
   (setq avy-background t))
-
-(use-package skewer-mode
-  :ensure t
-  :disabled)
-
-(use-package js2-mode
-  :mode ("\\.js$" . js2-mode))
 
 (use-package indent-guide
   :ensure t)
