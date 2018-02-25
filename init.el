@@ -109,13 +109,6 @@
 ;; no need double click to insert, Yey!
 (delete-selection-mode +1)
 
-;;;loading my  configuration
-(add-to-list 'load-path "~/.emacs.d/myelisp/")
-(require 'my-timestamp)
-(require 'my-org)
-(require 'my-dired)
-(require 'dired-x)
-
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
 (setq frame-title-format
@@ -205,6 +198,13 @@
             (show-paren-mode t)
             (prettify-symbols-mode t)))
 
+;;;loading my  configuration
+(add-to-list 'load-path "~/.emacs.d/myelisp/")
+(require 'my-timestamp)
+(require 'my-org)
+(require 'my-dired)
+(require 'dired-x)
+
 ;; packages
 (use-package projectile
   :ensure t
@@ -237,7 +237,6 @@
     :load-path "~/.emacs.d/elisp/diredp/"
     :config
     (diredp-toggle-find-file-reuse-dir 1))
-
   ;; dired - reuse current buffer by pressing 'a'
   (put 'dired-find-alternate-file 'disabled nil)
 
@@ -423,6 +422,27 @@
   ;; use shift + arrow keys to switch between visible buffers
   (windmove-default-keybindings))
 
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
+
+(use-package dimmmer
+  :disabled
+  :ensure nil
+  :config
+  (setq dimmer-fraction 0.83)
+  (dimmer-mode t))
+
+(use-package savehist
+  :config
+  (add-to-list
+   'savehist-additional-variables
+   'helm-dired-history-variable)
+  (savehist-mode 1))
+
+
 ;; Modes for programming languages and such.
 
 (use-package web-mode
@@ -559,6 +579,7 @@
   :ensure t
   :config
   (use-package auto-virtualenv
+    :disabled
     :ensure t)
   (elpy-enable))
 
@@ -569,6 +590,10 @@
 ;; from emacs
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+;; I hate that custom fruit
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
 
 ;; Global keyboarding
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
