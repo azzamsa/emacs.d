@@ -272,7 +272,7 @@
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x C-f" . helm-find-files)
-         ("C-x b" . helm-buffers-list))
+         ("C-x b" . helm-mini))
   :init
   (setq helm-M-x-fuzzy-match t
         helm-buffers-fuzzy-matching t
