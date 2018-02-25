@@ -8,7 +8,11 @@
 
 ;;; Code:
 
-;;;
+(require 'thingatpt)
+(require 'seq)
+(require 'tramp)
+
+;;;###autoload
 (defun crux-transpose-windows (arg)
   "Transpose the buffers shown in two windows.
 Prefix ARG determines if the current windows buffer is swapped
@@ -26,7 +30,7 @@ transpositions to execute in sequence."
 
 (defalias 'crux-swap-windows 'crux-transpose-windows)
 
-;;;
+;;;###autoload
 (defun crux-kill-other-buffers ()
   "Kill all buffers but the current one.
 Doesn't mess with special buffers."
@@ -36,7 +40,7 @@ Doesn't mess with special buffers."
      #'kill-buffer
      (delete (current-buffer) (seq-filter #'buffer-file-name (buffer-list))))))
 
-;;;
+;;;###autoload
 (defun crux-reopen-as-root ()
   "Find file as root if necessary.
 Meant to be used as `find-file-hook'.
@@ -63,7 +67,7 @@ See also `crux-reopen-as-root-mode'."
 
 (defalias 'crux-delete-buffer-and-file #'crux-delete-file-and-buffer)
 
-;;;
+;;;###autoload
 (defun crux-rename-file-and-buffer ()
   "Rename current buffer and if the buffer is visiting a file, rename it too."
   (interactive)
@@ -81,7 +85,7 @@ See also `crux-reopen-as-root-mode'."
 
 (defalias 'crux-rename-buffer-and-file #'crux-rename-file-and-buffer)
 
-;;;
+;;;###autoload
 (defun crux-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
 Move point to the first non-whitespace character on this line.
