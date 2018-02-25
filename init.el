@@ -41,7 +41,7 @@
                          ("org" . "http://orgmode.org/elpa/")))
 
 ;; keep the installed packages in .emacs.d
-(setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
+(setq package-user-dir (expand-file-name "elpa" user-emacs-diretory))
 (package-initialize)
 ;; update the package metadata is the local cache is missing
 (unless package-archive-contents
@@ -203,7 +203,6 @@
 (require 'my-timestamp)
 (require 'my-org)
 (require 'my-dired)
-(require 'dired-x)
 
 ;; packages
 (use-package projectile
@@ -233,6 +232,7 @@
                ("C-r" . ora-dired-rsync)))
   :config
   ;; enable some really cool extensions like C-x C-j(dired-jump)
+  (require 'dired-x)
   (use-package dired+
     :load-path "~/.emacs.d/elisp/diredp/"
     :config
@@ -272,7 +272,10 @@
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x C-f" . helm-find-files)
-         ("C-x b" . helm-mini))
+         ("C-x b" . helm-mini)
+         ("C-c h o" . helm-occur)
+         ("C-c h /" . helm-find)
+         ("C-c p h" . helm-projectile))
   :init
   (setq helm-M-x-fuzzy-match t
         helm-buffers-fuzzy-matching t
@@ -475,6 +478,9 @@
   :config
   (which-key-mode +1))
 
+(use-package simple-crux
+  :load-path "~/.emacs.d/myelisp"
+  :bind ("C-c w" . crux-transpose-windows))
 
 ;; Programming modes
 
