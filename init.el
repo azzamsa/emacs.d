@@ -232,7 +232,8 @@
   :ensure nil
   :bind ((:map dired-mode-map
                ("C-'" . ora-dired-up-directory)
-               ("C-r" . ora-dired-rsync)))
+               ("C-r" . ora-dired-rsync))
+         ("C-t" . shell-pop))
   :config
   ;; enable some really cool extensions like C-x C-j(dired-jump)
   (require 'dired-x)
@@ -339,8 +340,7 @@
 
 (use-package org
   :ensure t
-  :bind(
-        :map org-mode-map
+  :bind (:map org-mode-map
              ("C-c l" . org-store-link)
              ("C-c a" . org-agenda))
   :init
@@ -482,12 +482,32 @@
   :config
   (which-key-mode +1))
 
-(use-package simple-crux
-  :load-path "~/.emacs.d/myelisp"
-  :bind (("C-c w" . crux-transpose-windows)
-         ("C-x c" . crux-kill-other-buffers)
+(use-package crux
+  :ensure t
+  :bind (("C-c o" . crux-open-with)
+         ("M-o" . crux-smart-open-line)
+         ("C-c n" . crux-cleanup-buffer-or-region)
+         ("C-M-z" . crux-indent-defun)
+         ("C-c u" . crux-view-url)
+         ("C-c e" . crux-eval-and-replace)
+         ("C-c w" . crux-swap-windows)
          ("C-c D" . crux-delete-file-and-buffer)
-         ("C-c r" . crux-rename-buffer-and-file)))
+         ("C-c r" . crux-rename-buffer-and-file)
+         ("C-c t" . crux-visit-term-buffer)
+         ("C-c M-k" . crux-kill-other-buffers)
+         ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
+         ("C-c I" . crux-find-user-init-file)
+         ("C-c S" . crux-find-shell-init-file)
+         ("s-r" . crux-recentf-ido-find-file)
+         ("s-j" . crux-top-join-line)
+         ("C-^" . crux-top-join-line)
+         ("s-k" . crux-kill-whole-line)
+         ("C-<backspace>" . crux-kill-line-backwards)
+         ("s-o" . crux-smart-open-line-above)
+         ([remap move-beginning-of-line] . crux-move-beginning-of-line)
+         ([(shift return)] . crux-smart-open-line)
+         ([(control shift return)] . crux-smart-open-line-above)
+         ([remap kill-whole-line] . crux-kill-whole-line)))
 
 ;; Programming modes
 
@@ -628,6 +648,26 @@
     :disabled
     :ensure t)
   (elpy-enable))
+
+(use-package helm-eshell
+  :init
+  (add-hook 'eshell-mode-hook
+            #'(lambda ()
+                (define-key eshell-mode-map (kbd "C-c C-l")
+                  'helm-eshell-history))))
+
+(use-package shell-pop
+  :ensure t
+  :config
+  (custom-set-variables
+   '(shell-pop-default-directory "~/")
+   '(shell-pop-shell-type
+     (quote ("eshell" "*eshell*" (lambda nil (eshell shell-pop-term-shell)))))
+   '(shell-pop-term-shell "/usr/bin/bash")
+   '(shell-pop-universal-key "C-t")
+   '(shell-pop-window-height 30)
+   '(shell-pop-full-span t)
+   '(shell-pop-window-position "bottom")))
 
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
