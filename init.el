@@ -41,7 +41,7 @@
                          ("org" . "http://orgmode.org/elpa/")))
 
 ;; keep the installed packages in .emacs.d
-(setq package-user-dir (expand-file-name "elpa" user-emacs-diretory))
+(setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (package-initialize)
 ;; update the package metadata is the local cache is missing
 (unless package-archive-contents
@@ -49,6 +49,12 @@
 
 (setq user-full-name "azzamsa"
       user-mail-address "me@azzamsa.com")
+
+;;;loading my  configuration
+(add-to-list 'load-path "~/.emacs.d/myelisp/")
+(require 'my-timestamp)
+(require 'my-org)
+(require 'my-dired)
 
 ;; Always load newest byte code
 (setq load-prefer-newer t)
@@ -197,12 +203,6 @@
             (rainbow-delimiters-mode t)
             (show-paren-mode t)
             (prettify-symbols-mode t)))
-
-;;;loading my  configuration
-(add-to-list 'load-path "~/.emacs.d/myelisp/")
-(require 'my-timestamp)
-(require 'my-org)
-(require 'my-dired)
 
 ;; packages
 (use-package projectile
@@ -479,8 +479,12 @@
   (which-key-mode +1))
 
 (use-package simple-crux
+  :diminish simple-crux
   :load-path "~/.emacs.d/myelisp"
-  :bind ("C-c w" . crux-transpose-windows))
+  :bind (("C-c w" . crux-transpose-windows)
+         ("C-x c" . crux-kill-other-buffers)
+         ("C-c D" . crux-delete-file-and-buffer)
+         ("C-c r" . crux-rename-buffer-and-file)))
 
 ;; Programming modes
 
