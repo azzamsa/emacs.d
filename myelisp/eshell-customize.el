@@ -45,11 +45,12 @@ PWD is not in a git repo (or the git command is not found)."
   (when (and (eshell-search-path "git")
              (locate-dominating-file pwd ".git"))
     (let ((git-output (shell-command-to-string (concat "cd " pwd " && git branch | grep '\\*' | sed -e 's/^\\* //'"))))
-      (propertize (concat " ["
-                          (if (> (length git-output) 0)
-                              (substring git-output 0 -1)
-                            "(no branch)")
-                          "]") 'face `(:foreground "#8cd0d3")))))
+      (concat (concat " on ")
+              (propertize (concat " ["
+                                  (if (> (length git-output) 0)
+                                      (substring git-output 0 -1)
+                                    "(no branch)")
+                                  "]") 'face `(:foreground "#8cd0d3"))))))
 
 (setq eshell-prompt-function
       (lambda ()
@@ -73,7 +74,6 @@ PWD is not in a git repo (or the git command is not found)."
                                      p-lst
                                      "/")))
                       (split-string (pwd-repl-home (eshell/pwd)) "/")) 'face `(:foreground "#7cac7c"))
-         (concat " on ")
          (or (curr-dir-git-branch-string (eshell/pwd)))
          (propertize " $ " 'face 'default))))
 
