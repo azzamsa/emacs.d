@@ -437,13 +437,75 @@
 
 (use-package savehist
   :config
-  (add-to-list
-   'savehist-additional-variables
-   'helm-dired-history-variable)
-  (savehist-mode 1))
+  (setq savehist-additional-variables
+        ;; search entries
+        '(search-ring regexp-search-ring)
+        ;; save every minute
+        savehist-autosave-interval 60
+        ;; keep the home clean
+        savehist-file (expand-file-name "savehist" azzamsa-savefile-dir))
+  (savehist-mode +1))
+
+;; saveplace remembers your location in a file when saving files
+(use-package saveplace
+  :config
+  (setq save-place-file (expand-file-name "saveplace" azzamsa-savefile-dir))
+  ;; activate it for all buffers
+  (setq-default save-place t))
+
+(use-package recentf
+  :config
+  (setq recentf-save-file (expand-file-name "recentf" azzamsa-savefile-dir)
+        recentf-max-saved-items 500
+        recentf-max-menu-items 15
+        ;; disable recentf-cleanup on Emacs start, because it can cause
+        ;; problems with remote files
+        recentf-auto-cleanup 'never)
+  (recentf-mode +1))
+
+(use-package diff-hl
+  :ensure t
+  :config
+  (global-diff-hl-mode +1)
+  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+
+(use-package crux
+  :ensure t
+  :bind (("C-c o" . crux-open-with)
+         ("M-o" . crux-smart-open-line)
+         ("C-c n" . crux-cleanup-buffer-or-region)
+         ("C-c f" . crux-recentf-ido-find-file)
+         ("C-M-z" . crux-indent-defun)
+         ("C-c u" . crux-view-url)
+         ("C-c e" . crux-eval-and-replace)
+         ("C-c w" . crux-swap-windows)
+         ("C-c D" . crux-delete-file-and-buffer)
+         ("C-c r" . crux-rename-buffer-and-file)
+         ("C-c t" . crux-visit-term-buffer)
+         ("C-c k" . crux-kill-other-buffers)
+         ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
+         ("C-c I" . crux-find-user-init-file)
+         ("C-c S" . crux-find-shell-init-file)
+         ("s-r" . crux-recentf-ido-find-file)
+         ("s-j" . crux-top-join-line)
+         ("C-^" . crux-top-join-line)
+         ("s-k" . crux-kill-whole-line)
+         ("C-<backspace>" . crux-kill-line-backwards)
+         ("s-o" . crux-smart-open-line-above)
+         ([remap move-beginning-of-line] . crux-move-beginning-of-line)
+         ([(shift return)] . crux-smart-open-line)
+         ([(control shift return)] . crux-smart-open-line-above)
+         ([remap kill-whole-line] . crux-kill-whole-line)
+         ("C-c s" . crux-ispell-word-then-abbrev)))
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode +1))
 
 
-;; Modes for programming languages and such.
+;; Programming modes
 
 (use-package web-mode
   :ensure t
@@ -592,8 +654,10 @@
 (put 'upcase-region 'disabled nil)
 
 ;; I hate that custom fruit
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;; Global keyboarding
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
