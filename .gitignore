@@ -32,3 +32,5 @@ eshell/lastdir
 documents/
 .mc-lists.el
 bookmarks.org
+custom.el
+history
