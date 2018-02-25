@@ -275,7 +275,8 @@
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x C-f" . helm-find-files)
-         ("C-x b" . helm-mini)
+         ("C-x b" . helm-buffers-list)
+         ("C-x m" . helm-mini)
          ("C-c h o" . helm-occur)
          ("C-c h /" . helm-find)
          ("C-c p h" . helm-projectile))
