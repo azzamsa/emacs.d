@@ -55,6 +55,9 @@
 (require 'my-timestamp)
 (require 'my-org)
 (require 'my-dired)
+(load "~/.emacs.d/myelisp/eshell-customize.el")
+
+
 
 ;; Always load newest byte code
 (setq load-prefer-newer t)
@@ -479,7 +482,6 @@
   (which-key-mode +1))
 
 (use-package simple-crux
-  :diminish simple-crux
   :load-path "~/.emacs.d/myelisp"
   :bind (("C-c w" . crux-transpose-windows)
          ("C-x c" . crux-kill-other-buffers)

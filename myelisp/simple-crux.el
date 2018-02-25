@@ -12,6 +12,18 @@
 (require 'seq)
 (require 'tramp)
 
+
+(defvar crux-line-start-regex-term-mode "^[^#$%>\n]*[#$%>] "
+  "Match terminal prompts.
+Used by crux functions like crux-move-beginning-of-line to skip over the prompt")
+
+(defvar crux-line-start-regex-eshell-mode "^[^$\n]*$ " "Match eshell prompt.
+Used by crux functions like crux-move-beginning-of-line to skip over the prompt")
+
+(defvar crux-line-start-regex "^[[:space:]]*" "Match whitespace in from of line.
+Used by crux functions like crux-move-beginning-of-line to skip over whitespace")
+
+
 ;;;###autoload
 (defun crux-transpose-windows (arg)
   "Transpose the buffers shown in two windows.
@@ -51,6 +63,21 @@ See also `crux-reopen-as-root-mode'."
               (file-writable-p buffer-file-name)
               (crux-file-owned-by-user-p buffer-file-name))
     (crux-find-alternate-file-as-root buffer-file-name)))
+
+(defun crux-file-owned-by-user-p (filename)
+  "Return t if file FILENAME is owned by the currently logged in user."
+  (equal (crux-file-owner-uid filename)
+         (user-uid)))
+
+(defun crux-file-owner-uid (filename)
+  "Return the UID of the FILENAME as an integer.
+See `file-attributes' for more info."
+  (nth 2 (file-attributes filename 'integer)))
+
+
+(defun crux-find-alternate-file-as-root (filename)
+  "Wraps `find-alternate-file' with opening FILENAME as root."
+  (find-alternate-file (concat "/sudo:root@localhost:" filename)))
 
 ;;;###autoload
 (defun crux-delete-file-and-buffer ()
@@ -107,6 +134,14 @@ point reaches the beginning or end of the buffer, stop there."
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
 
+(defun move-to-mode-line-start ()
+  "Move to the beginning, skipping mode specific line start regex."
+  (interactive)
+  (move-beginning-of-line nil)
+  (let ((line-start-regex (cond ((eq major-mode 'term-mode) crux-line-start-regex-term-mode)
+                                ((eq major-mode 'eshell-mode) crux-line-start-regex-eshell-mode)
+                                (t crux-line-start-regex))))
+    (search-forward-regexp line-start-regex (line-end-position) t)))
 
 (provide 'simple-crux)
 ;;; simple-crux.el ends here
