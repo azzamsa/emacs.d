@@ -234,9 +234,10 @@
                ("C-'" . ora-dired-up-directory)
                ("C-r" . ora-dired-rsync))
          ("C-t" . shell-pop))
-  :config
+  :init
   ;; enable some really cool extensions like C-x C-j(dired-jump)
   (require 'dired-x)
+  :config
   (use-package dired+
     :load-path "~/.emacs.d/elisp/diredp/"
     :config
@@ -580,6 +581,8 @@
   :ensure t
   :bind ([f8] . neotree-toggle)
   :config
+  (use-package all-the-icons
+    :ensure t)
   (setq neo-theme
         (if (display-graphic-p)
             'icons
@@ -587,9 +590,6 @@
   (setq neo-smart-open t)
   ;;work with projectile
   (setq projectile-switch-project-action 'neotree-projectile-action))
-
-(use-package all-the-icons
-  :ensure t)
 
 (use-package markdown-toc
   :ensure t)
@@ -673,7 +673,7 @@
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
 
-;; from emacs
+;; Run at full power please
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
