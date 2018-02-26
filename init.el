@@ -58,7 +58,6 @@
 (load "~/.emacs.d/myelisp/eshell-customize.el")
 
 
-
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
@@ -509,6 +508,11 @@
          ([(shift return)] . crux-smart-open-line)
          ([(control shift return)] . crux-smart-open-line-above)
          ([remap kill-whole-line] . crux-kill-whole-line)))
+
+(use-package make-md-to-org
+  :load-path "~/.emacs.d/myelisp/"
+  :bind ("C-c M-m" . make-md-to-org ))
+
 
 ;; Programming modes
 
