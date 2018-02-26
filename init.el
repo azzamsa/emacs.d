@@ -673,6 +673,7 @@
    '(shell-pop-full-span t)
    '(shell-pop-window-position "bottom")))
 
+
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
@@ -680,6 +681,9 @@
 ;; Run at full power please
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+;; Emacs misc
+(setq history-delete-duplicates t)
 
 ;; I hate that custom fruit
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
