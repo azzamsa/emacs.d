@@ -385,6 +385,19 @@
     :bind ("s-x o c " . org-cliplink))
   (use-package org-download
     :ensure t)
+  ;;org-refil
+  (setq org-refile-targets '(("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
+                             ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
+                             ("~/.emacs.d/documents/gtd/tickler.org" :maxlevel . 2)))
+  (setq org-capture-templates '(("t" "Todo [inbox]" entry
+                                 (file+headline "~/.emacs.d/documents/gtd/inbox.org" "Tasks")
+                                 "* TODO %i%?")
+                                ("T" "Tickler" entry
+                                 (file+headline "~/.emacs.d/documents/gtd/tickler.org" "Tickler")
+                                 "* %i%? \n %U")
+                                ("S" "Sletz" entry
+                                 (file+headline "~/.emacs.d/documents/sletz.org" "Tickler")
+                                 "* %i%? \n %U")))
   (add-hook 'org-mode-hook #'my-org-mode-hook))
 
 (use-package ox-gfm
@@ -774,5 +787,5 @@
 
 (global-set-key (kbd "C-c b")
                 (lambda () (interactive) (find-file "~/.emacs.d/bookmarks.org")))
-
+(global-set-key (kbd "C-c c") 'org-capture)
 ;;; init.el ends here
