@@ -53,10 +53,12 @@
 ;;;loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/myelisp/")
 (require 'my-timestamp)
-(require 'my-org)
 (require 'my-dired)
 (load "~/.emacs.d/myelisp/eshell-customize.el")
+(require 'init-java)
 
+;;find my PATH
+(setenv "PATH" (shell-command-to-string "bash -i -c 'echo -n $PATH'"))
 
 ;; Always load newest byte code
 (setq load-prefer-newer t)
@@ -250,7 +252,8 @@
 
   ;; if there is a dired buffer displayed in the next window, use its
   ;; current subdir, instead of the current subdir of this dired buffer
-  (setq dired-dwim-target t))
+  (setq dired-dwim-target t)
+  (setq dired-listing-switches "-alGhvF --group-directories-first"))
 
 (use-package company
   :ensure t
@@ -277,21 +280,32 @@
   :bind (("M-x" . helm-M-x)
          ("C-x C-f" . helm-find-files)
          ("C-x b" . helm-buffers-list)
-         ("C-x m" . helm-mini)
+         ("C-c h m" . helm-mini)
          ("C-c h o" . helm-occur)
          ("C-c h /" . helm-find)
+         ("C-c h l" . helm-locate)
          ("C-c p h" . helm-projectile))
   :init
-  (setq helm-M-x-fuzzy-match t
-        helm-buffers-fuzzy-matching t
-        helm-display-header-line nil)
+  (progn
+    (require 'helm-config)
+    (setq helm-candidate-number-limit 100)
+    (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
+          helm-input-idle-delay 0.01  ; update things reelatively quickly.
+          helm-yas-display-key-on-candidate t
+          helm-quick-update t
+          helm-M-x-requires-pattern nil
+          helm-ff-skip-boring-files t)
+    (setq helm-M-x-fuzzy-match t
+          helm-buffers-fuzzy-matching t
+          helm-locate-fuzzy-match t
+          helm-display-header-line nil))
   :config
-  ;; No idea why here find-file is set to nil (so it uses the native find-file
-  ;; for Emacs. This makes stuff like (find-file (read-file-name ...)) work with
-  ;; Helm again.
   (helm-mode 1)
   (helm-autoresize-mode 1)
-  (add-to-list 'helm-completing-read-handlers-alist '(find-file . helm-completing-read-symbols)))
+  ;;use ack-grep instead of grep
+  (when (executable-find "ack-grep")
+    (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
+          helm-grep-default-recurse-command "ack-grep -H --no-group --no-color %e %p %f")))
 
 (use-package uniquify
   :config
@@ -341,20 +355,36 @@
 (use-package org
   :ensure t
   :bind (:map org-mode-map
-             ("C-c l" . org-store-link)
-             ("C-c a" . org-agenda))
+              ("C-c l" . org-store-link)
+              ("C-c a" . org-agenda))
   :init
   (progn
     (setq org-src-tab-acts-natively t)
     (setq org-log-done t)
     (setq org-startup-indented t)
-    (setq org-agenda-files (list "~/.emacs.d/documents/planz.org"))
+    (setq org-src-fontify-natively t)
+    (setq org-agenda-files '("~/.emacs.d/documents/gtd/inbox.org"
+                             "~/.emacs.d/documents/gtd/project.org"
+                             "~/.emacs.d/documents/gtd/tickler.org"))
+    (setq org-todo-keywords '((sequence "TODO(t)"
+                                        "STARTED(s!)"
+                                        "WAITING(w@/!)"
+                                        "|"
+                                        "DONE(d!)"
+                                        "CANCELLED(c@)")))
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((java . t)
        (sh   . t)
-       (lisp . t))))
+       (python . t)
+       (lisp . t)))
+    (require 'my-org))
   :config
+  (use-package org-cliplink
+    :ensure t
+    :bind ("s-x o c " . org-cliplink))
+  (use-package org-download
+    :ensure t)
   (add-hook 'org-mode-hook #'my-org-mode-hook))
 
 (use-package ox-gfm
@@ -433,13 +463,15 @@
   :ensure t
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)))
-
-(use-package dimmmer
-  :disabled
-  :ensure nil
+         ("\\.markdown\\'" . markdown-mode))
   :config
-  (setq dimmer-fraction 0.83)
+  (setq markdown-asymmetric-header t))
+
+(use-package dimmer
+  :ensure t
+  :config
+  (setq dimmer-exclusion-regexp "^\*helm.*\\|^ \*Minibuf-.*\\|^ \*Echo.*")
+  (setq dimmer-fraction 0.50)
   (dimmer-mode t))
 
 (use-package savehist
@@ -501,7 +533,7 @@
          ("s-r" . crux-recentf-ido-find-file)
          ("s-j" . crux-top-join-line)
          ("C-^" . crux-top-join-line)
-         ("s-k" . crux-kill-whole-line)
+         ("s-x k" . crux-kill-whole-line)
          ("C-<backspace>" . crux-kill-line-backwards)
          ("s-o" . crux-smart-open-line-above)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)
@@ -512,6 +544,12 @@
 (use-package make-md-to-org
   :load-path "~/.emacs.d/myelisp/"
   :bind ("C-c M-m" . make-md-to-org ))
+
+(use-package my-timestamp
+  :load-path "~/.emacs.d/myelisp/"
+  :bind (("s-x t t" . today)
+         ("s-x t n" . now)
+         ("s-x t h" . hour)))
 
 
 ;; Programming modes
@@ -642,16 +680,34 @@
   :defer t
   :ensure auctex
   :config
-  (setq LaTeX-verbatim-environments
-        '("verbatim" "Verbatim" "lstlisting" "minted")))
+  (use-package bibretrieve
+    :ensure t)
+  (use-package helm-bibtex
+    :ensure t
+    :bind ("s-x b" . helm-bibtex-with-local-bibliography))
+  (progn
+    (setq LaTeX-verbatim-environments
+          '("verbatim" "Verbatim" "lstlisting" "minted"))
+    (setq TeX-parse-self t) ; Enable parse on load.
+    ;;(setq TeX-auto-save t) ; Enable parse on save.
+    (setq-default TeX-PDF-mode t) ; output to pdf
+    ;; Activate nice interface between RefTeX and AUCTeX
+    (setq reftex-plug-into-AUCTeX t)
+    (add-to-list 'TeX-command-list
+                 '("XeLaTeX" "xelatex -interaction=nonstopmode %s"
+                   TeX-run-command t t :help "Run xelatex") t)
+    (add-hook 'LaTeX-mode-hook 'turn-on-reftex)))
 
 (use-package elpy
   :ensure t
   :config
-  (use-package auto-virtualenv
-    :disabled
+  (use-package company-jedi
     :ensure t)
-  (elpy-enable))
+  (elpy-enable)
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (company-mode t)
+              (company-jedi t))))
 
 (use-package helm-eshell
   :init
@@ -672,6 +728,19 @@
    '(shell-pop-window-height 30)
    '(shell-pop-full-span t)
    '(shell-pop-window-position "bottom")))
+
+(use-package sublimity
+  :ensure t
+  :init
+  (progn
+    (require 'sublimity-scroll)
+    (require 'sublimity-map))
+  :config
+  (sublimity-mode 1)
+  (sublimity-map-set-delay 5))
+
+;; display “lambda” as “λ”
+(global-prettify-symbols-mode 1)
 
 
 ;; Unbind Pesky Sleep Button
@@ -695,7 +764,7 @@
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
 
 (global-set-key (kbd "C-c o")
-                (lambda () (interactive) (find-file "~/.emacs.d/documents/planz.org")))
+                (lambda () (interactive) (find-file "~/.emacs.d/documents/gtd/inbox.org")))
 
 (global-set-key (kbd "C-c n")
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/notes.org")))

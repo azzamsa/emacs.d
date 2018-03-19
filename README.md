@@ -6,4 +6,5 @@ this is my emacs config.
 
 - Heavily inspired by [Bozhidar Batsov](http://batsov.com) and his [emacs.d repository](https://github.com/bbatsov/emacs.d)
 - [John Wiegley](https://github.com/jwiegley) - [.emacs](https://github.com/jwiegley/dot-emacs) repository.
+- oremacs
 - I also look to various .emacs repositories to take any insight, so the credits also go for them.

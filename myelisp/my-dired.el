@@ -1,3 +1,7 @@
+;;------------
+;; dired conf from oramac
+;;------------
+
 (defun ora-dired-rsync (dest)
   (interactive
    (list (expand-file-name
