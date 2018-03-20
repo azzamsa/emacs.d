@@ -154,11 +154,6 @@
 (set-keyboard-coding-system 'utf-8)
 
 
-;; misc useful keybindings
-(global-set-key (kbd "s-<") #'beginning-of-buffer)
-(global-set-key (kbd "s->") #'end-of-buffer)
-
-
 ;; hippie expand is dabbrev expand on steroids
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
@@ -170,10 +165,6 @@
                                          try-expand-line
                                          try-complete-lisp-symbol-partially
                                          try-complete-lisp-symbol))
-
-;; use hippie-expand instead of dabbrev
-(global-set-key (kbd "M-/") #'hippie-expand)
-(global-set-key (kbd "s-/") #'hippie-expand)
 
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
@@ -535,7 +526,7 @@
          ("C-M-z" . crux-indent-defun)
          ("C-c u" . crux-view-url)
          ("C-c e" . crux-eval-and-replace)
-         ("s-x c s" . crux-swap-windows)
+         ("C-c s" . crux-swap-windows)
          ("C-c D" . crux-delete-file-and-buffer)
          ("C-c r" . crux-rename-buffer-and-file)
          ("C-c t" . crux-visit-term-buffer)
@@ -546,7 +537,7 @@
          ("s-r" . crux-recentf-ido-find-file)
          ("s-j" . crux-top-join-line)
          ("C-^" . crux-top-join-line)
-         ("s-x c k" . crux-kill-whole-line)
+         ("s-k" . crux-kill-whole-line)
          ("C-<backspace>" . crux-kill-line-backwards)
          ("s-o" . crux-smart-open-line-above)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)
@@ -752,9 +743,10 @@
   (sublimity-mode 1)
   (sublimity-map-set-delay 5))
 
+;;; Misc
+
 ;; display “lambda” as “λ”
 (global-prettify-symbols-mode 1)
-
 
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
@@ -773,9 +765,11 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Global keyboarding
+;;; Global keybindings
+
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
 
+;; org mode
 (global-set-key (kbd "C-c o")
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/gtd/inbox.org")))
 
@@ -787,5 +781,26 @@
 
 (global-set-key (kbd "C-c b")
                 (lambda () (interactive) (find-file "~/.emacs.d/bookmarks.org")))
+
 (global-set-key (kbd "C-c c") 'org-capture)
+
+;; Font size
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+;; If you want to be able to M-x without meta
+(global-set-key (kbd "C-x C-m") 'helm-M-x)
+
+;; replace zap-to-char functionality with the more powerful zop-to-char
+(global-set-key (kbd "M-z") 'zop-up-to-char)
+(global-set-key (kbd "M-Z") 'zop-to-char)
+
+;; use hippie-expand instead of dabbrev
+(global-set-key (kbd "M-/") #'hippie-expand)
+(global-set-key (kbd "s-/") #'hippie-expand)
+
+;; misc useful keybindings
+(global-set-key (kbd "s-<") #'beginning-of-buffer)
+(global-set-key (kbd "s->") #'end-of-buffer)
+
 ;;; init.el ends here
