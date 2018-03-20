@@ -551,9 +551,7 @@
 
 (use-package aza-timestamp
   :load-path "~/.emacs.d/modes/"
-  :bind (("s-x t t" . today)
-         ("s-x t n" . now)
-         ("s-x t h" . hour)))
+  :bind (("s-t" . today)))
 
 
 ;; Programming modes
