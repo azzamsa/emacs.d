@@ -1,4 +1,4 @@
-;;;; my-timestamp
+;;;; aza-timestamp
 ;;; http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
 ;;; by Michael Paulukonis
 
@@ -18,4 +18,4 @@
   (interactive)
   (insert (format-time-string "%-I:%M %p")))
 
-(provide 'my-timestamp)
+(provide 'aza-timestamp)

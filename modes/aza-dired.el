@@ -39,4 +39,4 @@
     (unless (equal buffer (current-buffer))
       (kill-buffer buffer))))
 
-(provide 'my-dired)
+(provide 'aza-dired)

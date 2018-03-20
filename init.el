@@ -51,10 +51,10 @@
       user-mail-address "me@azzamsa.com")
 
 ;;;loading my  configuration
-(add-to-list 'load-path "~/.emacs.d/myelisp/")
-(require 'my-timestamp)
-(require 'my-dired)
-(load "~/.emacs.d/myelisp/eshell-customize.el")
+(add-to-list 'load-path "~/.emacs.d/modes/")
+(require 'aza-eshell)
+(require 'aza-timestamp)
+(require 'aza-dired)
 (require 'init-java)
 
 ;;find my PATH
@@ -369,7 +369,7 @@
        (sh   . t)
        (python . t)
        (lisp . t)))
-    (require 'my-org))
+    (require 'aza-org))
   :config
   (use-package org-cliplink
     :ensure t
@@ -546,11 +546,11 @@
          ([remap kill-whole-line] . crux-kill-whole-line)))
 
 (use-package make-md-to-org
-  :load-path "~/.emacs.d/myelisp/"
+  :load-path "~/.emacs.d/modes/"
   :bind ("C-c M-m" . make-md-to-org ))
 
-(use-package my-timestamp
-  :load-path "~/.emacs.d/myelisp/"
+(use-package aza-timestamp
+  :load-path "~/.emacs.d/modes/"
   :bind (("s-x t t" . today)
          ("s-x t n" . now)
          ("s-x t h" . hour)))
