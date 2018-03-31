@@ -91,6 +91,12 @@
 ;; cursor color dissappear on emacs 25
 (set-cursor-color "#f0fff0")
 
+;; I have nyan!, disable scroll bar
+(if (fboundp 'set-scroll-bar-mode)
+    (set-scroll-bar-mode nil))
+(scroll-bar-mode -1)
+
+
 (set-frame-font "InconsolataGo-13")
 ;;evaluate this everytime load emacs from daemon.
 (setq default-frame-alist '((font . "InconsolataGo-13")))
@@ -451,7 +457,6 @@
       (setq holiday-hebrew-holidays nil)
       (setq holiday-islamic-holidays nil)
       (setq holiday-oriental-holidays nil))))
-
 (setq diary-file "~/.emacs.d/documents/diary")
 
 (use-package magit
@@ -491,6 +496,7 @@
 
 ;; saveplace remembers your location in a file when saving files
 (use-package saveplace
+  :init (save-place-mode 1)
   :config
   (setq save-place-file (expand-file-name "saveplace" azzamsa-savefile-dir))
   ;; activate it for all buffers
@@ -520,30 +526,15 @@
 
 (use-package crux
   :ensure t
-  :bind (("C-c o" . crux-open-with)
-         ("M-o" . crux-smart-open-line)
-         ("C-c n" . crux-cleanup-buffer-or-region)
-         ("C-M-z" . crux-indent-defun)
-         ("C-c u" . crux-view-url)
-         ("C-c e" . crux-eval-and-replace)
-         ("C-c s" . crux-swap-windows)
-         ("C-c D" . crux-delete-file-and-buffer)
-         ("C-c r" . crux-rename-buffer-and-file)
-         ("C-c t" . crux-visit-term-buffer)
-         ("C-c M-k" . crux-kill-other-buffers)
-         ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
-         ("C-c I" . crux-find-user-init-file)
-         ("C-c S" . crux-find-shell-init-file)
-         ("s-r" . crux-recentf-ido-find-file)
+  :bind (("C-c s" . crux-swap-windows)
+         ("C-c r r" . crux-rename-buffer-and-file)
+         ("C-c r k" . crux-kill-other-buffers)
          ("s-j" . crux-top-join-line)
          ("C-^" . crux-top-join-line)
-         ("s-k" . crux-kill-whole-line)
+         ("C-c r w" . crux-kill-whole-line)
          ("C-<backspace>" . crux-kill-line-backwards)
-         ("s-o" . crux-smart-open-line-above)
-         ([remap move-beginning-of-line] . crux-move-beginning-of-line)
-         ([(shift return)] . crux-smart-open-line)
-         ([(control shift return)] . crux-smart-open-line-above)
-         ([remap kill-whole-line] . crux-kill-whole-line)))
+         ("C-c r o" . crux-open-with)
+         ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
 (use-package make-md-to-org
   :load-path "~/.emacs.d/modes/"
@@ -553,6 +544,17 @@
   :load-path "~/.emacs.d/modes/"
   :bind (("s-t" . today)))
 
+(use-package nyan-mode
+  :ensure t
+  :init
+  (add-hook 'after-init-hook 'nyan-mode)
+  :config
+  (setq-default nyan-animate-nyancat t
+                nyan-wavy-trail t))
+
+(use-package smooth-scrolling
+  :ensure t
+  :init (smooth-scrolling-mode 1))
 
 ;; Programming modes
 
@@ -696,7 +698,7 @@
     ;; Activate nice interface between RefTeX and AUCTeX
     (setq reftex-plug-into-AUCTeX t)
     (add-to-list 'TeX-command-list
-                 '("XeLaTeX" "xelatex -interaction=nonstopmode %s"
+                 '("XeLaTeX" "xelatex -output-directory=temp %s"
                    TeX-run-command t t :help "Run xelatex") t)
     (add-hook 'LaTeX-mode-hook 'turn-on-reftex)))
 
@@ -731,16 +733,6 @@
    '(shell-pop-full-span t)
    '(shell-pop-window-position "bottom")))
 
-(use-package sublimity
-  :ensure t
-  :init
-  (progn
-    (require 'sublimity-scroll)
-    (require 'sublimity-map))
-  :config
-  (sublimity-mode 1)
-  (sublimity-map-set-delay 5))
-
 ;;; Misc
 
 ;; display “lambda” as “λ”
@@ -772,7 +764,7 @@
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/gtd/inbox.org")))
 
 (global-set-key (kbd "C-c n")
-                (lambda () (interactive) (find-file "~/.emacs.d/documents/notes.org")))
+                (lambda () (interactive) (find-file "~/.emacs.d/documents/keep.org")))
 
 (global-set-key (kbd "C-c s")
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/sletz.org")))
