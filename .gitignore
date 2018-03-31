@@ -38,3 +38,4 @@ history
 .python-environments/
 image-dired/
 meghanada/
+*.bup
