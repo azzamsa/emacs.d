@@ -548,9 +548,8 @@
   :ensure t
   :init
   (add-hook 'after-init-hook 'nyan-mode)
-  :config
-  (setq-default nyan-animate-nyancat t
-                nyan-wavy-trail t))
+  (setq nyan-animate-nyancat t
+        nyan-wavy-trail t))
 
 (use-package smooth-scrolling
   :ensure t
