@@ -152,7 +152,7 @@
       `((".*" ,temporary-file-directory t)))
 
 ;; revert buffers automatically when underlying files are changed externally
-                                        ;(global-auto-revert-mode t)
+(global-auto-revert-mode t)
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
