@@ -379,7 +379,7 @@
   :config
   (use-package org-cliplink
     :ensure t
-    :bind ("s-x o c " . org-cliplink))
+    :bind ("C-c o c " . org-cliplink))
   (use-package org-download
     :ensure t)
   ;;org-refil
@@ -758,12 +758,9 @@
 
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
 
-;; org mode
-(global-set-key (kbd "C-c o")
+;; organizer documents
+(global-set-key (kbd "C-c i")
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/gtd/inbox.org")))
-
-(global-set-key (kbd "C-c n")
-                (lambda () (interactive) (find-file "~/.emacs.d/documents/keep.org")))
 
 (global-set-key (kbd "C-c s")
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/sletz.org")))
