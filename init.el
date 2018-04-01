@@ -555,6 +555,12 @@
   :ensure t
   :init (smooth-scrolling-mode 1))
 
+(use-package guru-mode
+  :ensure t
+  :init (guru-global-mode +1)
+  :config
+  (setq guru-warn-only t))
+
 ;; Programming modes
 
 (use-package web-mode
@@ -687,7 +693,7 @@
     :ensure t)
   (use-package helm-bibtex
     :ensure t
-    :bind ("s-x b" . helm-bibtex-with-local-bibliography))
+    :bind ("C-c h b" . helm-bibtex-with-local-bibliography))
   (progn
     (setq LaTeX-verbatim-environments
           '("verbatim" "Verbatim" "lstlisting" "minted"))
