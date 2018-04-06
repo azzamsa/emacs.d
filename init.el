@@ -86,8 +86,10 @@
 (blink-cursor-mode -1)
 ;;better bar cursor type
 (setq-default cursor-type 'bar)
+
 ;;line number everywhere
-(global-linum-mode t)
+;;(global-linum-mode t)
+
 ;; cursor color dissappear on emacs 25
 (set-cursor-color "#f0fff0")
 
