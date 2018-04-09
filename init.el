@@ -98,6 +98,8 @@
     (set-scroll-bar-mode nil))
 (scroll-bar-mode -1)
 
+;; toggle menu-bar visibility
+(global-set-key (kbd "<f12>") 'menu-bar-mode)
 
 (set-frame-font "InconsolataGo-13")
 ;;evaluate this everytime load emacs from daemon.
@@ -384,6 +386,8 @@
     :bind ("C-c o c " . org-cliplink))
   (use-package org-download
     :ensure t)
+  (use-package ox-gfm
+    :ensure t)
   ;;org-refil
   (setq org-refile-targets '(("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
                              ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
@@ -398,9 +402,6 @@
                                  (file+headline "~/.emacs.d/documents/sletz.org" "Tickler")
                                  "* %i%? \n %U")))
   (add-hook 'org-mode-hook #'my-org-mode-hook))
-
-(use-package ox-gfm
-  :ensure t)
 
 (use-package org-bullets
   :ensure t
@@ -529,13 +530,15 @@
 (use-package crux
   :ensure t
   :bind (("C-c s" . crux-swap-windows)
+         ("C-c r o" . crux-open-with)
+         ("C-c r w" . crux-kill-whole-line)
          ("C-c r r" . crux-rename-buffer-and-file)
          ("C-c r k" . crux-kill-other-buffers)
+         ("C-c r d" . crux-duplicate-current-line-or-region)
+         ("C-c r D" . crux-delete-file-and-buffer)
          ("s-j" . crux-top-join-line)
          ("C-^" . crux-top-join-line)
-         ("C-c r w" . crux-kill-whole-line)
          ("C-<backspace>" . crux-kill-line-backwards)
-         ("C-c r o" . crux-open-with)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
 (use-package make-md-to-org
@@ -562,6 +565,23 @@
   :init (guru-global-mode +1)
   :config
   (setq guru-warn-only t))
+
+(use-package ledger-mode
+  :ensure t
+  :mode ("\\.journal\\'" "\\.hledger\\'"))
+
+;; temporarily highlight changes from yanking, etc
+(use-package volatile-highlights
+  :ensure t
+  :config
+  (volatile-highlights-mode +1))
+
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1)
+  (setq beacon-push-mark 35)
+  (setq beacon-color "#b4eeb4"))
 
 ;; Programming modes
 
