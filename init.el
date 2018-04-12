@@ -725,7 +725,7 @@
     ;; Activate nice interface between RefTeX and AUCTeX
     (setq reftex-plug-into-AUCTeX t)
     (add-to-list 'TeX-command-list
-                 '("XeLaTeX" "xelatex -output-directory=temp %s"
+                 '("XeLaTeX" "xelatex -interaction=nonstopmode %s"
                    TeX-run-command t t :help "Run xelatex") t)
     (add-hook 'LaTeX-mode-hook 'turn-on-reftex)))
 
