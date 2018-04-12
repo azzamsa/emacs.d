@@ -356,7 +356,8 @@
                   " guru"
                   " WK"
                   " Helm"
-                  " (*)"))
+                  " (*)"
+                  " VHL"))
   (sml/setup))
 
 (use-package org
