@@ -352,7 +352,11 @@
                   " Projectile"
                   " Undo-Tree"
                   " Ind"
-                  " super-save"))
+                  " super-save"
+                  " guru"
+                  " WK"
+                  " Helm"
+                  " (*)"))
   (sml/setup))
 
 (use-package org
@@ -552,6 +556,7 @@
   :bind (("s-t" . today)))
 
 (use-package nyan-mode
+  :disabled
   :ensure t
   :init
   (add-hook 'after-init-hook 'nyan-mode)
@@ -576,7 +581,9 @@
 (use-package volatile-highlights
   :ensure t
   :config
-  (volatile-highlights-mode +1))
+  (volatile-highlights-mode +1)
+  (custom-set-faces
+   '(vhl/default-face ((t (:background "#688060"))))))
 
 (use-package beacon
   :ensure t
