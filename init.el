@@ -97,8 +97,9 @@
 (if (fboundp 'set-scroll-bar-mode)
     (set-scroll-bar-mode nil))
 (scroll-bar-mode -1)
-(menu-bar-mode -1)
 
+;; disable menu-bar. I have <f12> to toggle it
+(menu-bar-mode -1)
 ;; toggle menu-bar visibility
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
 
