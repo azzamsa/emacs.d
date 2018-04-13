@@ -357,7 +357,7 @@
                   " WK"
                   " Helm"
                   " (*)"
-                  " VHL"))
+                  " VHl"))
   (sml/setup))
 
 (use-package org
