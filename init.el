@@ -215,6 +215,7 @@
 ;; packages
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :bind ("s-p" . projectile-command-map))
 
 (use-package expand-region
@@ -349,8 +350,6 @@
    sml/theme 'respectful
    sml/shorten-modes t
    rm-blacklist '(" Rbow"
-                  " yas"
-                  " Projectile"
                   " Undo-Tree"
                   " Ind"
                   " super-save"
@@ -613,6 +612,9 @@
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)))
 
+(use-package diminish
+  :demand t)
+
 ;; Programming modes
 
 (use-package web-mode
@@ -649,6 +651,7 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish yasnippet-mode
   :init (add-hook 'prog-mode-hook #'yas-minor-mode)
   :config
   (use-package yasnippet-snippets
