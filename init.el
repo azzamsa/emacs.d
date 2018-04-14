@@ -794,6 +794,17 @@
    '(shell-pop-window-position "bottom")))
 
 ;;; Misc
+(use-package erc
+  :config
+  (setq erc-hide-list '("PART" "QUIT" "JOIN"))
+  (setq erc-autojoin-channels-alist '(("freenode.net"
+                                       "#emacs"
+                                       "#emacs-beginners"))
+        erc-server "irc.freenode.net"
+        erc-nick "azzamsa")
+  (setq erc-log-channels-directory "~/.erc/logs/")
+  (setq erc-save-buffer-on-part t)
+  (setq erc-log-insert-log-on-open nil))
 
 ;; display “lambda” as “λ”
 (global-prettify-symbols-mode 1)
