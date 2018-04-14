@@ -82,6 +82,17 @@
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 
+;;  disable scroll bar
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+(when (fboundp 'horizontal-scroll-bar-mode)
+  (horizontal-scroll-bar-mode -1))
+
+;; disable menu-bar. I have <f12> to toggle it
+(menu-bar-mode -1)
+;; toggle menu-bar visibility
+(global-set-key (kbd "<f12>") 'menu-bar-mode)
+
 ;; the blinking cursor is nothing, but an annoyance
 (blink-cursor-mode -1)
 ;;better bar cursor type
@@ -92,16 +103,6 @@
 
 ;; cursor color dissappear on emacs 25
 (set-cursor-color "#f0fff0")
-
-;; I have nyan!, disable scroll bar
-(if (fboundp 'set-scroll-bar-mode)
-    (set-scroll-bar-mode nil))
-(scroll-bar-mode -1)
-
-;; disable menu-bar. I have <f12> to toggle it
-(menu-bar-mode -1)
-;; toggle menu-bar visibility
-(global-set-key (kbd "<f12>") 'menu-bar-mode)
 
 (set-frame-font "InconsolataGo-13")
 ;;evaluate this everytime load emacs from daemon.
@@ -592,6 +593,25 @@
   (beacon-mode 1)
   (setq beacon-push-mark 35)
   (setq beacon-color "#b4eeb4"))
+
+(use-package anzu
+  :ensure t
+  :bind (("M-%" . anzu-query-replace)
+         ("C-M-%" . anzu-query-replace-regexp))
+  :config
+  (global-anzu-mode))
+
+(use-package move-text
+  :ensure t
+  :bind
+  (([(meta shift up)] . move-text-up)
+   ([(meta shift down)] . move-text-down)))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize)))
 
 ;; Programming modes
 
