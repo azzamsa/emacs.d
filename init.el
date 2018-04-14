@@ -215,7 +215,7 @@
 ;; packages
 (use-package projectile
   :ensure t
-  :diminish projectile-mode
+  :diminish " P"
   :bind ("s-p" . projectile-command-map))
 
 (use-package expand-region
@@ -651,7 +651,7 @@
 
 (use-package yasnippet
   :ensure t
-  :diminish yasnippet-mode
+  :diminish " yas"
   :init (add-hook 'prog-mode-hook #'yas-minor-mode)
   :config
   (use-package yasnippet-snippets
