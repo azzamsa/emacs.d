@@ -767,6 +767,8 @@
   :config
   (use-package company-jedi
     :ensure t)
+  (use-package pyvenv
+    :ensure t)
   (elpy-enable)
   (add-hook 'python-mode-hook
             (lambda ()
