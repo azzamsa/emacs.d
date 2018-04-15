@@ -63,7 +63,7 @@ PWD is not in a git repo (or the git command is not found)."
                         (if (> (length p-lst) 3)
                             (concat
                              (mapconcat (lambda (elm) (if (zerop (length elm)) ""
-                                                        (substring elm 0 1)))
+                                                   (substring elm 0 1)))
                                         (butlast p-lst 3)
                                         "/")
                              "/"
