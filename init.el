@@ -238,7 +238,10 @@
   :ensure nil
   :bind ((:map dired-mode-map
                ("C-'" . ora-dired-up-directory)
-               ("C-r" . ora-dired-rsync))
+               ("C-r" . ora-dired-rsync)
+               ("C-o" . dired-view-current)
+               ("n" . dired-view-next)
+               ("p" . dired-view-previous))
          ("C-t" . shell-pop))
   :init
   ;; enable some really cool extensions like C-x C-j(dired-jump)
@@ -637,7 +640,7 @@
   (setq comint-prompt-read-only t)
   (define-key term-raw-map (kbd "C-c C-y") 'term-paste)
   (add-hook 'term-exec-hook 'oleh-term-exec-hook)
-  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+  ;;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
   ;; cause breakage to ansi-term
   ;;(add-hook 'term-mode-hook #'eterm-256color-mode)
   )
