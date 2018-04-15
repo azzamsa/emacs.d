@@ -617,7 +617,8 @@
 
 (use-package eterm-256color
   ;; cause breakage to ansi-term
-  :ensure t)
+  :ensure t
+  :disabled)
 
 (defun oleh-term-exec-hook ()
   (let* ((buff (current-buffer))
@@ -627,16 +628,6 @@
      `(lambda (process event)
         (if (string= event "finished\n")
             (kill-buffer ,buff))))))
-
-(use-package term
-  :disabled
-  :config
-  (define-key term-raw-map (kbd "C-c C-y") 'term-paste)
-  (add-hook 'term-exec-hook 'oleh-term-exec-hook)
-  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-  ;; cause breakage to ansi-term
-  ;;(add-hook 'term-mode-hook #'eterm-256color-mode)
-  )
 
 (use-package multi-term
   :ensure t
