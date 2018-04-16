@@ -1,20 +1,20 @@
-alias c xclip $*
-alias du du -h $*
-alias egrep egrep --color=auto $*
-alias fgrep fgrep --color=auto $*
-alias g git $*
-alias grep grep --color=auto $*
-alias hld hledger $*
-alias in sudo apt-get install $*
-alias inn sudo apt-get --no-install-recommends install $*
-alias l ls -lF --color $*
-alias la ls -laF --color $*
-alias lgh light -S  $*
-alias ls ls --color $*
-alias lsd ls -lF --color | grep --color=never '^d' $*
-alias mc . /usr/share/mc/bin/mc-wrapper.sh $*
-alias rmd rm -rdf $*
-alias sbcl rlwrap sbcl $*
-alias sudo sudo  $*
-alias v xclip -o $*
 alias j autojump $*
+alias v xclip -o $*
+alias sudo sudo  $*
+alias sbcl rlwrap sbcl $*
+alias rmd rm -rdf $*
+alias mc . /usr/share/mc/bin/mc-wrapper.sh $*
+alias lsd ls -lF --color | grep --color=never '^d' $*
+alias ls ls --color $*
+alias lgh light -S  $*
+alias la ls -laF --color $*
+alias l ls -lF --color $*
+alias inn sudo apt-get --no-install-recommends install $*
+alias in sudo apt-get install $*
+alias hld hledger $*
+alias grep grep --color=auto $*
+alias g git $*
+alias fgrep fgrep --color=auto $*
+alias egrep egrep --color=auto $*
+alias du du -h $*
+alias c xclip $*
