@@ -1,16 +1,7 @@
 ;;; fancy eshell prompt
-;;
+
 ;; original author :https://github.com/jimm/elisp/blob/master/eshell-customize.el
 ;; Modified by :http://blog.liangzan.net/blog/2012/12/12/customizing-your-emacs-eshell-prompt/
-;; then by Azzam S.A :)
-
-;; This file is not part of GNU Emacs.
-
-;;; Commentary:
-
-;;; License:
-
-;;; Code:
 
 (setq eshell-history-size 1024)
 (setq eshell-prompt-regexp "^[^#$]*[#$] ")
@@ -45,12 +36,18 @@ PWD is not in a git repo (or the git command is not found)."
   (when (and (eshell-search-path "git")
              (locate-dominating-file pwd ".git"))
     (let ((git-output (shell-command-to-string (concat "cd " pwd " && git branch | grep '\\*' | sed -e 's/^\\* //'"))))
-      (concat (concat " on ")
+      (concat (concat " on")
               (propertize (concat " ["
                                   (if (> (length git-output) 0)
                                       (substring git-output 0 -1)
                                     "(no branch)")
                                   "]") 'face `(:foreground "#8cd0d3"))))))
+
+(defun print-venv-name ()
+  (interactive)
+  (when venv-current-name
+    (propertize
+     (concat " <" venv-current-name ">") 'face `(:foreground "#96ceb4"))))
 
 (setq eshell-prompt-function
       (lambda ()
@@ -75,9 +72,9 @@ PWD is not in a git repo (or the git command is not found)."
                                      "/")))
                       (split-string (pwd-repl-home (eshell/pwd)) "/")) 'face `(:foreground "#7cac7c"))
          (or (curr-dir-git-branch-string (eshell/pwd)))
+         (or (print-venv-name))
          (propertize " $ " 'face 'default))))
 
 (setq eshell-highlight-prompt nil)
 
 (provide 'aza-eshell)
-;;; aza-eshell ends here
