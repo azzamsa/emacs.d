@@ -8,5 +8,5 @@ this is my emacs config.
 - [John Wiegley](https://github.com/jwiegley) - [.emacs](https://github.com/jwiegley/dot-emacs) repository.
 - [Oleh Krehel](https://oremacs.com/) - [oremacs](https://github.com/abo-abo/oremacs)
 - [Prelude](https://github.com/bbatsov/prelude)
-- [Steve Purcell](Steve Purcell) - [emacs.d](https://github.com/purcell/emacs.d)
+- [Steve Purcell](http://www.sanityinc.com/) - [emacs.d](https://github.com/purcell/emacs.d)
 - I also look to various .emacs repositories to take any insight, so the credits also go for them.
