@@ -792,13 +792,18 @@
                    TeX-run-command t t :help "Run xelatex") t)
     (add-hook 'LaTeX-mode-hook 'turn-on-reftex)))
 
+
 (use-package elpy
   :ensure t
   :config
   (use-package company-jedi
     :ensure t)
-  (use-package pyvenv
-    :ensure t)
+  (use-package virtualenvwrapper
+    :ensure t
+    :defer t
+    :init
+    (venv-initialize-interactive-shells)
+    (venv-initialize-eshell))
   (elpy-enable)
   (add-hook 'python-mode-hook
             (lambda ()
