@@ -647,6 +647,19 @@
   ;;(add-hook 'term-mode-hook #'eterm-256color-mode)
   )
 
+(use-package pomodoro
+  :load-path "elisp/pomodoro/"
+  :config
+  (progn
+    (pomodoro-add-to-mode-line)
+    (setq pomodoro-show-number t)
+    (setq pomodoro-long-break-time 20)
+    (setq pomodoro-sound-player "/usr/bin/aplay")
+    (setq pomodoro-break-start-sound
+          "~/sounds/sparkle-work.wav")
+    (setq pomodoro-work-start-sound
+          "~/sounds/sparkle-work.wav")))
+
 ;; Programming modes
 
 (use-package web-mode
