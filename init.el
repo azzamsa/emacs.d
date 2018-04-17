@@ -258,6 +258,8 @@
   (setq dired-recursive-deletes 'always)
   (setq dired-recursive-copies 'always)
 
+  (setq delete-by-moving-to-trash t)
+
   ;; if there is a dired buffer displayed in the next window, use its
   ;; current subdir, instead of the current subdir of this dired buffer
   (setq dired-dwim-target t)
@@ -829,6 +831,14 @@
    '(shell-pop-window-height 30)
    '(shell-pop-full-span t)
    '(shell-pop-window-position "bottom")))
+
+(use-package eshell-autojump
+  :ensure t)
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 ;;; Misc
 (use-package erc
