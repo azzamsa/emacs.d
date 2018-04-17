@@ -554,11 +554,11 @@
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
 (use-package make-md-to-org
-  :load-path "~/.emacs.d/modes/"
+  :load-path "/modes/"
   :bind ("C-c M-m" . make-md-to-org ))
 
 (use-package aza-timestamp
-  :load-path "~/.emacs.d/modes/"
+  :load-path "/modes/"
   :bind (("s-t" . today)))
 
 (use-package nyan-mode
