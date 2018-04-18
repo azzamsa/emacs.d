@@ -1,4 +1,4 @@
-alias j autojump $*
+alias jl autojump $*()
 alias v xclip -o $*
 alias sudo sudo  $*
 alias sbcl rlwrap sbcl $*
