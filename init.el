@@ -54,7 +54,6 @@
 (add-to-list 'load-path "~/.emacs.d/modes/")
 (require 'aza-eshell)
 (require 'aza-timestamp)
-(require 'aza-dired)
 (require 'init-java)
 
 ;;find my PATH
@@ -246,6 +245,7 @@
   :init
   ;; enable some really cool extensions like C-x C-j(dired-jump)
   (require 'dired-x)
+  (require 'aza-dired)
   :config
   (use-package dired+
     :load-path "~/.emacs.d/elisp/diredp/"
