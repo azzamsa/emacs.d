@@ -29,6 +29,7 @@ init_description.el
 *.html
 eshell/history
 eshell/lastdir
+eshell/alias
 documents/
 .mc-lists.el
 bookmarks.org
