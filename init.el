@@ -850,6 +850,7 @@
 
 (use-package editorconfig
   :ensure t
+  :diminish
   :config
   (editorconfig-mode 1))
 
