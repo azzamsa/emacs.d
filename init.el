@@ -569,9 +569,11 @@
   (setq nyan-animate-nyancat t
         nyan-wavy-trail t))
 
-(use-package smooth-scrolling
+(use-package sublimity
   :ensure t
-  :init (smooth-scrolling-mode 1))
+  :config
+  (require 'sublimity-scroll)
+  (sublimity-mode 1))
 
 (use-package guru-mode
   :ensure t
