@@ -52,7 +52,6 @@
 
 ;;;loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/modes/")
-(require 'aza-eshell)
 (require 'aza-timestamp)
 (require 'init-java)
 
@@ -240,7 +239,8 @@
                ("C-r" . ora-dired-rsync)
                ("C-o" . dired-view-current)
                ("n" . dired-view-next)
-               ("p" . dired-view-previous))
+               ("p" . dired-view-previous)
+               ("s" . xah-dired-sort))
          ("C-t" . shell-pop))
   :init
   ;; enable some really cool extensions like C-x C-j(dired-jump)
@@ -263,7 +263,18 @@
   ;; if there is a dired buffer displayed in the next window, use its
   ;; current subdir, instead of the current subdir of this dired buffer
   (setq dired-dwim-target t)
-  (setq dired-listing-switches "-alGhvF --group-directories-first"))
+  (setq dired-listing-switches "-alGhvF --group-directories-first")
+
+  ;; hide boring files
+  (setq-default dired-omit-files-p t) ; Buffer-local variable
+  (setq dired-omit-files
+        (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`\\.[^.]\\|\\`_minted"
+                (regexp-opt
+                 '("aux" "log" "pickle" "synctex.gz" "run.xml" "bcf" "am" "in" "blx.bib"
+                   "vrb" "opt" "nav" "snm" "out"))
+                (regexp-opt
+                 '("compile_commands.json"
+                   "__pycache__")))))
 
 (use-package company
   :ensure t
@@ -602,6 +613,7 @@
 
 (use-package anzu
   :ensure t
+  :diminish anzu-mode
   :bind (("M-%" . anzu-query-replace)
          ("C-M-%" . anzu-query-replace-regexp))
   :config
@@ -661,6 +673,9 @@
           "~/sounds/sparkle-work.wav")
     (setq pomodoro-work-start-sound
           "~/sounds/sparkle-work.wav")))
+
+;; clean up obsolete buffers automatically
+(use-package midnight :ensure t)
 
 ;; Programming modes
 
@@ -827,6 +842,11 @@
               (company-mode t)
               (company-jedi t))))
 
+(use-package eshell
+  :init (require 'aza-eshell)
+  :config
+  (setq eshell-directory-name (expand-file-name "eshell" azzamsa-savefile-dir)))
+
 (use-package helm-eshell
   :init
   (add-hook 'eshell-mode-hook
@@ -855,6 +875,13 @@
   :diminish
   :config
   (editorconfig-mode 1))
+
+;; make a shell script executable automatically on save
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
+(setq semanticdb-default-save-directory
+      (expand-file-name "semanticdb" azzamsa-savefile-dir))
 
 ;;; Misc
 (use-package erc
