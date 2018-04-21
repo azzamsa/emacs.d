@@ -424,7 +424,9 @@
                                 ("S" "Sletz" entry
                                  (file+headline "~/.emacs.d/documents/sletz.org" "Tickler")
                                  "* %i%? \n %U")))
-  (add-hook 'org-mode-hook #'my-org-mode-hook))
+  (add-hook 'org-mode-hook (lambda ()
+                             (my-org-mode-hook)
+                             (turn-on-auto-fill))))
 
 (use-package org-bullets
   :ensure t
@@ -822,7 +824,11 @@
     (add-to-list 'TeX-command-list
                  '("XeLaTeX" "xelatex -interaction=nonstopmode %s"
                    TeX-run-command t t :help "Run xelatex") t)
-    (add-hook 'LaTeX-mode-hook 'turn-on-reftex)))
+    (add-hook 'LaTeX-mode-hook
+              (lambda ()
+                (yas-minor-mode t)
+                (turn-on-auto-fill)
+                (turn-on-reftex)))))
 
 
 (use-package elpy
