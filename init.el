@@ -886,6 +886,8 @@
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
+(add-hook 'text-mode-hook #'turn-on-auto-fill)
+
 (setq semanticdb-default-save-directory
       (expand-file-name "semanticdb" azzamsa-savefile-dir))
 
