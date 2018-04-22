@@ -499,7 +499,7 @@
 (use-package markdown-mode
   :ensure t
   :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
+         ("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . markdown-mode))
   :config
   (setq markdown-asymmetric-header t))
