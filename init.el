@@ -830,9 +830,9 @@
                 (turn-on-auto-fill)
                 (turn-on-reftex)))))
 
-
 (use-package elpy
   :ensure t
+  :bind ("C-l" . elpy-shell-clear-shell)
   :config
   (use-package company-jedi
     :ensure t)
@@ -843,6 +843,13 @@
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell))
   (elpy-enable)
+
+  (defun elpy-shell-clear-shell ()
+    "Clear the current shell buffer."
+    (interactive)
+    (with-current-buffer (process-buffer (elpy-shell-get-or-create-process))
+      (comint-clear-buffer)))
+
   (add-hook 'python-mode-hook
             (lambda ()
               (company-mode t)
