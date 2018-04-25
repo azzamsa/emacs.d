@@ -328,6 +328,10 @@
     (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
           helm-grep-default-recurse-command "ack-grep -H --no-group --no-color %e %p %f")))
 
+(use-package helm-org-rifle
+  :ensure t
+  :bind ("C-c h r" . helm-org-rifle))
+
 (use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'forward)
@@ -436,56 +440,40 @@
                     (org-bullets-mode 1))))
 
 (use-package calfw
-  :ensure t
-  :bind ("C-c A" . my-calendar)
   :init
-  (progn
-    (use-package calfw-cal
-      :ensure t)
-    (use-package calfw-org
-      :ensure t)
-    (use-package calfw-ical
-      :ensure t)
-    :preface
-    (defun my-calendar ()
-      (interactive)
-      (let ((buf (get-buffer "*cfw-calendar*")))
-        (if buf
-            (pop-to-buffer buf nil)
-          (cfw:open-calendar-buffer
-           :contents-sources
-           (list (cfw:org-create-source "#d6c9a7")
-                 (cfw:cal-create-source "White"))))))
-    ;;:view 'four-weeks))))
-    :config
-    (progn
-      (bind-key "g" 'cfw:refresh-calendar-buffer cfw:calendar-mode-map)
-      (setq cfw:display-calendar-holidays nil)
-      (custom-set-faces
-       '(cfw:face-title ((t (:foreground "#f0dfaf" :weight bold :height 2.0 :inherit variable-pitch))))
-       '(cfw:face-header ((t (:foreground "#d0bf8f" :weight bold))))
-       '(cfw:face-sunday ((t :foreground "#cc9393" :weight bold)))
-       '(cfw:face-saturday ((t :foreground "8cd0d3"  :weight bold)))
-       '(cfw:face-holiday ((t :background "grey10" :foreground "#8c5353" :weight bold)))
-       '(cfw:face-grid ((t :foreground "#BADEAC")))
-       '(cfw:face-default-content ((t :foreground "#ffffff")))
-       '(cfw:face-periods ((t :foreground "#ffe259"))) ;;?
-       '(cfw:face-day-title ((t :background "grey10"))) ;; rectangle in header
-       '(cfw:face-default-day ((t :foreground "#b4eeb4" :weight bold :inherit cfw:face-day-title)))
-       '(cfw:face-annotation ((t :foreground "#ffffff" :inherit cfw:face-day-title))) ;; data number in box(23 - 24)
-       '(cfw:face-disable ((t :foreground "DarkGray" :inherit cfw:face-day-title)))
-       '(cfw:face-today-title ((t :background "#7f9f7f" :weight bold)))
-       '(cfw:face-today ((t :background: "grey10" :weight bold)))
-       '(cfw:face-select ((t :background "#2f2f2f")))
-       '(cfw:face-toolbar ((t :foreground "Steelblue4" :background "#3F3F3F")))
-       '(cfw:face-toolbar-button-off ((t :foreground "#f5f5f5" :weight bold))) ;;top botton
-       '(cfw:face-toolbar-button-on ((t :foreground "#ffffff" :weight bold))))
-      (setq holiday-christian-holidays nil)
-      (setq holiday-bahai-holidays nil)
-      (setq holiday-hebrew-holidays nil)
-      (setq holiday-islamic-holidays nil)
-      (setq holiday-oriental-holidays nil))))
-(setq diary-file "~/.emacs.d/documents/diary")
+  (use-package calfw-cal
+    :ensure t)
+  (use-package calfw-org
+    :ensure t)
+  :bind (("C-c A" . my-calendar)
+         :map cfw:calendar-mode-map
+         ("M-n" . cfw:navi-next-month-command)
+         ("M-p" . cfw:navi-previous-month-command)
+         ("j"   . cfw:navi-goto-date-command)
+         ("g"   . cfw:refresh-calendar-buffer))
+
+  :commands cfw:open-calendar-buffer
+  :functions (cfw:open-calendar-buffer
+              cfw:refresh-calendar-buffer
+              cfw:org-create-source
+              cfw:cal-create-source)
+
+  :preface
+  (defun my-calendar ()
+    (interactive)
+    (cfw:open-calendar-buffer
+     :contents-sources
+     (list
+      (cfw:org-create-source "#d6c9a7")  ; orgmode source
+      (cfw:cal-create-source "White"))))
+  :config
+  (setq diary-file "~/.emacs.d/documents/diary")
+  (setq cfw:display-calendar-holidays nil)
+  (setq holiday-christian-holidays nil
+        holiday-bahai-holidays nil
+        holiday-hebrew-holidays nil
+        holiday-islamic-holidays nil
+        holiday-oriental-holidays nil))
 
 (use-package magit
   :ensure t
@@ -777,6 +765,7 @@
   (add-hook 'prog-mode-hook #'flyspell-prog-mode))
 
 (use-package whitespace
+  :diminish
   :init
   (dolist (hook '(prog-mode-hook text-mode-hook))
     (add-hook hook #'whitespace-mode))
@@ -816,8 +805,8 @@
   (progn
     (setq LaTeX-verbatim-environments
           '("verbatim" "Verbatim" "lstlisting" "minted"))
-    (setq TeX-parse-self t) ; Enable parse on load.
-    ;;(setq TeX-auto-save t) ; Enable parse on save.
+    ;;(setq TeX-parse-self t) ; Enable parse on load.
+    (setq TeX-auto-save t) ; Enable parse on save.
     (setq-default TeX-PDF-mode t) ; output to pdf
     ;; Activate nice interface between RefTeX and AUCTeX
     (setq reftex-plug-into-AUCTeX t)
@@ -830,18 +819,19 @@
                 (turn-on-auto-fill)
                 (turn-on-reftex)))))
 
+(use-package virtualenvwrapper
+  :ensure t
+  :defer t
+  :init
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
+
 (use-package elpy
   :ensure t
   :bind ("C-l" . elpy-shell-clear-shell)
   :config
   (use-package company-jedi
-    :ensure t)
-  (use-package virtualenvwrapper
-    :ensure t
-    :defer t
-    :init
-    (venv-initialize-interactive-shells)
-    (venv-initialize-eshell))
+  :ensure t)
   (elpy-enable)
 
   (defun elpy-shell-clear-shell ()
