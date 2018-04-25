@@ -561,6 +561,7 @@
          ("C-c r k" . crux-kill-other-buffers)
          ("C-c r d" . crux-duplicate-current-line-or-region)
          ("C-c r D" . crux-delete-file-and-buffer)
+         ("C-c r s" . crux-create-startch-buffer)
          ("s-j" . crux-top-join-line)
          ("C-^" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
@@ -1017,5 +1018,9 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
+;; Comment/uncomment block
+(global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-c u") 'uncomment-region)
 
 ;;; init.el ends here
