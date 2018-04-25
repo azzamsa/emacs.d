@@ -52,8 +52,6 @@
 
 ;;;loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/modes/")
-(require 'aza-timestamp)
-(require 'init-java)
 
 ;;find my PATH
 (setenv "PATH" (shell-command-to-string "bash -i -c 'echo -n $PATH'"))
@@ -164,7 +162,6 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-
 ;; hippie expand is dabbrev expand on steroids
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
@@ -179,6 +176,10 @@
 
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
+
+(setq initial-major-mode 'org-mode)
+(setq initial-scratch-message "\
+ℝ𝕖𝕒𝕕𝕪 𝕥𝕠 𝕤𝕖𝕣𝕧𝕖 𝕪𝕠𝕦. 𝕄𝕒𝕤𝕥𝕖𝕣! ")
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
@@ -195,36 +196,25 @@
   :config
   (load-theme 'zenburn t))
 
-
-;; hooks
-;; startup
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (helm-mode t)
-            (visual-line-mode t)))
-;; Common Lisp
-(add-hook 'lisp-mode-hook
-          (lambda ()
-            (slime-mode t)
-            (rainbow-delimiters-mode t)
-            (show-paren-mode t)
-            (prettify-symbols-mode t)))
-
 ;; packages
 (use-package projectile
+  :defer t
   :ensure t
   :diminish " P"
   :bind ("s-p" . projectile-command-map))
 
 (use-package expand-region
   :ensure t
+  :defer 4
   :bind ("C-=" . er/expand-region))
 
 (use-package paren
+  :defer 1
   :config
   (show-paren-mode +1))
 
 (use-package abbrev
+  :defer 5
   :config
   (setq-default abbrev-mode t)
   (cond ((file-exists-p "~/.abbrev_defs")
@@ -278,15 +268,18 @@
 
 (use-package company
   :ensure t
+  :defer 3
   :config
   (global-company-mode))
 
 (use-package flycheck
+  :defer t
   :ensure t
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 (use-package undo-tree
+  :defer t
   :ensure t
   :diminish undo-tree-mode
   :config
@@ -333,6 +326,7 @@
   :bind ("C-c h r" . helm-org-rifle))
 
 (use-package uniquify
+  :defer 2
   :config
   (setq uniquify-buffer-name-style 'forward)
   (setq uniquify-separator "/")
@@ -343,11 +337,13 @@
 
 (use-package super-save
   :ensure t
+  :defer 2
   :config
   (super-save-mode +1))
 
 (use-package smartparens
   :ensure t
+  :defer 2
   :diminish smartparens-mode
   :config
   (progn
@@ -355,10 +351,12 @@
     (smartparens-global-mode 1)))
 
 (use-package rainbow-delimiters
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package rainbow-mode
   :ensure t
+  :defer t
   :config
   (add-hook 'prog-mode-hook #'rainbow-mode))
 
@@ -382,6 +380,7 @@
 
 (use-package org
   :ensure t
+  :defer 1
   :bind (:map org-mode-map
               ("C-c l" . org-store-link)
               ("C-c a" . org-agenda))
@@ -408,13 +407,6 @@
        (lisp . t)))
     (require 'aza-org))
   :config
-  (use-package org-cliplink
-    :ensure t
-    :bind ("C-c o c " . org-cliplink))
-  (use-package org-download
-    :ensure t)
-  (use-package ox-gfm
-    :ensure t)
   ;;org-refil
   (setq org-refile-targets '(("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
                              ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
@@ -439,7 +431,20 @@
                   (lambda ()
                     (org-bullets-mode 1))))
 
+(use-package org-cliplink
+  :ensure t
+  :bind ("C-c o c " . org-cliplink))
+
+(use-package org-download
+  :ensure t
+  :defer t)
+
+(use-package ox-gfm
+  :ensure t
+  :defer t)
+
 (use-package calfw
+  :defer t
   :init
   (use-package calfw-cal
     :ensure t)
@@ -477,6 +482,7 @@
 
 (use-package magit
   :ensure t
+  :defer t
   :bind ("C-c g" . magit-status))
 
 (use-package windmove
@@ -486,6 +492,7 @@
 
 (use-package markdown-mode
   :ensure t
+  :defer t
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . markdown-mode))
@@ -500,6 +507,7 @@
   (dimmer-mode t))
 
 (use-package savehist
+  :defer 2
   :config
   (setq savehist-additional-variables
         ;; search entries
@@ -512,6 +520,7 @@
 
 ;; saveplace remembers your location in a file when saving files
 (use-package saveplace
+  :defer 2
   :init (save-place-mode 1)
   :config
   (setq save-place-file (expand-file-name "saveplace" azzamsa-savefile-dir))
@@ -519,6 +528,7 @@
   (setq-default save-place t))
 
 (use-package recentf
+  :defer 1
   :config
   (setq recentf-save-file (expand-file-name "recentf" azzamsa-savefile-dir)
         recentf-max-saved-items 500
@@ -530,6 +540,7 @@
 
 (use-package diff-hl
   :ensure t
+  :defer t
   :config
   (global-diff-hl-mode +1)
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
@@ -537,6 +548,7 @@
 
 (use-package which-key
   :ensure t
+  :defer 1
   :config
   (which-key-mode +1))
 
@@ -555,10 +567,12 @@
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
 (use-package make-md-to-org
+  :defer t
   :load-path "/modes/"
   :bind ("C-c M-m" . make-md-to-org ))
 
 (use-package aza-timestamp
+  :defer 4
   :load-path "/modes/"
   :bind (("s-t" . today)))
 
@@ -572,23 +586,27 @@
 
 (use-package sublimity
   :ensure t
+  :defer 4
   :config
   (require 'sublimity-scroll)
   (sublimity-mode 1))
 
 (use-package guru-mode
   :ensure t
+  :defer 4
   :init (guru-global-mode +1)
   :config
   (setq guru-warn-only t))
 
 (use-package ledger-mode
   :ensure t
+  :defer t
   :mode ("\\.journal\\'" "\\.hledger\\'"))
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
   :ensure t
+  :defer t
   :config
   (volatile-highlights-mode +1)
   (custom-set-faces
@@ -596,6 +614,7 @@
 
 (use-package beacon
   :ensure t
+  :defer 1
   :config
   (beacon-mode 1)
   (setq beacon-push-mark 35)
@@ -603,6 +622,7 @@
 
 (use-package anzu
   :ensure t
+  :defer t
   :diminish anzu-mode
   :bind (("M-%" . anzu-query-replace)
          ("C-M-%" . anzu-query-replace-regexp))
@@ -617,6 +637,7 @@
 
 (use-package exec-path-from-shell
   :ensure t
+  :disabled
   :config
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)))
@@ -652,6 +673,7 @@
   )
 
 (use-package pomodoro
+  :defer t
   :load-path "elisp/pomodoro/"
   :config
   (progn
@@ -665,12 +687,26 @@
           "~/sounds/sparkle-work.wav")))
 
 ;; clean up obsolete buffers automatically
-(use-package midnight :ensure t)
+(use-package midnight
+  :ensure t
+  :defer t)
+
 
 ;; Programming modes
 
+(use-package lisp-mode
+  :defer t
+  :config
+  (add-hook 'lisp-mode-hook
+            (lambda ()
+              (slime-mode t)
+              (rainbow-delimiters-mode t)
+              (show-paren-mode t)
+              (prettify-symbols-mode t))))
+
 (use-package web-mode
   :ensure t
+  :defer t
   :mode ("\\.html?\\'"
          "\\.css\\'"
          "\\.php\\'")
@@ -685,6 +721,7 @@
 
 (use-package slime
   :ensure t
+  :defer t
   :config
   (add-hook 'slime-repl-mode-hook
             (lambda ()
@@ -697,12 +734,14 @@
 
 (use-package slime-company
   :ensure t
+  :defer t
   :config
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl"))
 
 (use-package yasnippet
   :ensure t
+  :defer t
   :diminish " yas"
   :init (add-hook 'prog-mode-hook #'yas-minor-mode)
   :config
@@ -711,6 +750,7 @@
   (yas-reload-all))
 
 (use-package php-beautifier
+  :defer t
   :load-path "elisp/php-beautifier/")
 
 (use-package emmet-mode
@@ -721,6 +761,7 @@
 
 (use-package php-mode
   :ensure t
+  :defer t
   :mode "\\.php\\'"
   :config
   (add-hook 'php-mode-hook
@@ -737,6 +778,7 @@
 
 (use-package neotree
   :ensure t
+  :defer t
   :bind ([f8] . neotree-toggle)
   :config
   (use-package all-the-icons
@@ -776,6 +818,7 @@
 
 (use-package multiple-cursors
   :ensure t
+  :defer t
   :init
   (progn
     ;; these need to be defined here - if they're lazily loaded with
@@ -798,7 +841,8 @@
   :ensure auctex
   :config
   (use-package bibretrieve
-    :ensure t)
+    :ensure t
+    :defer t)
   (use-package helm-bibtex
     :ensure t
     :bind ("C-c h b" . helm-bibtex-with-local-bibliography))
@@ -831,7 +875,7 @@
   :bind ("C-l" . elpy-shell-clear-shell)
   :config
   (use-package company-jedi
-  :ensure t)
+    :ensure t)
   (elpy-enable)
 
   (defun elpy-shell-clear-shell ()
@@ -851,6 +895,7 @@
   (setq eshell-directory-name (expand-file-name "eshell" azzamsa-savefile-dir)))
 
 (use-package helm-eshell
+  :defer 3
   :init
   (add-hook 'eshell-mode-hook
             #'(lambda ()
@@ -859,6 +904,7 @@
 
 (use-package shell-pop
   :ensure t
+  :defer 3
   :config
   (custom-set-variables
    '(shell-pop-default-directory "~/")
@@ -871,25 +917,35 @@
    '(shell-pop-window-position "bottom")))
 
 (use-package eshell-autojump
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package editorconfig
   :ensure t
+  :defer t
   :diminish
   :config
   (editorconfig-mode 1))
+
+(use-package init-java
+  :defer t
+  :load-path "/modes/")
 
 ;; make a shell script executable automatically on save
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
-(add-hook 'text-mode-hook #'turn-on-auto-fill)
+(add-hook 'text-mode-hook
+          (lambda ()
+            (turn-on-auto-fill)
+            (visual-line-mode t)))
 
 (setq semanticdb-default-save-directory
       (expand-file-name "semanticdb" azzamsa-savefile-dir))
 
 ;;; Misc
 (use-package erc
+  :defer t
   :config
   (setq erc-hide-list '("PART" "QUIT" "JOIN"))
   (setq erc-autojoin-channels-alist '(("freenode.net"
