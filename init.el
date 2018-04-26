@@ -561,7 +561,7 @@
          ("C-c r k" . crux-kill-other-buffers)
          ("C-c r d" . crux-duplicate-current-line-or-region)
          ("C-c r D" . crux-delete-file-and-buffer)
-         ("C-c r s" . crux-create-startch-buffer)
+         ("C-c r s" . crux-create-scratch-buffer)
          ("s-j" . crux-top-join-line)
          ("C-^" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
