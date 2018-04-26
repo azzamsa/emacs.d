@@ -638,7 +638,6 @@
 
 (use-package exec-path-from-shell
   :ensure t
-  :disabled
   :config
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)))
