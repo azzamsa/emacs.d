@@ -673,7 +673,7 @@
   )
 
 (use-package pomodoro
-  :defer t
+  :defer 5
   :load-path "elisp/pomodoro/"
   :config
   (progn
@@ -696,6 +696,9 @@
 
 (use-package lisp-mode
   :defer t
+  :mode ("\\.cl\\'"
+         "\\.lisp\\'"
+         "\\.el\\'")
   :config
   (add-hook 'lisp-mode-hook
             (lambda ()
