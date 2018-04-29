@@ -50,10 +50,10 @@
 (setq user-full-name "azzamsa"
       user-mail-address "me@azzamsa.com")
 
-;;;loading my  configuration
+;;; loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/modes/")
 
-;;find my PATH
+;; find my PATH. Solve auctex can't find xelatex
 (setenv "PATH" (shell-command-to-string "bash -i -c 'echo -n $PATH'"))
 
 ;; Always load newest byte code
@@ -554,7 +554,7 @@
 
 (use-package crux
   :ensure t
-  :bind (("C-c s" . crux-swap-windows)
+  :bind (("C-c w" . crux-swap-windows)
          ("C-c r o" . crux-open-with)
          ("C-c r w" . crux-kill-whole-line)
          ("C-c r r" . crux-rename-buffer-and-file)
