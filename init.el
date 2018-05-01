@@ -268,7 +268,7 @@
 
 (use-package company
   :ensure t
-  :defer 3
+  :defer 1
   :config
   (global-company-mode))
 
@@ -694,11 +694,12 @@
 
 ;; Programming modes
 
+(require 'init-java)
+
 (use-package lisp-mode
   :defer t
   :mode ("\\.cl\\'"
-         "\\.lisp\\'"
-         "\\.el\\'")
+         "\\.lisp\\'")
   :config
   (add-hook 'lisp-mode-hook
             (lambda ()
@@ -930,10 +931,6 @@
   :config
   (editorconfig-mode 1))
 
-(use-package init-java
-  :defer t
-  :load-path "/modes/")
-
 ;; make a shell script executable automatically on save
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
@@ -970,6 +967,8 @@
 ;; Run at full power please
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+(put 'scroll-left 'disabled nil)
+(put 'scroll-right 'disabled nil)
 
 ;; Emacs misc
 (setq history-delete-duplicates t)
