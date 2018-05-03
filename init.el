@@ -316,6 +316,7 @@
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
+  (setq helm-exit-idle-delay 0) ; fix display not ready
   ;;use ack-grep instead of grep
   (when (executable-find "ack-grep")
     (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
