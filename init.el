@@ -483,7 +483,8 @@
 (use-package magit
   :ensure t
   :defer t
-  :bind ("C-c g" . magit-status))
+  :bind (("C-c g" . magit-status)
+         ("C-x M-g" . magit-dispatch-popup)))
 
 (use-package windmove
   :config
@@ -689,8 +690,12 @@
 ;; clean up obsolete buffers automatically
 (use-package midnight
   :ensure t
-  :defer t)
+  :defer 6)
 
+(use-package ace-window
+  :ensure t
+  :defer 1
+  :bind ("s-W" . ace-window))
 
 ;; Programming modes
 
