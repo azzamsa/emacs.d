@@ -273,10 +273,10 @@
   (global-company-mode))
 
 (use-package flycheck
-  :defer t
   :ensure t
+  :defer t
   :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (add-hook 'prog-mode-hook #'global-flycheck-mode))
 
 (use-package undo-tree
   :defer t
@@ -540,7 +540,7 @@
 
 (use-package diff-hl
   :ensure t
-  :defer t
+  :defer 5
   :config
   (global-diff-hl-mode +1)
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
@@ -607,7 +607,7 @@
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
   :ensure t
-  :defer t
+  :defer 5
   :config
   (volatile-highlights-mode +1)
   (custom-set-faces
