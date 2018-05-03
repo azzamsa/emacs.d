@@ -1,7 +1,3 @@
-;;------------
-;; dired conf from oramac
-;;------------
-
 (defun ora-dired-rsync (dest)
   (interactive
    (list (expand-file-name
@@ -90,5 +86,17 @@ Version 2015-07-30"
      ((equal $sort-by "dir") (setq $arg "-Al --si --time-style long-iso --group-directories-first"))
      (t (error "logic error 09535" )))
     (dired-sort-other $arg )))
+
+(setq dired-guess-shell-alist-user
+      '(("\\.pdf\\'" "evince" "okular")
+        ("\\.\\(?:djvu\\|eps\\)\\'" "evince")
+        ("\\.\\(?:jpg\\|jpeg\\|png\\|svg\\|gif\\|tiff\\|xpm\\|bmp\\)\\'" "sxiv")
+        ("\\.\\(?:xcf\\)\\'" "gimp")
+        ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\|ifo\\|m4v\\|wmv\\|webm\\)\\(?:\\.part\\)?\\'"
+         "mpv")
+        ("\\.\\(?:mp3\\|flac\\|wv\\)\\'" "mpv")
+        ("\\.html?\\'" "firefox")
+        ("\\.\\(?:pptx?\\|odt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
+        ("\\.\\(?:zip\\|tgz\\)\\'" "file-roller")))
 
 (provide 'aza-dired)
