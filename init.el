@@ -845,8 +845,9 @@
   :ensure auctex
   :config
   (use-package bibretrieve
-    :ensure t
-    :defer t)
+    :ensure t)
+  (use-package company-auctex
+    :ensure t)
   (use-package helm-bibtex
     :ensure t
     :bind ("C-c h b" . helm-bibtex-with-local-bibliography))
