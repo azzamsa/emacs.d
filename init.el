@@ -408,6 +408,10 @@
        (lisp . t)))
     (require 'aza-org))
   :config
+  (use-package ox-gfm
+    :ensure t)
+  (use-package org-download
+  :ensure t)
   ;;org-refil
   (setq org-refile-targets '(("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
                              ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
@@ -435,14 +439,6 @@
 (use-package org-cliplink
   :ensure t
   :bind ("C-c o c " . org-cliplink))
-
-(use-package org-download
-  :ensure t
-  :defer t)
-
-(use-package ox-gfm
-  :ensure t
-  :defer t)
 
 (use-package calfw
   :defer t
