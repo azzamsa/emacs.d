@@ -652,15 +652,6 @@
         (if (string= event "finished\n")
             (kill-buffer ,buff))))))
 
-(use-package multi-term
-  :ensure t
-  :bind (("C-x M" . multi-term)
-         ("C-x m" . switch-to-term-mode-buffer))
-  :config
-  (setq comint-prompt-read-only t)
-  (define-key term-raw-map (kbd "C-c C-y") 'term-paste)
-  (add-hook 'term-exec-hook 'oleh-term-exec-hook))
-
 (use-package xterm-color
   :ensure t
   :demand t
@@ -923,10 +914,6 @@
    '(shell-pop-window-height 30)
    '(shell-pop-full-span t)
    '(shell-pop-window-position "bottom")))
-
-(use-package eshell-autojump
-  :ensure t
-  :defer t)
 
 (use-package editorconfig
   :ensure t
