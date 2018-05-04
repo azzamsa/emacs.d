@@ -948,6 +948,21 @@
   (setq erc-save-buffer-on-part t)
   (setq erc-log-insert-log-on-open nil))
 
+(defun shell-pop-eshell ()
+  (interactive)
+  (let ((shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
+        (shell-pop-term-shell "eshell"))
+    (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
+    (call-interactively 'shell-pop)))
+
+(defun shell-pop-shell ()
+  (interactive)
+  (let ((shell-file-name "/bin/bash")
+        (shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
+        (shell-pop-term-shell "shell"))
+    (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
+    (call-interactively 'shell-pop)))
+
 ;; display “lambda” as “λ”
 (global-prettify-symbols-mode 1)
 
@@ -1014,5 +1029,13 @@
 ;; Comment/uncomment block
 (global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c u") 'uncomment-region)
+
+;; Start eshell or switch to it if it's active.
+(global-set-key (kbd "C-x m") 'shell-pop-eshell)
+(global-set-key (kbd "C-x M-m") 'shell-pop-shell)
+
+;; Start a new eshell even if one is active.
+(global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
+
 
 ;;; init.el ends here
