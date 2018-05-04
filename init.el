@@ -664,11 +664,17 @@
   :config
   (setq comint-prompt-read-only t)
   (define-key term-raw-map (kbd "C-c C-y") 'term-paste)
-  (add-hook 'term-exec-hook 'oleh-term-exec-hook)
-  ;;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-  ;; cause breakage to ansi-term
-  ;;(add-hook 'term-mode-hook #'eterm-256color-mode)
-  )
+  (add-hook 'term-exec-hook 'oleh-term-exec-hook))
+
+(use-package xterm-color
+  :ensure t
+  :demand t
+  :config
+  (setq comint-output-filter-functions
+        (remove 'ansi-color-process-output comint-output-filter-functions))
+  (add-hook 'shell-mode-hook
+            (lambda () (add-hook 'comint-preoutput-filter-functions
+                            'xterm-color-filter nil t))))
 
 (use-package pomodoro
   :defer 5
