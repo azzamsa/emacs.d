@@ -643,11 +643,6 @@
 (use-package diminish
   :demand t)
 
-(use-package eterm-256color
-  ;; cause breakage to ansi-term
-  :ensure t
-  :disabled)
-
 (defun oleh-term-exec-hook ()
   (let* ((buff (current-buffer))
          (proc (get-buffer-process buff)))
