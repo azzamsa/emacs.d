@@ -271,7 +271,7 @@
 
 (use-package flycheck
   :ensure t
-  :defer t
+  :defer 3
   :config
   (add-hook 'prog-mode-hook #'global-flycheck-mode))
 
@@ -351,7 +351,7 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :defer t)
+  :defer 5)
 
 (use-package rainbow-mode
   :ensure t
@@ -665,6 +665,16 @@
   :defer 1
   :bind ("s-W" . ace-window))
 
+(use-package zop-to-char
+  :ensure t
+  :bind (("M-z" . zop-up-to-char)
+         ("M-Z" . zop-to-char)))
+
+(use-package ediff
+  :config
+  ;; ediff - don't start another frame
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+
 ;; Programming modes
 
 (require 'init-java)
@@ -811,7 +821,8 @@
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char))
   :config
-  (setq avy-background t))
+  (setq avy-background t)
+  (setq avy-style 'at-full))
 
 (use-package tex
   :defer t
@@ -937,7 +948,7 @@
 
 (use-package editorconfig
   :ensure t
-  :defer t
+  :defer 5
   :diminish
   :config
   (editorconfig-mode 1))
@@ -1017,10 +1028,6 @@
 
 ;; If you want to be able to M-x without meta
 (global-set-key (kbd "C-x C-m") 'helm-M-x)
-
-;; replace zap-to-char functionality with the more powerful zop-to-char
-(global-set-key (kbd "M-z") 'zop-up-to-char)
-(global-set-key (kbd "M-Z") 'zop-to-char)
 
 ;; use hippie-expand instead of dabbrev
 (global-set-key (kbd "M-/") #'hippie-expand)
