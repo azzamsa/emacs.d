@@ -231,7 +231,7 @@
                ("n" . dired-view-next)
                ("p" . dired-view-previous)
                ("s" . xah-dired-sort))
-         ("C-t" . shell-pop))
+         ("C-t" . shell-pop-eshell))
   :init
   ;; enable some really cool extensions like C-x C-j(dired-jump)
   (require 'dired-x)
@@ -903,17 +903,41 @@
 
 (use-package shell-pop
   :ensure t
-  :defer 3
+  :demand t
+  :bind (("C-x m" . shell-pop-eshell)
+         ("C-x M-m" . shell-pop-shell))
+  :preface
+  (defun shell-pop-eshell ()
+    (interactive)
+    (let ((shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
+          (shell-pop-term-shell "eshell"))
+      (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
+      (call-interactively 'shell-pop)))
+
+  (defun shell-pop-shell ()
+    (interactive)
+    (let ((shell-file-name "/bin/bash")
+          (shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
+          (shell-pop-term-shell "shell"))
+      (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
+      (call-interactively 'shell-pop)))
   :config
   (custom-set-variables
    '(shell-pop-default-directory "~/")
    '(shell-pop-shell-type
      (quote ("eshell" "*eshell*" (lambda nil (eshell shell-pop-term-shell)))))
    '(shell-pop-term-shell "/usr/bin/bash")
-   '(shell-pop-universal-key "C-t")
    '(shell-pop-window-height 30)
    '(shell-pop-full-span t)
-   '(shell-pop-window-position "bottom")))
+   '(shell-pop-window-position "bottom"))
+  (define-key shell-mode-map "\e[A" [up])
+  (define-key shell-mode-map "\e[B" [down]))
+
+(use-package bash-completion
+  :ensure t
+  :demand t
+  :config
+  (bash-completion-setup))
 
 (use-package editorconfig
   :ensure t
@@ -922,19 +946,7 @@
   :config
   (editorconfig-mode 1))
 
-;; make a shell script executable automatically on save
-(add-hook 'after-save-hook
-          'executable-make-buffer-file-executable-if-script-p)
-
-(add-hook 'text-mode-hook
-          (lambda ()
-            (turn-on-auto-fill)
-            (visual-line-mode t)))
-
-(setq semanticdb-default-save-directory
-      (expand-file-name "semanticdb" azzamsa-savefile-dir))
-
-;;; Misc
+;;; Misc Packages
 (use-package erc
   :defer t
   :config
@@ -948,20 +960,19 @@
   (setq erc-save-buffer-on-part t)
   (setq erc-log-insert-log-on-open nil))
 
-(defun shell-pop-eshell ()
-  (interactive)
-  (let ((shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
-        (shell-pop-term-shell "eshell"))
-    (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
-    (call-interactively 'shell-pop)))
+;;; Emacs misc
 
-(defun shell-pop-shell ()
-  (interactive)
-  (let ((shell-file-name "/bin/bash")
-        (shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
-        (shell-pop-term-shell "shell"))
-    (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
-    (call-interactively 'shell-pop)))
+;; make a shell script executable automatically on save
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
+(add-hook 'text-mode-hook
+          (lambda ()
+            (turn-on-auto-fill)
+            (visual-line-mode t)))
+
+(setq semanticdb-default-save-directory
+      (expand-file-name "semanticdb" azzamsa-savefile-dir))
 
 ;; display “lambda” as “λ”
 (global-prettify-symbols-mode 1)
@@ -976,7 +987,6 @@
 (put 'scroll-left 'disabled nil)
 (put 'scroll-right 'disabled nil)
 
-;; Emacs misc
 (setq history-delete-duplicates t)
 
 ;; I hate that custom fruit
@@ -1029,13 +1039,5 @@
 ;; Comment/uncomment block
 (global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c u") 'uncomment-region)
-
-;; Start eshell or switch to it if it's active.
-(global-set-key (kbd "C-x m") 'shell-pop-eshell)
-(global-set-key (kbd "C-x M-m") 'shell-pop-shell)
-
-;; Start a new eshell even if one is active.
-(global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
-
 
 ;;; init.el ends here
