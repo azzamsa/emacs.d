@@ -156,6 +156,7 @@
 
 ;; revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
+(diminish 'auto-revert-mode)
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -215,6 +216,7 @@
 
 (use-package abbrev
   :defer 5
+  :diminish abbrev-mode
   :config
   (setq-default abbrev-mode t)
   (cond ((file-exists-p "~/.abbrev_defs")
@@ -266,6 +268,7 @@
 (use-package company
   :ensure t
   :defer 1
+  :diminish " ☘"
   :config
   (global-company-mode))
 
@@ -671,9 +674,14 @@
          ("M-Z" . zop-to-char)))
 
 (use-package ediff
+  :defer t
   :config
   ;; ediff - don't start another frame
   (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+
+(use-package winner
+  :config
+  (winner-mode 1))
 
 ;; Programming modes
 
@@ -779,9 +787,12 @@
   (setq projectile-switch-project-action 'neotree-projectile-action))
 
 (use-package markdown-toc
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package flyspell
+  :defer 5
+  :diminish " ⚙"
   :config
   (use-package flyspell-correct-helm
     :ensure t
@@ -818,6 +829,7 @@
 
 (use-package avy
   :ensure t
+  :defer 4
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char))
   :config
