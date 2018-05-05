@@ -234,9 +234,8 @@
          ("C-x m" . shell-pop-eshell)
          ("C-x M-m" . shell-pop-shell))
   :init
-  ;; enable some really cool extensions like C-x C-j(dired-jump)
-  (require 'dired-x)
   (require 'aza-dired)
+  (require 'dired-x) ; dired-jump is cool
   :config
   (use-package dired+
     :load-path "~/.emacs.d/elisp/diredp/"
@@ -255,11 +254,8 @@
   ;; current subdir, instead of the current subdir of this dired buffer
   (setq dired-dwim-target t)
   (setq dired-listing-switches "-alGhvF --group-directories-first")
-
-  ;; hide boring files
-  (setq-default dired-omit-files-p t) ; Buffer-local variable
   (setq dired-omit-files
-        (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`\\.[^.]\\|\\`_minted"
+        (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt
                  '("aux" "log" "pickle" "synctex.gz" "run.xml" "bcf" "am" "in" "blx.bib"
                    "vrb" "opt" "nav" "snm" "out"))
