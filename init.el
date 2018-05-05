@@ -340,6 +340,7 @@
 (use-package super-save
   :ensure t
   :defer 2
+  :diminish super-save-mode
   :config
   (super-save-mode +1))
 
@@ -354,11 +355,13 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :defer 5)
+  :defer 5
+  :diminish rainbow-delimiters-mode)
 
 (use-package rainbow-mode
   :ensure t
   :defer t
+  :diminish rainbow-mode
   :config
   (add-hook 'prog-mode-hook #'rainbow-mode))
 
@@ -369,15 +372,7 @@
    sml/no-confirm-load-theme t
    sml/theme nil
    sml/shorten-modes t
-   rm-blacklist '(" Rbow"
-                  " Undo-Tree"
-                  " Ind"
-                  " super-save"
-                  " guru"
-                  " WK"
-                  " Helm"
-                  " (*)"
-                  " VHl"))
+   rm-blacklist '(" Ind"))
   (sml/setup))
 
 (use-package org
@@ -548,6 +543,7 @@
 (use-package which-key
   :ensure t
   :defer 1
+  :diminish which-key-mode
   :config
   (which-key-mode +1))
 
@@ -594,6 +590,7 @@
 (use-package guru-mode
   :ensure t
   :defer 4
+  :diminish guru-mode
   :init (guru-global-mode +1)
   :config
   (setq guru-warn-only t))
@@ -607,6 +604,7 @@
 (use-package volatile-highlights
   :ensure t
   :defer 5
+  :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode +1)
   (custom-set-faces
@@ -615,6 +613,7 @@
 (use-package beacon
   :ensure t
   :defer 1
+  :diminish beacon-mode
   :config
   (beacon-mode 1)
   (setq beacon-push-mark 35)
