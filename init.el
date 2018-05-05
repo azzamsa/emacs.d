@@ -967,7 +967,8 @@
   :config
   (editorconfig-mode 1))
 
-;;; Misc Packages
+;;; Emacs is home
+
 (use-package erc
   :defer t
   :config
@@ -981,7 +982,12 @@
   (setq erc-save-buffer-on-part t)
   (setq erc-log-insert-log-on-open nil))
 
-;;; Emacs misc
+(use-package pdf-tools
+  :ensure t
+  :defer t
+  :config
+  (pdf-tools-install))
+;;; Misc
 
 ;;; Hooks
 
@@ -999,6 +1005,11 @@
 (setq semanticdb-default-save-directory
       (expand-file-name "semanticdb" azzamsa-savefile-dir))
 
+(setq history-delete-duplicates t)
+
+;; -i gets alias definitions from .bash_profile
+(setq shell-command-switch "-ic")
+
 ;; I hate that custom fruit
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -1010,8 +1021,6 @@
 (put 'upcase-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
 (put 'scroll-right 'disabled nil)
-
-(setq history-delete-duplicates t)
 
 ;;; Global keybindings
 
