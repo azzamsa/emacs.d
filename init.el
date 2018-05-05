@@ -231,7 +231,8 @@
                ("n" . dired-view-next)
                ("p" . dired-view-previous)
                ("s" . xah-dired-sort))
-         ("C-t" . shell-pop-eshell))
+         ("C-x m" . shell-pop-eshell)
+         ("C-x M-m" . shell-pop-shell))
   :init
   ;; enable some really cool extensions like C-x C-j(dired-jump)
   (require 'dired-x)
