@@ -364,7 +364,7 @@
   :init
   (setq
    sml/no-confirm-load-theme t
-   sml/theme 'respectful
+   sml/theme nil
    sml/shorten-modes t
    rm-blacklist '(" Rbow"
                   " Undo-Tree"
