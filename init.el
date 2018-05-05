@@ -225,7 +225,7 @@
 (use-package dired
   :ensure nil
   :bind ((:map dired-mode-map
-               ("C-'" . ora-dired-up-directory)
+               ("-" . ora-dired-up-directory)
                ("C-r" . ora-dired-rsync)
                ("C-o" . dired-view-current)
                ("n" . dired-view-next)
