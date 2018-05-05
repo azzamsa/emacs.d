@@ -293,8 +293,9 @@
   :ensure t
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
+         ("C-c f" . helm-recentf)
+         ("C-c f" . helm-recentf)
          ("C-x C-f" . helm-find-files)
-         ("C-x b" . helm-buffers-list)
          ("C-c h m" . helm-mini)
          ("C-c h o" . helm-occur)
          ("C-c h /" . helm-find)
@@ -412,7 +413,7 @@
   (use-package ox-gfm
     :ensure t)
   (use-package org-download
-  :ensure t)
+    :ensure t)
   ;;org-refil
   (setq org-refile-targets '(("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
                              ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
@@ -643,25 +644,6 @@
 
 (use-package diminish
   :demand t)
-
-(defun oleh-term-exec-hook ()
-  (let* ((buff (current-buffer))
-         (proc (get-buffer-process buff)))
-    (set-process-sentinel
-     proc
-     `(lambda (process event)
-        (if (string= event "finished\n")
-            (kill-buffer ,buff))))))
-
-(use-package xterm-color
-  :ensure t
-  :demand t
-  :config
-  (setq comint-output-filter-functions
-        (remove 'ansi-color-process-output comint-output-filter-functions))
-  (add-hook 'shell-mode-hook
-            (lambda () (add-hook 'comint-preoutput-filter-functions
-                            'xterm-color-filter nil t))))
 
 (use-package pomodoro
   :defer 5
@@ -905,7 +887,9 @@
   :ensure t
   :demand t
   :bind (("C-x m" . shell-pop-eshell)
-         ("C-x M-m" . shell-pop-shell))
+         ("C-x M-m" . shell-pop-shell)
+         (:map shell-mode-map
+               ("C-c C-l" . helm-comint-input-ring)))
   :preface
   (defun shell-pop-eshell ()
     (interactive)
@@ -924,19 +908,35 @@
   :config
   (custom-set-variables
    '(shell-pop-default-directory "~/")
-   '(shell-pop-shell-type
-     (quote ("eshell" "*eshell*" (lambda nil (eshell shell-pop-term-shell)))))
    '(shell-pop-term-shell "/usr/bin/bash")
    '(shell-pop-window-height 30)
    '(shell-pop-full-span t)
-   '(shell-pop-window-position "bottom"))
-  (define-key shell-mode-map "\e[A" [up])
-  (define-key shell-mode-map "\e[B" [down]))
+   '(shell-pop-window-position "bottom")))
 
-(use-package bash-completion
+(use-package shell
+  :demand t
+  :bind ("s-g" . dirs)
+  :config
+  (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+  (add-hook 'shell-mode-hook
+            'ansi-color-for-comint-mode-on) ; add color to shell
+  (setq comint-prompt-read-only t)) ; make shell-prompt read-only
+
+(use-package xterm-color
   :ensure t
   :demand t
   :config
+  (setq comint-output-filter-functions
+        (remove 'ansi-color-process-output comint-output-filter-functions))
+  (add-hook 'shell-mode-hook
+            (lambda () (add-hook 'comint-preoutput-filter-functions
+                            'xterm-color-filter nil t))))
+
+(use-package bash-completion
+  :ensure t
+  :disabled
+  :demand t
+  :init
   (bash-completion-setup))
 
 (use-package editorconfig
@@ -962,6 +962,8 @@
 
 ;;; Emacs misc
 
+;;; Hooks
+
 ;; make a shell script executable automatically on save
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
@@ -971,15 +973,16 @@
             (turn-on-auto-fill)
             (visual-line-mode t)))
 
+;;; Set
+
 (setq semanticdb-default-save-directory
       (expand-file-name "semanticdb" azzamsa-savefile-dir))
 
-;; display “lambda” as “λ”
-(global-prettify-symbols-mode 1)
+;; I hate that custom fruit
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-;; Unbind Pesky Sleep Button
-(global-unset-key [(control z)])
-(global-unset-key [(control x)(control z)])
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;; Run at full power please
 (put 'downcase-region 'disabled nil)
@@ -989,13 +992,14 @@
 
 (setq history-delete-duplicates t)
 
-;; I hate that custom fruit
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(when (file-exists-p custom-file)
-  (load custom-file))
-
 ;;; Global keybindings
+
+;; display “lambda” as “λ”
+(global-prettify-symbols-mode 1)
+
+;; Unbind Pesky Sleep Button
+(global-unset-key [(control z)])
+(global-unset-key [(control x)(control z)])
 
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
 
@@ -1040,4 +1044,5 @@
 (global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c u") 'uncomment-region)
 
+(define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
 ;;; init.el ends here
