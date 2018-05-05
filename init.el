@@ -679,9 +679,11 @@
   ;; ediff - don't start another frame
   (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
-(use-package winner
+(use-package eyebrowse
+  :ensure t
+  :defer 1
   :config
-  (winner-mode 1))
+  (eyebrowse-mode t))
 
 ;; Programming modes
 
