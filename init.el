@@ -293,7 +293,6 @@
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-c f" . helm-recentf)
-         ("C-c f" . helm-recentf)
          ("C-x C-f" . helm-find-files)
          ("C-c h m" . helm-mini)
          ("C-c h o" . helm-occur)
