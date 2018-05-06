@@ -243,6 +243,9 @@
     :load-path "~/.emacs.d/elisp/diredp/"
     :config
     (diredp-toggle-find-file-reuse-dir 1))
+  (use-package wdired
+    :config
+    (setq wdired-use-dired-vertical-movement 'sometimes))
   ;; dired - reuse current buffer by pressing 'a'
   (put 'dired-find-alternate-file 'disabled nil)
 
