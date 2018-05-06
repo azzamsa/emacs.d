@@ -233,7 +233,7 @@
                ("n" . dired-view-next)
                ("p" . dired-view-previous)
                ("s" . xah-dired-sort))
-         ("C-x m" . shell-pop-eshell)
+         ("C-t" . shell-pop-eshell)
          ("C-x M-m" . shell-pop-shell))
   :init
   (require 'aza-dired)
@@ -296,13 +296,15 @@
   :ensure t
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
+         ("C-x b" . helm-mini)
+         ("C-x C-b" . helm-buffers-list)
          ("C-c b" . helm-bookmarks)
          ("C-c f" . helm-recentf)
          ("C-x C-f" . helm-find-files)
-         ("C-c h m" . helm-mini)
          ("C-c h o" . helm-occur)
          ("C-c h /" . helm-find)
          ("C-c h l" . helm-locate)
+         ("C-c h x" . helm-register)
          ("C-c p h" . helm-projectile))
   :init
   (progn
@@ -915,7 +917,7 @@
 (use-package shell-pop
   :ensure t
   :demand t
-  :bind (("C-x m" . shell-pop-eshell)
+  :bind (("C-t" . shell-pop-eshell)
          ("C-x M-m" . shell-pop-shell)
          (:map shell-mode-map
                ("C-c C-l" . helm-comint-input-ring)))
