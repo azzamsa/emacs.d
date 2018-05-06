@@ -306,7 +306,9 @@
          ("C-c h /" . helm-find)
          ("C-c h l" . helm-locate)
          ("C-c p h" . helm-projectile)
-         ("C-h SPC" . helm-all-mark-rings))
+         ("C-h SPC" . helm-all-mark-rings)
+         (:map isearch-mode-map
+               ("C-o" . helm-occur-from-isearch)))
   :init
   (progn
     (require 'helm-config)
@@ -696,7 +698,9 @@
   (setq bookmark-default-file (expand-file-name "bookmarks" azzamsa-savefile-dir)
         bookmark-save-flag 1))
 
+;;------------------------------------------------
 ;; Programming modes
+;;------------------------------------------------
 
 (require 'init-java)
 
@@ -978,7 +982,9 @@
   :config
   (editorconfig-mode 1))
 
-;;; Emacs is home
+;;------------------------------------------------
+;; Emacs is a home
+;;------------------------------------------------
 
 (use-package erc
   :defer t
@@ -1003,7 +1009,9 @@
   :ensure t
   :defer t)
 
-;;; Misc
+;;------------------------------------------------
+;; Misc
+;;------------------------------------------------
 
 ;;; Hooks
 
@@ -1038,7 +1046,9 @@
 (put 'scroll-left 'disabled nil)
 (put 'scroll-right 'disabled nil)
 
-;;; Global keybindings
+;;------------------------------------------------
+;; Global keybindings
+;;------------------------------------------------
 
 ;; display “lambda” as “λ”
 (global-prettify-symbols-mode 1)
@@ -1083,5 +1093,4 @@
 (global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c u") 'uncomment-region)
 
-(define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
 ;;; init.el ends here
