@@ -304,7 +304,7 @@
          ("C-c h o" . helm-occur)
          ("C-c h /" . helm-find)
          ("C-c h l" . helm-locate)
-         ("C-c h x" . helm-register)
+         ("C-h SPC" . helm-all-mark-rings)
          ("C-c p h" . helm-projectile))
   :init
   (progn
