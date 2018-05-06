@@ -250,6 +250,7 @@
   (setq dired-recursive-deletes 'always)
   (setq dired-recursive-copies 'always)
 
+  (setq dired-auto-revert-buffer t)
   (setq delete-by-moving-to-trash t)
 
   ;; if there is a dired buffer displayed in the next window, use its
