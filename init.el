@@ -995,9 +995,14 @@
 
 (use-package pdf-tools
   :ensure t
-  :defer 3
+  :defer t
   :config
   (pdf-tools-install))
+
+(use-package mingus
+  :ensure t
+  :defer t)
+
 ;;; Misc
 
 ;;; Hooks
