@@ -704,6 +704,13 @@
   (setq desktop-dirname azzamsa-savefile-dir)
   (desktop-save-mode +1))
 
+(use-package golden-ratio
+  :ensure t
+  :defer 2
+  :diminish " ♛"
+  :config
+  (golden-ratio-mode 1))
+
 ;;------------------------------------------------
 ;; Programming modes
 ;;------------------------------------------------
