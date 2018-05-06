@@ -298,15 +298,15 @@
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x b" . helm-mini)
-         ("C-x C-b" . helm-buffers-list)
-         ("C-c b" . helm-bookmarks)
          ("C-c f" . helm-recentf)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-x r b" . helm-filtered-bookmarks)
          ("C-x C-f" . helm-find-files)
          ("C-c h o" . helm-occur)
          ("C-c h /" . helm-find)
          ("C-c h l" . helm-locate)
-         ("C-h SPC" . helm-all-mark-rings)
-         ("C-c p h" . helm-projectile))
+         ("C-c p h" . helm-projectile)
+         ("C-h SPC" . helm-all-mark-rings))
   :init
   (progn
     (require 'helm-config)
