@@ -1018,7 +1018,7 @@
 (setq history-delete-duplicates t)
 
 ;; -i gets alias definitions from .bash_profile
-(setq shell-command-switch "-ic")
+;;(setq shell-command-switch "-ic") ; break eshell with git prompt
 
 ;; I hate that custom fruit
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
