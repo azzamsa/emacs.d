@@ -292,7 +292,7 @@
   :ensure t
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
-         ("C-c b" . helm-bookmark)
+         ("C-c b" . helm-bookmarks)
          ("C-c f" . helm-recentf)
          ("C-x C-f" . helm-find-files)
          ("C-c h m" . helm-mini)
@@ -988,7 +988,7 @@
 
 (use-package pdf-tools
   :ensure t
-  :defer t
+  :defer 3
   :config
   (pdf-tools-install))
 ;;; Misc
