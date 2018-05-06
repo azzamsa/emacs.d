@@ -292,6 +292,7 @@
   :ensure t
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
+         ("C-c b" . helm-bookmark)
          ("C-c f" . helm-recentf)
          ("C-x C-f" . helm-find-files)
          ("C-c h m" . helm-mini)
@@ -683,6 +684,11 @@
   :config
   (eyebrowse-mode t))
 
+(use-package bookmark
+  :config
+  (setq bookmark-default-file (expand-file-name "bookmarks" azzamsa-savefile-dir)
+        bookmark-save-flag 1))
+
 ;; Programming modes
 
 (require 'init-java)
@@ -1037,9 +1043,6 @@
 
 (global-set-key (kbd "C-c s")
                 (lambda () (interactive) (find-file "~/.emacs.d/documents/sletz.org")))
-
-(global-set-key (kbd "C-c b")
-                (lambda () (interactive) (find-file "~/.emacs.d/bookmarks.org")))
 
 (global-set-key (kbd "C-c c") 'org-capture)
 
