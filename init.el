@@ -698,6 +698,12 @@
   (setq bookmark-default-file (expand-file-name "bookmarks" azzamsa-savefile-dir)
         bookmark-save-flag 1))
 
+(use-package desktop
+  :config
+  (setq desktop-path (list azzamsa-savefile-dir))
+  (setq desktop-dirname azzamsa-savefile-dir)
+  (desktop-save-mode +1))
+
 ;;------------------------------------------------
 ;; Programming modes
 ;;------------------------------------------------
