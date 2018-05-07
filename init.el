@@ -312,21 +312,23 @@
   :init
   (progn
     (require 'helm-config)
-    (setq helm-candidate-number-limit 100)
-    (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
-          helm-input-idle-delay 0.01  ; update things reelatively quickly.
-          helm-yas-display-key-on-candidate t
-          helm-quick-update t
-          helm-M-x-requires-pattern nil
-          helm-ff-skip-boring-files t)
+    ;; open helm buffer inside current window, not occupy whole other window
+    (setq helm-split-window-in-side-p t
+          ;; display helm input in header
+          helm-echo-input-in-header-line t
+          ;; search for library in `require' and `declare-function' sexp.
+          helm-ff-search-library-in-sexp t)
+
     (setq helm-M-x-fuzzy-match t
           helm-buffers-fuzzy-matching t
-          helm-locate-fuzzy-match t
-          helm-display-header-line nil))
+          helm-locate-fuzzy-match t))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
+  (setq helm-autoresize-max-height 30)
+  (setq helm-autoresize-min-height 20)
   (setq helm-exit-idle-delay 0) ; fix display not ready
+
   ;;use ack-grep instead of grep
   (when (executable-find "ack-grep")
     (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
@@ -443,7 +445,9 @@
 
 (use-package org-cliplink
   :ensure t
-  :bind ("C-c o c " . org-cliplink))
+  :bind ("C-c o c " . org-cliplink)
+  :config
+  (setq org-cliplink-max-length 60))
 
 (use-package calfw
   :defer t
@@ -654,6 +658,7 @@
 
 (use-package pomodoro
   :defer 5
+
   :load-path "elisp/pomodoro/"
   :config
   (progn
@@ -691,7 +696,8 @@
   :ensure t
   :defer 1
   :config
-  (eyebrowse-mode t))
+  (eyebrowse-mode t)
+  (setq eyebrowse-new-workspace t))
 
 (use-package bookmark
   :config
@@ -968,7 +974,8 @@
   :config
   (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
   (add-hook 'shell-mode-hook
-            'ansi-color-for-comint-mode-on) ; add color to shell
+            'ansi-color-for-comint-mode-on ; add color to shell
+            'dirtrack-mode t)
   (setq comint-prompt-read-only t)) ; make shell-prompt read-only
 
 (use-package xterm-color
