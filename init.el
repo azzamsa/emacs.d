@@ -312,11 +312,8 @@
   :init
   (progn
     (require 'helm-config)
-    ;; open helm buffer inside current window, not occupy whole other window
     (setq helm-split-window-in-side-p t
-          ;; display helm input in header
           helm-echo-input-in-header-line t
-          ;; search for library in `require' and `declare-function' sexp.
           helm-ff-search-library-in-sexp t)
 
     (setq helm-M-x-fuzzy-match t
@@ -327,12 +324,13 @@
   (helm-autoresize-mode 1)
   (setq helm-autoresize-max-height 30)
   (setq helm-autoresize-min-height 20)
-  (setq helm-exit-idle-delay 0) ; fix display not ready
+  (setq helm-exit-idle-delay 0)
 
-  ;;use ack-grep instead of grep
   (when (executable-find "ack-grep")
-    (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
-          helm-grep-default-recurse-command "ack-grep -H --no-group --no-color %e %p %f")))
+    (setq helm-grep-default-command
+          "ack-grep -Hn --no-group --no-color %e %p %f"
+          helm-grep-default-recurse-command
+          "ack-grep -H --no-group --no-color %e %p %f")))
 
 (use-package helm-org-rifle
   :ensure t
