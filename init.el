@@ -314,11 +314,13 @@
     (require 'helm-config)
     (setq helm-split-window-in-side-p t
           helm-echo-input-in-header-line t
-          helm-ff-search-library-in-sexp t)
+          helm-ff-search-library-in-sexp t
+          helm-ff-file-name-history-use-recentf t)
 
     (setq helm-M-x-fuzzy-match t
           helm-buffers-fuzzy-matching t
           helm-locate-fuzzy-match t))
+
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -984,7 +986,7 @@
         (remove 'ansi-color-process-output comint-output-filter-functions))
   (add-hook 'shell-mode-hook
             (lambda () (add-hook 'comint-preoutput-filter-functions
-                            'xterm-color-filter nil t))))
+                                 'xterm-color-filter nil t))))
 
 (use-package bash-completion
   :ensure t
