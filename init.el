@@ -235,7 +235,7 @@
                ("p" . dired-view-previous)
                ("s" . xah-dired-sort))
          ("C-t" . shell-pop-eshell)
-         ("C-x M-m" . shell-pop-shell))
+         ("C-z" . shell-pop-shell))
   :init
   (require 'aza-dired)
   (require 'dired-x) ; dired-jump is cool
@@ -839,13 +839,13 @@
   :config
   (use-package flyspell-correct-helm
     :ensure t
+    :bind (:map flyspell-mode-map
+                ("C-;" . flyspell-correct-previous-word-generic))
     :config
-    (define-key flyspell-mode-map (kbd "C-;")
-      'flyspell-correct-previous-word-generic))
-  (setq ispell-program-name "aspell" ; use aspell instead of ispell
-        ispell-extra-args '("--sug-mode=ultra"))
-  (add-hook 'text-mode-hook #'flyspell-mode)
-  (add-hook 'prog-mode-hook #'flyspell-prog-mode))
+    (setq ispell-program-name "aspell" ; use aspell instead of ispell
+          ispell-extra-args '("--sug-mode=ultra"))
+    (add-hook 'text-mode-hook #'flyspell-mode)
+    (add-hook 'prog-mode-hook #'flyspell-prog-mode)))
 
 (use-package whitespace
   :diminish
@@ -861,8 +861,7 @@
   :ensure t
   :defer t
   :init
-  (progn
-    ;; these need to be defined here - if they're lazily loaded with
+  (progn    ;; these need to be defined here - if they're lazily loaded with
     ;; :bind they don't work.
     (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
     (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -949,7 +948,7 @@
   :ensure t
   :demand t
   :bind (("C-t" . shell-pop-eshell)
-         ("C-x M-m" . shell-pop-shell)
+         ("C-z" . shell-pop-shell)
          (:map shell-mode-map
                ("C-c C-l" . helm-comint-input-ring)))
   :preface
@@ -966,14 +965,7 @@
           (shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
           (shell-pop-term-shell "shell"))
       (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
-      (call-interactively 'shell-pop)))
-  :config
-  (custom-set-variables
-   '(shell-pop-default-directory "~/")
-   '(shell-pop-term-shell "/usr/bin/bash")
-   '(shell-pop-window-height 30)
-   '(shell-pop-full-span t)
-   '(shell-pop-window-position "bottom")))
+      (call-interactively 'shell-pop))))
 
 (use-package shell
   :demand t
