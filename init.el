@@ -1122,4 +1122,8 @@
 (global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c u") 'uncomment-region)
 
+;; Console
+(global-set-key (kbd "C-x m") 'eshell)
+(global-set-key (kbd "C-x M-m") 'shell)
+
 ;;; init.el ends here
