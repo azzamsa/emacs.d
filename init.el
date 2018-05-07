@@ -273,7 +273,7 @@
 (use-package company
   :ensure t
   :defer 1
-  :diminish " ☘"
+  :diminish " ⚡"
   :config
   (global-company-mode))
 
@@ -297,6 +297,7 @@
   :ensure t
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
+         ("C-x C-m" . helm-M-x)
          ("C-x b" . helm-mini)
          ("C-c f" . helm-recentf)
          ("C-x C-b" . helm-buffers-list)
@@ -337,6 +338,12 @@
 (use-package helm-org-rifle
   :ensure t
   :bind ("C-c h r" . helm-org-rifle))
+
+(use-package helm-ag
+  :ensure t
+  :defer 4
+  :diminish helm-ag-mode
+  :bind ("C-c a" . helm-ag))
 
 (use-package uniquify
   :defer 2
@@ -713,7 +720,7 @@
 (use-package golden-ratio
   :ensure t
   :defer 2
-  :diminish " ♛"
+  :diminish " φ"
   :config
   (golden-ratio-mode 1))
 
@@ -828,7 +835,7 @@
 
 (use-package flyspell
   :defer 5
-  :diminish " ⚙"
+  :diminish " ⛿"
   :config
   (use-package flyspell-correct-helm
     :ensure t
@@ -1104,9 +1111,6 @@
 ;; Font size
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
-
-;; If you want to be able to M-x without meta
-(global-set-key (kbd "C-x C-m") 'helm-M-x)
 
 ;; use hippie-expand instead of dabbrev
 (global-set-key (kbd "M-/") #'hippie-expand)
