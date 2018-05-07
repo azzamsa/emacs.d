@@ -609,10 +609,11 @@
 
 (use-package guru-mode
   :ensure t
+  :disabled
   :defer 4
   :diminish guru-mode
-  :init (guru-global-mode +1)
   :config
+  (guru-global-mode +1)
   (setq guru-warn-only t))
 
 (use-package ledger-mode
@@ -932,17 +933,28 @@
               (company-jedi t))))
 
 (use-package eshell
-  :init (require 'aza-eshell)
+  :demand t
   :config
-  (setq eshell-directory-name (expand-file-name "eshell" azzamsa-savefile-dir)))
-
-(use-package helm-eshell
-  :defer 3
-  :init
+  (require 'aza-eshell)
+  ;; very strange!. can't use `:bind' for eshell-mode-map
   (add-hook 'eshell-mode-hook
             #'(lambda ()
                 (define-key eshell-mode-map (kbd "C-c C-l")
-                  'helm-eshell-history))))
+                  'helm-eshell-history)))
+  (setq eshell-directory-name
+        (expand-file-name "eshell" azzamsa-savefile-dir)))
+
+(use-package shell
+  :demand t
+  :bind ((:map shell-mode-map
+               ("C-c C-l" . helm-comint-input-ring))
+         ("s-g" . dirs))
+  :config
+  (setq comint-prompt-read-only t) ; make shell-prompt read-only
+  (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+  (add-hook 'shell-mode-hook
+            'ansi-color-for-comint-mode-on ; add color to shell
+            'dirtrack-mode t))
 
 (use-package shell-pop
   :ensure t
@@ -950,7 +962,9 @@
   :bind (("C-t" . shell-pop-eshell)
          ("C-z" . shell-pop-shell)
          (:map shell-mode-map
-               ("C-c C-l" . helm-comint-input-ring)))
+               ("C-c C-l" . helm-comint-input-ring))
+         (:map eshell-mode-map
+               ("C-c C-l" . helm-eshell-history)))
   :preface
   (defun shell-pop-eshell ()
     (interactive)
@@ -966,16 +980,6 @@
           (shell-pop-term-shell "shell"))
       (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
       (call-interactively 'shell-pop))))
-
-(use-package shell
-  :demand t
-  :bind ("s-g" . dirs)
-  :config
-  (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
-  (add-hook 'shell-mode-hook
-            'ansi-color-for-comint-mode-on ; add color to shell
-            'dirtrack-mode t)
-  (setq comint-prompt-read-only t)) ; make shell-prompt read-only
 
 (use-package xterm-color
   :ensure t
@@ -1086,7 +1090,7 @@
 (global-prettify-symbols-mode 1)
 
 ;; Unbind Pesky Sleep Button
-(global-unset-key [(control z)])
+;;(global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
 
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
