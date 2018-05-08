@@ -311,17 +311,15 @@
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
   :init
-  (progn
-    (require 'helm-config)
-    (setq helm-split-window-in-side-p t
-          helm-echo-input-in-header-line t
-          helm-ff-search-library-in-sexp t
-          helm-ff-file-name-history-use-recentf t)
+  (require 'helm-config)
+  (setq helm-split-window-in-side-p t
+        helm-echo-input-in-header-line t
+        helm-ff-search-library-in-sexp t
+        helm-ff-file-name-history-use-recentf t)
 
-    (setq helm-M-x-fuzzy-match t
-          helm-buffers-fuzzy-matching t
-          helm-locate-fuzzy-match t))
-
+  (setq helm-M-x-fuzzy-match t
+        helm-buffers-fuzzy-matching t
+        helm-locate-fuzzy-match t)
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -664,8 +662,7 @@
   :demand t)
 
 (use-package pomodoro
-  :defer 5
-
+  :demand t
   :load-path "elisp/pomodoro/"
   :config
   (progn
@@ -676,7 +673,10 @@
     (setq pomodoro-break-start-sound
           "~/sounds/sparkle-work.wav")
     (setq pomodoro-work-start-sound
-          "~/sounds/sparkle-work.wav")))
+          "~/sounds/sparkle-work.wav"))
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (pomodoro-start 25))))
 
 ;; clean up obsolete buffers automatically
 (use-package midnight
@@ -713,6 +713,7 @@
 
 (use-package desktop
   :config
+  :disabled
   (setq desktop-path (list azzamsa-savefile-dir))
   (setq desktop-dirname azzamsa-savefile-dir)
   (desktop-save-mode +1))
@@ -1058,11 +1059,6 @@
           (lambda ()
             (turn-on-auto-fill)
             (visual-line-mode t)))
-
-;; startup
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (pomodoro-start 25))) ; 25 is minutes for work
 
 ;;; Set
 
