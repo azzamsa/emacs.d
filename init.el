@@ -609,11 +609,10 @@
 
 (use-package guru-mode
   :ensure t
-  :disabled
   :defer 4
   :diminish guru-mode
   :config
-  (guru-global-mode +1)
+  (add-hook 'prog-mode-hook 'guru-mode)
   (setq guru-warn-only t))
 
 (use-package ledger-mode
@@ -1059,6 +1058,11 @@
           (lambda ()
             (turn-on-auto-fill)
             (visual-line-mode t)))
+
+;; startup
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (pomodoro-start 25))) ; 25 is minutes for work
 
 ;;; Set
 
