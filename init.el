@@ -310,8 +310,15 @@
          ("C-h SPC" . helm-all-mark-rings)
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
-  :init
-  (require 'helm-config)
+  :config
+  (helm-mode 1)
+  (helm-autoresize-mode 1)
+  ;; fix display not ready
+  (setq helm-exit-idle-delay 0)
+  (setq
+   helm-autoresize-max-height 30
+   helm-autoresize-min-height 20)
+
   (setq helm-split-window-in-side-p t
         helm-echo-input-in-header-line t
         helm-ff-search-library-in-sexp t
@@ -320,12 +327,6 @@
   (setq helm-M-x-fuzzy-match t
         helm-buffers-fuzzy-matching t
         helm-locate-fuzzy-match t)
-  :config
-  (helm-mode 1)
-  (helm-autoresize-mode 1)
-  (setq helm-autoresize-max-height 30)
-  (setq helm-autoresize-min-height 20)
-  (setq helm-exit-idle-delay 0)
 
   (when (executable-find "ack-grep")
     (setq helm-grep-default-command
