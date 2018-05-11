@@ -284,7 +284,7 @@
   (add-hook 'prog-mode-hook #'global-flycheck-mode))
 
 (use-package undo-tree
-  :defer t
+  :defer 3
   :ensure t
   :diminish undo-tree-mode
   :config
@@ -514,6 +514,7 @@
 
 (use-package dimmer
   :ensure t
+  :defer 1
   :config
   (setq dimmer-exclusion-regexp "^\*helm.*\\|^ \*Minibuf-.*\\|^ \*Echo.*")
   (setq dimmer-fraction 0.50)
@@ -649,6 +650,7 @@
 
 (use-package move-text
   :ensure t
+  :defer 3
   :bind
   (([(meta shift up)] . move-text-up)
    ([(meta shift down)] . move-text-down)))
@@ -850,7 +852,8 @@
     (add-hook 'prog-mode-hook #'flyspell-prog-mode)))
 
 (use-package whitespace
-  :diminish
+  :diminish whitespace-mode
+  :defer 3
   :init
   (dolist (hook '(prog-mode-hook text-mode-hook))
     (add-hook hook #'whitespace-mode))
@@ -861,7 +864,7 @@
 
 (use-package multiple-cursors
   :ensure t
-  :defer t
+  :defer 4
   :init
   (progn    ;; these need to be defined here - if they're lazily loaded with
     ;; :bind they don't work.
@@ -1045,6 +1048,9 @@
 (use-package mingus
   :ensure t
   :defer t)
+
+(use-package ledger-mode
+  :ensure t)
 
 ;;------------------------------------------------
 ;; Misc
