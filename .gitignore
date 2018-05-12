@@ -23,7 +23,7 @@ tramp
 ido.last
 geiser-history.guile
 bookmarks
-abbrev_defs
+abbrev_defs.el
 .directory
 init_description.el
 *.html
