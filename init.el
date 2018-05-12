@@ -326,7 +326,8 @@
 
   (setq helm-M-x-fuzzy-match t
         helm-buffers-fuzzy-matching t
-        helm-locate-fuzzy-match t)
+        helm-locate-fuzzy-match t
+        helm-apropos-fuzzy-match t)
 
   (when (executable-find "ack-grep")
     (setq helm-grep-default-command
@@ -668,15 +669,14 @@
   :demand t
   :load-path "elisp/pomodoro/"
   :config
-  (progn
-    (pomodoro-add-to-mode-line)
-    (setq pomodoro-show-number t)
-    (setq pomodoro-long-break-time 20)
-    (setq pomodoro-sound-player "/usr/bin/aplay")
-    (setq pomodoro-break-start-sound
-          "~/sounds/sparkle-work.wav")
-    (setq pomodoro-work-start-sound
-          "~/sounds/sparkle-work.wav"))
+  (pomodoro-add-to-mode-line)
+  (setq pomodoro-show-number t)
+  (setq pomodoro-long-break-time 20)
+  (setq pomodoro-sound-player "/usr/bin/aplay")
+  (setq pomodoro-break-start-sound
+        "~/sounds/sparkle-work.wav")
+  (setq pomodoro-work-start-sound
+        "~/sounds/sparkle-work.wav")
   (add-hook 'emacs-startup-hook
             (lambda ()
               (pomodoro-start 25))))
