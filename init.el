@@ -317,7 +317,7 @@
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
   :chords ((";o" . helm-occur)
-           (";;" . helm-M-x))
+           (";m" . helm-M-x))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -744,6 +744,8 @@
   :config
   (golden-ratio-mode 1))
 
+(require 'aza-emacs)
+
 ;;------------------------------------------------
 ;; Programming modes
 ;;------------------------------------------------
@@ -1149,5 +1151,11 @@
 ;; Console
 (global-set-key (kbd "C-x m") 'eshell)
 (global-set-key (kbd "C-x M-m") 'shell)
+
+;; emacs fix
+(global-set-key (kbd "C-S-k") 'my-delete-line-backward) ; Ctrl+Shift+k
+(global-set-key (kbd "C-k") 'my-delete-line)
+(global-set-key (kbd "M-d") 'my-delete-word)
+(global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
 
 ;;; init.el ends here
