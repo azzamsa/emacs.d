@@ -377,7 +377,7 @@
 
 (use-package rainbow-mode
   :ensure t
-  :defer t
+  :defer 5
   :diminish rainbow-mode
   :config
   (add-hook 'prog-mode-hook #'rainbow-mode))
@@ -1128,10 +1128,6 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
-
-;; Comment/uncomment block
-(global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
-(global-set-key (kbd "C-c u") 'uncomment-region)
 
 ;; Console
 (global-set-key (kbd "C-x m") 'eshell)
