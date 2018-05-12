@@ -192,6 +192,10 @@
 (require 'use-package)
 (setq use-package-verbose t)
 
+(use-package use-package-chords
+  :ensure t
+  :config (key-chord-mode 1))
+
 ;; Theming
 (use-package zenburn-theme
   :ensure t
@@ -219,11 +223,11 @@
   :defer 5
   :diminish abbrev-mode
   :config
-  (setq-default abbrev-mode t)
-  (cond ((file-exists-p "~/.abbrev_defs")
-         (read-abbrev-file "~/.abbrev_defs")))
+  (cond ((file-exists-p "~/.abbrev_defs.el")
+         (read-abbrev-file "~/.abbrev_defs.el")))
   (setq save-abbrevs t)
-  (setq save-abbrevs 'silently))
+  (setq save-abbrevs 'silently)
+  (setq-default abbrev-mode t))
 
 (use-package dired
   :ensure nil
@@ -287,6 +291,8 @@
   :defer 3
   :ensure t
   :diminish undo-tree-mode
+  :bind ("C-x u" . undo-tree-visualize)
+  :chords (" u" . undo-tree-visualize)
   :config
   (progn
     (global-undo-tree-mode)
@@ -310,6 +316,8 @@
          ("C-h SPC" . helm-all-mark-rings)
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
+  :chords ((";o" . helm-occur)
+           (";;" . helm-M-x))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -453,6 +461,7 @@
 (use-package org-cliplink
   :ensure t
   :bind ("C-c o c " . org-cliplink)
+  :chords (" c" . org-cliplink)
   :config
   (setq org-cliplink-max-length 60))
 
@@ -581,7 +590,9 @@
          ("s-j" . crux-top-join-line)
          ("C-^" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
-         ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
+         ([remap move-beginning-of-line] . crux-move-beginning-of-line))
+  :chords (("ss" . crux-create-scratch-buffer)
+           ("rr" . crux-rename-buffer-and-file)))
 
 (use-package make-md-to-org
   :defer t
@@ -619,7 +630,9 @@
 (use-package ledger-mode
   :ensure t
   :defer t
-  :mode ("\\.journal\\'" "\\.hledger\\'"))
+  :mode ("\\.journal\\'" "\\.hledger\\'")
+  :config
+  (setq ledger-binary-path "hledger"))
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
@@ -689,7 +702,8 @@
 (use-package ace-window
   :ensure t
   :defer 1
-  :bind ("s-W" . ace-window))
+  :bind ("s-W" . ace-window)
+  :chords (" w" . ace-window))
 
 (use-package zop-to-char
   :ensure t
@@ -734,7 +748,7 @@
 ;; Programming modes
 ;;------------------------------------------------
 
-(require 'init-java)
+(require 'aza-java)
 
 (use-package lisp-mode
   :defer t
@@ -955,6 +969,7 @@
   :bind ((:map shell-mode-map
                ("C-c C-l" . helm-comint-input-ring))
          ("s-g" . dirs))
+  :chords (" x" . shell)
   :config
   (setq comint-prompt-read-only t) ; make shell-prompt read-only
   (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
