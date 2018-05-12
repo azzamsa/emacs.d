@@ -41,4 +41,4 @@
   :commands
   (meghanada-mode))
 
-(provide 'init-java)
+(provide 'aza-java)
