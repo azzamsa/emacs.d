@@ -705,6 +705,10 @@
 (use-package eyebrowse
   :ensure t
   :defer 1
+  :init
+  ;;(global-set-key (kbd "C-c M-e") 'eyebrowse-keymap-prefix)
+  (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
+  (global-unset-key (kbd "C-c C-w"))
   :config
   (eyebrowse-mode t)
   (setq eyebrowse-new-workspace t))
