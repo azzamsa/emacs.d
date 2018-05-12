@@ -719,7 +719,6 @@
 
 (use-package desktop
   :config
-  :disabled
   (setq desktop-path (list azzamsa-savefile-dir))
   (setq desktop-dirname azzamsa-savefile-dir)
   (desktop-save-mode +1))
