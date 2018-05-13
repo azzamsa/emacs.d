@@ -4,6 +4,10 @@
   (interactive)
   (create-file-buffer "emacs-anywhere.md")
   (with-current-buffer "emacs-anywhere.md"
-     (markdown-mode)))
+    (markdown-mode)))
+
+(defun switch-to-emacs-anywhere-buffer ()
+  (interactive)
+  (switch-to-buffer "emacs-anywhere.md"))
 
 (provide 'emacs-anywhere-buffer)
