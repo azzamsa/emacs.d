@@ -194,7 +194,12 @@
 
 (use-package use-package-chords
   :ensure t
+  :demand t
   :config (key-chord-mode 1))
+
+(use-package use-package-ensure-system-package
+  :ensure t
+  :demand t)
 
 ;; Theming
 (use-package zenburn-theme
@@ -317,7 +322,7 @@
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
   :chords ((";o" . helm-occur)
-           (";m" . helm-M-x))
+           ("jk" . helm-M-x))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -349,6 +354,7 @@
 
 (use-package helm-ag
   :ensure t
+  :ensure-system-package silversearcher-ag
   :defer 4
   :diminish helm-ag-mode
   :bind ("C-c a" . helm-ag))
@@ -1066,6 +1072,7 @@
 
 (use-package mingus
   :ensure t
+  :ensure-system-package mpd
   :defer t)
 
 (use-package ledger-mode
