@@ -24,6 +24,7 @@ ido.last
 geiser-history.guile
 bookmarks
 abbrev_defs.el
+abbrev_defs
 .directory
 init_description.el
 *.html
