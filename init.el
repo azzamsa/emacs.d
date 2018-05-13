@@ -750,8 +750,16 @@
   :config
   (golden-ratio-mode 1))
 
+(use-package emacs-anywhere-buffer
+  :demand t
+  :load-path "/modes/"
+  :chords (";a" . switch-to-emacs-anywhere-buffer)
+  :config
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (create-emacs-anywhere-buffer))))
+
 (require 'aza-emacs)
-(require 'emacs-anywhere-buffer)
 
 ;;------------------------------------------------
 ;; Programming modes
