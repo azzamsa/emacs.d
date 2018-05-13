@@ -1,3 +1,5 @@
+;;; fix emacs for my own convenience
+
 (defun my-delete-word (arg)
   "Delete characters forward until encountering the end of a word.
 With argument, do this that many times.
