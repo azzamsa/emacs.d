@@ -195,7 +195,10 @@
 (use-package use-package-chords
   :ensure t
   :demand t
-  :config (key-chord-mode 1))
+  :config
+  (setq key-chord-two-keys-delay .015
+        key-chord-one-key-delay .020 )
+  (key-chord-mode 1))
 
 (use-package use-package-ensure-system-package
   :ensure t
@@ -322,7 +325,7 @@
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
   :chords ((";o" . helm-occur)
-           ("jj" . helm-M-x))
+           ("jk" . helm-M-x))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -638,7 +641,8 @@
   :defer t
   :mode ("\\.journal\\'" "\\.hledger\\'")
   :config
-  (setq ledger-binary-path "hledger"))
+  (setq ledger-binary-path "hledger")
+  (setq ledger-mode-should-check-version nil))
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
@@ -753,7 +757,7 @@
 (use-package emacs-anywhere-buffer
   :demand t
   :load-path "/modes/"
-  :chords (";a" . switch-to-emacs-anywhere-buffer)
+  :chords (" a" . switch-to-emacs-anywhere-buffer)
   :config
   (add-hook 'emacs-startup-hook
             (lambda ()
