@@ -228,8 +228,8 @@
   :defer 5
   :diminish abbrev-mode
   :config
-  (cond ((file-exists-p "~/.abbrev_defs.el")
-         (read-abbrev-file "~/.abbrev_defs.el")))
+  (cond ((file-exists-p "~/.abbrev_defs")
+         (read-abbrev-file "~/.abbrev_defs")))
   (setq save-abbrevs t)
   (setq save-abbrevs 'silently)
   (setq-default abbrev-mode t))
@@ -597,8 +597,8 @@
          ("C-^" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line))
-  :chords (("ss" . crux-create-scratch-buffer)
-           ("rr" . crux-rename-buffer-and-file)))
+  :chords ((" s" . crux-create-scratch-buffer)
+           (" r" . crux-rename-buffer-and-file)))
 
 (use-package make-md-to-org
   :defer t
@@ -630,8 +630,8 @@
   :defer 4
   :diminish guru-mode
   :config
-  (add-hook 'prog-mode-hook 'guru-mode)
-  (setq guru-warn-only t))
+  (setq guru-warn-only t)
+  (guru-global-mode +1))
 
 (use-package ledger-mode
   :ensure t
@@ -678,7 +678,7 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (when (memq window-system '(mac ns))
+  (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
 (use-package diminish
@@ -1164,5 +1164,8 @@
 (global-set-key (kbd "C-k") 'my-delete-line)
 (global-set-key (kbd "M-d") 'my-delete-word)
 (global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
+
+;; keys
+(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 
 ;;; init.el ends here
