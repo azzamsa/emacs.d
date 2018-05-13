@@ -322,7 +322,7 @@
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
   :chords ((";o" . helm-occur)
-           ("jk" . helm-M-x))
+           ("jj" . helm-M-x))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -751,6 +751,7 @@
   (golden-ratio-mode 1))
 
 (require 'aza-emacs)
+(require 'emacs-anywhere-buffer)
 
 ;;------------------------------------------------
 ;; Programming modes
