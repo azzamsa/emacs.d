@@ -197,7 +197,7 @@
   :demand t
   :config
   (setq key-chord-two-keys-delay .015
-        key-chord-one-key-delay .020 )
+        key-chord-one-key-delay .025 )
   (key-chord-mode 1))
 
 (use-package use-package-ensure-system-package
@@ -248,6 +248,7 @@
                ("s" . xah-dired-sort))
          ("C-t" . shell-pop-eshell)
          ("C-z" . shell-pop-shell))
+  :chords (" x" . shell)
   :init
   (require 'aza-dired)
   (require 'dired-x) ; dired-jump is cool
@@ -357,7 +358,7 @@
 
 (use-package helm-ag
   :ensure t
-  :ensure-system-package silversearcher-ag
+  :ensure-system-package ag
   :defer 4
   :diminish helm-ag-mode
   :bind ("C-c a" . helm-ag))
@@ -1035,7 +1036,6 @@
 
 (use-package bash-completion
   :ensure t
-  :disabled
   :demand t
   :init
   (bash-completion-setup))
