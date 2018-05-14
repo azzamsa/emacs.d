@@ -196,8 +196,6 @@
   :ensure t
   :demand t
   :config
-  (setq key-chord-two-keys-delay .015
-        key-chord-one-key-delay .025 )
   (key-chord-mode 1))
 
 (use-package use-package-ensure-system-package
@@ -248,7 +246,7 @@
                ("s" . xah-dired-sort))
          ("C-t" . shell-pop-eshell)
          ("C-z" . shell-pop-shell))
-  :chords (" x" . shell)
+  :chords (";x" . shell)
   :init
   (require 'aza-dired)
   (require 'dired-x) ; dired-jump is cool
@@ -301,7 +299,7 @@
   :ensure t
   :diminish undo-tree-mode
   :bind ("C-x u" . undo-tree-visualize)
-  :chords (" u" . undo-tree-visualize)
+  :chords ("uu" . undo-tree-visualize)
   :config
   (progn
     (global-undo-tree-mode)
@@ -326,7 +324,7 @@
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
   :chords ((";o" . helm-occur)
-           ("jk" . helm-M-x))
+           ("xx" . helm-M-x))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -471,7 +469,7 @@
 (use-package org-cliplink
   :ensure t
   :bind ("C-c o c " . org-cliplink)
-  :chords (" c" . org-cliplink)
+  :chords (";c" . org-cliplink)
   :config
   (setq org-cliplink-max-length 60))
 
@@ -601,8 +599,9 @@
          ("C-^" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line))
-  :chords ((" s" . crux-create-scratch-buffer)
-           (" r" . crux-rename-buffer-and-file)))
+  :chords (("ss" . crux-create-scratch-buffer)
+           ("rr" . crux-rename-buffer-and-file)
+           ("JJ" . crux-switch-to-previous-buffer)))
 
 (use-package make-md-to-org
   :defer t
@@ -714,7 +713,7 @@
   :ensure t
   :defer 1
   :bind ("s-W" . ace-window)
-  :chords (" w" . ace-window))
+  :chords (";w" . ace-window))
 
 (use-package zop-to-char
   :ensure t
@@ -758,7 +757,7 @@
 (use-package emacs-anywhere-buffer
   :demand t
   :load-path "/modes/"
-  :chords (" a" . switch-to-emacs-anywhere-buffer)
+  :chords (";a" . switch-to-emacs-anywhere-buffer)
   :config
   (add-hook 'emacs-startup-hook
             (lambda ()
@@ -917,6 +916,9 @@
   :defer 4
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char))
+  :chords (( "jj" . avy-goto-word-1)
+           ( "jl" . avy-goto-line)
+           ( "jk" . avy-goto-char))
   :config
   (setq avy-background t)
   (setq avy-style 'at-full))
@@ -991,7 +993,7 @@
   :bind ((:map shell-mode-map
                ("C-c C-l" . helm-comint-input-ring))
          ("s-g" . dirs))
-  :chords (" x" . shell)
+  :chords (";x" . shell)
   :config
   (setq comint-prompt-read-only t) ; make shell-prompt read-only
   (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
