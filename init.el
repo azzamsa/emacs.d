@@ -601,7 +601,8 @@
          ([remap move-beginning-of-line] . crux-move-beginning-of-line))
   :chords (("ss" . crux-create-scratch-buffer)
            ("rr" . crux-rename-buffer-and-file)
-           ("JJ" . crux-switch-to-previous-buffer)))
+           ("JJ" . crux-switch-to-previous-buffer)
+           ("kk" . crux-kill-other-buffers)))
 
 (use-package make-md-to-org
   :defer t
@@ -732,9 +733,12 @@
   :init
   (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
   (global-unset-key (kbd "C-c C-w"))
+  :chords (";e" . eyebrowse-last-window-config)
   :config
   (eyebrowse-mode t)
-  (setq eyebrowse-new-workspace t))
+  :custom
+  (eyebrowse-switch-back-and-forth t)
+  (eyebrowse-new-workspace t))
 
 (use-package bookmark
   :config
