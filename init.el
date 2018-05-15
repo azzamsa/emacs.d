@@ -286,6 +286,10 @@
   :defer 1
   :diminish " ⚡"
   :config
+  (setq company-idle-delay 0.5)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  (setq company-show-numbers t)
   (global-company-mode))
 
 (use-package flycheck
@@ -383,9 +387,7 @@
   :defer 2
   :diminish smartparens-mode
   :config
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode 1)))
+  (add-hook 'prog-mode-hook #'smartparens-mode))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -513,7 +515,7 @@
 (use-package magit
   :ensure t
   :defer t
-  :bind (("C-c g" . magit-status)
+  :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch-popup)))
 
 (use-package windmove
@@ -625,6 +627,7 @@
 (use-package sublimity
   :ensure t
   :defer 4
+  :disabled
   :config
   (require 'sublimity-scroll)
   (sublimity-mode 1))
@@ -632,6 +635,7 @@
 (use-package guru-mode
   :ensure t
   :defer 4
+  :disabled
   :diminish guru-mode
   :config
   (setq guru-warn-only t)
@@ -652,8 +656,8 @@
   :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode +1)
-  (custom-set-faces
-   '(vhl/default-face ((t (:background "#688060"))))))
+  :custom-face
+  (vhl/default-face ((t (:background "#688060")))))
 
 (use-package beacon
   :ensure t
@@ -785,6 +789,7 @@
               (slime-mode t)
               (rainbow-delimiters-mode t)
               (show-paren-mode t)
+              (smartparens-strict-mode +1)
               (prettify-symbols-mode t))))
 
 (use-package web-mode
@@ -1042,7 +1047,7 @@
 
 (use-package bash-completion
   :ensure t
-  :demand t
+  :defer 3
   :init
   (bash-completion-setup))
 
@@ -1051,7 +1056,19 @@
   :defer 5
   :diminish
   :config
-  (editorconfig-mode 1))
+  (add-hook 'prog-mode-hook #'editorconfig-mode))
+
+(use-package which-function
+  :defer 6
+  :config
+  (add-hook 'prog-mode-hook #'which-function-mode))
+
+(use-package hl-todo
+  :ensure t
+  :defer 6
+  :config
+  (add-hook 'prog-mode-hook #'hl-todo-mode))
+
 
 ;;------------------------------------------------
 ;; Emacs is a home
