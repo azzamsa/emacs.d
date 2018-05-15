@@ -599,10 +599,10 @@
          ("C-^" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line))
-  :chords (("ss" . crux-create-scratch-buffer)
-           ("rr" . crux-rename-buffer-and-file)
+  :chords ((";s" . crux-create-scratch-buffer)
+           (";r" . crux-rename-buffer-and-file)
            ("JJ" . crux-switch-to-previous-buffer)
-           ("kk" . crux-kill-other-buffers)))
+           (";k" . crux-kill-other-buffers)))
 
 (use-package make-md-to-org
   :defer t
