@@ -28,6 +28,7 @@ abbrev_defs
 .directory
 init_description.el
 *.html
+eshell/
 eshell/history
 eshell/lastdir
 eshell/alias
