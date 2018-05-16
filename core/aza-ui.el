@@ -71,8 +71,6 @@
   (setq
    sml/no-confirm-load-theme t
    sml/theme nil
-   sml/shorten-modes t
-   rm-blacklist '(" Ind"))
   (sml/setup))
 
 (use-package dimmer
