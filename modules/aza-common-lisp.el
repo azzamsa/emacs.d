@@ -1,14 +1,3 @@
-(use-package lisp-mode
-  :defer t
-  :mode ("\\.cl\\'"
-         "\\.lisp\\'")
-  :config
-  (add-hook 'lisp-mode-hook
-            (lambda ()
-              (rainbow-delimiters-mode +1)
-              (smartparens-strict-mode +1)
-              (prettify-symbols-mode +1))))
-
 (use-package slime
   :ensure t
   :defer t
@@ -21,11 +10,7 @@
         slime-autodoc-use-multiline-p t
         slime-auto-start 'always)
   (setq inferior-lisp-program (executable-find "sbcl")
-        slime-contribs '(slime-company slime-fancy slime-cl-indent))
-  (add-hook 'slime-repl-mode-hook
-            (lambda ()
-              (smartparens-strict-mode +1)
-              (whitespace-mode -1))))
+        slime-contribs '(slime-company slime-fancy slime-cl-indent)))
 
 (use-package slime-company
   :ensure t
@@ -33,5 +18,16 @@
   :config
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl"))
+
+(add-hook 'lisp-mode-hook
+          (lambda ()
+            (rainbow-delimiters-mode +1)
+            (smartparens-strict-mode +1)
+            (prettify-symbols-mode +1)))
+
+(add-hook 'slime-repl-mode-hook
+          (lambda ()
+            (smartparens-strict-mode +1)
+            (whitespace-mode -1)))
 
 (provide 'aza-common-lisp)
