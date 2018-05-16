@@ -450,8 +450,6 @@
 ;; Programming Utilities
 ;;------------------------------------------------
 
-;; TODO sparate to each languages
-
 (use-package yasnippet
   :ensure t
   :defer t
