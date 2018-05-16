@@ -500,7 +500,8 @@
   :ensure t
   :defer 4
   :init
-  (progn    ;; these need to be defined here - if they're lazily loaded with
+  (progn
+    ;; these need to be defined here - if they're lazily loaded with
     ;; :bind they don't work.
     (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
     (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -616,6 +617,7 @@
 (put 'scroll-left 'disabled nil)
 (put 'scroll-right 'disabled nil)
 
+;; diminish
 (diminish 'visual-line-mode "Wr")
 (diminish 'auto-fill-function "Fl")
 
