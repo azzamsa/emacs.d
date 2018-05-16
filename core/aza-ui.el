@@ -66,12 +66,14 @@
   (which-key-mode +1))
 
 (use-package smart-mode-line
-  :ensure t
+  :demand t
   :init
+  (sml/setup)
+  :config
   (setq
    sml/no-confirm-load-theme t
-   sml/theme nil
-  (sml/setup))
+   ;; use current active theme
+   sml/theme nil))
 
 (use-package dimmer
   :ensure t
