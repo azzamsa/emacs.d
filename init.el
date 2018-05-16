@@ -53,7 +53,7 @@
 ;;; loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/modules/")
 (add-to-list 'load-path "~/.emacs.d/core/")
-(add-to-list 'load-path "~/.emacs.d/my-packages/")
+(add-to-list 'load-path "~/.emacs.d/aza-packages/")
 
 ;; find my PATH. Solve auctex can't find xelatex
 (setenv "PATH" (shell-command-to-string "bash -i -c 'echo -n $PATH'"))
@@ -624,6 +624,5 @@
 
 ;; display “lambda” as “λ”
 (global-prettify-symbols-mode 1)
-
 
 ;;; init.el ends here
