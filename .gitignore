@@ -42,3 +42,4 @@ image-dired/
 meghanada/
 *.bup
 autojump
+init-local.el

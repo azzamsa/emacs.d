@@ -99,4 +99,4 @@ Version 2015-07-30"
         ("\\.\\(?:pptx?\\|odt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
         ("\\.\\(?:zip\\|tgz\\)\\'" "file-roller")))
 
-(provide 'aza-dired)
+(provide 'aza-dired-ext)

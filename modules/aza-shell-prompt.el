@@ -77,4 +77,4 @@ PWD is not in a git repo (or the git command is not found)."
 
 (setq eshell-highlight-prompt nil)
 
-(provide 'aza-eshell)
+(provide 'aza-shell-prompt)

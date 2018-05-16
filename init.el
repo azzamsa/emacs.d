@@ -51,7 +51,9 @@
       user-mail-address "me@azzamsa.com")
 
 ;;; loading my  configuration
-(add-to-list 'load-path "~/.emacs.d/modes/")
+(add-to-list 'load-path "~/.emacs.d/modules/")
+(add-to-list 'load-path "~/.emacs.d/core/")
+(add-to-list 'load-path "~/.emacs.d/my-packages/")
 
 ;; find my PATH. Solve auctex can't find xelatex
 (setenv "PATH" (shell-command-to-string "bash -i -c 'echo -n $PATH'"))
@@ -71,57 +73,6 @@
 ;; create the savefile dir if it doesn't exist
 (unless (file-exists-p azzamsa-savefile-dir)
   (make-directory azzamsa-savefile-dir))
-
-;; the toolbar is just a waste of valuable screen estate
-;; in a tty tool-bar-mode does not properly auto-load, and is
-;; already disabled anyway
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-
-;;  disable scroll bar
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-(when (fboundp 'horizontal-scroll-bar-mode)
-  (horizontal-scroll-bar-mode -1))
-
-;; disable menu-bar. I have <f12> to toggle it
-(menu-bar-mode -1)
-;; toggle menu-bar visibility
-(global-set-key (kbd "<f12>") 'menu-bar-mode)
-
-;; the blinking cursor is nothing, but an annoyance
-(blink-cursor-mode -1)
-;;better bar cursor type
-(setq-default cursor-type 'bar)
-
-;;line number everywhere
-;;(global-linum-mode t)
-
-;; cursor color dissappear on emacs 25
-(set-cursor-color "#f0fff0")
-
-;;(set-frame-font "InconsolataGo-13")
-(set-frame-font "Source Code Pro 12")
-;;evaluate this everytime load emacs from daemon.
-(setq default-frame-alist '((font . "Source Code Pro 12")))
-;; highlight the current line
-(global-hl-line-mode +1)
-
-;; disable the annoying bell ring
-(setq ring-bell-function 'ignore)
-
-;; disable startup screen
-(setq inhibit-startup-screen t)
-
-;; nice scrolling
-(setq scroll-margin 0
-      scroll-conservatively 100000
-      scroll-preserve-screen-position 1)
-
-;; mode line settings
-(line-number-mode t)
-(column-number-mode t)
-(size-indication-mode t)
 
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -202,6 +153,9 @@
   :ensure t
   :demand t)
 
+(use-package diminish
+  :demand t)
+
 ;; Theming
 (use-package zenburn-theme
   :ensure t
@@ -227,59 +181,13 @@
 
 (use-package abbrev
   :defer 5
-  :diminish abbrev-mode
+  :diminish " Abv"
   :config
   (cond ((file-exists-p "~/.abbrev_defs")
          (read-abbrev-file "~/.abbrev_defs")))
   (setq save-abbrevs t)
   (setq save-abbrevs 'silently)
   (setq-default abbrev-mode t))
-
-(use-package dired
-  :ensure nil
-  :bind ((:map dired-mode-map
-               ("/" . ora-dired-up-directory)
-               ("C-r" . ora-dired-rsync)
-               ("C-o" . dired-view-current)
-               ("n" . dired-view-next)
-               ("p" . dired-view-previous)
-               ("s" . xah-dired-sort))
-         ("C-t" . shell-pop-eshell)
-         ("C-z" . shell-pop-shell))
-  :chords (";x" . shell)
-  :init
-  (require 'aza-dired)
-  (require 'dired-x) ; dired-jump is cool
-  :config
-  (use-package dired+
-    :load-path "~/.emacs.d/elisp/diredp/"
-    :config
-    (diredp-toggle-find-file-reuse-dir 1))
-  (use-package wdired
-    :config
-    (setq wdired-use-dired-vertical-movement 'sometimes))
-  ;; dired - reuse current buffer by pressing 'a'
-  (put 'dired-find-alternate-file 'disabled nil)
-
-  ;; always delete and copy recursively
-  (setq dired-recursive-deletes 'always)
-  (setq dired-recursive-copies 'always)
-
-  (setq dired-auto-revert-buffer t)
-  (setq delete-by-moving-to-trash t)
-
-  ;; if there is a dired buffer displayed in the next window, use its
-  ;; current subdir, instead of the current subdir of this dired buffer
-  (setq dired-dwim-target t)
-  (setq dired-listing-switches "-alGhvF --group-directories-first")
-  (setq dired-omit-files
-        (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
-                (regexp-opt
-                 '("aux" "log" "pickle" "synctex.gz" "run.xml" "bcf" "am" "in" "blx.bib"
-                   "vrb" "opt" "nav" "snm" "out"))
-                (regexp-opt
-                 '("compile_commands.json"
-                   "__pycache__")))))
 
 (use-package company
   :ensure t
@@ -294,76 +202,33 @@
 
 (use-package flycheck
   :ensure t
-  :defer 3
-  :config
-  (add-hook 'prog-mode-hook #'global-flycheck-mode))
+  :defer t)
+  ;;:config
+  ;;(add-hook 'prog-mode-hook #'global-flycheck-mode))
 
 (use-package undo-tree
   :defer 3
   :ensure t
   :diminish undo-tree-mode
   :bind ("C-x u" . undo-tree-visualize)
-  :chords ("uu" . undo-tree-visualize)
   :config
-  (progn
-    (global-undo-tree-mode)
-    (setq undo-tree-visualizer-timestamps t)
-    (setq undo-tree-visualizer-diff t)))
+  (global-undo-tree-mode)
+  (setq undo-tree-visualizer-timestamps t)
+  (setq undo-tree-visualizer-diff t))
 
-(use-package helm
-  :ensure t
-  :diminish helm-mode
-  :bind (("M-x" . helm-M-x)
-         ("C-x C-m" . helm-M-x)
-         ("C-x b" . helm-mini)
-         ("C-c f" . helm-recentf)
-         ("C-x C-b" . helm-buffers-list)
-         ("C-x r b" . helm-filtered-bookmarks)
-         ("C-x C-f" . helm-find-files)
-         ("C-c h o" . helm-occur)
-         ("C-c h /" . helm-find)
-         ("C-c h l" . helm-locate)
-         ("C-c p h" . helm-projectile)
-         ("C-h SPC" . helm-all-mark-rings)
-         (:map isearch-mode-map
-               ("C-o" . helm-occur-from-isearch)))
-  :chords ((";o" . helm-occur)
-           ("xx" . helm-M-x))
+(use-package flyspell
+  :defer t
+  :diminish " ⛿"
   :config
-  (helm-mode 1)
-  (helm-autoresize-mode 1)
-  ;; fix display not ready
-  (setq helm-exit-idle-delay 0)
-  (setq
-   helm-autoresize-max-height 30
-   helm-autoresize-min-height 20)
+  (use-package flyspell-correct-helm
+    :ensure t
+    :bind (:map flyspell-mode-map
+                ("C-;" . flyspell-correct-previous-word-generic)))
 
-  (setq helm-split-window-in-side-p t
-        helm-echo-input-in-header-line t
-        helm-ff-search-library-in-sexp t
-        helm-ff-file-name-history-use-recentf t)
-
-  (setq helm-M-x-fuzzy-match t
-        helm-buffers-fuzzy-matching t
-        helm-locate-fuzzy-match t
-        helm-apropos-fuzzy-match t)
-
-  (when (executable-find "ack-grep")
-    (setq helm-grep-default-command
-          "ack-grep -Hn --no-group --no-color %e %p %f"
-          helm-grep-default-recurse-command
-          "ack-grep -H --no-group --no-color %e %p %f")))
-
-(use-package helm-org-rifle
-  :ensure t
-  :bind ("C-c h r" . helm-org-rifle))
-
-(use-package helm-ag
-  :ensure t
-  :ensure-system-package ag
-  :defer 4
-  :diminish helm-ag-mode
-  :bind ("C-c a" . helm-ag))
+  (setq ispell-program-name "aspell" ; use aspell instead of ispell
+        ispell-extra-args '("--sug-mode=ultra")))
+  ;;(add-hook 'text-mode-hook #'flyspell-mode)
+  ;;(add-hook 'prog-mode-hook #'flyspell-prog-mode))
 
 (use-package uniquify
   :defer 2
@@ -401,117 +266,6 @@
   :config
   (add-hook 'prog-mode-hook #'rainbow-mode))
 
-(use-package smart-mode-line
-  :ensure t
-  :init
-  (setq
-   sml/no-confirm-load-theme t
-   sml/theme nil
-   sml/shorten-modes t
-   rm-blacklist '(" Ind"))
-  (sml/setup))
-
-(use-package org
-  :ensure t
-  :defer 1
-  :bind (:map org-mode-map
-              ("C-c l" . org-store-link)
-              ("C-c a" . org-agenda))
-  :init
-  (progn
-    (setq org-src-tab-acts-natively t)
-    (setq org-log-done t)
-    (setq org-startup-indented t)
-    (setq org-src-fontify-natively t)
-    (setq org-agenda-files '("~/.emacs.d/documents/gtd/inbox.org"
-                             "~/.emacs.d/documents/gtd/project.org"
-                             "~/.emacs.d/documents/gtd/tickler.org"))
-    (setq org-todo-keywords '((sequence "TODO(t)"
-                                        "STARTED(s!)"
-                                        "WAITING(w@/!)"
-                                        "|"
-                                        "DONE(d!)"
-                                        "CANCELLED(c@)")))
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((java . t)
-       (sh   . t)
-       (python . t)
-       (lisp . t)))
-    (require 'aza-org))
-  :config
-  (use-package ox-gfm
-    :ensure t)
-  (use-package org-download
-    :ensure t)
-  ;;org-refil
-  (setq org-refile-targets '(("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
-                             ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
-                             ("~/.emacs.d/documents/gtd/tickler.org" :maxlevel . 2)))
-  (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                                 (file+headline "~/.emacs.d/documents/gtd/inbox.org" "Tasks")
-                                 "* TODO %i%?")
-                                ("T" "Tickler" entry
-                                 (file+headline "~/.emacs.d/documents/gtd/tickler.org" "Tickler")
-                                 "* %i%? \n %U")
-                                ("S" "Sletz" entry
-                                 (file+headline "~/.emacs.d/documents/sletz.org" "Tickler")
-                                 "* %i%? \n %U")))
-  (add-hook 'org-mode-hook (lambda ()
-                             (my-org-mode-hook)
-                             (turn-on-auto-fill))))
-
-(use-package org-bullets
-  :ensure t
-  :commands (org-bullets-mode)
-  :init (add-hook 'org-mode-hook
-                  (lambda ()
-                    (org-bullets-mode 1))))
-
-(use-package org-cliplink
-  :ensure t
-  :bind ("C-c o c " . org-cliplink)
-  :chords (";c" . org-cliplink)
-  :config
-  (setq org-cliplink-max-length 60))
-
-(use-package calfw
-  :defer t
-  :init
-  (use-package calfw-cal
-    :ensure t)
-  (use-package calfw-org
-    :ensure t)
-  :bind (("C-c A" . my-calendar)
-         :map cfw:calendar-mode-map
-         ("M-n" . cfw:navi-next-month-command)
-         ("M-p" . cfw:navi-previous-month-command)
-         ("j"   . cfw:navi-goto-date-command)
-         ("g"   . cfw:refresh-calendar-buffer))
-
-  :commands cfw:open-calendar-buffer
-  :functions (cfw:open-calendar-buffer
-              cfw:refresh-calendar-buffer
-              cfw:org-create-source
-              cfw:cal-create-source)
-
-  :preface
-  (defun my-calendar ()
-    (interactive)
-    (cfw:open-calendar-buffer
-     :contents-sources
-     (list
-      (cfw:org-create-source "#d6c9a7")  ; orgmode source
-      (cfw:cal-create-source "White"))))
-  :config
-  (setq diary-file "~/.emacs.d/documents/diary")
-  (setq cfw:display-calendar-holidays nil)
-  (setq holiday-christian-holidays nil
-        holiday-bahai-holidays nil
-        holiday-hebrew-holidays nil
-        holiday-islamic-holidays nil
-        holiday-oriental-holidays nil))
-
 (use-package magit
   :ensure t
   :defer t
@@ -522,23 +276,6 @@
   :config
   ;; use shift + arrow keys to switch between visible buffers
   (windmove-default-keybindings))
-
-(use-package markdown-mode
-  :ensure t
-  :defer t
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . gfm-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :config
-  (setq markdown-asymmetric-header t))
-
-(use-package dimmer
-  :ensure t
-  :defer 1
-  :config
-  (setq dimmer-exclusion-regexp "^\*helm.*\\|^ \*Minibuf-.*\\|^ \*Echo.*")
-  (setq dimmer-fraction 0.50)
-  (dimmer-mode t))
 
 (use-package savehist
   :defer 2
@@ -572,21 +309,6 @@
         recentf-auto-cleanup 'never)
   (recentf-mode +1))
 
-(use-package diff-hl
-  :ensure t
-  :defer 5
-  :config
-  (global-diff-hl-mode +1)
-  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
-
-(use-package which-key
-  :ensure t
-  :defer 1
-  :diminish which-key-mode
-  :config
-  (which-key-mode +1))
-
 (use-package crux
   :ensure t
   :bind (("C-c w" . crux-swap-windows)
@@ -601,8 +323,7 @@
          ("C-^" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line))
-  :chords ((";s" . crux-create-scratch-buffer)
-           (";r" . crux-rename-buffer-and-file)
+  :chords ((";r" . crux-rename-buffer-and-file)
            ("JJ" . crux-switch-to-previous-buffer)
            (";k" . crux-kill-other-buffers)))
 
@@ -616,39 +337,6 @@
   :load-path "/modes/"
   :bind (("s-t" . today)))
 
-(use-package nyan-mode
-  :disabled
-  :ensure t
-  :init
-  (add-hook 'after-init-hook 'nyan-mode)
-  (setq nyan-animate-nyancat t
-        nyan-wavy-trail t))
-
-(use-package sublimity
-  :ensure t
-  :defer 4
-  :disabled
-  :config
-  (require 'sublimity-scroll)
-  (sublimity-mode 1))
-
-(use-package guru-mode
-  :ensure t
-  :defer 4
-  :disabled
-  :diminish guru-mode
-  :config
-  (setq guru-warn-only t)
-  (guru-global-mode +1))
-
-(use-package ledger-mode
-  :ensure t
-  :defer t
-  :mode ("\\.journal\\'" "\\.hledger\\'")
-  :config
-  (setq ledger-binary-path "hledger")
-  (setq ledger-mode-should-check-version nil))
-
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
   :ensure t
@@ -658,15 +346,6 @@
   (volatile-highlights-mode +1)
   :custom-face
   (vhl/default-face ((t (:background "#688060")))))
-
-(use-package beacon
-  :ensure t
-  :defer 1
-  :diminish beacon-mode
-  :config
-  (beacon-mode 1)
-  (setq beacon-push-mark 35)
-  (setq beacon-color "#b4eeb4"))
 
 (use-package anzu
   :ensure t
@@ -689,25 +368,6 @@
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
-
-(use-package diminish
-  :demand t)
-
-(use-package pomodoro
-  :demand t
-  :load-path "elisp/pomodoro/"
-  :config
-  (pomodoro-add-to-mode-line)
-  (setq pomodoro-show-number t)
-  (setq pomodoro-long-break-time 20)
-  (setq pomodoro-sound-player "/usr/bin/aplay")
-  (setq pomodoro-break-start-sound
-        "~/sounds/sparkle-work.wav")
-  (setq pomodoro-work-start-sound
-        "~/sounds/sparkle-work.wav")
-  (add-hook 'emacs-startup-hook
-            (lambda ()
-              (pomodoro-start 25))))
 
 ;; clean up obsolete buffers automatically
 (use-package midnight
@@ -771,98 +431,36 @@
             (lambda ()
               (create-emacs-anywhere-buffer))))
 
+(use-package avy
+  :ensure t
+  :defer 4
+  :bind (("s-." . avy-goto-word-or-subword-1)
+         ("s-," . avy-goto-char))
+  :chords (( "jj" . avy-goto-word-1)
+           ( "jl" . avy-goto-line)
+           ( "jk" . avy-goto-char))
+  :config
+  (setq avy-background t)
+  (setq avy-style 'at-full))
+
+
 (require 'aza-emacs)
 
 ;;------------------------------------------------
-;; Programming modes
+;; Programming Utilities
 ;;------------------------------------------------
 
-(require 'aza-java)
-
-(use-package lisp-mode
-  :defer t
-  :mode ("\\.cl\\'"
-         "\\.lisp\\'")
-  :config
-  (add-hook 'lisp-mode-hook
-            (lambda ()
-              (slime-mode t)
-              (rainbow-delimiters-mode t)
-              (show-paren-mode t)
-              (smartparens-strict-mode +1)
-              (prettify-symbols-mode t))))
-
-(use-package web-mode
-  :ensure t
-  :defer t
-  :mode ("\\.html?\\'"
-         "\\.css\\'"
-         "\\.php\\'")
-  :init (add-hook 'web-mode-hook
-                  (lambda ()
-                    (emmet-mode 1)
-                    (smartparens-mode nil)))
-  :config
-  (progn
-    (setq web-mode-code-indent-offset 2)
-    (setq web-mode-enable-auto-quoting nil)))
-
-(use-package slime
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'slime-repl-mode-hook
-            (lambda ()
-              (visual-line-mode 1)
-              (rainbow-delimiters-mode 1)
-              (show-paren-mode 1)))
-  (setq inferior-lisp-program (executable-find "sbcl")
-        slime-contribs '(slime-company slime-fancy)
-        slime-net-coding-system 'utf-8-unix))
-
-(use-package slime-company
-  :ensure t
-  :defer t
-  :config
-  (load (expand-file-name "~/quicklisp/slime-helper.el"))
-  (setq inferior-lisp-program "sbcl"))
+;; TODO sparate to each languages
 
 (use-package yasnippet
   :ensure t
   :defer t
   :diminish " yas"
-  :init (add-hook 'prog-mode-hook #'yas-minor-mode)
   :config
   (use-package yasnippet-snippets
     :ensure t)
-  (yas-reload-all))
-
-(use-package php-beautifier
-  :defer t
-  :load-path "elisp/php-beautifier/")
-
-(use-package emmet-mode
-  :ensure t
-  :bind (:map emmet-mode-keymap
-              ("M-e" . emmet-expand-line))
-  :config (add-hook 'web-mode-hook 'emmet-mode))
-
-(use-package php-mode
-  :ensure t
-  :defer t
-  :mode "\\.php\\'"
-  :config
-  (add-hook 'php-mode-hook
-            '(lambda ()
-               (require 'company-php)
-               (company-mode t)
-               (ac-php-core-eldoc-setup) ;; enable eldoc
-               (make-local-variable 'company-backends)
-               (add-to-list 'company-backends 'company-ac-php-backend))))
-
-(use-package lispy
-  :ensure t
-  :disabled)
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
 
 (use-package neotree
   :ensure t
@@ -879,23 +477,13 @@
   ;;work with projectile
   (setq projectile-switch-project-action 'neotree-projectile-action))
 
-(use-package markdown-toc
+(use-package diff-hl
   :ensure t
-  :defer t)
-
-(use-package flyspell
   :defer 5
-  :diminish " ⛿"
   :config
-  (use-package flyspell-correct-helm
-    :ensure t
-    :bind (:map flyspell-mode-map
-                ("C-;" . flyspell-correct-previous-word-generic))
-    :config
-    (setq ispell-program-name "aspell" ; use aspell instead of ispell
-          ispell-extra-args '("--sug-mode=ultra"))
-    (add-hook 'text-mode-hook #'flyspell-mode)
-    (add-hook 'prog-mode-hook #'flyspell-prog-mode)))
+  (global-diff-hl-mode +1)
+  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
 (use-package whitespace
   :diminish whitespace-mode
@@ -919,121 +507,6 @@
     (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
     (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
     (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
-
-(use-package avy
-  :ensure t
-  :defer 4
-  :bind (("s-." . avy-goto-word-or-subword-1)
-         ("s-," . avy-goto-char))
-  :chords (( "jj" . avy-goto-word-1)
-           ( "jl" . avy-goto-line)
-           ( "jk" . avy-goto-char))
-  :config
-  (setq avy-background t)
-  (setq avy-style 'at-full))
-
-(use-package tex
-  :defer t
-  :ensure auctex
-  :config
-  (use-package bibretrieve
-    :ensure t)
-  (use-package company-auctex
-    :ensure t)
-  (use-package helm-bibtex
-    :ensure t
-    :bind ("C-c h b" . helm-bibtex-with-local-bibliography))
-  (progn
-    (setq LaTeX-verbatim-environments
-          '("verbatim" "Verbatim" "lstlisting" "minted"))
-    ;;(setq TeX-parse-self t) ; Enable parse on load.
-    (setq TeX-auto-save t) ; Enable parse on save.
-    (setq-default TeX-PDF-mode t) ; output to pdf
-    ;; Activate nice interface between RefTeX and AUCTeX
-    (setq reftex-plug-into-AUCTeX t)
-    (add-to-list 'TeX-command-list
-                 '("XeLaTeX" "xelatex -interaction=nonstopmode %s"
-                   TeX-run-command t t :help "Run xelatex") t)
-    (add-hook 'LaTeX-mode-hook
-              (lambda ()
-                (yas-minor-mode t)
-                (turn-on-auto-fill)
-                (turn-on-reftex)))))
-
-(use-package virtualenvwrapper
-  :ensure t
-  :defer t
-  :init
-  (venv-initialize-interactive-shells)
-  (venv-initialize-eshell))
-
-(use-package elpy
-  :ensure t
-  :bind ("C-l" . elpy-shell-clear-shell)
-  :preface
-  (defun elpy-shell-clear-shell ()
-    "Clear the current shell buffer."
-    (interactive)
-    (with-current-buffer (process-buffer (elpy-shell-get-or-create-process))
-      (comint-clear-buffer)))
-  :config
-  (use-package company-jedi
-    :ensure t)
-  (elpy-enable)
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (company-mode t)
-              (company-jedi t))))
-
-(use-package eshell
-  :demand t
-  :config
-  (require 'aza-eshell)
-  ;; very strange!. can't use `:bind' for eshell-mode-map
-  (add-hook 'eshell-mode-hook
-            #'(lambda ()
-                (define-key eshell-mode-map (kbd "C-c C-l")
-                  'helm-eshell-history)))
-  (setq eshell-directory-name
-        (expand-file-name "eshell" azzamsa-savefile-dir)))
-
-(use-package shell
-  :demand t
-  :bind ((:map shell-mode-map
-               ("C-c C-l" . helm-comint-input-ring))
-         ("s-g" . dirs))
-  :chords (";x" . shell)
-  :config
-  (setq comint-prompt-read-only t) ; make shell-prompt read-only
-  (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
-  (add-hook 'shell-mode-hook
-            'ansi-color-for-comint-mode-on ; add color to shell
-            'dirtrack-mode t))
-
-(use-package shell-pop
-  :ensure t
-  :demand t
-  :bind (("C-t" . shell-pop-eshell)
-         ("C-z" . shell-pop-shell)
-         (:map shell-mode-map
-               ("C-c C-l" . helm-comint-input-ring))
-         (:map eshell-mode-map
-               ("C-c C-l" . helm-eshell-history)))
-  :preface
-  (defun shell-pop-eshell ()
-    (interactive)
-    (let ((shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
-          (shell-pop-term-shell "eshell"))
-      (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
-      (call-interactively 'shell-pop)))
-
-  (defun shell-pop-shell ()
-    (interactive)
-    (let ((shell-file-name "/bin/bash")
-          (shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
-          (shell-pop-term-shell "shell"))
-      (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
-      (call-interactively 'shell-pop))))
 
 (use-package xterm-color
   :ensure t
@@ -1069,50 +542,42 @@
   :config
   (add-hook 'prog-mode-hook #'hl-todo-mode))
 
+;;------------------------------------------------
+;; Modules
+;;------------------------------------------------
+
+(require 'aza-dired)
+(require 'aza-dired-ext)
+(require 'aza-helm)
+
+;; writing
+(require 'aza-org)
+(require 'aza-latex)
+(require 'aza-markdown)
+
+;;; programming modules
+(require 'aza-common-lisp)
+(require 'aza-java)
+(require 'aza-python)
+(require 'aza-web)
+
+;;; emacs is home
+(require 'aza-home)
+(require 'aza-calendar)
+(require 'aza-irc)
+(require 'aza-shell)
+
+;; my packages
+(require 'aza-timestamp)
+
+;; local
+(require 'init-local)
 
 ;;------------------------------------------------
-;; Emacs is a home
+;; Core
 ;;------------------------------------------------
-
-(use-package erc
-  :defer t
-  :config
-  (setq erc-hide-list '("PART" "QUIT" "JOIN"))
-  (setq erc-autojoin-channels-alist '(("freenode.net"
-                                       "#emacs"
-                                       "#emacs-beginners"))
-        erc-server "irc.freenode.net"
-        erc-nick "azzamsa")
-  (setq erc-log-channels-directory "~/.erc/logs/")
-  (setq erc-save-buffer-on-part t)
-  (setq erc-log-insert-log-on-open nil)
-  ;; Kill buffers for channels after /part
-  (setq erc-kill-buffer-on-part t)
-  ;; Kill buffers for private queries after quitting the server
-  (setq erc-kill-queries-on-quit t)
-  ;; Kill buffers for server messages after quitting the server
-  (setq erc-kill-server-buffer-on-quit t)
-  ;; open query buffers in the current window
-  (setq erc-query-display 'buffer)
-  (erc-truncate-mode +1)
-  ;; exclude boring stuff from tracking
-  (erc-track-mode t)
-  (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
-                                  "324" "329" "332" "333" "353" "477")))
-
-(use-package pdf-tools
-  :ensure t
-  :defer t
-  :config
-  (pdf-tools-install))
-
-(use-package mingus
-  :ensure t
-  :ensure-system-package mpd
-  :defer t)
-
-(use-package ledger-mode
-  :ensure t)
+(require 'aza-ui)
+(require 'aza-global-keybinding)
 
 ;;------------------------------------------------
 ;; Misc
@@ -1151,57 +616,14 @@
 (put 'scroll-left 'disabled nil)
 (put 'scroll-right 'disabled nil)
 
-;;------------------------------------------------
-;; Global keybindings
-;;------------------------------------------------
+(diminish 'visual-line-mode "Wr")
+(diminish 'auto-fill-function "Fl")
+
+;; keys
+(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 
 ;; display “lambda” as “λ”
 (global-prettify-symbols-mode 1)
 
-;; Unbind Pesky Sleep Button
-;;(global-unset-key [(control z)])
-(global-unset-key [(control x)(control z)])
-
-(global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
-
-;; organizer documents
-(global-set-key (kbd "C-c i")
-                (lambda () (interactive) (find-file "~/.emacs.d/documents/gtd/inbox.org")))
-
-(global-set-key (kbd "C-c s")
-                (lambda () (interactive) (find-file "~/.emacs.d/documents/sletz.org")))
-
-(global-set-key (kbd "C-c c") 'org-capture)
-
-;; Font size
-(global-set-key (kbd "C-+") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-
-;; use hippie-expand instead of dabbrev
-(global-set-key (kbd "M-/") #'hippie-expand)
-(global-set-key (kbd "s-/") #'hippie-expand)
-
-;; misc useful keybindings
-(global-set-key (kbd "s-<") #'beginning-of-buffer)
-(global-set-key (kbd "s->") #'end-of-buffer)
-
-;; resize windows in more more comfortable way
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
-
-;; Console
-(global-set-key (kbd "C-x m") 'eshell)
-(global-set-key (kbd "C-x M-m") 'shell)
-
-;; emacs fix
-(global-set-key (kbd "C-S-k") 'my-delete-line-backward) ; Ctrl+Shift+k
-(global-set-key (kbd "C-k") 'my-delete-line)
-(global-set-key (kbd "M-d") 'my-delete-word)
-(global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
-
-;; keys
-(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 
 ;;; init.el ends here
