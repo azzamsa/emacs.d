@@ -26,6 +26,7 @@
    helm-autoresize-min-height 20)
 
   (setq helm-split-window-in-side-p t
+        helm-move-to-line-cycle-in-source t
         helm-echo-input-in-header-line t
         helm-ff-search-library-in-sexp t
         helm-ff-file-name-history-use-recentf t)
