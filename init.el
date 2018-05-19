@@ -336,12 +336,12 @@
 
 (use-package make-md-to-org
   :defer t
-  :load-path "/modes/"
+  :load-path "/aza-packages/"
   :bind ("C-c M-m" . make-md-to-org ))
 
 (use-package aza-timestamp
   :defer 4
-  :load-path "/modes/"
+  :load-path "/aza-packages/"
   :bind (("s-t" . today)))
 
 ;; temporarily highlight changes from yanking, etc
@@ -427,11 +427,13 @@
   :defer 2
   :diminish " φ"
   :config
-  (golden-ratio-mode 1))
+  (golden-ratio-mode 1)
+  :custom
+  (golden-ratio-auto-scale t))
 
 (use-package emacs-anywhere-buffer
   :demand t
-  :load-path "/modes/"
+  :load-path "/aza-packages/"
   :chords (";a" . switch-to-emacs-anywhere-buffer)
   :config
   (add-hook 'emacs-startup-hook
