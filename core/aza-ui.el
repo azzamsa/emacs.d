@@ -40,9 +40,9 @@
 (setq inhibit-startup-screen t)
 
 ;; nice scrolling
-(setq scroll-margin 0
-      scroll-conservatively 100000
-      scroll-preserve-screen-position 1)
+;; (setq scroll-margin 0
+;;       scroll-conservatively 100000
+;;       scroll-preserve-screen-position 1)
 
 ;; mode line settings
 (line-number-mode t)
@@ -82,5 +82,12 @@
   (setq dimmer-exclusion-regexp "^\*helm.*\\|^ \*Minibuf-.*\\|^ \*Echo.*")
   (setq dimmer-fraction 0.50)
   (dimmer-mode t))
+
+(use-package sublimity
+  :ensure t
+  :defer 1
+  :config
+  (require 'sublimity-scroll)
+  (sublimity-mode 1))
 
 (provide 'aza-ui)
