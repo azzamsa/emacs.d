@@ -9,8 +9,8 @@
                ("n" . dired-view-next)
                ("p" . dired-view-previous)
                ("s" . xah-dired-sort))
-         ("C-t" . shell-pop-eshell)
-         ("C-z" . shell-pop-shell))
+         ("C-t" . shell-pop-eshell))
+         ;;("C-z" . shell-pop-shell))
   :init
   (require 'aza-dired-ext)
   (require 'dired-x) ; dired-jump is cool

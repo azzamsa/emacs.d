@@ -36,7 +36,6 @@
         ("C-M-." . helm-imenu)
         ("M-r" . meghanada-reference)
         ("M-t" . meghanada-typeinfo)
-        ("C-z" . hydra-meghanada/body)
         ("C-c C-C m". meghanada-exec-main))
   :commands
   (meghanada-mode))

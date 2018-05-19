@@ -28,7 +28,7 @@
   :ensure t
   :demand t
   :bind (("C-t" . shell-pop-eshell)
-         ("C-z" . shell-pop-shell)
+         ;;("C-z" . shell-pop-shell)
          (:map shell-mode-map
                ("C-c C-l" . helm-comint-input-ring))
          (:map eshell-mode-map
