@@ -6,7 +6,9 @@
   :demand t
   :load-path "elisp/pomodoro/"
   :config
-  (pomodoro-add-to-mode-line)
+  (setq-default mode-line-format
+                (cons '(pomodoro-mode-line-string pomodoro-mode-line-string)
+                      mode-line-format))
   (setq pomodoro-show-number t)
   (setq pomodoro-long-break-time 20)
   (setq pomodoro-sound-player "/usr/bin/aplay")
