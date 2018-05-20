@@ -51,6 +51,6 @@
           "* %i%?" :empty-lines 1)
         org-capture-templates)
   (setq org-brain-visualize-default-choices 'all)
-  (setq org-brain-title-max-length 12))
+  (setq org-brain-title-max-length 30))
 
 (provide 'aza-home)
