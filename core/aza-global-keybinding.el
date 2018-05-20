@@ -8,13 +8,6 @@
 
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
 
-;; organizer documents
-(global-set-key (kbd "C-c i")
-                (lambda () (interactive) (find-file "~/.emacs.d/documents/gtd/inbox.org")))
-
-(global-set-key (kbd "C-c s")
-                (lambda () (interactive) (find-file "~/.emacs.d/documents/sletz.org")))
-
 (global-set-key (kbd "C-c c") 'org-capture)
 
 ;; Font size
