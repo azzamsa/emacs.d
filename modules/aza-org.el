@@ -60,6 +60,7 @@
 
 (use-package org-bullets
   :ensure t
+  :after org
   :commands (org-bullets-mode)
   :init (add-hook 'org-mode-hook
                   (lambda ()
@@ -67,6 +68,7 @@
 
 (use-package org-cliplink
   :ensure t
+  :after org
   :demand t
   :bind ("C-l" . org-cliplink)
   :config
