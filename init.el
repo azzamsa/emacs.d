@@ -211,8 +211,6 @@
 (use-package flycheck
   :ensure t
   :defer t)
-  ;;:config
-  ;;(add-hook 'prog-mode-hook #'global-flycheck-mode))
 
 (use-package undo-tree
   :defer 3
@@ -235,8 +233,6 @@
 
   (setq ispell-program-name "aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra")))
-  ;;(add-hook 'text-mode-hook #'flyspell-mode)
-  ;;(add-hook 'prog-mode-hook #'flyspell-prog-mode))
 
 (use-package uniquify
   :defer 2
@@ -320,15 +316,14 @@
 (use-package crux
   :ensure t
   :bind (("C-c w" . crux-swap-windows)
-         ("C-c r o" . crux-open-with)
-         ("C-c r w" . crux-kill-whole-line)
-         ("C-c r r" . crux-rename-buffer-and-file)
-         ("C-c r k" . crux-kill-other-buffers)
-         ("C-c r d" . crux-duplicate-current-line-or-region)
-         ("C-c r D" . crux-delete-file-and-buffer)
-         ("C-c r s" . crux-create-scratch-buffer)
-         ("s-j" . crux-top-join-line)
+         ("C-a" . crux-move-beginning-of-line)
+         ("C-c r" . crux-rename-buffer-and-file)
          ("C-^" . crux-top-join-line)
+         ("C-c k" . crux-kill-other-buffers)
+         ("C-c w" . crux-swap-windows)
+         ("C-c D" . crux-delete-file-and-buffer)
+         ("s-k" . crux-kill-whole-line)
+         ("s-j" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
@@ -382,7 +377,9 @@
 (use-package ace-window
   :ensure t
   :defer 1
-  :bind ("s-W" . ace-window))
+  :bind ("s-W" . ace-window)
+  :config
+  (global-set-key [remap other-window] 'ace-window))
 
 (use-package zop-to-char
   :ensure t
@@ -516,7 +513,7 @@
         (remove 'ansi-color-process-output comint-output-filter-functions))
   (add-hook 'shell-mode-hook
             (lambda () (add-hook 'comint-preoutput-filter-functions
-                                 'xterm-color-filter nil t))))
+                            'xterm-color-filter nil t))))
 
 (use-package bash-completion
   :ensure t
