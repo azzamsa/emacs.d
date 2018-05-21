@@ -8,14 +8,14 @@
 (use-package elpy
   :ensure t
   :defer t
-  :bind ("C-l" . elpy-shell-clear-shell)
-  :preface
+  ;;:bind ("C-l" . elpy-shell-clear-shell)
+  :config
   (defun elpy-shell-clear-shell ()
     "Clear the current shell buffer."
     (interactive)
     (with-current-buffer (process-buffer (elpy-shell-get-or-create-process))
       (comint-clear-buffer)))
-  :config
+
   (use-package company-jedi
     :ensure t)
   (elpy-enable)

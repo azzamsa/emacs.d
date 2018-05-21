@@ -29,9 +29,9 @@
 
   :preface
   (defun my-org-mode-hook ()
-  (add-hook
-   'completion-at-point-functions
-   'pcomplete-completions-at-point nil t))
+    (add-hook
+     'completion-at-point-functions
+     'pcomplete-completions-at-point nil t))
 
   :config
   (use-package ox-gfm
@@ -67,7 +67,8 @@
 
 (use-package org-cliplink
   :ensure t
-  :bind ("C-L " . org-cliplink)
+  :demand t
+  :bind ("C-l" . org-cliplink)
   :config
   (setq org-cliplink-max-length 60))
 

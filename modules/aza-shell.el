@@ -33,7 +33,7 @@
                ("C-c C-l" . helm-comint-input-ring))
          (:map eshell-mode-map
                ("C-c C-l" . helm-eshell-history)))
-  :preface
+  :config
   (defun shell-pop-eshell ()
     (interactive)
     (let ((shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))

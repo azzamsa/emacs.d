@@ -330,6 +330,7 @@
 (use-package make-md-to-org
   :defer t
   :load-path "/aza-packages/"
+  :disabled
   :bind ("C-c M-m" . make-md-to-org ))
 
 (use-package aza-timestamp
@@ -436,7 +437,7 @@
   :ensure t
   :defer 4
   :bind (("s-." . avy-goto-word-or-subword-1)
-         ("s-," . avy-goto-char))
+         ("s-," . avy-goto-char-timer))
   :config
   (setq avy-background t)
   (setq avy-style 'at-full))

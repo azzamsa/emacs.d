@@ -18,7 +18,7 @@
               cfw:org-create-source
               cfw:cal-create-source)
 
-  :preface
+  :config
   (defun my-calendar ()
     (interactive)
     (cfw:open-calendar-buffer
@@ -26,7 +26,7 @@
      (list
       (cfw:org-create-source "#d6c9a7")  ; orgmode source
       (cfw:cal-create-source "White"))))
-  :config
+
   (setq diary-file "~/.emacs.d/documents/diary")
   (setq cfw:display-calendar-holidays nil)
   (setq holiday-christian-holidays nil
