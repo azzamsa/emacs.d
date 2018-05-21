@@ -7,6 +7,7 @@
 
 (use-package elpy
   :ensure t
+  :defer t
   :bind ("C-l" . elpy-shell-clear-shell)
   :preface
   (defun elpy-shell-clear-shell ()
