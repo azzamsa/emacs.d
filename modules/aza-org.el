@@ -67,7 +67,7 @@
 
 (use-package org-cliplink
   :ensure t
-  :bind ("C-c o c " . org-cliplink)
+  :bind ("C-L " . org-cliplink)
   :config
   (setq org-cliplink-max-length 60))
 
