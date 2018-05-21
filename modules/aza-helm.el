@@ -43,10 +43,12 @@
 
 (use-package helm-org-rifle
   :ensure t
+  :after helm
   :bind ("C-c h r" . helm-org-rifle))
 
 (use-package helm-ag
   :ensure t
+  :after helm
   :ensure-system-package ag
   :defer 4
   :diminish helm-ag-mode
