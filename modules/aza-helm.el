@@ -15,7 +15,6 @@
          ("C-h SPC" . helm-all-mark-rings)
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
-  :chords (";o" . helm-occur)
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)

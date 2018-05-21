@@ -146,6 +146,7 @@
 (use-package use-package-chords
   :ensure t
   :demand t
+  :disabled
   :config
   (key-chord-mode 1))
 
@@ -329,10 +330,7 @@
          ("s-j" . crux-top-join-line)
          ("C-^" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
-         ([remap move-beginning-of-line] . crux-move-beginning-of-line))
-  :chords ((";r" . crux-rename-buffer-and-file)
-           ("JJ" . crux-switch-to-previous-buffer)
-           (";k" . crux-kill-other-buffers)))
+         ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
 (use-package make-md-to-org
   :defer t
@@ -384,8 +382,7 @@
 (use-package ace-window
   :ensure t
   :defer 1
-  :bind ("s-W" . ace-window)
-  :chords (";w" . ace-window))
+  :bind ("s-W" . ace-window))
 
 (use-package zop-to-char
   :ensure t
@@ -404,7 +401,6 @@
   :init
   (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
   (global-unset-key (kbd "C-c C-w"))
-  :chords (";e" . eyebrowse-last-window-config)
   :config
   (eyebrowse-mode t)
   :custom
@@ -434,7 +430,6 @@
 (use-package emacs-anywhere-buffer
   :demand t
   :load-path "/aza-packages/"
-  :chords (";a" . switch-to-emacs-anywhere-buffer)
   :config
   (add-hook 'emacs-startup-hook
             (lambda ()
@@ -445,9 +440,6 @@
   :defer 4
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char))
-  :chords (( "jj" . avy-goto-word-1)
-           ( "jl" . avy-goto-line)
-           ( "jk" . avy-goto-char))
   :config
   (setq avy-background t)
   (setq avy-style 'at-full))
