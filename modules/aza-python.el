@@ -1,7 +1,8 @@
 (use-package virtualenvwrapper
   :ensure t
-  :after elpy
-  :defer t
+  ;; demanded by eshell prompt
+  ;; for venv-current-name symbols
+  :demand t
   :init
   (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
