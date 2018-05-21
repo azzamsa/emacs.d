@@ -1,5 +1,6 @@
 (use-package virtualenvwrapper
   :ensure t
+  :after elpy
   :defer t
   :init
   (venv-initialize-interactive-shells)
@@ -8,7 +9,8 @@
 (use-package elpy
   :ensure t
   :defer t
-  ;;:bind ("C-l" . elpy-shell-clear-shell)
+  :bind (:map elpy-mode-map
+              ("C-c C-y l" . elpy-shell-clear-shell))
   :config
   (defun elpy-shell-clear-shell ()
     "Clear the current shell buffer."
