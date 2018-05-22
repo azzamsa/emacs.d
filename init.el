@@ -311,6 +311,7 @@
         ;; disable recentf-cleanup on Emacs start, because it can cause
         ;; problems with remote files
         recentf-auto-cleanup 'never)
+  (setq recentf-exclude '("/\\.emacs\\.d/documents/brain/"))
   (recentf-mode +1))
 
 (use-package crux
