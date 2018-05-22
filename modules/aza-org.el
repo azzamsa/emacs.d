@@ -51,6 +51,7 @@
                                 ("S" "Sletz" entry
                                  (file+headline "~/.emacs.d/documents/sletz.org" "Tickler")
                                  "* %i%? \n %U")))
+  (global-set-key (kbd "C-c c") 'org-capture)
   (add-hook 'org-mode-hook (lambda ()
                              (my-org-mode-hook)
                              (turn-on-auto-fill)
