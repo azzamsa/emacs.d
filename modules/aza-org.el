@@ -56,8 +56,6 @@
                              (my-org-mode-hook)
                              (turn-on-auto-fill)
                              (which-function-mode -1))))
-                             ;;(flycheck-mode -1)
-                             ;;(flyspell-mode-off))))
 
 (use-package org-bullets
   :ensure t
