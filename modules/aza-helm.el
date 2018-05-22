@@ -54,4 +54,10 @@
   :diminish helm-ag-mode
   :bind ("C-c a" . helm-ag))
 
+(use-package helm-projectile
+  :ensure t
+  :after helm
+  :config
+  (helm-projectile-on))
+
 (provide 'aza-helm)
