@@ -409,6 +409,7 @@
   :init
   (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
   (global-unset-key (kbd "C-c C-w"))
+  :bind ("C-\"" . eyebrowse-last-window-config)
   :config
   (eyebrowse-mode t)
   :custom
