@@ -455,8 +455,6 @@
 (use-package spinner :ensure t :defer t)
 (use-package git-timemachine :ensure t :defer t)
 
-(require 'aza-emacs)
-
 ;;------------------------------------------------
 ;; Programming Utilities
 ;;------------------------------------------------
@@ -576,6 +574,9 @@
 (require 'aza-calendar)
 (require 'aza-irc)
 (require 'aza-shell)
+
+;; emacs fix
+(require 'aza-emacs)
 
 ;; my packages
 (require 'aza-timestamp)
