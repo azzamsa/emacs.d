@@ -317,15 +317,18 @@
 (use-package crux
   :ensure t
   :bind (("C-c w" . crux-swap-windows)
+         ("M-o" . crux-smart-open-line)
          ("C-a" . crux-move-beginning-of-line)
          ("C-c r" . crux-rename-buffer-and-file)
          ("C-^" . crux-top-join-line)
          ("C-c k" . crux-kill-other-buffers)
          ("C-c w" . crux-swap-windows)
          ("C-c D" . crux-delete-file-and-buffer)
+         ("C-c d" . crux-duplicate-current-line-or-region)
          ("s-k" . crux-kill-whole-line)
          ("s-j" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
+          ("C-c n" . crux-cleanup-buffer-or-region)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
 (use-package make-md-to-org
