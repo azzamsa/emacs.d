@@ -358,6 +358,12 @@
   :config
   (global-anzu-mode))
 
+(use-package easy-kill
+  :ensure t
+  :config
+  (global-set-key [remap kill-ring-save] 'easy-kill)
+  (global-set-key [remap mark-sexp] 'easy-mark))
+
 (use-package move-text
   :ensure t
   :defer 3
