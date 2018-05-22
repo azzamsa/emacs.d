@@ -452,8 +452,8 @@
   (setq avy-background t)
   (setq avy-style 'at-full))
 
-(use-package spinner :defer t)
-(use-package git-timemachine :defer t)
+(use-package spinner :ensure t :defer t)
+(use-package git-timemachine :ensure t :defer t)
 
 (require 'aza-emacs)
 
