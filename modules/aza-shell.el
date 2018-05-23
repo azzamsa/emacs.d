@@ -4,13 +4,15 @@
   :demand t
   :config
   (require 'aza-shell-prompt)
+  (require 'helm-eshell)
+  ;; TODO fix helm ignore eshell-directory-name
+  (setq eshell-directory-name
+        (expand-file-name "eshell" azzamsa-savefile-dir))
   ;; very strange!. can't use `:bind' for eshell-mode-map
   (add-hook 'eshell-mode-hook
             #'(lambda ()
                 (define-key eshell-mode-map (kbd "C-c C-l")
-                  'helm-eshell-history)))
-  (setq eshell-directory-name
-        (expand-file-name "eshell" azzamsa-savefile-dir)))
+                  'helm-eshell-history))))
 
 (use-package shell
   :demand t
@@ -26,7 +28,7 @@
 
 (use-package shell-pop
   :ensure t
-  :demand t
+  :after (eshell shell)
   :bind (("C-t" . shell-pop-eshell)
          ;;("C-z" . shell-pop-shell)
          (:map shell-mode-map
