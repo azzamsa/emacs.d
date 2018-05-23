@@ -175,16 +175,17 @@
   :defer 4
   :bind ("C-=" . er/expand-region))
 
-
+;; TODO research about smartparens
 (use-package smartparens
   :ensure t
   :diminish " Sp"
   :config
   (require 'smartparens-config)
-  (setq sp-base-key-bindings 'paredit)
+  ;;(setq sp-base-key-bindings 'paredit)
   (setq sp-autoskip-closing-pair 'always)
   (setq sp-hybrid-kill-entire-symbol nil)
-  (sp-use-paredit-bindings)
+  ;;(sp-use-paredit-bindings)
+  ;; replacement for show-paren-mode
   (show-smartparens-global-mode +1))
 
 (use-package abbrev
@@ -250,13 +251,6 @@
   :diminish super-save-mode
   :config
   (super-save-mode +1))
-
-(use-package smartparens
-  :ensure t
-  :defer 2
-  :diminish smartparens-mode
-  :config
-  (add-hook 'prog-mode-hook #'smartparens-mode))
 
 (use-package rainbow-delimiters
   :ensure t
