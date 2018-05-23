@@ -28,7 +28,7 @@
 
 (use-package shell-pop
   :ensure t
-  :after (eshell shell)
+  :demand t
   :bind (("C-t" . shell-pop-eshell)
          ;;("C-z" . shell-pop-shell)
          (:map shell-mode-map
