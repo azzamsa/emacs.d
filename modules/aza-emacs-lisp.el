@@ -41,7 +41,7 @@ Start `ielm' if it's not already running."
 
 (add-hook
  'emacs-lisp-mode-hook (lambda ()
-                         (run-hooks 'prelude-emacs-lisp-mode-hook))))
+                         (run-hooks 'prelude-emacs-lisp-mode-hook)))
 
 
 
