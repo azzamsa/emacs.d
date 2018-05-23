@@ -552,7 +552,6 @@
 ;;------------------------------------------------
 
 (require 'aza-dired)
-(require 'aza-dired-ext)
 (require 'aza-helm)
 
 ;; writing
