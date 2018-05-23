@@ -69,6 +69,7 @@
 (setq large-file-warning-threshold 100000000)
 
 (defconst azzamsa-savefile-dir (expand-file-name "savefile" user-emacs-directory))
+(defconst azzamsa-eshell-dir (expand-file-name "eshell" azzamsa-savefile-dir))
 
 ;; create the savefile dir if it doesn't exist
 (unless (file-exists-p azzamsa-savefile-dir)
