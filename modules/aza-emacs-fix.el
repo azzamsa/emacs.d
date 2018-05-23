@@ -37,4 +37,4 @@ This command does not push text to `kill-ring'."
     (setq p2 (point))
     (delete-region p1 p2)))
 
-(provide 'aza-emacs)
+(provide 'aza-emacs-fix)

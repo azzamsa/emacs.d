@@ -573,7 +573,7 @@
 (require 'aza-shell)
 
 ;; emacs fix
-(require 'aza-emacs)
+(require 'aza-emacs-fix)
 
 ;; my packages
 (require 'aza-timestamp)
