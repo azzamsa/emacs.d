@@ -5,10 +5,8 @@
   (tool-bar-mode -1))
 
 ;;  disable scroll bar
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-(when (fboundp 'horizontal-scroll-bar-mode)
-  (horizontal-scroll-bar-mode -1))
+(when (fboundp 'set-scroll-bar-mode)
+(set-scroll-bar-mode nil))
 
 ;; disable menu-bar. I have <f12> to toggle it
 (menu-bar-mode -1)
