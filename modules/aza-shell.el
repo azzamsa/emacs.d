@@ -5,9 +5,13 @@
   :config
   (require 'aza-shell-prompt)
   (require 'helm-eshell)
-  ;; TODO fix helm ignore eshell-directory-name
+
   (setq eshell-directory-name
         (expand-file-name "eshell" azzamsa-savefile-dir))
+  ;; eshell-history-file-name need to be set explicitly
+  (setq eshell-history-file-name
+        (expand-file-name "history" azzamsa-eshell-dir))
+
   ;; very strange!. can't use `:bind' for eshell-mode-map
   (add-hook 'eshell-mode-hook
             #'(lambda ()
