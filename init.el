@@ -322,7 +322,8 @@
          ("s-k" . crux-kill-whole-line)
          ("s-j" . crux-top-join-line)
          ("C-<backspace>" . crux-kill-line-backwards)
-          ("C-c n" . crux-cleanup-buffer-or-region)
+         ("C-c n" . crux-cleanup-buffer-or-region)
+         ([remap kill-whole-line] . crux-kill-whole-line)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
 (use-package make-md-to-org
@@ -519,7 +520,7 @@
         (remove 'ansi-color-process-output comint-output-filter-functions))
   (add-hook 'shell-mode-hook
             (lambda () (add-hook 'comint-preoutput-filter-functions
-                            'xterm-color-filter nil t))))
+                                 'xterm-color-filter nil t))))
 
 (use-package bash-completion
   :ensure t
@@ -611,7 +612,7 @@
 ;;(setq shell-command-switch "-ic") ; break eshell with git prompt
 
 ;; I hate that custom fruit
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq custom-file (expand-file-name "custom.el" azzamsa-savefile-dir))
 
 (when (file-exists-p custom-file)
   (load custom-file))
