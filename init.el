@@ -314,6 +314,7 @@
   :bind (("C-c w" . crux-swap-windows)
          ("M-o" . crux-smart-open-line)
          ("C-a" . crux-move-beginning-of-line)
+         ("s-o" . crux-smart-open-line-above)
          ("C-c r" . crux-rename-buffer-and-file)
          ("C-^" . crux-top-join-line)
          ("C-c k" . crux-kill-other-buffers)
@@ -495,10 +496,18 @@
   :init
   (dolist (hook '(prog-mode-hook text-mode-hook))
     (add-hook hook #'whitespace-mode))
-  (add-hook 'before-save-hook #'whitespace-cleanup)
+  ;; clean up handled by ws-butler
+  ;;(add-hook 'before-save-hook #'whitespace-cleanup)
   :config
-  (setq whitespace-line-column 80) ;; limit line length
-  (setq whitespace-style '(face tabs empty trailing lines-tail)))
+  ;; limit line length
+  (setq whitespace-line-column 80)
+  (setq whitespace-style '(face tabs trailing lines-tail)))
+
+;; clean only edited lines
+(use-package ws-butler
+  :ensure t
+  :config
+  (ws-butler-global-mode t))
 
 (use-package multiple-cursors
   :ensure t
