@@ -429,6 +429,7 @@
   :defer 2
   :diminish " φ"
   :config
+  (add-to-list 'golden-ratio-extra-commands 'ace-window)
   (golden-ratio-mode 1)
   :custom
   (golden-ratio-auto-scale t))
