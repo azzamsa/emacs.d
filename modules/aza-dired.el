@@ -36,6 +36,7 @@
   ;; current subdir, instead of the current subdir of this dired buffer
   (setq dired-dwim-target t)
   (setq dired-listing-switches "-alGhvF --group-directories-first")
+  (add-hook 'dired-mode-hook #'dired-omit-mode)
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt
