@@ -90,6 +90,8 @@ Version 2015-07-30"
 (setq dired-guess-shell-alist-user
       '(("\\.pdf\\'" "evince" "okular")
         ("\\.\\(?:djvu\\|eps\\)\\'" "evince")
+        ;; TODO regex for dirs
+        ("/$" "thunar")
         ("\\.\\(?:jpg\\|jpeg\\|png\\|svg\\|gif\\|tiff\\|xpm\\|bmp\\)\\'" "sxiv")
         ("\\.\\(?:xcf\\)\\'" "gimp")
         ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\|ifo\\|m4v\\|wmv\\|webm\\)\\(?:\\.part\\)?\\'"
