@@ -616,6 +616,11 @@
             (turn-on-auto-fill)
             (visual-line-mode t)))
 
+(add-hook 'prog-mode-hook
+          (lambda ()
+            ;; display “lambda” as “λ”
+            (prettify-symbols-mode +1)))
+
 ;;; Set
 
 (setq semanticdb-default-save-directory
@@ -644,8 +649,5 @@
 
 ;; keys
 (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
-
-;; display “lambda” as “λ”
-(global-prettify-symbols-mode 1)
 
 ;;; init.el ends here
