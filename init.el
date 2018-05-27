@@ -557,6 +557,10 @@
   :config
   (add-hook 'prog-mode-hook #'hl-todo-mode))
 
+(use-package gitconfig-mode :ensure t :defer t)
+(use-package gitignore-mode :ensure t :defer t)
+(use-package gitattributes-mode :ensure t :defer t)
+
 ;;------------------------------------------------
 ;; Modules
 ;;------------------------------------------------
