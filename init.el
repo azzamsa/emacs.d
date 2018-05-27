@@ -514,6 +514,7 @@
   :ensure t
   :defer 4
   :init
+  (setq mc/list-file (expand-file-name ".mc-lists.el" azzamsa-savefile-dir))
   (progn
     ;; these need to be defined here - if they're lazily loaded with
     ;; :bind they don't work.
