@@ -5,7 +5,6 @@ auto-save-list/
 elpa/
 elisp/
 url/
-places
 savefile/*
 session*
 tramp/
