@@ -53,4 +53,8 @@
   (setq org-brain-visualize-default-choices 'all)
   (setq org-brain-title-max-length 30))
 
+(use-package presentation
+  :ensure t
+  :defer t)
+
 (provide 'aza-home)
