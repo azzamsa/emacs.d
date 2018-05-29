@@ -1,6 +1,7 @@
 (use-package org
   :ensure t
   :defer 1
+  :pin manual
   :bind (:map org-mode-map
               ("C-c l" . org-store-link)
               ("C-c a" . org-agenda))
