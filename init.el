@@ -37,7 +37,6 @@
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")
-                         ("SC"   . "http://joseito.republika.pl/sunrise-commander/")
                          ("org" . "http://orgmode.org/elpa/")))
 
 ;; keep the installed packages in .emacs.d
