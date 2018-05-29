@@ -21,8 +21,8 @@
                                         "CANCELLED(c@)")))
     (org-babel-do-load-languages
      'org-babel-load-languages
-     '((java . t)
-       (sh   . t)
+     `((java . t)
+       (,(if (locate-library "ob-sh") 'sh 'shell) . t)
        (python . t)
        (lisp . t)))
     (my-org-mode-hook))
