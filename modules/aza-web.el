@@ -23,8 +23,8 @@
          "\\.php\\'")
   :init (add-hook 'web-mode-hook
                   (lambda ()
-                    (emmet-mode 1)
-                    (smartparens-mode nil)))
+                    (emmet-mode +1)
+                    (smartparens-mode -1)))
   :config
   (progn
     (setq web-mode-code-indent-offset 2)
