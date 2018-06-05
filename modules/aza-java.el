@@ -10,6 +10,7 @@
 
 (use-package meghanada
   :defer t
+  :pin manual
   :init
   (add-hook 'java-mode-hook
             (lambda ()
