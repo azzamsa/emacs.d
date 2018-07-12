@@ -13,12 +13,13 @@
   (setq pomodoro-long-break-time 20)
   (setq pomodoro-sound-player "/usr/bin/aplay")
   (setq pomodoro-break-start-sound
-        "~/sounds/sparkle-work.wav")
+        "~/sounds/wind-chime-rest.wav")
   (setq pomodoro-work-start-sound
         "~/sounds/sparkle-work.wav")
-  (add-hook 'emacs-startup-hook
-            (lambda ()
-              (pomodoro-start 25))))
+  ;; (add-hook 'emacs-startup-hook
+  ;;           (lambda ()
+  ;;             (pomodoro-start 25)))
+  )
 
 (use-package pdf-tools
   :ensure t
