@@ -11,6 +11,7 @@ tramp/
 custom.el
 init-local.el
 abbrev_defs
+tramp
 
 # packages
 projectile-bookmarks.eld
