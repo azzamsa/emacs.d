@@ -187,6 +187,8 @@
   ;; replacement for show-paren-mode
   (show-smartparens-global-mode +1))
 
+(electric-pair-mode 1)
+
 (use-package abbrev
   :defer 5
   :diminish " Abv"
@@ -421,7 +423,11 @@
   :config
   (setq desktop-path (list azzamsa-savefile-dir))
   (setq desktop-dirname azzamsa-savefile-dir)
+  (setq desktop-restore-eager 5)
   (desktop-save-mode +1))
+
+(use-package desktop+
+  :ensure t)
 
 (use-package golden-ratio
   :ensure t
