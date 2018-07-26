@@ -29,7 +29,6 @@ Start `ielm' if it's not already running."
 
 (defun prelude-emacs-lisp-mode-defaults ()
   "Sensible defaults for `emacs-lisp-mode'."
-  (smartparens-strict-mode +1)
   (rainbow-delimiters-mode +1)
   (eldoc-mode +1)
   (prelude-recompile-elc-on-save)
