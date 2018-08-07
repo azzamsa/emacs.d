@@ -585,6 +585,7 @@
 (require 'aza-java)
 (require 'aza-python)
 (require 'aza-web)
+(require 'aza-rust)
 
 ;;; emacs is home
 (require 'aza-home)
