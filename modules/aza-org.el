@@ -40,7 +40,8 @@
   (use-package org-download
     :ensure t)
   ;;org-refil
-  (setq org-refile-targets '(("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
+  (setq org-refile-targets '(("~/.emacs.d/documents/gtd/inbox.org" :maxlevel . 1)
+                             ("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
                              ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
                              ("~/.emacs.d/documents/gtd/tickler.org" :maxlevel . 2)))
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
