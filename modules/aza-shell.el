@@ -33,26 +33,17 @@
 (use-package shell-pop
   :ensure t
   :demand t
-  :bind (("C-t" . shell-pop-eshell)
-         ;;("C-z" . shell-pop-shell)
-         (:map shell-mode-map
+  :bind ((:map shell-mode-map
                ("C-c C-l" . helm-comint-input-ring))
          (:map eshell-mode-map
                ("C-c C-l" . helm-eshell-history)))
-  :config
-  (defun shell-pop-eshell ()
-    (interactive)
-    (let ((shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
-          (shell-pop-term-shell "eshell"))
-      (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
-      (call-interactively 'shell-pop)))
-
-  (defun shell-pop-shell ()
-    (interactive)
-    (let ((shell-file-name "/bin/bash")
-          (shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
-          (shell-pop-term-shell "shell"))
-      (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)
-      (call-interactively 'shell-pop))))
+  :custom
+  (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*"
+                                (lambda nil (ansi-term shell-pop-term-shell)))))
+  (shell-pop-term-shell "/bin/bash")
+  (shell-pop-universal-key "C-t")
+  (shell-pop-window-size 30)
+  (shell-pop-full-span t)
+  (shell-pop-window-position "bottom"))
 
 (provide 'aza-shell)

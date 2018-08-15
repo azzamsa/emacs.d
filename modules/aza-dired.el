@@ -9,7 +9,7 @@
                ("n" . dired-view-next)
                ("p" . dired-view-previous)
                ("s" . xah-dired-sort))
-         ("C-t" . shell-pop-eshell))
+         ("C-t" . shell-pop-shell))
          ;;("C-z" . shell-pop-shell))
   :init
   (require 'aza-dired-ext)
