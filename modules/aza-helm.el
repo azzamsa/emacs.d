@@ -35,6 +35,10 @@
         helm-locate-fuzzy-match t
         helm-apropos-fuzzy-match t)
 
+  (setq helm-boring-buffer-regexp-list
+        '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf"
+          "\\*Messages" "*magit-"))
+
   (when (executable-find "ack-grep")
     (setq helm-grep-default-command
           "ack-grep -Hn --no-group --no-color %e %p %f"
