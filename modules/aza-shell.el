@@ -46,4 +46,25 @@
   (shell-pop-full-span t)
   (shell-pop-window-position "bottom"))
 
+
+(define-key dired-mode-map (kbd "'") 'eshell-this-dir)
+
+ ;;;###autoload
+(defun eshell-this-dir ()
+  "Open or move eshell in `default-directory'."
+  (interactive)
+  (unless (get-buffer eshell-buffer-name)
+    (eshell))
+  (switch-to-buffer eshell-buffer-name)
+  (goto-char (point-max))
+  (eshell-kill-input)
+  (insert (format "cd %s" default-directory))
+  (eshell-send-input)
+  (goto-char (point-max)))
+
+;;;###autoload
+(defun named-term (name)
+  (interactive "sName: ")
+  (ansi-term "/bin/bash" name))
+
 (provide 'aza-shell)
