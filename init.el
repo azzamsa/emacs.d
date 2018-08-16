@@ -271,6 +271,8 @@
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch-popup)))
 
+(use-package git-timemachine :ensure t :defer t)
+
 (use-package windmove
   :config
   ;; use shift + arrow keys to switch between visible buffers
@@ -441,6 +443,7 @@
   (golden-ratio-auto-scale t))
 
 (use-package emacs-anywhere-buffer
+  :disabled
   :demand t
   :load-path "/aza-packages/"
   :config
@@ -458,7 +461,6 @@
   (setq avy-style 'at-full))
 
 (use-package spinner :ensure t :defer t)
-(use-package git-timemachine :ensure t :defer t)
 
 ;;------------------------------------------------
 ;; Programming Utilities
@@ -628,6 +630,13 @@
           (lambda ()
             ;; display “lambda” as “λ”
             (prettify-symbols-mode +1)))
+
+;;; Advice
+(require 'cl-lib)
+(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+  (cl-letf (((symbol-function #'process-list) (lambda ())))
+    ad-do-it))
 
 ;;; Set
 
