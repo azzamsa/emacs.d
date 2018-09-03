@@ -2,24 +2,31 @@
 ;; Emacs is a home
 ;;------------------------------------------------
 
-(use-package pomodoro
-  :demand t
-  :load-path "elisp/pomodoro/"
+(use-package pomidor
+  :ensure t
   :config
-  (setq-default mode-line-format
-                (cons '(pomodoro-mode-line-string pomodoro-mode-line-string)
-                      mode-line-format))
-  (setq pomodoro-show-number t)
-  (setq pomodoro-long-break-time 20)
-  (setq pomodoro-sound-player "/usr/bin/aplay")
-  (setq pomodoro-break-start-sound
-        "~/sounds/wind-chime-rest.wav")
-  (setq pomodoro-work-start-sound
-        "~/sounds/sparkle-work.wav")
-  ;; (add-hook 'emacs-startup-hook
-  ;;           (lambda ()
-  ;;             (pomodoro-start 25)))
-  )
+
+  ;; (defadvice pomidor-stop (before pomidor-save-log activate)
+  ;;     "Log pomidor data to the ~/pomidor-log.csv file.
+  ;; Columns: date,work,overwork,break"
+  ;;     (write-region (format "%s,%d,%d,%d\n"
+  ;;                           (format-time-string "%d/%m/%Y")
+  ;;                           (/ (time-to-seconds (pomidor-work-duration)) 60)
+  ;;                           (/ (time-to-seconds (or (pomidor-overwork-duration) 0)) 60)
+  ;;                           (/ (time-to-seconds (or (pomidor-break-duration) 0)) 60))
+  ;;                   nil
+  ;;                   "~/Documents/pomidor-log.csv"
+  ;;                   'append))
+
+  (setq pomidor-sound-tick nil
+        pomidor-sound-tack nil
+        pomidor-sound-overwork
+        (expand-file-name (concat (getenv "HOME") "/sounds/ding-rest.wav"))
+        pomidor-sound-break-over
+        (expand-file-name (concat (getenv "HOME") "/sounds/coin-work.wav")))
+
+  (setq alert-default-style 'libnotify))
+
 
 (use-package pdf-tools
   :ensure t
