@@ -25,6 +25,7 @@
   (add-hook 'python-mode-hook
             (lambda ()
               (company-mode t)
-              (company-jedi t))))
+              (company-jedi t)
+              (global-flycheck-mode +1))))
 
 (provide 'aza-python)
