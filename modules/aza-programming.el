@@ -10,7 +10,7 @@
   (add-hook 'prog-mode-hook #'hl-todo-mode))
 
 (defun aza-prog-mode-defaults ()
-  (flyspell-prog-mode +1)
+  (flyspell-prog-mode)
   (smartparens-mode +1)
   (ws-butler-global-mode +1))
 
