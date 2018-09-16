@@ -208,7 +208,7 @@
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
   (setq company-show-numbers t)
-  (global-company-mode))
+  (global-company-mode +1))
 
 (use-package flycheck
   :ensure t
@@ -555,17 +555,6 @@
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
 
-(use-package which-function
-  :defer 6
-  :config
-  (add-hook 'prog-mode-hook #'which-function-mode))
-
-(use-package hl-todo
-  :ensure t
-  :defer 6
-  :config
-  (add-hook 'prog-mode-hook #'hl-todo-mode))
-
 (use-package gitconfig-mode :ensure t :defer t)
 (use-package gitignore-mode :ensure t :defer t)
 (use-package gitattributes-mode :ensure t :defer t)
@@ -610,6 +599,7 @@
 ;;------------------------------------------------
 (require 'aza-ui)
 (require 'aza-global-keybinding)
+(require 'aza-programming)
 
 ;;------------------------------------------------
 ;; Misc
