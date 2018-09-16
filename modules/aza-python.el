@@ -7,6 +7,14 @@
   (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
 
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(use-package company-jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'my/python-mode-hook))
+
 (use-package elpy
   :ensure t
   :defer 4
@@ -24,9 +32,7 @@
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
     (add-hook 'elpy-mode-hook 'flycheck-mode))
 
-  (use-package company-jedi
-    :ensure t)
-
-  (elpy-enable))
+  (elpy-enable)
+  (setq elpy-rpc-backend "jedi"))
 
 (provide 'aza-python)
