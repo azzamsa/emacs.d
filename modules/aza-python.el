@@ -9,7 +9,7 @@
 
 (use-package elpy
   :ensure t
-  :defer t
+  :defer 4
   :bind (:map elpy-mode-map
               ("C-c C-y l" . elpy-shell-clear-shell))
   :config
@@ -19,13 +19,22 @@
     (with-current-buffer (process-buffer (elpy-shell-get-or-create-process))
       (comint-clear-buffer)))
 
-  (use-package company-jedi
-    :ensure t)
+  ;; Use Flycheck instead of Flymake
+  (when (require 'flycheck nil t)
+    (remove-hook 'elpy-modules 'elpy-module-flymake)
+    (remove-hook 'elpy-modules 'elpy-module-yasnippet)
+    (remove-hook 'elpy-mode-hook 'elpy-module-highlight-indentation)
+    (add-hook 'elpy-mode-hook 'flycheck-mode))
+
   (elpy-enable)
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (company-mode t)
-              (company-jedi t)
-              (global-flycheck-mode +1))))
+  (setq elpy-rpc-backend "jedi"))
+
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(use-package company-jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'my/python-mode-hook))
 
 (provide 'aza-python)
