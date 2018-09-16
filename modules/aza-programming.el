@@ -1,0 +1,27 @@
+(use-package which-function
+  :defer 6
+  :config
+  (add-hook 'prog-mode-hook #'which-function-mode))
+
+(use-package hl-todo
+  :ensure t
+  :defer 6
+  :config
+  (add-hook 'prog-mode-hook #'hl-todo-mode))
+
+(defun aza-prog-mode-defaults ()
+  (flyspell-prog-mode +1)
+  (smartparens-mode +1)
+  (ws-butler-global-mode +1))
+
+(setq aza-prog-mode-hook 'aza-prog-mode-defaults)
+
+(add-hook 'prog-mode-hook (lambda ()
+                            (run-hooks 'aza-prog-mode-hook)))
+
+;; enable on-the-fly syntax checking
+(if (fboundp 'global-flycheck-mode)
+    (global-flycheck-mode +1)
+  (add-hook 'prog-mode-hook 'flycheck-mode))
+
+(provide 'aza-programming)
