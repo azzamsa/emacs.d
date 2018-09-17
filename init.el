@@ -234,7 +234,8 @@
                 ("C-;" . flyspell-correct-previous-word-generic)))
 
   (setq ispell-program-name "aspell" ; use aspell instead of ispell
-        ispell-extra-args '("--sug-mode=ultra")))
+        ispell-extra-args '("--sug-mode=ultra"))
+  (add-hook 'text-mode-hook 'flyspell-mode))
 
 (use-package uniquify
   :defer 2
