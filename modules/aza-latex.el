@@ -23,6 +23,7 @@
     (add-hook 'LaTeX-mode-hook
               (lambda ()
                 (yas-minor-mode t)
+                (turn-on-reftex)
                 (turn-on-auto-fill)))))
 
 (use-package reftex
@@ -30,9 +31,6 @@
   :after tex
   :bind (:map reftex-mode-map
                ("C-c r r" . reftex-query-replace-document)
-               ("C-c r g" . reftex-grep-document))
-  :config
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t))
+               ("C-c r g" . reftex-grep-document)))
 
 (provide 'aza-latex)
