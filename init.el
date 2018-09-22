@@ -316,7 +316,7 @@
 (use-package crux
   :ensure t
   :bind (("C-c w" . crux-swap-windows)
-         ("M-o" . crux-smart-open-line)
+         ;;("M-o" . crux-smart-open-line)
          ("C-a" . crux-move-beginning-of-line)
          ("s-o" . crux-smart-open-line-above)
          ("C-c r" . crux-rename-buffer-and-file)
@@ -389,7 +389,7 @@
 (use-package ace-window
   :ensure t
   :defer 1
-  :bind ("s-W" . ace-window)
+  :bind ("M-o" . ace-window)
   :config
   (global-set-key [remap other-window] 'ace-window))
 
