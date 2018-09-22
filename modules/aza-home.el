@@ -24,8 +24,10 @@
         (expand-file-name (concat (getenv "HOME") "/sounds/ding-rest.wav"))
         pomidor-sound-break-over
         (expand-file-name (concat (getenv "HOME") "/sounds/coin-work.wav")))
-
-  (setq alert-default-style 'libnotify))
+  (setq alert-default-style 'libnotify)
+  :custom
+  (pomidor-time-face ((t (:height 3.0))))
+  (pomidor-timer-face ((t (:height 3.0)))))
 
 
 (use-package pdf-tools
