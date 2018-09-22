@@ -35,10 +35,8 @@
      'pcomplete-completions-at-point nil t))
 
   :config
-  (use-package ox-gfm
-    :ensure t)
-  (use-package org-download
-    :ensure t)
+  ;; inline image
+  (setq org-image-actual-width nil)
   ;;org-refil
   (setq org-refile-targets '(("~/.emacs.d/documents/gtd/inbox.org" :maxlevel . 1)
                              ("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
@@ -58,6 +56,16 @@
                              (my-org-mode-hook)
                              (turn-on-auto-fill)
                              (which-function-mode -1))))
+
+(use-package ox-gfm
+  :ensure t
+  :after org)
+
+(use-package org-download
+  :ensure t
+  :after org
+  :custom
+  (org-download-screenshot-method "scrot -s %s"))
 
 (use-package org-bullets
   :ensure t
