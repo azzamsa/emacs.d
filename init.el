@@ -321,7 +321,7 @@
          ("s-o" . crux-smart-open-line-above)
          ("C-c r" . crux-rename-buffer-and-file)
          ("C-^" . crux-top-join-line)
-         ("C-c k" . crux-kill-other-buffers)
+         ;;("C-c k" . crux-kill-other-buffers)
          ("C-c w" . crux-swap-windows)
          ("C-c D" . crux-delete-file-and-buffer)
          ("C-c d" . crux-duplicate-current-line-or-region)
@@ -342,6 +342,11 @@
   :defer 4
   :load-path "/aza-packages/"
   :bind (("s-t" . today)))
+
+(use-package aza-scripts
+  :defer 2
+  :load-path "/aza-packages/"
+  :bind (("C-c k" . noprompt-kill-buffers)))
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
@@ -592,6 +597,7 @@
 
 ;; my packages
 (require 'aza-timestamp)
+(require 'aza-scripts)
 
 ;; local
 (require 'init-local)
