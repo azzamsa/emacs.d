@@ -391,6 +391,7 @@
   :defer 1
   :bind ("M-o" . ace-window)
   :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (global-set-key [remap other-window] 'ace-window))
 
 (use-package zop-to-char
