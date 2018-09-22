@@ -4,7 +4,9 @@
   (interactive)
   (dolist (buffer (delq (current-buffer) (buffer-list)))
     (let ((name (buffer-name buffer)))
-      (when (string-match "^[^\*]" name)
+      (when (and name (not (string-equal name ""))
+                 (/= (aref name 0) ?\s)
+                 (string-match "^[^\*]" name))
         (funcall 'kill-buffer buffer)))))
 
 (provide 'aza-scripts)
