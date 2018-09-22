@@ -1,10 +1,10 @@
-(require 'cl)
-
 ;;;###autoload
-(defun noprompt-kill-buffers ()
-  "Kill buffers matching REGEXP without asking for confirmation."
+(defun aza-kill-other-buffers ()
+  "Kill all buffers but current buffer and special buffers"
   (interactive)
-  (flet ((kill-buffer-ask (buffer) (kill-buffer buffer)))
-    (kill-matching-buffers "^[^\*]")))
+  (dolist (buffer (delq (current-buffer) (buffer-list)))
+    (let ((name (buffer-name buffer)))
+      (when (string-match "^[^\*]" name)
+        (funcall 'kill-buffer buffer)))))
 
 (provide 'aza-scripts)

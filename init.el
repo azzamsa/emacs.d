@@ -346,7 +346,7 @@
 (use-package aza-scripts
   :defer 2
   :load-path "/aza-packages/"
-  :bind (("C-c k" . noprompt-kill-buffers)))
+  :bind (("C-c k" . aza-kill-other-buffers)))
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
