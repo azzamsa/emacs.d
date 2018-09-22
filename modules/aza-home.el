@@ -5,19 +5,6 @@
 (use-package pomidor
   :ensure t
   :config
-
-  ;; (defadvice pomidor-stop (before pomidor-save-log activate)
-  ;;     "Log pomidor data to the ~/pomidor-log.csv file.
-  ;; Columns: date,work,overwork,break"
-  ;;     (write-region (format "%s,%d,%d,%d\n"
-  ;;                           (format-time-string "%d/%m/%Y")
-  ;;                           (/ (time-to-seconds (pomidor-work-duration)) 60)
-  ;;                           (/ (time-to-seconds (or (pomidor-overwork-duration) 0)) 60)
-  ;;                           (/ (time-to-seconds (or (pomidor-break-duration) 0)) 60))
-  ;;                   nil
-  ;;                   "~/Documents/pomidor-log.csv"
-  ;;                   'append))
-
   (setq pomidor-sound-tick nil
         pomidor-sound-tack nil
         pomidor-sound-overwork
