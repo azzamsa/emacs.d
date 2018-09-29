@@ -252,6 +252,7 @@
   :defer 2
   :diminish super-save-mode
   :config
+  (add-to-list 'super-save-triggers 'ace-window)
   (super-save-mode +1))
 
 (use-package rainbow-delimiters
