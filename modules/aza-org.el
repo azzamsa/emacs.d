@@ -64,8 +64,10 @@
 (use-package org-download
   :ensure t
   :after org
-  :custom
-  (org-download-screenshot-method "scrot -s %s"))
+  :config
+  (setq org-download-annotate-function (lambda (_link) ""))
+  (setq org-download-screenshot-method "scrot -s %s")
+  (setq org-download-image-org-width 300))
 
 (use-package org-bullets
   :ensure t
