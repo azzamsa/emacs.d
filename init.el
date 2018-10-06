@@ -644,6 +644,7 @@
 
 (setq history-delete-duplicates t)
 
+(setq confirm-kill-emacs #'y-or-n-p)
 
 ;; I hate that custom fruit
 (setq custom-file (expand-file-name "custom.el" azzamsa-savefile-dir))
