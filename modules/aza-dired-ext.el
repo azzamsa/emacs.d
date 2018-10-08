@@ -101,4 +101,9 @@ Version 2015-07-30"
         ("\\.\\(?:pptx?\\|odt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
         ("\\.\\(?:zip\\|tgz\\)\\'" "file-roller")))
 
+
+(defun dired-open-directory-in-thunar ()
+  (interactive)
+  (start-process "" nil "thunar" "."))
+
 (provide 'aza-dired-ext)
