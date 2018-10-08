@@ -35,13 +35,6 @@
     (unless (equal buffer (current-buffer))
       (kill-buffer buffer))))
 
-;; little modification to dired-mode that let's you browse through lots of files
-;; (add-hook 'dired-mode-hook
-;;           (lambda()
-;;             (define-key dired-mode-map (kbd "C-o") 'dired-view-current)     ; was dired-display-file
-;;             (define-key dired-mode-map (kbd "n")   'dired-view-next)           ; was dired-next-line
-;;             (define-key dired-mode-map (kbd "p")   'dired-view-previous))) ; was dired-previous-line
-
 (defun dired-view-next ()
   "Move down one line and view the current file in another window."
   (interactive)
@@ -58,18 +51,18 @@
   "View the current file in another window (possibly newly created)."
   (interactive)
   (if (not (window-parent))
-      (split-window))                                   ; create a new window if necessary
+      (split-window))
   (let ((file (dired-get-file-for-visit))
         (dbuffer (current-buffer)))
-    (other-window 1)                                          ; switch to the other window
-    (unless (equal dbuffer (current-buffer))                 ; don't kill the dired buffer
-      (if (or view-mode (equal major-mode 'dired-mode))   ; only if in view- or dired-mode
-          (kill-buffer)))                                                    ; ... kill it
+    (other-window 1)
+    (unless (equal dbuffer (current-buffer))
+      (if (or view-mode (equal major-mode 'dired-mode))
+          (kill-buffer)))
     (let ((filebuffer (get-file-buffer file)))
-      (if filebuffer                              ; does a buffer already look at the file
-          (switch-to-buffer filebuffer)                                    ; simply switch
-        (view-file file))                                                    ; ... view it
-      (other-window -1))))                   ; give the attention back to the dired buffer
+      (if filebuffer
+          (switch-to-buffer filebuffer)
+        (view-file file))
+      (other-window -1))))
 
 (defun xah-dired-sort ()
   "Sort dired dir listing in different ways.
