@@ -17,6 +17,7 @@
   (require 'dired-x) ; dired-jump is cool
   :config
 
+  ;; error when outside dired config
   (use-package dired+
     :load-path "~/.emacs.d/elisp/diredp/"
     :config
