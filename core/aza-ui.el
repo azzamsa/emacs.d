@@ -88,4 +88,12 @@
   (require 'sublimity-scroll)
   (sublimity-mode 1))
 
+(use-package golden-ratio-scroll-screen
+  :ensure t
+  :config
+  (global-set-key [remap scroll-down-command] 'golden-ratio-scroll-screen-down)
+  (global-set-key [remap scroll-up-command] 'golden-ratio-scroll-screen-up)
+  :custom
+  (golden-ratio-scroll-screen-ratio 1.718))
+
 (provide 'aza-ui)
