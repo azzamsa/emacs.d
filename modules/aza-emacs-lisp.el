@@ -31,7 +31,7 @@ Start `ielm' if it's not already running."
   "Sensible defaults for `emacs-lisp-mode'."
   (rainbow-delimiters-mode +1)
   (eldoc-mode +1)
-  (prelude-recompile-elc-on-save)
+  ;;(prelude-recompile-elc-on-save)
   (rainbow-mode +1)
   (setq mode-name "EL")
   (prelude-conditional-emacs-lisp-checker))
