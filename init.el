@@ -442,6 +442,7 @@
 
 (use-package golden-ratio
   :ensure t
+  :disabled
   :defer 2
   :diminish " φ"
   :config
