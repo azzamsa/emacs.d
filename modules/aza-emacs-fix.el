@@ -37,4 +37,14 @@ This command does not push text to `kill-ring'."
     (setq p2 (point))
     (delete-region p1 p2)))
 
+(defun my-treat-largefile-special-way ()
+  "If a file is over a given size, treat it special way.
+by Trey Jackson"
+  (when (> (buffer-size) (* 1024 1024))
+    (buffer-disable-undo)
+    (fundamental-mode)
+    (diff-hl-mode -1)))
+
+(add-hook 'find-file-hook 'my-treat-largefile-special-way)
+
 (provide 'aza-emacs-fix)
