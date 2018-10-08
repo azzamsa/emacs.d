@@ -471,6 +471,25 @@
 
 (use-package spinner :ensure t :defer t)
 
+(use-package async
+  :ensure t
+  :defer 4
+  :config
+  (async-bytecomp-package-mode t)
+
+  (defun my/dired-async-message-function (text _face &rest args)
+    "Log messages from dired-async to messages buffer."
+    ;; For whatever reason, the default for this *doesn't* log it to
+    ;; *Messages*.  Instead, it just displays the notification in the
+    ;; mode line for 3 seconds, but if you type something it
+    ;; immediately goes away.  So just log it to *Messages* like a sane
+    ;; person instead:
+    (message (format "Finished %s" (apply #'format text args))))
+  ;; do dired actions asynchronously
+  (dired-async-mode)
+  :custom
+  (dired-async-message-function #'my/dired-async-message-function))
+
 ;;------------------------------------------------
 ;; Programming Utilities
 ;;------------------------------------------------
