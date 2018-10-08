@@ -36,7 +36,7 @@
   ;; if there is a dired buffer displayed in the next window, use its
   ;; current subdir, instead of the current subdir of this dired buffer
   (setq dired-dwim-target t)
-  (setq dired-listing-switches "-altGhvF --group-directories-first")
+  (setq dired-listing-switches "-altGhF --group-directories-first")
   (add-hook 'dired-mode-hook #'dired-omit-mode)
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
