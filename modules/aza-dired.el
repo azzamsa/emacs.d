@@ -38,6 +38,10 @@
   (setq dired-dwim-target t)
   (setq dired-listing-switches "-altGhF --group-directories-first")
   (add-hook 'dired-mode-hook #'dired-omit-mode)
+
+  (add-to-list 'display-buffer-alist
+               (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
+
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt
