@@ -329,12 +329,6 @@
          ([remap kill-whole-line] . crux-kill-whole-line)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
-(use-package make-md-to-org
-  :defer t
-  :load-path "/aza-packages/"
-  :disabled
-  :bind ("C-c M-m" . make-md-to-org ))
-
 (use-package aza-timestamp
   :defer 4
   :load-path "/aza-packages/"
