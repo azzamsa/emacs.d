@@ -80,14 +80,6 @@
   (setq dimmer-fraction 0.50)
   (dimmer-mode t))
 
-(use-package sublimity
-  :disabled
-  :ensure t
-  :defer 1
-  :config
-  (require 'sublimity-scroll)
-  (sublimity-mode 1))
-
 (use-package golden-ratio-scroll-screen
   :ensure t
   :config
