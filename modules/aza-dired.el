@@ -10,6 +10,9 @@
                ("n" . dired-view-next)
                ("p" . dired-view-previous)
                ("s" . xah-dired-sort)
+               ("&" . ora-dired-do-async-shell-command)
+               ("O" . ora-dired-other-window)
+               ("z" . ora-dired-get-size)
                ("s-o" . dired-open-directory-in-thunar))
          ("C-t" . shell-pop))
   :init
@@ -38,10 +41,6 @@
   (setq dired-dwim-target t)
   (setq dired-listing-switches "-altGhF --group-directories-first")
   (add-hook 'dired-mode-hook #'dired-omit-mode)
-
-  (add-to-list 'display-buffer-alist
-               (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
-
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt

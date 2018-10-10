@@ -92,9 +92,33 @@ Version 2015-07-30"
         ("\\.\\(?:pptx?\\|odt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
         ("\\.\\(?:zip\\|tgz\\)\\'" "file-roller")))
 
-
 (defun dired-open-directory-in-thunar ()
   (interactive)
   (start-process "" nil "thunar" "."))
+
+(defun ora-dired-do-async-shell-command ()
+  "Wrap `dired-do-async-shell-command' without popup windows."
+  (interactive)
+  (advice-add 'shell-command-sentinel :override #'ora-shell-command-sentinel)
+  (save-window-excursion
+    (call-interactively 'dired-do-async-shell-command)))
+
+(defun ora-dired-other-window ()
+  (interactive)
+  (if (string= (buffer-name) "*Find*")
+      (find-file-other-window
+       (file-name-directory (dired-get-file-for-visit)))
+    (save-selected-window
+      (dired-find-file-other-window))))
+
+(defun ora-dired-get-size ()
+  (interactive)
+  (let* ((cmd (concat "du -sch "
+                      (mapconcat (lambda (x) (shell-quote-argument (file-name-nondirectory x)))
+                                 (dired-get-marked-files) " ")))
+         (res (shell-command-to-string cmd)))
+    (if (string-match "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$" res)
+        (message (match-string 1 res))
+      (error "unexpected output %s" res))))
 
 (provide 'aza-dired-ext)
