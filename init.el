@@ -447,15 +447,6 @@
   :custom
   (golden-ratio-auto-scale t))
 
-(use-package emacs-anywhere-buffer
-  :disabled
-  :demand t
-  :load-path "/aza-packages/"
-  :config
-  (add-hook 'emacs-startup-hook
-            (lambda ()
-              (create-emacs-anywhere-buffer))))
-
 (use-package avy
   :ensure t
   :defer 4
