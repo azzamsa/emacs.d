@@ -220,9 +220,12 @@
   :diminish undo-tree-mode
   :bind ("C-x u" . undo-tree-visualize)
   :config
-  (global-undo-tree-mode)
+  (setq undo-tree-history-directory-alist
+        `((".*" . ,temporary-file-directory)))
+  (setq undo-tree-auto-save-history t)
   (setq undo-tree-visualizer-timestamps t)
-  (setq undo-tree-visualizer-diff t))
+  (setq undo-tree-visualizer-diff t)
+  (global-undo-tree-mode))
 
 (use-package flyspell
   :defer t
