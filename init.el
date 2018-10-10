@@ -490,6 +490,8 @@
   :custom
   (dired-async-message-function #'my/dired-async-message-function))
 
+(use-package with-editor :ensure t)
+
 ;;------------------------------------------------
 ;; Programming Utilities
 ;;------------------------------------------------
