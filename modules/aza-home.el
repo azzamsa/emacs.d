@@ -53,4 +53,8 @@
   :ensure t
   :defer t)
 
+(defun crontab-e ()
+    (interactive)
+    (with-editor-async-shell-command "crontab -e"))
+
 (provide 'aza-home)
