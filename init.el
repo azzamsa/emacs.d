@@ -142,13 +142,6 @@
 (require 'use-package)
 (setq use-package-verbose t)
 
-(use-package use-package-chords
-  :ensure t
-  :demand t
-  :disabled
-  :config
-  (key-chord-mode 1))
-
 (use-package use-package-ensure-system-package
   :ensure t
   :demand t)
