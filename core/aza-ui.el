@@ -88,4 +88,11 @@
   :custom
   (golden-ratio-scroll-screen-ratio 1.718))
 
+(use-package yascroll
+  :ensure t
+  :config
+  (global-yascroll-bar-mode t)
+  :custom-face
+  (yascroll:thumb-fringe ((t (:background "#91ee98" :foreground "#91ee98")))))
+
 (provide 'aza-ui)
