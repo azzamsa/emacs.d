@@ -67,7 +67,13 @@
 
   (eval-after-load "term"
     '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
-  (add-hook 'term-exec-hook 'oleh-term-exec-hook))
+  (add-hook 'term-exec-hook 'oleh-term-exec-hook)
+
+  ;; Non-zero values for `line-spacing' can mess up ansi-term and co,
+  ;; so we zero it explicitly in those cases.
+  (add-hook 'term-mode-hook
+            (lambda ()
+              (setq line-spacing 0))))
 
 (use-package eterm-256color
   :ensure t
