@@ -57,4 +57,12 @@
     (interactive)
     (with-editor-async-shell-command "crontab -e"))
 
+(use-package keyfreq
+  :ensure t
+  :config
+  (setq keyfreq-file (expand-file-name "emacs.keyfreq" azzamsa-savefile-dir))
+  (setq keyfreq-file-lock (expand-file-name "emacs.keyfreq.lock" azzamsa-savefile-dir))
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
+
 (provide 'aza-home)
