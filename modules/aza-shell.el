@@ -69,5 +69,9 @@
     '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
   (add-hook 'term-exec-hook 'oleh-term-exec-hook))
 
+(use-package eterm-256color
+  :ensure t
+  :config
+  (add-hook 'term-mode-hook #'eterm-256color-mode))
 
 (provide 'aza-shell)
