@@ -90,6 +90,7 @@
   :config
   (add-hook 'term-mode-hook #'eterm-256color-mode))
 
+;;TODO Do I need this on GNU/Linux
 (use-package exec-path-from-shell
   :ensure t
   :config
