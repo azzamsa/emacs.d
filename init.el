@@ -371,11 +371,6 @@
   (([(meta shift up)] . move-text-up)
    ([(meta shift down)] . move-text-down)))
 
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
 
 ;; clean up obsolete buffers automatically
 (use-package midnight
@@ -543,22 +538,6 @@
     (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
     (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
     (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
-
-(use-package xterm-color
-  :ensure t
-  :demand t
-  :config
-  (setq comint-output-filter-functions
-        (remove 'ansi-color-process-output comint-output-filter-functions))
-  (add-hook 'shell-mode-hook
-            (lambda () (add-hook 'comint-preoutput-filter-functions
-                                 'xterm-color-filter nil t))))
-
-(use-package bash-completion
-  :ensure t
-  :defer 3
-  :init
-  (bash-completion-setup))
 
 (use-package editorconfig
   :ensure t

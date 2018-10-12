@@ -76,9 +76,30 @@
             (lambda ()
               (setq line-spacing 0))))
 
+(use-package xterm-color
+  :ensure t
+  :config
+  (setq comint-output-filter-functions
+        (remove 'ansi-color-process-output comint-output-filter-functions))
+  (add-hook 'shell-mode-hook
+            (lambda () (add-hook 'comint-preoutput-filter-functions
+                            'xterm-color-filter nil t))))
+
 (use-package eterm-256color
   :ensure t
   :config
   (add-hook 'term-mode-hook #'eterm-256color-mode))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
+(use-package bash-completion
+  :ensure t
+  :defer 3
+  :init
+  (bash-completion-setup))
 
 (provide 'aza-shell)
