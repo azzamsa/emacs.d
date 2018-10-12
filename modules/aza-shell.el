@@ -23,6 +23,8 @@
     (eshell-send-input)
     (goto-char (point-max)))
 
+  (setq comint-prompt-read-only t)
+
   ;; don't create new frame for helm-eshell-history
   (setq helm-show-completion-display-function
         #'helm-show-completion-default-display-function)
