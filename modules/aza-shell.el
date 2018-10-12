@@ -23,6 +23,7 @@
     (eshell-send-input)
     (goto-char (point-max)))
 
+  (setq comint-input-ignoredups t)
   (setq comint-prompt-read-only t)
 
   ;; don't create new frame for helm-eshell-history
