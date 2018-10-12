@@ -1,7 +1,6 @@
 (require 'aza-shell-prompt)
 
 (use-package eshell
-  :demand t
   :config
   (require 'aza-shell-prompt)
   (require 'helm-eshell)
@@ -24,11 +23,15 @@
     (eshell-send-input)
     (goto-char (point-max)))
 
+  (setq helm-show-completion-display-function
+        #'helm-show-completion-default-display-function)
+
   ;; very strange!. can't use `:bind' for eshell-mode-map
   (add-hook 'eshell-mode-hook
-            #'(lambda ()
-                (define-key eshell-mode-map (kbd "C-c C-l")
-                  'helm-eshell-history))))
+            (lambda ()
+              (define-key eshell-mode-map
+                (kbd "M-p")
+                'helm-eshell-history))))
 
 (use-package shell-here
   :ensure t)
@@ -37,7 +40,7 @@
   :ensure nil
   :no-require t
   :bind ((:map shell-mode-map
-               ("C-c C-l" . helm-comint-input-ring))
+               ("M-p" . helm-comint-input-ring))
          ("s-g" . dirs))
   :init
   (defun oleh-term-exec-hook ()
