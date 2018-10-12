@@ -9,6 +9,7 @@
          ("C-x r b" . helm-filtered-bookmarks)
          ("C-x C-f" . helm-find-files)
          ("C-c h o" . helm-occur)
+         ("C-c h s" . helm-swoop)
          ("C-c h /" . helm-find)
          ("C-c h l" . helm-locate)
          ("C-c p h" . helm-projectile)
@@ -63,5 +64,9 @@
   :after helm
   :config
   (helm-projectile-on))
+
+(use-package helm-swoop
+  :ensure t
+  :after helm)
 
 (provide 'aza-helm)
