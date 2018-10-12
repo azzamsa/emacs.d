@@ -447,6 +447,7 @@
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char-timer))
   :config
+  (global-set-key (kbd "M-g g") 'avy-goto-line)
   (setq avy-background t)
   (setq avy-style 'at-full))
 
