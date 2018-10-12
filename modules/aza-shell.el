@@ -12,59 +12,56 @@
   (setq eshell-history-file-name
         (expand-file-name "history" azzamsa-eshell-dir))
 
+  (defun eshell-this-dir ()
+    "Open or move eshell in `default-directory'."
+    (interactive)
+    (unless (get-buffer eshell-buffer-name)
+      (eshell))
+    (switch-to-buffer eshell-buffer-name)
+    (goto-char (point-max))
+    (eshell-kill-input)
+    (insert (format "cd %s" default-directory))
+    (eshell-send-input)
+    (goto-char (point-max)))
+
   ;; very strange!. can't use `:bind' for eshell-mode-map
   (add-hook 'eshell-mode-hook
             #'(lambda ()
                 (define-key eshell-mode-map (kbd "C-c C-l")
                   'helm-eshell-history))))
 
-(use-package shell
-  :demand t
+(use-package shell-here
+  :ensure t)
+
+(use-package ansi-term
+  :ensure nil
+  :no-require t
   :bind ((:map shell-mode-map
                ("C-c C-l" . helm-comint-input-ring))
          ("s-g" . dirs))
+  :init
+  (defun oleh-term-exec-hook ()
+    (let* ((buff (current-buffer))
+           (proc (get-buffer-process buff)))
+      (set-process-sentinel
+       proc
+       `(lambda (process event)
+          (if (string= event "finished\n")
+              (kill-buffer ,buff))))))
   :config
+  (defun named-term (name)
+    (interactive "sName: ")
+    (ansi-term "/bin/bash" name))
+
   (setq comint-prompt-read-only t) ; make shell-prompt read-only
   (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
   (add-hook 'shell-mode-hook
             'ansi-color-for-comint-mode-on ; add color to shell
-            'dirtrack-mode t))
+            'dirtrack-mode t)
 
-(use-package shell-pop
-  :ensure t
-  :demand t
-  :bind ((:map shell-mode-map
-               ("C-c C-l" . helm-comint-input-ring))
-         (:map eshell-mode-map
-               ("C-c C-l" . helm-eshell-history)))
-  :custom
-  (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*"
-                                (lambda nil (ansi-term shell-pop-term-shell)))))
-  (shell-pop-term-shell "/bin/bash")
-  (shell-pop-universal-key "C-t")
-  (shell-pop-window-size 30)
-  (shell-pop-full-span t)
-  (shell-pop-window-position "bottom"))
+  (eval-after-load "term"
+    '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
+  (add-hook 'term-exec-hook 'oleh-term-exec-hook))
 
-
-(define-key dired-mode-map (kbd "'") 'eshell-this-dir)
-
- ;;;###autoload
-(defun eshell-this-dir ()
-  "Open or move eshell in `default-directory'."
-  (interactive)
-  (unless (get-buffer eshell-buffer-name)
-    (eshell))
-  (switch-to-buffer eshell-buffer-name)
-  (goto-char (point-max))
-  (eshell-kill-input)
-  (insert (format "cd %s" default-directory))
-  (eshell-send-input)
-  (goto-char (point-max)))
-
-;;;###autoload
-(defun named-term (name)
-  (interactive "sName: ")
-  (ansi-term "/bin/bash" name))
 
 (provide 'aza-shell)

@@ -13,8 +13,9 @@
                ("&" . ora-dired-do-async-shell-command)
                ("O" . ora-dired-other-window)
                ("z" . ora-dired-get-size)
-               ("s-o" . dired-open-directory-in-thunar))
-         ("C-t" . shell-pop))
+               ("'" . eshell-this-dir)
+               ("`" . shell-here)
+               ("s-o" . dired-open-directory-in-thunar)))
   :init
   (require 'aza-dired-ext)
   (require 'dired-x) ; dired-jump is cool
