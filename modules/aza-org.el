@@ -59,7 +59,8 @@
 
 (use-package ox-gfm
   :ensure t
-  :after org)
+  :after org
+  :defer t)
 
 (use-package org-download
   :ensure t
@@ -80,7 +81,6 @@
 (use-package org-cliplink
   :ensure t
   :after org
-  :demand t
   :bind ("C-l" . org-cliplink)
   :config
   (setq org-cliplink-max-length 60))
