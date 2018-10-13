@@ -57,6 +57,8 @@
     (interactive)
     (with-editor-async-shell-command "crontab -e"))
 
+;; TODO pyuic
+
 (use-package keyfreq
   :ensure t
   :config

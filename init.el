@@ -307,7 +307,8 @@
         ;; problems with remote files
         recentf-auto-cleanup 'never)
   (setq recentf-exclude '("/\\.emacs\\.d/documents/brain/"
-                          "/\\.emacs\\.d/elpa/"))
+                          "/\\.emacs\\.d/elpa/"
+                          "/tmp/"))
   (recentf-mode +1))
 
 (use-package crux
