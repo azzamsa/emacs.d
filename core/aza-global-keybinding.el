@@ -26,10 +26,6 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
-;; Console
-(global-set-key (kbd "C-x m") 'eshell)
-(global-set-key (kbd "C-x M-m") 'shell)
-
 ;; emacs fix
 (global-set-key (kbd "C-S-k") 'my-delete-line-backward) ; Ctrl+Shift+k
 (global-set-key (kbd "C-k") 'my-delete-line)
