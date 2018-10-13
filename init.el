@@ -272,8 +272,8 @@
 (use-package git-timemachine :ensure t :defer t)
 
 (use-package windmove
-  :config
   ;; use shift + arrow keys to switch between visible buffers
+  :config
   (windmove-default-keybindings))
 
 (use-package savehist
@@ -288,8 +288,8 @@
         savehist-file (expand-file-name "savehist" azzamsa-savefile-dir))
   (savehist-mode +1))
 
-;; saveplace remembers your location in a file when saving files
 (use-package saveplace
+  ;; saveplace remembers your location in a file when saving files
   :defer 2
   :init (save-place-mode 1)
   :config
@@ -371,9 +371,8 @@
   (([(meta shift up)] . move-text-up)
    ([(meta shift down)] . move-text-down)))
 
-
-;; clean up obsolete buffers automatically
 (use-package midnight
+  ;; clean up obsolete buffers automatically
   :ensure t
   :defer 6)
 
@@ -423,6 +422,7 @@
   (desktop-save-mode +1))
 
 (use-package desktop+
+  ;; additional package to save term/shell buffers
   :ensure t)
 
 (use-package golden-ratio
@@ -519,8 +519,8 @@
   (setq whitespace-line-column 80)
   (setq whitespace-style '(face tabs trailing lines-tail)))
 
-;; clean only edited lines
 (use-package ws-butler
+  ;; clean only edited lines
   :ensure t
   :config
   (ws-butler-global-mode t))
