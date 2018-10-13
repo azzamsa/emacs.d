@@ -52,6 +52,13 @@
                                  (file+headline "~/.emacs.d/documents/sletz.org" "Tickler")
                                  "* %i%? \n %U")))
   (global-set-key (kbd "C-c c") 'org-capture)
+
+  ;; Make windmove work in org-mode:
+  (add-hook 'org-shiftup-final-hook 'windmove-up)
+  (add-hook 'org-shiftleft-final-hook 'windmove-left)
+  (add-hook 'org-shiftdown-final-hook 'windmove-down)
+  (add-hook 'org-shiftright-final-hook 'windmove-right)
+
   (add-hook 'org-mode-hook (lambda ()
                              (my-org-mode-hook)
                              (turn-on-auto-fill)
