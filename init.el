@@ -129,7 +129,7 @@
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
 
-(setq initial-major-mode 'org-mode)
+(setq initial-major-mode 'fundamental-mode)
 (setq initial-scratch-message "\
 ℝ𝕖𝕒𝕕𝕪 𝕥𝕠 𝕤𝕖𝕣𝕧𝕖 𝕪𝕠𝕦. 𝕄𝕒𝕤𝕥𝕖𝕣! ")
 
@@ -313,6 +313,7 @@
 
 (use-package crux
   :ensure t
+  :defer 4
   :bind (("C-c w" . crux-swap-windows)
          ;;("M-o" . crux-smart-open-line)
          ("C-a" . crux-move-beginning-of-line)
@@ -361,6 +362,7 @@
 
 (use-package easy-kill
   :ensure t
+  :defer 3
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill)
   (global-set-key [remap mark-sexp] 'easy-mark))
@@ -468,7 +470,9 @@
   :custom
   (dired-async-message-function #'my/dired-async-message-function))
 
-(use-package with-editor :ensure t)
+(use-package with-editor
+  :ensure t
+  :defer t)
 
 ;;------------------------------------------------
 ;; Programming Utilities
@@ -523,6 +527,7 @@
 (use-package ws-butler
   ;; clean only edited lines
   :ensure t
+  :defer 3
   :config
   (ws-butler-global-mode t))
 

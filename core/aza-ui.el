@@ -57,7 +57,7 @@
 
 (use-package which-key
   :ensure t
-  :defer 1
+  :defer 3
   :diminish which-key-mode
   :config
   (which-key-mode +1))
