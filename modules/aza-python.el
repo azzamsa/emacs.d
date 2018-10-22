@@ -2,7 +2,7 @@
   :ensure t
   ;; demanded by eshell prompt
   ;; for venv-current-name symbols
-  :demand t
+  :after eshell
   :init
   (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
@@ -12,6 +12,7 @@
 
 (use-package company-jedi
   :ensure t
+  :after elpy
   :init
   (add-hook 'python-mode-hook 'my/python-mode-hook))
 

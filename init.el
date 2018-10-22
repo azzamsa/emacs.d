@@ -170,6 +170,7 @@
 ;; TODO research about smartparens
 (use-package smartparens
   :ensure t
+  :defer 3
   :diminish " Sp"
   :config
   (require 'smartparens-config)
