@@ -24,6 +24,7 @@
               (lambda ()
                 (yas-minor-mode t)
                 (turn-on-reftex)
+                (flyspell-mode)
                 (turn-on-auto-fill)))))
 
 (use-package reftex
