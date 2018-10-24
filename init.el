@@ -149,12 +149,6 @@
 (use-package diminish
   :demand t)
 
-;; Theming
-(use-package zenburn-theme
-  :ensure t
-  :config
-  (load-theme 'zenburn t))
-
 ;; packages
 (use-package projectile
   :defer t
@@ -560,7 +554,7 @@
 ;;------------------------------------------------
 ;; Modules
 ;;------------------------------------------------
-
+(require 'aza-themes)
 (require 'aza-dired)
 (require 'aza-helm)
 
