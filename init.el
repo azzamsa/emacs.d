@@ -469,6 +469,12 @@
   :ensure t
   :defer t)
 
+(use-package auto-capitalize
+  :defer 4
+  :load-path "elisp/auto-capitalize"
+  :config
+  (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode))
+
 ;;------------------------------------------------
 ;; Programming Utilities
 ;;------------------------------------------------
