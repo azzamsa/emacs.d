@@ -71,9 +71,7 @@
   :defer t
   :config
   (setq erc-hide-list '("PART" "QUIT" "JOIN"))
-  (setq erc-autojoin-channels-alist '(("freenode.net"
-                                       "#emacs"
-                                       "#emacs-beginners"))
+  (setq erc-autojoin-channels-alist '(("freenode.net"))
         erc-server "irc.freenode.net"
         erc-nick "azzamsa")
   (setq erc-log-channels-directory "~/.erc/logs/")
