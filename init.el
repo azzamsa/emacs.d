@@ -326,15 +326,11 @@
          ([remap kill-whole-line] . crux-kill-whole-line)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
-(use-package aza-timestamp
-  :defer 4
-  :load-path "/aza-packages/"
-  :bind (("s-t" . today)))
-
 (use-package aza-scripts
   :defer 2
   :load-path "/aza-packages/"
-  :bind (("C-c k" . aza-kill-other-buffers)))
+  :bind (("C-c k" . aza-kill-other-buffers)
+         ("s-t" . today)))
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
@@ -563,6 +559,7 @@
 (require 'aza-themes)
 (require 'aza-dired)
 (require 'aza-helm)
+(require 'aza-shell)
 
 ;; writing
 (require 'aza-org)
@@ -579,18 +576,14 @@
 
 ;;; emacs is home
 (require 'aza-home)
-(require 'aza-calendar)
-(require 'aza-irc)
-(require 'aza-shell)
 
 ;; emacs fix
 (require 'aza-emacs-fix)
 
 ;; my packages
-(require 'aza-timestamp)
 (require 'aza-scripts)
 
-;; local
+;; unpublished configuration
 (require 'init-local)
 
 ;;------------------------------------------------
