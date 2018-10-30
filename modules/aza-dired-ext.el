@@ -89,6 +89,7 @@ Version 2015-07-30"
          "mpv")
         ("\\.\\(?:mp3\\|flac\\|wv\\)\\'" "mpv")
         ("\\.html?\\'" "firefox")
+        ("\\.mm?\\'" "freeplane")
         ("\\.\\(?:pptx?\\|odt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
         ("\\.ui?\\'" "qtchooser -run-tool=designer -qt=5")
         ("\\.\\(?:zip\\|tgz\\)\\'" "file-roller")))
