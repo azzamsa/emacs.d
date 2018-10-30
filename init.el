@@ -144,22 +144,21 @@
   :ensure t
   :demand t)
 
+(setq use-package-always-ensure t)
+
 (use-package diminish
   :demand t)
 
 ;; packages
-(use-package projectile
-  :ensure t
+(use-package projectile  
   :diminish " P"
   :bind ("s-p" . projectile-command-map))
 
 (use-package expand-region
-  :ensure t
   :bind ("C-=" . er/expand-region))
 
 ;; TODO research about smartparens
 (use-package smartparens
-  :ensure t
   :defer 3
   :diminish " Sp"
   :config
@@ -184,7 +183,6 @@
   (setq-default abbrev-mode t))
 
 (use-package company
-  :ensure t
   :defer 1
   :diminish " ⚡"
   :config
@@ -195,17 +193,14 @@
   (global-company-mode +1))
 
 (use-package company-box
-  :ensure t
   :after company
   :diminish
   :hook (company-mode . company-box-mode))
 
 (use-package flycheck
-  :ensure t
   :defer t)
 
 (use-package undo-tree
-  :ensure t
   :diminish undo-tree-mode
   :bind ("C-x u" . undo-tree-visualize)
   :config
@@ -221,7 +216,6 @@
   :diminish " ⛿"
   :config
   (use-package flyspell-correct-helm
-    :ensure t
     :bind (:map flyspell-mode-map
                 ("C-;" . flyspell-correct-previous-word-generic)))
 
@@ -240,7 +234,6 @@
   (setq uniquify-ignore-buffers-re "^\\*"))
 
 (use-package super-save
-  :ensure t
   :defer 2
   :diminish super-save-mode
   :config
@@ -248,23 +241,20 @@
   (super-save-mode +1))
 
 (use-package rainbow-delimiters
-  :ensure t
   :defer 5
   :diminish rainbow-delimiters-mode)
 
 (use-package rainbow-mode
-  :ensure t
   :defer 5
   :diminish rainbow-mode
   :config
   (add-hook 'prog-mode-hook #'rainbow-mode))
 
 (use-package magit
-  :ensure t
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch-popup)))
 
-(use-package git-timemachine :ensure t :defer t)
+(use-package git-timemachine :defer t)
 
 (use-package windmove
   ;; use shift + arrow keys to switch between visible buffers
@@ -307,7 +297,6 @@
   (recentf-mode +1))
 
 (use-package crux
-  :ensure t
   :bind (("C-c w" . crux-swap-windows)
          ;;("M-o" . crux-smart-open-line)
          ("C-a" . crux-move-beginning-of-line)
@@ -332,7 +321,6 @@
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
-  :ensure t
   :defer 5
   :diminish volatile-highlights-mode
   :config
@@ -341,7 +329,6 @@
   (vhl/default-face ((t (:background "#688060")))))
 
 (use-package anzu
-  :ensure t
   :diminish anzu-mode
   :bind (("M-%" . anzu-query-replace)
          ("C-M-%" . anzu-query-replace-regexp))
@@ -349,14 +336,12 @@
   (global-anzu-mode))
 
 (use-package easy-kill
-  :ensure t
   :defer 3
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill)
   (global-set-key [remap mark-sexp] 'easy-mark))
 
 (use-package move-text
-  :ensure t
   :defer 3
   :bind
   (([(meta shift up)] . move-text-up)
@@ -364,18 +349,15 @@
 
 (use-package midnight
   ;; clean up obsolete buffers automatically
-  :ensure t
   :defer 5)
 
 (use-package ace-window
-  :ensure t
   :bind ("M-o" . ace-window)
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (global-set-key [remap other-window] 'ace-window))
 
 (use-package zop-to-char
-  :ensure t
   :bind (("M-z" . zop-up-to-char)
          ("M-Z" . zop-to-char)))
 
@@ -386,7 +368,6 @@
   (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-package eyebrowse
-  :ensure t
   :defer t
   :init
   (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
@@ -413,10 +394,9 @@
 
 (use-package desktop+
   ;; additional package to save term/shell buffers
-  :ensure t)
+  )
 
 (use-package golden-ratio
-  :ensure t
   :disabled
   :defer 2
   :diminish " φ"
@@ -427,7 +407,6 @@
   (golden-ratio-auto-scale t))
 
 (use-package avy
-  :ensure t
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char-timer))
   :config
@@ -435,10 +414,9 @@
   (setq avy-background t)
   (setq avy-style 'at-full))
 
-(use-package spinner :ensure t :defer t)
+(use-package spinner :defer t)
 
 (use-package async
-  :ensure t
   :defer 4
   :config
   (async-bytecomp-package-mode t)
@@ -457,7 +435,6 @@
   (dired-async-message-function #'my/dired-async-message-function))
 
 (use-package with-editor
-  :ensure t
   :defer t)
 
 (use-package auto-capitalize
@@ -467,7 +444,6 @@
   (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode))
 
 (use-package alert
-  :ensure t
   :defer 3
   :custom (alert-default-style 'libnotify))
 
@@ -476,21 +452,17 @@
 ;;------------------------------------------------
 
 (use-package yasnippet
-  :ensure t
   :defer t
   :diminish " yas"
   :config
-  (use-package yasnippet-snippets
-    :ensure t)
+  (use-package yasnippet-snippets)
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode))
 
 (use-package neotree
-  :ensure t
   :bind ([f8] . neotree-toggle)
   :config
-  (use-package all-the-icons
-    :ensure t)
+  (use-package all-the-icons)
   (setq neo-theme
         (if (display-graphic-p)
             'icons
@@ -500,7 +472,6 @@
   (setq projectile-switch-project-action 'neotree-projectile-action))
 
 (use-package diff-hl
-  :ensure t
   :defer 5
   :config
   (global-diff-hl-mode +1)
@@ -522,13 +493,11 @@
 
 (use-package ws-butler
   ;; clean only edited lines
-  :ensure t
   :defer 3
   :config
   (ws-butler-global-mode t))
 
 (use-package multiple-cursors
-  :ensure t
   :defer 4
   :init
   (setq mc/list-file (expand-file-name ".mc-lists.el" azzamsa-savefile-dir))
@@ -541,15 +510,14 @@
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 (use-package editorconfig
-  :ensure t
   :defer 5
   :diminish
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
 
-(use-package gitconfig-mode :ensure t :defer t)
-(use-package gitignore-mode :ensure t :defer t)
-(use-package gitattributes-mode :ensure t :defer t)
+(use-package gitconfig-mode :defer t)
+(use-package gitignore-mode :defer t)
+(use-package gitattributes-mode :defer t)
 
 ;;------------------------------------------------
 ;; Modules
