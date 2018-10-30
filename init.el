@@ -196,6 +196,12 @@
   (setq company-show-numbers t)
   (global-company-mode +1))
 
+(use-package company-box
+  :ensure t
+  :after company
+  :diminish
+  :hook (company-mode . company-box-mode))
+
 (use-package flycheck
   :ensure t
   :defer t)
@@ -462,6 +468,11 @@
   :config
   (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode))
 
+(use-package alert
+  :ensure t
+  :defer 3
+  :custom (alert-default-style 'libnotify))
+
 ;;------------------------------------------------
 ;; Programming Utilities
 ;;------------------------------------------------
@@ -523,14 +534,13 @@
   :defer 4
   :init
   (setq mc/list-file (expand-file-name ".mc-lists.el" azzamsa-savefile-dir))
-  (progn
-    ;; these need to be defined here - if they're lazily loaded with
-    ;; :bind they don't work.
-    (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
-    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-    (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
+  ;; these need to be defined here - if they're lazily loaded with
+  ;; :bind they don't work.
+  (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 (use-package editorconfig
   :ensure t
