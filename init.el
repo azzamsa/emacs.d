@@ -138,8 +138,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; Make use-package available.
-(require 'use-package)
 (setq use-package-verbose t)
 
 (use-package use-package-ensure-system-package
