@@ -1,6 +1,6 @@
 (use-package tex
-  :defer t
   :ensure auctex
+  :mode ("\\.tex\\'" . latex-mode)
   :config
   (use-package bibretrieve
     :ensure t)

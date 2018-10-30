@@ -64,11 +64,10 @@
               ("Y" . dired-ranger-paste)))
 
 (use-package dired-subtree
-  :config
-  (bind-keys :map dired-mode-map
+  :ensure t
+  :bind (:map dired-mode-map
              ("i" . dired-subtree-insert)
              (";" . dired-subtree-remove)))
-
 
 (use-package dired-narrow
   :ensure t

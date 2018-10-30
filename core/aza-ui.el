@@ -82,6 +82,7 @@
 
 (use-package golden-ratio-scroll-screen
   :ensure t
+  :defer 2
   :config
   (global-set-key [remap scroll-down-command] 'golden-ratio-scroll-screen-down)
   (global-set-key [remap scroll-up-command] 'golden-ratio-scroll-screen-up)
@@ -90,6 +91,7 @@
 
 (use-package yascroll
   :ensure t
+  :defer 2
   :config
   (global-yascroll-bar-mode t)
   :custom-face

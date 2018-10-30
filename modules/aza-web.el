@@ -1,6 +1,5 @@
 (use-package php-mode
   :ensure t
-  :defer t
   :mode "\\.php\\'"
   :config
   (use-package php-beautifier
@@ -17,7 +16,6 @@
 
 (use-package web-mode
   :ensure t
-  :defer t
   :mode ("\\.html?\\'"
          "\\.css\\'"
          "\\.php\\'")

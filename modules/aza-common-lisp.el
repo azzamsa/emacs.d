@@ -1,6 +1,5 @@
 (use-package slime
   :ensure t
-  :defer t
   :bind (:map slime-mode-map
               ("C-c C-s" . slime-selector))
   :config
@@ -15,6 +14,7 @@
 (use-package slime-company
   :ensure t
   :defer t
+  :after slime
   :config
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl"))

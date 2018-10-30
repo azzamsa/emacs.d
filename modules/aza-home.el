@@ -4,6 +4,7 @@
 
 (use-package pomidor
   :ensure t
+  :defer t
   :config
   (setq pomidor-sound-tick nil
         pomidor-sound-tack nil
@@ -19,6 +20,7 @@
 (use-package pdf-tools
   :ensure t
   :defer t
+  :magic ("%PDF" . pdf-view-mode)
   :config
   (pdf-tools-install))
 
@@ -29,7 +31,6 @@
 
 (use-package ledger-mode
   :ensure t
-  :defer t
   :mode ("\\.journal\\'" "\\.hledger\\'")
   :config
   (setq ledger-binary-path "hledger")
@@ -61,6 +62,7 @@
 
 (use-package keyfreq
   :ensure t
+  :defer 5
   :config
   (setq keyfreq-file (expand-file-name "emacs.keyfreq" azzamsa-savefile-dir))
   (setq keyfreq-file-lock (expand-file-name "emacs.keyfreq.lock" azzamsa-savefile-dir))

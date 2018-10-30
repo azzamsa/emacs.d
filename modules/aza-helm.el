@@ -48,25 +48,22 @@
 
 (use-package helm-org-rifle
   :ensure t
-  :after helm
   :bind ("C-c h r" . helm-org-rifle))
 
 (use-package helm-ag
   :ensure t
-  :after helm
   :ensure-system-package ag
-  :defer 4
   :diminish helm-ag-mode
   :bind ("C-c a" . helm-ag))
 
 (use-package helm-projectile
   :ensure t
-  :after helm
+  :defer t
   :config
   (helm-projectile-on))
 
 (use-package helm-swoop
   :ensure t
-  :after helm)
+  :defer t)
 
 (provide 'aza-helm)

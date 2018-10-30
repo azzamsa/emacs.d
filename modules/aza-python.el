@@ -18,7 +18,7 @@
 
 (use-package elpy
   :ensure t
-  :defer 4
+  :mode ("\\.py\\'" . python-mode)
   :bind (:map elpy-mode-map
               ("C-c C-y l" . elpy-shell-clear-shell))
   :config

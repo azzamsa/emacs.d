@@ -1,6 +1,7 @@
 (require 'aza-shell-prompt)
 
 (use-package eshell
+  :defer t
   :config
   (require 'aza-shell-prompt)
   (require 'helm-eshell)
@@ -37,12 +38,19 @@
                 (kbd "M-p")
                 'helm-eshell-history))))
 
+(use-package shell
+  :bind ((:map shell-mode-map
+               ("M-p" . helm-comint-input-ring))
+         ("s-g" . dirs)))
+
 (use-package shell-here
-  :ensure t)
+  :ensure t
+  :after shell)
 
 (use-package ansi-term
   :ensure nil
   :no-require t
+  :defer t
   :bind ((:map shell-mode-map
                ("M-p" . helm-comint-input-ring))
          ("s-g" . dirs))
@@ -78,6 +86,7 @@
 
 (use-package xterm-color
   :ensure t
+  :defer t
   :config
   (setq comint-output-filter-functions
         (remove 'ansi-color-process-output comint-output-filter-functions))
@@ -87,12 +96,14 @@
 
 (use-package eterm-256color
   :ensure t
+  :defer t
   :config
   (add-hook 'term-mode-hook #'eterm-256color-mode))
 
 ;;TODO Do I need this on GNU/Linux
 (use-package exec-path-from-shell
   :ensure t
+  :defer 3
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))

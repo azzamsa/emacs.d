@@ -151,14 +151,12 @@
 
 ;; packages
 (use-package projectile
-  :defer t
   :ensure t
   :diminish " P"
   :bind ("s-p" . projectile-command-map))
 
 (use-package expand-region
   :ensure t
-  :defer 4
   :bind ("C-=" . er/expand-region))
 
 ;; TODO research about smartparens
@@ -203,7 +201,6 @@
   :defer t)
 
 (use-package undo-tree
-  :defer 3
   :ensure t
   :diminish undo-tree-mode
   :bind ("C-x u" . undo-tree-visualize)
@@ -260,7 +257,6 @@
 
 (use-package magit
   :ensure t
-  :defer t
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch-popup)))
 
@@ -308,7 +304,6 @@
 
 (use-package crux
   :ensure t
-  :defer 4
   :bind (("C-c w" . crux-swap-windows)
          ;;("M-o" . crux-smart-open-line)
          ("C-a" . crux-move-beginning-of-line)
@@ -327,7 +322,6 @@
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)))
 
 (use-package aza-scripts
-  :defer 2
   :load-path "/aza-packages/"
   :bind (("C-c k" . aza-kill-other-buffers)
          ("s-t" . today)))
@@ -344,7 +338,6 @@
 
 (use-package anzu
   :ensure t
-  :defer t
   :diminish anzu-mode
   :bind (("M-%" . anzu-query-replace)
          ("C-M-%" . anzu-query-replace-regexp))
@@ -368,11 +361,10 @@
 (use-package midnight
   ;; clean up obsolete buffers automatically
   :ensure t
-  :defer 6)
+  :defer 5)
 
 (use-package ace-window
   :ensure t
-  :defer 1
   :bind ("M-o" . ace-window)
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
@@ -391,7 +383,7 @@
 
 (use-package eyebrowse
   :ensure t
-  :defer 1
+  :defer t
   :init
   (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
   (global-unset-key (kbd "C-c C-w"))
@@ -432,7 +424,6 @@
 
 (use-package avy
   :ensure t
-  :defer 4
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char-timer))
   :config
@@ -487,7 +478,6 @@
 
 (use-package neotree
   :ensure t
-  :defer t
   :bind ([f8] . neotree-toggle)
   :config
   (use-package all-the-icons

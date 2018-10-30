@@ -1,6 +1,6 @@
 (use-package org
   :ensure org
-  :demand
+  :defer 1
   :pin org
   :bind (:map org-mode-map
               ("C-c l" . org-store-link)
@@ -71,7 +71,7 @@
 
 (use-package org-download
   :ensure t
-  :after org
+  :defer t
   :config
   (setq org-download-annotate-function (lambda (_link) ""))
   (setq org-download-screenshot-method "scrot -s %s")
@@ -87,7 +87,7 @@
 
 (use-package org-cliplink
   :ensure t
-  :after org
+  :defer 5
   :bind ("C-l" . org-cliplink)
   :config
   (setq org-cliplink-max-length 60))
