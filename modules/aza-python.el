@@ -1,5 +1,4 @@
 (use-package elpy
-  :ensure t
   :init (with-eval-after-load 'python (elpy-enable))
   :commands elpy-enable
   :bind (:map elpy-mode-map
@@ -19,7 +18,6 @@
   (setq elpy-rpc-backend "jedi"))
 
 (use-package virtualenvwrapper
-  :ensure t
   ;; demanded by eshell prompt
   ;; for venv-current-name symbols
   :after eshell
@@ -31,7 +29,6 @@
   (add-to-list 'company-backends 'company-jedi))
 
 (use-package company-jedi
-  :ensure t
   :after elpy
   :init
   (add-hook 'python-mode-hook 'my/python-mode-hook))

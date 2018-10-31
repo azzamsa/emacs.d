@@ -33,14 +33,12 @@
   :config (company-auctex-init))
 
 (use-package reftex
-  :ensure t
   :after auctex
   :bind (:map reftex-mode-map
               ("C-c r r" . reftex-query-replace-document)
               ("C-c r g" . reftex-grep-document)))
 
 (use-package helm-bibtex
-  :ensure t
   :after (helm auctex)
   :bind ("C-c h b" . helm-bibtex-with-local-bibliography))
 

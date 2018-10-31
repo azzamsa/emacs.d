@@ -1,5 +1,4 @@
 (use-package helm
-  :ensure t
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x C-m" . helm-M-x)
@@ -47,23 +46,19 @@
           "ack-grep -H --no-group --no-color %e %p %f")))
 
 (use-package helm-org-rifle
-  :ensure t
   :bind ("C-c h r" . helm-org-rifle))
 
 (use-package helm-ag
-  :ensure t
   :ensure-system-package ag
   :diminish helm-ag-mode
   :bind ("C-c a" . helm-ag))
 
 (use-package helm-projectile
-  :ensure t
   :defer t
   :config
   (helm-projectile-on))
 
 (use-package helm-swoop
-  :ensure t
   :defer t)
 
 (provide 'aza-helm)

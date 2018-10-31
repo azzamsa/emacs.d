@@ -62,12 +62,10 @@
 (use-package ob-python :ensure nil :after org)
 
 (use-package ox-gfm
-  :ensure t
   :after org
   :defer t)
 
 (use-package org-download
-  :ensure t
   :defer t
   :config
   (setq org-download-annotate-function (lambda (_link) ""))
@@ -75,7 +73,6 @@
   (setq org-download-image-org-width 300))
 
 (use-package org-bullets
-  :ensure t
   :after org
   :commands (org-bullets-mode)
   :init (add-hook 'org-mode-hook
@@ -83,7 +80,6 @@
                     (org-bullets-mode 1))))
 
 (use-package org-cliplink
-  :ensure t
   :defer 5
   :bind ("C-l" . org-cliplink)
   :config

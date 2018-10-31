@@ -1,5 +1,4 @@
 (use-package slime
-  :ensure t
   :bind (:map slime-mode-map
               ("C-c C-s" . slime-selector))
   :config
@@ -12,7 +11,6 @@
         slime-contribs '(slime-company slime-fancy slime-cl-indent)))
 
 (use-package slime-company
-  :ensure t
   :defer t
   :after slime
   :config

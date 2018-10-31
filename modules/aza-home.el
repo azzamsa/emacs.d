@@ -3,7 +3,6 @@
 ;;------------------------------------------------
 
 (use-package pomidor
-  :ensure t
   :defer t
   :config
   (setq pomidor-sound-tick nil
@@ -18,26 +17,22 @@
   (pomidor-timer-face ((t (:height 3.0)))))
 
 (use-package pdf-tools
-  :ensure t
   :defer t
   :magic ("%PDF" . pdf-view-mode)
   :config
   (pdf-tools-install))
 
 (use-package mingus
-  :ensure t
   :ensure-system-package mpd
   :defer t)
 
 (use-package ledger-mode
-  :ensure t
   :mode ("\\.journal\\'" "\\.hledger\\'")
   :config
   (setq ledger-binary-path "hledger")
   (setq ledger-mode-should-check-version nil))
 
 (use-package org-brain
-  :ensure t
   :defer t
   :init
   (setq org-brain-path "~/.emacs.d/documents/brain")
@@ -51,17 +46,15 @@
   (setq org-brain-title-max-length 30))
 
 (use-package presentation
-  :ensure t
   :defer t)
 
 (defun crontab-e ()
-    (interactive)
-    (with-editor-async-shell-command "crontab -e"))
+  (interactive)
+  (with-editor-async-shell-command "crontab -e"))
 
 ;; TODO pyuic
 
 (use-package keyfreq
-  :ensure t
   :defer 5
   :config
   (setq keyfreq-file (expand-file-name "emacs.keyfreq" azzamsa-savefile-dir))

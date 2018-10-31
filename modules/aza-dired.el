@@ -57,20 +57,20 @@
   (setq wdired-use-dired-vertical-movement 'sometimes))
 
 (use-package dired-ranger
-  :ensure t
+  :after dired
   :bind (:map dired-mode-map
               ("W" . dired-ranger-copy)
               ("X" . dired-ranger-move)
               ("Y" . dired-ranger-paste)))
 
 (use-package dired-subtree
-  :ensure t
+  :after dired
   :bind (:map dired-mode-map
-             ("i" . dired-subtree-insert)
-             (";" . dired-subtree-remove)))
+              ("i" . dired-subtree-insert)
+              (";" . dired-subtree-remove)))
 
 (use-package dired-narrow
-  :ensure t
+  :after dired
   :bind (:map dired-mode-map
               ("\\" . dired-narrow)))
 

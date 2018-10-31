@@ -44,7 +44,6 @@
          ("s-g" . dirs)))
 
 (use-package shell-here
-  :ensure t
   :after shell)
 
 (use-package ansi-term
@@ -85,24 +84,21 @@
               (setq line-spacing 0))))
 
 (use-package xterm-color
-  :ensure t
   :defer t
   :config
   (setq comint-output-filter-functions
         (remove 'ansi-color-process-output comint-output-filter-functions))
   (add-hook 'shell-mode-hook
             (lambda () (add-hook 'comint-preoutput-filter-functions
-                            'xterm-color-filter nil t))))
+                                 'xterm-color-filter nil t))))
 
 (use-package eterm-256color
-  :ensure t
   :defer t
   :config
   (add-hook 'term-mode-hook #'eterm-256color-mode))
 
 ;;TODO Do I need this on GNU/Linux
 (use-package exec-path-from-shell
-  :ensure t
   :defer 3
   :config
   (when (memq window-system '(mac ns x))

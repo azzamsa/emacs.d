@@ -14,11 +14,9 @@
   :load-path "elisp/php-beautifier/")
 
 (use-package company-php
-  :ensure t
   :after php)
 
 (use-package web-mode
-  :ensure t
   :mode ("\\.html?\\'"
          "\\.css\\'"
          "\\.php\\'")
@@ -31,7 +29,6 @@
   (setq web-mode-enable-auto-quoting nil))
 
 (use-package emmet-mode
-  :ensure t
   :bind (:map emmet-mode-keymap
               ("M-e" . emmet-expand-line))
   :config (add-hook 'web-mode-hook 'emmet-mode))

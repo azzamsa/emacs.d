@@ -1,14 +1,12 @@
 (use-package rust-mode
-  :ensure t
   :defer t
   :config
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'rust-mode-hook #'cargo-minor-mode))
 
 (use-package racer
-  :after rust
-  :ensure t
   :defer t
+  :after rust
   :config
   (setq racer-cmd "~/.cargo/bin/racer")
   (setq racer-rust-src-path (expand-file-name (getenv "RUST_SRC_PATH")))
@@ -18,8 +16,8 @@
 (setq rust-format-on-save t)
 
 (use-package flycheck-rust
-  :ensure t
   :defer t
+  :after rust
   :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (provide 'aza-rust)

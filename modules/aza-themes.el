@@ -1,8 +1,6 @@
-(use-package zenburn-theme :ensure t)
+(use-package zenburn-theme)
 
-(use-package github-theme
-  :ensure t
-  :defer t)
+(use-package github-theme :defer t)
 
 ;; If you don't customize it, this is the theme you get.
 (setq-default custom-enabled-themes '(zenburn))

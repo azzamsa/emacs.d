@@ -168,6 +168,7 @@
 (electric-pair-mode 1)
 
 (use-package abbrev
+  :ensure nil
   :defer 5
   :diminish " Abv"
   :config
@@ -189,8 +190,8 @@
 
 (use-package company-box
   :after company
-  :diminish
-  :hook (company-mode . company-box-mode))
+  :config
+  (add-hook 'prog-mode-hook #'company-box))
 
 (use-package flycheck
   :defer t)
@@ -219,6 +220,7 @@
   (add-hook 'text-mode-hook 'flyspell-mode))
 
 (use-package uniquify
+  :ensure nil
   :defer 2
   :config
   (setq uniquify-buffer-name-style 'forward)

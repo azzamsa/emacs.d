@@ -1,10 +1,10 @@
 (use-package which-function
+  :ensure nil
   :defer 6
   :config
   (add-hook 'prog-mode-hook #'which-function-mode))
 
 (use-package hl-todo
-  :ensure t
   :defer 6
   :config
   (add-hook 'prog-mode-hook #'hl-todo-mode))
