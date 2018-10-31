@@ -145,7 +145,7 @@
 (setq use-package-verbose t)
 
 ;; packages
-(use-package projectile  
+(use-package projectile
   :diminish " P"
   :bind ("s-p" . projectile-command-map))
 
