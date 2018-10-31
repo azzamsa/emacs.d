@@ -186,12 +186,14 @@
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
   (setq company-show-numbers t)
+  (setq company-tooltip-align-annotations t)
   (global-company-mode +1))
 
-(use-package company-box
+(use-package company-quickhelp
   :after company
   :config
-  (add-hook 'prog-mode-hook #'company-box))
+  (company-quickhelp-mode)
+  (add-hook 'company-mode #'company-quickhelp-mode))
 
 (use-package flycheck
   :defer t)
