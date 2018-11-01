@@ -56,11 +56,12 @@
 (use-package ob-python :ensure nil :after org)
 
 (use-package ox-gfm
-  :after org
-  :defer t)
+  :defer t
+  :after org)
 
 (use-package org-download
   :defer t
+  :after org
   :config
   (setq org-download-annotate-function (lambda (_link) ""))
   (setq org-download-screenshot-method "scrot -s %s")
