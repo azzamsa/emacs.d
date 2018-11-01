@@ -186,7 +186,6 @@
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
   (setq company-show-numbers t)
-  (setq company-tooltip-align-annotations t)
   (global-company-mode +1))
 
 (use-package company-quickhelp
@@ -213,13 +212,14 @@
   :defer t
   :diminish " ⛿"
   :config
-  (use-package flyspell-correct-helm
-    :bind (:map flyspell-mode-map
-                ("C-;" . flyspell-correct-previous-word-generic)))
-
   (setq ispell-program-name "aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra"))
   (add-hook 'text-mode-hook 'flyspell-mode))
+
+(use-package flyspell-correct-helm
+  :after flyspell
+  :bind (:map flyspell-mode-map
+              ("C-;" . flyspell-correct-previous-word-generic)))
 
 (use-package uniquify
   :ensure nil
@@ -364,7 +364,9 @@
   :defer t
   :config
   ;; ediff - don't start another frame
-  (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+  ;; put windows side by side
+  (setq ediff-split-window-function (quote split-window-horizontally)))
 
 (use-package eyebrowse
   :defer t
