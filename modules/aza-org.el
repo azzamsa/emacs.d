@@ -37,13 +37,7 @@
                              ("~/.emacs.d/documents/gtd/tickler.org" :maxlevel . 2)))
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/.emacs.d/documents/gtd/inbox.org" "Tasks")
-                                 "* TODO %i%?")
-                                ("T" "Tickler" entry
-                                 (file+headline "~/.emacs.d/documents/gtd/tickler.org" "Tickler")
-                                 "* %i%? \n %U")
-                                ("S" "Sletz" entry
-                                 (file+headline "~/.emacs.d/documents/sletz.org" "Tickler")
-                                 "* %i%? \n %U")))
+                                 "* TODO %i%?")))
   (global-set-key (kbd "C-c c") 'org-capture)
 
   ;; Make windmove work in org-mode:
