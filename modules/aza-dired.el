@@ -36,6 +36,7 @@
 
   (setq dired-auto-revert-buffer t)
   (setq delete-by-moving-to-trash t)
+  (setq find-file-visit-truename t) ; follow original dir in sysmlink
 
   ;; if there is a dired buffer displayed in the next window, use its
   ;; current subdir, instead of the current subdir of this dired buffer
