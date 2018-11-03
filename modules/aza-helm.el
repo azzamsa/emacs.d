@@ -3,7 +3,6 @@
   :bind (("M-x" . helm-M-x)
          ("C-x C-m" . helm-M-x)
          ("C-x b" . helm-mini)
-         ("C-c f" . helm-recentf)
          ("C-x C-b" . helm-buffers-list)
          ("C-x r b" . helm-filtered-bookmarks)
          ("C-x C-f" . helm-find-files)
@@ -23,6 +22,11 @@
   (setq
    helm-autoresize-max-height 30
    helm-autoresize-min-height 20)
+
+  (setq helm-mini-default-sources '(helm-source-buffers-list
+                                    helm-source-recentf
+                                    helm-source-bookmarks
+                                    helm-source-buffer-not-found))
 
   (setq helm-split-window-in-side-p t
         helm-move-to-line-cycle-in-source t
