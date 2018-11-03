@@ -46,10 +46,12 @@
           "ack-grep -H --no-group --no-color %e %p %f")))
 
 (use-package helm-org-rifle
+  :after helm
   :bind ("C-c h r" . helm-org-rifle))
 
 (use-package helm-ag
   :ensure-system-package ag
+  :after helm
   :diminish helm-ag-mode
   :bind ("C-c a" . helm-ag))
 
@@ -59,6 +61,7 @@
   (helm-projectile-on))
 
 (use-package helm-swoop
-  :defer t)
+  :defer t
+  :after helm)
 
 (provide 'aza-helm)
