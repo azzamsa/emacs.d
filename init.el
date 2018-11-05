@@ -291,6 +291,8 @@
         ;; problems with remote files
         recentf-auto-cleanup 'never)
   (setq recentf-exclude '("/\\.emacs\\.d/documents/brain/"
+                          "/\\.emacs\\.d/documents/brain/"
+                          "/thought/brain/"
                           "/\\.emacs\\.d/elpa/"
                           "/tmp/"))
   (recentf-mode +1))
