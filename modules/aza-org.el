@@ -56,16 +56,17 @@
 (use-package ob-python :ensure nil :after org)
 
 (use-package ox-gfm
-  :defer t
+  :defer 3
   :after org)
 
 (use-package org-download
-  :defer t
+  :defer 3
   :after org
   :config
+  ;; FIXME take from screenshot
   (setq org-download-annotate-function (lambda (_link) ""))
   (setq org-download-screenshot-method "scrot -s %s")
-  (setq org-download-image-org-width 300))
+  (setq org-download-image-org-width 400))
 
 (use-package org-bullets
   :after org
