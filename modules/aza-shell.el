@@ -1,7 +1,32 @@
 (require 'aza-shell-prompt)
 
+;; ---
+;; shell-mode
+;; ---
+(use-package shell
+  :bind ((:map shell-mode-map
+               ("M-p" . helm-comint-input-ring))
+         ("s-g" . dirs)))
+
+(use-package shell-here
+  :after shell)
+
+(use-package xterm-color
+  :defer t
+  :config
+  (setq comint-output-filter-functions
+        (remove 'ansi-color-process-output comint-output-filter-functions))
+
+  (add-hook 'shell-mode-hook
+            (lambda () (add-hook 'comint-preoutput-filter-functions
+                                 'xterm-color-filter nil t))))
+
+;; ---
+;; eshell-mode
+;; ---
 (use-package eshell
   :defer t
+  :disabled
   :config
   (require 'aza-shell-prompt)
   (require 'helm-eshell)
@@ -38,16 +63,12 @@
                 (kbd "M-p")
                 'helm-eshell-history))))
 
-(use-package shell
-  :bind ((:map shell-mode-map
-               ("M-p" . helm-comint-input-ring))
-         ("s-g" . dirs)))
-
-(use-package shell-here
-  :after shell)
-
+;; ---
+;; ansi-term
+;; ---
 (use-package ansi-term
   :ensure nil
+  :disabled
   :no-require t
   :defer t
   :bind ((:map shell-mode-map
@@ -83,23 +104,19 @@
             (lambda ()
               (setq line-spacing 0))))
 
-(use-package xterm-color
-  :defer t
-  :config
-  (setq comint-output-filter-functions
-        (remove 'ansi-color-process-output comint-output-filter-functions))
-  (add-hook 'shell-mode-hook
-            (lambda () (add-hook 'comint-preoutput-filter-functions
-                                 'xterm-color-filter nil t))))
-
+;; ---
+;; other
+;; ---
 (use-package eterm-256color
   :defer t
+  :disabled
   :config
   (add-hook 'term-mode-hook #'eterm-256color-mode))
 
 ;;TODO Do I need this on GNU/Linux
 (use-package exec-path-from-shell
   :defer 3
+  :disabled
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))

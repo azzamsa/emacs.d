@@ -27,6 +27,7 @@
               (add-hook 'before-save-hook 'meghanada-code-beautify-before-save))))
 
 (use-package autodisass-java-bytecode
-  :defer t)
+  :defer t
+  :disabled)
 
 (provide 'aza-java)

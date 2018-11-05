@@ -511,7 +511,8 @@
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 (use-package editorconfig
-  :defer 3
+  :defer t
+  :disabled
   :diminish
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
