@@ -169,7 +169,7 @@
 
 (use-package abbrev
   :ensure nil
-  :defer 5
+  :defer 3
   :diminish " Abv"
   :config
   (cond ((file-exists-p "~/.abbrev_defs")
@@ -240,11 +240,11 @@
   (super-save-mode +1))
 
 (use-package rainbow-delimiters
-  :defer 5
+  :defer 3
   :diminish rainbow-delimiters-mode)
 
 (use-package rainbow-mode
-  :defer 5
+  :defer 3
   :diminish rainbow-mode
   :config
   (add-hook 'prog-mode-hook #'rainbow-mode))
@@ -320,7 +320,7 @@
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
-  :defer 5
+  :defer 3
   :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode +1)
@@ -348,7 +348,7 @@
 
 (use-package midnight
   ;; clean up obsolete buffers automatically
-  :defer 5)
+  :defer 3)
 
 (use-package ace-window
   :bind ("M-o" . ace-window)
@@ -418,7 +418,7 @@
 (use-package spinner :defer t)
 
 (use-package async
-  :defer 4
+  :defer 3
   :config
   (async-bytecomp-package-mode t)
 
@@ -439,7 +439,7 @@
   :defer t)
 
 (use-package auto-capitalize
-  :defer 4
+  :defer 3
   :load-path "elisp/auto-capitalize"
   :config
   (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode))
@@ -473,7 +473,7 @@
   (setq projectile-switch-project-action 'neotree-projectile-action))
 
 (use-package diff-hl
-  :defer 5
+  :defer 3
   :config
   (global-diff-hl-mode +1)
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
@@ -499,7 +499,7 @@
   (ws-butler-global-mode t))
 
 (use-package multiple-cursors
-  :defer 4
+  :defer 3
   :init
   (setq mc/list-file (expand-file-name ".mc-lists.el" azzamsa-savefile-dir))
   ;; these need to be defined here - if they're lazily loaded with
@@ -511,7 +511,7 @@
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 (use-package editorconfig
-  :defer 5
+  :defer 3
   :diminish
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))

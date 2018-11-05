@@ -75,7 +75,7 @@
                     (org-bullets-mode 1))))
 
 (use-package org-cliplink
-  :defer 5
+  :defer 3
   :bind ("C-l" . org-cliplink)
   :config
   (setq org-cliplink-max-length 60))

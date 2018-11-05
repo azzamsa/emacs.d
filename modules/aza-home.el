@@ -55,7 +55,7 @@
 ;; TODO pyuic
 
 (use-package keyfreq
-  :defer 5
+  :defer 3
   :config
   (setq keyfreq-file (expand-file-name "emacs.keyfreq" azzamsa-savefile-dir))
   (setq keyfreq-file-lock (expand-file-name "emacs.keyfreq.lock" azzamsa-savefile-dir))

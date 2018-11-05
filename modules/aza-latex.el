@@ -1,5 +1,7 @@
 (use-package tex
   :ensure auctex
+  :mode ("\\.tex\\'"
+         "\\.bib\\'")
   :config
   (setq LaTeX-verbatim-environments
         '("verbatim" "Verbatim" "lstlisting" "minted"))
