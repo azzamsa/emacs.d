@@ -1,7 +1,6 @@
 (use-package tex
   :ensure auctex
-  :mode ("\\.tex\\'"
-         "\\.bib\\'")
+  :mode "\\.tex\\'"
   :config
   (setq LaTeX-verbatim-environments
         '("verbatim" "Verbatim" "lstlisting" "minted"))
@@ -25,6 +24,7 @@
 
 (use-package bibtex
   :after auctex
+  :mode "\\.bib\\'"
   :hook (bibtex-mode . my/bibtex-fill-column)
   :preface
   (defun my/bibtex-fill-column ()
