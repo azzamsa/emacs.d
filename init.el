@@ -170,7 +170,7 @@
 (use-package abbrev
   :ensure nil
   :defer 3
-  :diminish " Abv"
+  :diminish " ☈"
   :config
   (cond ((file-exists-p "~/.abbrev_defs")
          (read-abbrev-file "~/.abbrev_defs")))
@@ -438,6 +438,7 @@
 
 (use-package auto-capitalize
   :defer 3
+  :diminish " ⛫"
   :load-path "elisp/auto-capitalize"
   :config
   (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode))
@@ -452,11 +453,13 @@
 
 (use-package yasnippet
   :defer t
-  :diminish " yas"
+  :diminish " ⚄"
   :config
-  (use-package yasnippet-snippets)
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode))
+
+(use-package yasnippet-snippets
+  :after yasnippet)
 
 (use-package neotree
   :bind ([f8] . neotree-toggle)
