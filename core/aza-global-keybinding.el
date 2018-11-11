@@ -32,4 +32,7 @@
 (global-set-key (kbd "M-d") 'my-delete-word)
 (global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
 
+;; emacs additions
+(global-set-key (kbd "M-Q") 'unfill-paragraph)
+
 (provide 'aza-global-keybinding)
