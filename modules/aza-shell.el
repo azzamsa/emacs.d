@@ -6,20 +6,23 @@
 (use-package shell
   :bind ((:map shell-mode-map
                ("M-p" . helm-comint-input-ring))
-         ("s-g" . dirs)))
+         ("s-g" . dirs))
+  :config
+  (setq comint-prompt-read-only t) ; make shell-prompt read-only
+  (setq comint-input-ignoredups t))
 
 (use-package shell-here
   :after shell)
 
 (use-package xterm-color
-  :defer t
+  :after shell
   :config
   (setq comint-output-filter-functions
         (remove 'ansi-color-process-output comint-output-filter-functions))
 
   (add-hook 'shell-mode-hook
             (lambda () (add-hook 'comint-preoutput-filter-functions
-                                 'xterm-color-filter nil t))))
+                            'xterm-color-filter nil t))))
 
 ;; ---
 ;; eshell-mode
