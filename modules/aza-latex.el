@@ -25,11 +25,12 @@
 (use-package bibtex
   :after auctex
   :mode "\\.bib\\'"
-  :hook (bibtex-mode . my/bibtex-fill-column)
   :preface
   (defun my/bibtex-fill-column ()
     "Ensures that each entry does not exceed 120 characters."
-    (setq fill-column 120)))
+    (setq fill-column 120))
+  :config
+  (add-hook 'bibtex-mode-hook #'my/bibtex-fill-column))
 
 (use-package company-auctex
   :after (auctex company)
