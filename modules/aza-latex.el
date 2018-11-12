@@ -1,6 +1,6 @@
 (use-package tex
   :ensure auctex
-  :mode "\\.tex\\'"
+  :defer t
   :config
   (setq LaTeX-verbatim-environments
         '("verbatim" "Verbatim" "lstlisting" "minted"))
@@ -24,7 +24,6 @@
 
 (use-package bibtex
   :after auctex
-  :mode "\\.bib\\'"
   :preface
   (defun my/bibtex-fill-column ()
     "Ensures that each entry does not exceed 120 characters."
