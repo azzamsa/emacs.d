@@ -588,6 +588,7 @@
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (cl-letf (((symbol-function #'process-list) (lambda ())))
     ad-do-it))
+(setq kill-buffer-query-functions nil)
 
 ;;; Set
 
