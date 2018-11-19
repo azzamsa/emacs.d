@@ -68,6 +68,8 @@
 
 (defconst azzamsa-savefile-dir (expand-file-name "savefile" user-emacs-directory))
 (defconst azzamsa-eshell-dir (expand-file-name "eshell" azzamsa-savefile-dir))
+(defconst azzamsa-core-dir (expand-file-name "modules" user-emacs-directory))
+(defconst azzamsa-modules-dir (expand-file-name "core" user-emacs-directory))
 
 ;; create the savefile dir if it doesn't exist
 (unless (file-exists-p azzamsa-savefile-dir)
@@ -105,9 +107,23 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+(setq create-lockfiles nil)
+
 ;; revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
 (diminish 'auto-revert-mode)
+
+;; Don't prompt for running process
+(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+  (cl-letf (((symbol-function #'process-list) (lambda ())))
+    ad-do-it))
+(setq kill-buffer-query-functions nil)
+
+;; Make it hard to kill emacs
+(setq confirm-kill-emacs #'y-or-n-p)
+
+(setq history-delete-duplicates t)
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -447,6 +463,12 @@
   :defer 3
   :custom (alert-default-style 'libnotify))
 
+(use-package visual-line-mode
+  :defer t
+  :ensure nil
+  :config
+  (add-hook 'text-mode-hook #'visual-line-mode))
+
 ;;------------------------------------------------
 ;; Programming Utilities
 ;;------------------------------------------------
@@ -553,7 +575,7 @@
 (require 'aza-scripts)
 
 ;; unpublished configuration
-(when (file-exists-p "~/.emacs.d/modules/aza-local.el")
+(when (file-exists-p (expand-file-name "aza-local.el" azzamsa-modules-dir))
   (require 'aza-local))
 
 ;;------------------------------------------------
@@ -566,38 +588,6 @@
 ;;------------------------------------------------
 ;; Misc
 ;;------------------------------------------------
-
-;;; Hooks
-
-;; make a shell script executable automatically on save
-(add-hook 'after-save-hook
-          'executable-make-buffer-file-executable-if-script-p)
-
-(add-hook 'text-mode-hook
-          (lambda ()
-            (visual-line-mode t)))
-
-(add-hook 'prog-mode-hook
-          (lambda ()
-            ;; display “lambda” as “λ”
-            (prettify-symbols-mode +1)))
-
-;;; Advice
-(require 'cl-lib)
-(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
-  (cl-letf (((symbol-function #'process-list) (lambda ())))
-    ad-do-it))
-(setq kill-buffer-query-functions nil)
-
-;;; Set
-
-(setq semanticdb-default-save-directory
-      (expand-file-name "semanticdb" azzamsa-savefile-dir))
-
-(setq history-delete-duplicates t)
-
-(setq confirm-kill-emacs #'y-or-n-p)
 
 ;; I hate that custom fruit
 (setq custom-file (expand-file-name "custom.el" azzamsa-savefile-dir))
@@ -615,7 +605,5 @@
 (diminish 'visual-line-mode "Wr")
 (diminish 'auto-fill-function "Fl")
 
-;; keys
-(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 
 ;;; init.el ends here

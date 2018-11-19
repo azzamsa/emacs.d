@@ -1,3 +1,9 @@
+(use-package prettify-symbols-mode
+  :defer t
+  :ensure nil
+  :config
+  (add-hook 'prog-mode-hook #'prettify-symbols-mode))
+
 (use-package which-function
   :ensure nil
   :disabled
@@ -24,5 +30,9 @@
 (if (fboundp 'global-flycheck-mode)
     (global-flycheck-mode +1)
   (add-hook 'prog-mode-hook 'flycheck-mode))
+
+;; make a shell script executable automatically on save
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
 
 (provide 'aza-programming)

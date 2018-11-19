@@ -35,4 +35,7 @@
 ;; emacs additions
 (global-set-key (kbd "M-Q") 'unfill-paragraph)
 
+;; minibuffer
+(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
+
 (provide 'aza-global-keybinding)
