@@ -553,7 +553,8 @@
 (require 'aza-scripts)
 
 ;; unpublished configuration
-(require 'init-local)
+(when (file-exists-p "~/.emacs.d/modules/aza-local.el")
+  (require 'aza-local))
 
 ;;------------------------------------------------
 ;; Core
