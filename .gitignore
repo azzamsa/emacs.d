@@ -9,7 +9,7 @@ savefile/*
 session*
 tramp/
 custom.el
-init-local.el
+aza-local.el
 abbrev_defs
 tramp
 
