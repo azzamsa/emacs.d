@@ -57,7 +57,5 @@
   (interactive)
   (switch-to-buffer "emacs-anywhere.md"))
 
-(provide 'emacs-anywhere-buffer)
-
 
 (provide 'aza-scripts)
