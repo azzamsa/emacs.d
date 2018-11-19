@@ -9,8 +9,7 @@
             (lambda ()
               (yas-minor-mode t)
               (turn-on-reftex)
-              (flyspell-mode)
-              (turn-on-auto-fill)))
+              (flyspell-mode)))
   :custom
   (TeX-PDF-mode t) ; output to pdf
   (TeX-auto-save t) ; enable parse on save.

@@ -574,7 +574,6 @@
 
 (add-hook 'text-mode-hook
           (lambda ()
-            (turn-on-auto-fill)
             (visual-line-mode t)))
 
 (add-hook 'prog-mode-hook

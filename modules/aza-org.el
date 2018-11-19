@@ -48,7 +48,6 @@
 
   (add-hook 'org-mode-hook (lambda ()
                              (my-org-mode-hook)
-                             (turn-on-auto-fill)
                              (which-function-mode -1))))
 
 (use-package ob-org :ensure nil :after org)
