@@ -3,8 +3,8 @@
 ;;------------------------------------------------
 
 ;; Unbind Pesky Sleep Button
-;;(global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
+;;(global-unset-key [(control w)]) ;; I don't need kill region for now
 
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
 
@@ -31,6 +31,7 @@
 (global-set-key (kbd "C-k") 'my-delete-line)
 (global-set-key (kbd "M-d") 'my-delete-word)
 (global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
+(global-set-key (kbd "C-w") 'my-backward-delete-word)
 
 ;; emacs additions
 (global-set-key (kbd "M-Q") 'unfill-paragraph)
