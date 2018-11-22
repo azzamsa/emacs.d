@@ -29,33 +29,4 @@
   (interactive)
   (insert (format-time-string "%H:%M")))
 
-
-;;;###autoload
-(defun make-md-to-org ()
-  "transform md link format to org"
-  (interactive)
-  (let ((mdlink
-         (buffer-substring-no-properties (region-beginning) (region-end))))
-    (let ((orglink
-           (s-concat "[["
-                     (s-chop-suffix ")" (s-chop-prefix "](" (second (s-slice-at "](" mdlink))))
-                     "]["
-                     (s-chop-prefix "[" (first (s-slice-at "](" mdlink)))
-                     "]]")))
-      (delete-region (region-beginning) (region-end))
-      (insert orglink))))
-
-;;;###autoload
-(defun create-emacs-anywhere-buffer ()
-  "create temporary markdown buffer for easy access"
-  (interactive)
-  (create-file-buffer "emacs-anywhere.md")
-  (with-current-buffer "emacs-anywhere.md"
-    (markdown-mode)))
-
-(defun switch-to-emacs-anywhere-buffer ()
-  (interactive)
-  (switch-to-buffer "emacs-anywhere.md"))
-
-
 (provide 'aza-scripts)
