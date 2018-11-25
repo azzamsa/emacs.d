@@ -439,6 +439,11 @@
   :config
   (add-hook 'text-mode-hook #'visual-line-mode))
 
+(use-package zoom-window
+  :bind ("C-x C-z" . zoom-window-zoom)
+  :custom
+  (zoom-window-mode-line-color "#4c4c4c"))
+
 ;;------------------------------------------------
 ;; Programming Utilities
 ;;------------------------------------------------

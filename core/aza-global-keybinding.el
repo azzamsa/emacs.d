@@ -2,9 +2,6 @@
 ;; Global keybindings
 ;;------------------------------------------------
 
-;; Unbind Pesky Sleep Button
-(global-unset-key [(control x)(control z)])
-
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
 
 ;; Font size
