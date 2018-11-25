@@ -3,7 +3,7 @@
   :defer t
   :config
   (setq LaTeX-verbatim-environments
-        '("verbatim" "Verbatim" "lstlisting" "minted"))
+        '("verbatim" "Verbatim" "lstlisting" "minted" "ignasicblock"))
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   (add-hook 'LaTeX-mode-hook
             (lambda ()
