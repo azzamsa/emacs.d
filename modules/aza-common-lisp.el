@@ -1,6 +1,8 @@
 (use-package slime
-  :bind (:map slime-mode-map
-              ("C-c C-s" . slime-selector))
+  :bind ((:map slime-mode-map
+               ("C-c C-s" . slime-selector))
+         (:map slime-repl-mode-map
+               ("M-p" . helm-slime-repl-history)))
   :config
   (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol
         slime-fuzzy-completion-in-place t
@@ -8,7 +10,7 @@
         slime-autodoc-use-multiline-p t
         slime-auto-start 'always)
   (setq inferior-lisp-program (executable-find "sbcl")
-        slime-contribs '(slime-company slime-fancy slime-cl-indent)))
+        slime-contribs '(slime-company slime-fancy slime-cl-indent helm-slime)))
 
 (use-package slime-company
   :defer t
@@ -16,6 +18,10 @@
   :config
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl"))
+
+(use-package helm-slime
+  :defer t
+  :after slime)
 
 (add-hook 'lisp-mode-hook
           (lambda ()
