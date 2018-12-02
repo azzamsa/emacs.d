@@ -2,7 +2,7 @@
 
 (use-package dired
   :ensure nil
-  :ensure-system-package thunar
+  :ensure-system-package (thunar urxvt)
   :bind ((:map dired-mode-map
                ("/" . ora-dired-up-directory)
                ("C-r" . ora-dired-rsync)
@@ -15,7 +15,8 @@
                ("z" . ora-dired-get-size)
                ("'" . eshell-this-dir)
                ("`" . shell-here)
-               ("s-o" . dired-open-directory-in-thunar)))
+               ("s-o" . dired-open-directory-in-thunar)
+               ("," . term-here)))
   :init
   (require 'aza-dired-ext)
   (require 'dired-x) ; dired-jump is cool

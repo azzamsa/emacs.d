@@ -98,6 +98,10 @@ Version 2015-07-30"
   (interactive)
   (start-process "" nil "thunar" "."))
 
+(defun term-here ()
+  (interactive)
+  (start-process "" nil "term-here"))
+
 (defun ora-shell-command-sentinel (process signal)
   (when (memq (process-status process) '(exit signal))
     (advice-remove 'shell-command-sentinel 'ora-shell-command-sentinel)
