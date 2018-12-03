@@ -353,6 +353,7 @@
   (setq ediff-split-window-function (quote split-window-horizontally)))
 
 (use-package eyebrowse
+  :disabled
   :defer t
   :init
   (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
