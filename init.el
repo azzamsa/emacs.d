@@ -319,7 +319,7 @@
   (global-anzu-mode))
 
 (use-package easy-kill
-  :defer 3
+  :defer 1
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill)
   (global-set-key [remap mark-sexp] 'easy-mark))
