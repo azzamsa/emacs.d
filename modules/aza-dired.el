@@ -16,7 +16,7 @@
                ("'" . eshell-this-dir)
                ("`" . shell-here)
                ("s-o" . dired-open-directory-in-thunar)
-               ("," . term-here)))
+               ("]" . term-here)))
   :init
   (require 'aza-dired-ext)
   (require 'dired-x) ; dired-jump is cool
