@@ -36,7 +36,7 @@
                              ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
                              ("~/.emacs.d/documents/gtd/tickler.org" :maxlevel . 2)))
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                                 (file+headline "~/.emacs.d/documents/gtd/inbox.org" "Tasks")
+                                 (file+headline "~/.emacs.d/documents/gtd/inbox.org" "Inbox")
                                  "* TODO %i%?")))
   (global-set-key (kbd "C-c c") 'org-capture)
 
