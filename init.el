@@ -303,7 +303,6 @@
          ("C-^" . crux-top-join-line)
          ("C-c D" . crux-delete-file-and-buffer)
          ("C-c d" . crux-duplicate-current-line-or-region)
-         ("C-<backspace>" . crux-kill-line-backwards)
          ("C-c n" . crux-cleanup-buffer-or-region)
          ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line))
