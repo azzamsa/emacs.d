@@ -5,7 +5,7 @@
 (global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
 (global-set-key [f6] (lambda ()
                        (interactive)
-                       (find-file (expand-file-name "documents/gtd/project.org" user-emacs-directory))))
+                       (find-file (expand-file-name "documents/gtd/inbox.org" user-emacs-directory))))
 
 ;; Font size
 (global-set-key (kbd "C-+") 'text-scale-increase)
