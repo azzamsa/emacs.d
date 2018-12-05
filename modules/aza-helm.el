@@ -3,6 +3,7 @@
   :bind (("M-x" . helm-M-x)
          ("C-x C-m" . helm-M-x)
          ("C-x b" . helm-mini)
+         ("C-x C-b" . helm-mini)
          ("C-x C-f" . helm-find-files)
          ("C-c h o" . helm-occur)
          ("C-c h s" . helm-swoop)
