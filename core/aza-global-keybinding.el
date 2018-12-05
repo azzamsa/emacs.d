@@ -26,8 +26,8 @@
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;; emacs fix
-(global-set-key (kbd "C-S-k") 'my-delete-line-backward) ; Ctrl+Shift+k
 (global-set-key (kbd "C-k") 'my-delete-line)
+(global-set-key (kbd "<C-backspace>") 'my-delete-line-backward)
 (global-set-key (kbd "M-d") 'my-delete-word)
 (global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
 
