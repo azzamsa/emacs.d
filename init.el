@@ -292,7 +292,7 @@
                           "/thought/brain/"
                           "/\\.emacs\\.d/elpa/"
                           "/tmp/"
-                          ".jpg" ".png"))
+                          ".jpg" ".png" ".pdf"))
   (recentf-mode +1))
 
 (use-package crux
@@ -542,6 +542,12 @@
   :diminish
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
+
+(use-package guru-mode
+  :defer 3
+  :config
+  (setq guru-warn-only t)
+  (guru-global-mode +1))
 
 (use-package gitconfig-mode :defer t)
 (use-package gitignore-mode :defer t)
