@@ -472,39 +472,6 @@
   (paradox-hide-wiki-packages t)
   (paradox-github-token t))
 
-;;------------------------------------------------
-;; Programming Utilities
-;;------------------------------------------------
-
-(use-package yasnippet
-  :defer t
-  :diminish " ⚄"
-  :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook #'yas-minor-mode))
-
-(use-package yasnippet-snippets
-  :after yasnippet)
-
-(use-package neotree
-  :bind ([f8] . neotree-toggle)
-  :config
-  (use-package all-the-icons)
-  (setq neo-theme
-        (if (display-graphic-p)
-            'icons
-          'arrow))
-  (setq neo-smart-open t)
-  ;;work with projectile
-  (setq projectile-switch-project-action 'neotree-projectile-action))
-
-(use-package diff-hl
-  :defer 3
-  :config
-  (global-diff-hl-mode +1)
-  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
-
 (use-package whitespace
   :diminish whitespace-mode
   :defer 3
@@ -536,22 +503,6 @@
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
-(use-package editorconfig
-  :defer t
-  :disabled
-  :diminish
-  :config
-  (add-hook 'prog-mode-hook #'editorconfig-mode))
-
-(use-package guru-mode
-  :defer 3
-  :config
-  (setq guru-warn-only t)
-  (guru-global-mode +1))
-
-(use-package gitconfig-mode :defer t)
-(use-package gitignore-mode :defer t)
-(use-package gitattributes-mode :defer t)
 
 ;;------------------------------------------------
 ;; Modules
