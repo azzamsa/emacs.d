@@ -308,7 +308,7 @@
          ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line))
   :config
-  ;; add the ability to cut the current line, without marking it
+  ;; add the ability to cut the current line, without marking it (C-w)
   (require 'rect)
   (crux-with-region-or-line kill-region))
 
