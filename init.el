@@ -291,7 +291,8 @@
                           "/\\.emacs\\.d/documents/brain/"
                           "/thought/brain/"
                           "/\\.emacs\\.d/elpa/"
-                          "/tmp/"))
+                          "/tmp/"
+                          ".jpg" ".png"))
   (recentf-mode +1))
 
 (use-package crux
