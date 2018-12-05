@@ -30,7 +30,42 @@
   :mode ("\\.journal\\'" "\\.hledger\\'")
   :config
   (setq ledger-binary-path "hledger")
-  (setq ledger-mode-should-check-version nil))
+  (setq ledger-mode-should-check-version nil)
+  ;; fix report when using hldeger
+  (setq ledger-report-auto-width nil
+        ledger-report-use-native-highlighting nil)
+
+  ;; automatically show new transactions from hledger add or hledger-web
+  (add-hook 'ledger-mode-hook 'auto-revert-tail-mode)
+
+  ;; M-1 to collapse all transactions to one line, M-0 to reset. Useful for quickly scanning
+  (global-set-key "\M-0" (lambda () (interactive) (set-selective-display (* tab-width 0))))
+  (global-set-key "\M-1" (lambda () (interactive) (set-selective-display (* tab-width 1))))
+  (add-hook 'ledger-mode-hook (lambda () (setq tab-width 4)))
+
+  (defvar ledger-report-balance
+    (list "bal" (concat ledger-binary-path " -f %(ledger-file) bal")))
+  (defvar ledger-report-reg
+    (list "reg" (concat ledger-binary-path " -f %(ledger-file) reg")))
+  (defvar ledger-report-payee
+    (list "payee" (concat ledger-binary-path " -f %(ledger-file) reg @%(payee)")))
+  (defvar ledger-report-account
+    (list "account" (concat ledger-binary-path " -f %(ledger-file) reg %(account)")))
+
+  (setq ledger-reports
+        (list ledger-report-balance
+              ledger-report-reg
+              ledger-report-payee
+              ledger-report-account))
+  :custom
+  (ledger-init-file-name " ")
+  ;; move default amount position right allowing longer account names
+  (ledger-post-amount-alignment-column 64)
+  ;; disable distracting highlight
+  (ledger-highlight-xact-under-point nil))
+
+(use-package flycheck-ledger
+  :after ledger-mode)
 
 (use-package org-brain
   :defer t
@@ -64,27 +99,79 @@
 
 (use-package erc
   :defer t
+  :preface
+  ;; thanks rememberYou
+  (defun my/erc-count-users ()
+    "Displays the number of users connected on the current channel."
+    (interactive)
+    (if (get-buffer "irc.freenode.net:6667")
+        (let ((channel (erc-default-target)))
+          (if (and channel (erc-channel-p channel))
+              (message "%d users are online on %s"
+                       (hash-table-count erc-channel-users)
+                       channel)
+            (user-error "The current buffer is not a channel")))
+      (user-error "You must first start ERC")))
+
+  (defun my/erc-notify (nickname message)
+    "Displays a notification message for ERC."
+    (let* ((channel (buffer-name))
+           (nick (erc-hl-nicks-trim-irc-nick nickname))
+           (title (if (string-match-p (concat "^" nickname) channel)
+                      nick
+                    (concat nick " (" channel ")")))
+           (msg (s-trim (s-collapse-whitespace message))))
+      (alert (concat nick ": " msg) :title title)))
+
+  (defun my/erc-preprocess (string)
+    "Avoids channel flooding."
+    (setq str
+          (string-trim
+           (replace-regexp-in-string "\n+" " " str))))
+  :hook ((ercn-notify . my/erc-notify)
+         (erc-send-pre . my/erc-preprocess))
   :config
   (setq erc-hide-list '("PART" "QUIT" "JOIN"))
   (setq erc-autojoin-channels-alist '(("freenode.net"))
         erc-server "irc.freenode.net"
         erc-nick "azzamsa")
-  (setq erc-log-channels-directory "~/.erc/logs/")
-  (setq erc-save-buffer-on-part t)
+
+  ;; Logging
+  (setq erc-log-channels-directory "~/erclogs/")
+  (setq erc-generate-log-file-name-function (quote erc-generate-log-file-name-with-date))
+  (setq erc-save-buffer-on-part nil)
+  (setq erc-save-queries-on-quit nil)
+  (setq erc-log-write-after-insert t)
+  (setq erc-log-write-after-send t)
   (setq erc-log-insert-log-on-open nil)
-  ;; Kill buffers for channels after /part
-  (setq erc-kill-buffer-on-part t)
-  ;; Kill buffers for private queries after quitting the server
-  (setq erc-kill-queries-on-quit t)
-  ;; Kill buffers for server messages after quitting the server
   (setq erc-kill-server-buffer-on-quit t)
   ;; open query buffers in the current window
   (setq erc-query-display 'buffer)
-  (erc-truncate-mode +1)
-  ;; exclude boring stuff from tracking
-  (erc-track-mode t)
+
   (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
-                                  "324" "329" "332" "333" "353" "477")))
+                                  "324" "329" "332" "333" "353" "477"))
+
+  (add-to-list 'erc-modules 'notifications)
+  (add-to-list 'erc-modules 'spelling)
+  (erc-services-mode +1)
+  ;; exclude boring stuff from tracking
+  (erc-truncate-mode +1)
+  (erc-track-mode t)
+  (erc-log-mode)
+  (erc-update-modules)
+  :custom
+  ;; FIXME do I need `erc-log-insert-log-on-open' ?
+  (erc-prompt-for-nickserv-password nil)
+  (erc-autojoin-timing 'ident)
+  (erc-server-reconnect-attempts 5)
+  (erc-server-reconnect-timeout 3))
+
+(use-package erc-hl-nicks :after erc)
+
+(use-package erc-view-log
+  :after erc
+  :config
+  (add-to-list 'auto-mode-alist '("\\.erclogs/.*\\.log" . erc-view-log-mode)))
 
 (use-package calfw
   :defer t
