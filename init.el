@@ -303,10 +303,8 @@
          ("C-^" . crux-top-join-line)
          ("C-c D" . crux-delete-file-and-buffer)
          ("C-c d" . crux-duplicate-current-line-or-region)
-         ("s-k" . crux-kill-whole-line)
          ("C-<backspace>" . crux-kill-line-backwards)
          ("C-c n" . crux-cleanup-buffer-or-region)
-         ([remap kill-whole-line] . crux-kill-whole-line)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line))
   :config
   ;; add the ability to cut the current line, without marking it
