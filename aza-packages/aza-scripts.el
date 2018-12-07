@@ -21,6 +21,17 @@
             (funcall 'kill-buffer buffer))))
       (message "Killed %d buffer(s)" killed-bufs))))
 
+(defun aza-today ()
+  "Insert date according to given argument.
+If no argument is given, insert today's date"
+  (interactive)
+  (insert
+   (format-time-string "%A, %B %e, %Y"
+                       (if current-prefix-arg
+                           (time-add (current-time) (* (* 24 3600)
+                                                       current-prefix-arg))
+                         (current-time)))))
+
 (defun now ()
   (interactive)
   (insert (format-time-string "%F %H:%M")))
