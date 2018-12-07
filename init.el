@@ -292,7 +292,7 @@
                           "/thought/brain/"
                           "/\\.emacs\\.d/elpa/"
                           "/tmp/"
-                          ".jpg" ".png" ".pdf"))
+                          ".jpg" ".png" ".pdf" ".org_archive"))
   (recentf-mode +1))
 
 (use-package crux
