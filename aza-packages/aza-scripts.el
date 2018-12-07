@@ -36,10 +36,6 @@ If no argument is given, insert today's date"
   (interactive)
   (insert (format-time-string "%F %H:%M")))
 
-(defun today ()
-  (interactive)
-  (insert (format-time-string "%A, %B %e, %Y")))
-
 (defun hour ()
   (interactive)
   (insert (format-time-string "%H:%M")))
