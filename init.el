@@ -298,6 +298,7 @@
 (use-package crux
   :bind (("C-c w" . crux-swap-windows)
          ("C-a" . crux-move-beginning-of-line)
+         ("M-o" . crux-smart-open-line)
          ("s-o" . crux-smart-open-line-above)
          ("C-c r" . crux-rename-buffer-and-file)
          ("C-^" . crux-top-join-line)
@@ -305,6 +306,7 @@
          ("C-c d" . crux-duplicate-current-line-or-region)
          ("C-c n" . crux-cleanup-buffer-or-region)
          ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
+         ([(shift return)] . crux-smart-open-line)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line))
   :config
   ;; add the ability to cut the current line, without marking it (C-w)
@@ -349,7 +351,7 @@
   :defer 3)
 
 (use-package ace-window
-  :bind ("M-o" . ace-window)
+  :bind ("s-q" . ace-window)
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (global-set-key [remap other-window] 'ace-window))
