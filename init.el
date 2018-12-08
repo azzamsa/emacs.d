@@ -396,16 +396,6 @@
   ;; additional package to save term/shell buffers
   )
 
-(use-package golden-ratio
-  :disabled
-  :defer 2
-  :diminish " φ"
-  :config
-  (add-to-list 'golden-ratio-extra-commands 'ace-window)
-  (golden-ratio-mode 1)
-  :custom
-  (golden-ratio-auto-scale t))
-
 (use-package avy
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char-timer))
