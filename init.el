@@ -522,6 +522,7 @@
 (require 'aza-python)
 (require 'aza-web)
 (require 'aza-rust)
+(require 'aza-go)
 (require 'aza-xml)
 
 ;;; emacs is home
