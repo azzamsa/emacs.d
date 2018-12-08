@@ -116,10 +116,8 @@
   :config
   (add-hook 'term-mode-hook #'eterm-256color-mode))
 
-;;TODO Do I need this on GNU/Linux
+;; Need this even in GNU/Linux e.g for GOPATH
 (use-package exec-path-from-shell
-  :defer 3
-  :disabled
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
