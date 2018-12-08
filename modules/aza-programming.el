@@ -40,6 +40,7 @@
 
 (use-package guru-mode
   :defer 3
+  :diminish
   :config
   (setq guru-warn-only t)
   (guru-global-mode +1))
