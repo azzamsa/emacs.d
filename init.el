@@ -316,7 +316,8 @@
 (use-package aza-scripts
   :load-path "/aza-packages/"
   :bind (("C-c k" . aza-kill-other-buffers)
-         ("s-t" . aza-today)))
+         ("C-c t" . aza-today)
+         ("C-c i" . insert-filename-as-heading)))
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights

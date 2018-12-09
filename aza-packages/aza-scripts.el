@@ -32,6 +32,12 @@ If no argument is given, insert today's date"
                                                        current-prefix-arg))
                          (current-time)))))
 
+(defun insert-filename-as-heading ()
+  (interactive)
+  (insert
+   (capitalize
+    (replace-regexp-in-string "-" " " (file-name-sans-extension (buffer-name))))))
+
 (defun now ()
   (interactive)
   (insert (format-time-string "%F %H:%M")))
