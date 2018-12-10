@@ -162,7 +162,11 @@
   ;; replacement for show-paren-mode
   (show-smartparens-global-mode +1))
 
-(electric-pair-mode 1)
+(use-package electric-pair
+  :ensure nil
+  :commands electric-pair-mode
+  :config
+  (electric-pair-mode 1))
 
 (use-package abbrev
   :ensure nil
