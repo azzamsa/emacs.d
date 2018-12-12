@@ -165,7 +165,7 @@
 (use-package electric-pair
   :ensure nil
   :commands electric-pair-mode
-  :config
+  :init
   (electric-pair-mode 1))
 
 (use-package abbrev
