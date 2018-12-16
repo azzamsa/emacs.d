@@ -1,6 +1,7 @@
 (use-package meghanada
-  :defer t
+  :ensure nil
   :pin manual
+  :defer t
   :commands (meghanada-mode)
   :bind (:map meghanada-mode-map
               ("C-S-t" . meghanada-switch-testcase)
