@@ -1,7 +1,8 @@
 ;; Initialize the package system.
 (require 'package)
 
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
 ;; keep the installed packages in .emacs.d
@@ -135,11 +136,14 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(use-package diminish  :demand t)
-(use-package use-package-ensure-system-package :ensure t :demand t)
-
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
+
+(use-package use-package-ensure-system-package
+  :ensure t)
+
+(use-package diminish
+  :ensure t)
 
 ;; packages
 (use-package projectile
