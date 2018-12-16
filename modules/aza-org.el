@@ -25,8 +25,10 @@
   (defun my-org-mode-hook ()
     (add-hook
      'completion-at-point-functions
-     'pcomplete-completions-at-point nil t))
-
+     'pcomplete-completions-at-point nil t)
+    (add-hook 'org-mode-hook
+              (lambda ()
+                (modify-syntax-entry ?~ "$~" org-mode-syntax-table))))
   :config
   ;; inline image
   (setq org-image-actual-width nil)
@@ -48,6 +50,7 @@
 
   (add-hook 'org-mode-hook (lambda ()
                              (my-org-mode-hook)
+                             (electric-pair-mode +1)
                              (which-function-mode -1))))
 
 (use-package ob-org :ensure nil :after org)
