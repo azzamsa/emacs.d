@@ -55,4 +55,10 @@ Thanks Trey Jackson for dolist and save-excursion"
     (save-excursion
       (replace-string (car pair) (cdr pair)))))
 
+(defun set-light ()
+  "Set light value directly inside Emacs"
+  (interactive)
+  (let ((light-value (read-string "Set Value: ")))
+    (start-process "" nil "light" "-S" light-value)))
+
 (provide 'aza-scripts)
