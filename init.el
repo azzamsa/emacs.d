@@ -344,7 +344,7 @@
   (global-anzu-mode))
 
 (use-package easy-kill
-  :defer 1
+  :demand t
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill)
   (global-set-key [remap mark-sexp] 'easy-mark))
@@ -470,6 +470,22 @@
   (paradox-execute-asynchronously t)
   (paradox-hide-wiki-packages t)
   (paradox-github-token t))
+
+(use-package helpful
+  :bind (("C-h f" . helpful-callable)
+         ("C-h v" . helpful-variable)
+         ("C-h k" . helpful-key)
+         ("C-c C-d" . helpful-at-point)
+         ("C-h F" . helpful-function)
+         ("C-h C" . helpful-command)))
+
+(use-package origami
+  :bind (:map origami-mode-map
+              ("C-: :" . origami-recursively-toggle-node)
+              ("C-: a" . origami-toggle-all-nodes)
+              ("C-: t" . origami-toggle-node)
+              ("C-: o" . origami-show-only-node)
+              ("C-: C-r" . origami-reset)))
 
 (use-package whitespace
   :diminish whitespace-mode
