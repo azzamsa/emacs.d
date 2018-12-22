@@ -85,8 +85,8 @@ Version 2015-07-30"
         ("\\.\\(?:djvu\\|eps\\)\\'" "evince")
         ("\\.\\(?:jpg\\|jpeg\\|png\\|svg\\|gif\\|tiff\\|xpm\\|bmp\\)\\'" "sxiv")
         ("\\.\\(?:xcf\\)\\'" "gimp")
-        ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\|ifo\\|m4v\\|wmv\\|webm\\)\\(?:\\.part\\)?\\'"
-         "mpv")
+        ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\|ifo\\|m4v\\|wmv\\|m4a\\|webm\\)\\(?:\\.part\\)?\\'"
+         "mpv --force-window")
         ("\\.\\(?:mp3\\|flac\\|wv\\)\\'" "mpv")
         ("\\.html?\\'" "firefox")
         ("\\.mm?\\'" "freeplane")
