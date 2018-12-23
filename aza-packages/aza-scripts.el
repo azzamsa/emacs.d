@@ -61,4 +61,15 @@ Thanks Trey Jackson for dolist and save-excursion"
   (let ((light-value (read-string "Set Value: ")))
     (start-process "" nil "light" "-S" light-value)))
 
+(defun compile-ui-to-py ()
+  "Compile Qt5 user interfaces to Python code directly from
+Emacs"
+  (interactive)
+  (let ((inputfile (dired-get-filename))
+        (outputfile
+         (file-name-sans-extension
+          (file-name-nondirectory (dired-get-filename)))))
+    (start-process "" nil "pyuic5" inputfile
+                   (concat "--output=" default-directory outputfile ".py"))))
+
 (provide 'aza-scripts)
