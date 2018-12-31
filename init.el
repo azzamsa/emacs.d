@@ -13,7 +13,7 @@
   (package-refresh-contents))
 
 (setq user-full-name "azzamsa"
-      user-mail-address "me@azzamsa.com")
+      user-mail-address "azzam@azzamsa.com")
 
 ;;; loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/modules/")
