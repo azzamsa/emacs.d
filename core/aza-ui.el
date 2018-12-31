@@ -48,7 +48,7 @@
 
 (use-package beacon
   :defer 1
-  :diminish beacon-mode
+  :delight beacon-mode
   :config
   (beacon-mode 1)
   (setq beacon-push-mark 35)
@@ -56,7 +56,7 @@
 
 (use-package which-key
   :defer 3
-  :diminish which-key-mode
+  :delight which-key-mode
   :config
   (which-key-mode +1))
 

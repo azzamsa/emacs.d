@@ -37,6 +37,7 @@
 (defconst azzamsa-eshell-dir (expand-file-name "eshell" azzamsa-savefile-dir))
 (defconst azzamsa-core-dir (expand-file-name "modules" user-emacs-directory))
 (defconst azzamsa-modules-dir (expand-file-name "core" user-emacs-directory))
+(defconst aza-packages-dir (expand-file-name "aza-packages" user-emacs-directory))
 
 ;; create the savefile dir if it doesn't exist
 (unless (file-exists-p azzamsa-savefile-dir)
@@ -139,15 +140,12 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-(use-package use-package-ensure-system-package
-  :ensure t)
-
-(use-package diminish
-  :ensure t)
+(use-package use-package-ensure-system-package :ensure t)
+(use-package delight :ensure t)
 
 ;; packages
 (use-package projectile
-  :diminish " P"
+  :delight " P"
   :bind ("s-p" . projectile-command-map))
 
 (use-package expand-region
@@ -156,7 +154,7 @@
 ;; TODO research about smartparens
 (use-package smartparens
   :defer 3
-  :diminish " Sp"
+  :delight " Sp"
   :config
   (require 'smartparens-config)
   ;;(setq sp-base-key-bindings 'paredit)
@@ -175,7 +173,7 @@
 (use-package abbrev
   :ensure nil
   :defer 3
-  :diminish " ☈"
+  :delight " ☈"
   :config
   (cond ((file-exists-p "~/.abbrev_defs")
          (read-abbrev-file "~/.abbrev_defs")))
@@ -185,7 +183,7 @@
 
 (use-package company
   :defer 1
-  :diminish " ⚡"
+  :delight " ⚡"
   :config
   (setq company-idle-delay 0.5)
   (setq company-tooltip-limit 10)
@@ -203,7 +201,7 @@
   :defer t)
 
 (use-package undo-tree
-  :diminish undo-tree-mode
+  :delight undo-tree-mode
   :bind ("C-x u" . undo-tree-visualize)
   :config
   (setq undo-tree-history-directory-alist
@@ -215,7 +213,7 @@
 
 (use-package flyspell
   :defer t
-  :diminish " ⛿"
+  :delight " ⛿"
   :config
   (setq ispell-program-name "aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra"))
@@ -239,18 +237,18 @@
 
 (use-package super-save
   :defer 2
-  :diminish super-save-mode
+  :delight super-save-mode
   :config
   (add-to-list 'super-save-triggers 'ace-window)
   (super-save-mode +1))
 
 (use-package rainbow-delimiters
   :defer 3
-  :diminish rainbow-delimiters-mode)
+  :delight rainbow-delimiters-mode)
 
 (use-package rainbow-mode
   :defer 3
-  :diminish rainbow-mode
+  :delight rainbow-mode
   :config
   (add-hook 'prog-mode-hook #'rainbow-mode))
 
@@ -330,14 +328,14 @@
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
   :defer 3
-  :diminish volatile-highlights-mode
+  :delight volatile-highlights-mode
   :config
   (volatile-highlights-mode +1)
   :custom-face
   (vhl/default-face ((t (:background "#688060")))))
 
 (use-package anzu
-  :diminish anzu-mode
+  :delight anzu-mode
   :bind (("M-%" . anzu-query-replace)
          ("C-M-%" . anzu-query-replace-regexp))
   :config
@@ -440,7 +438,7 @@
 
 (use-package auto-capitalize
   :defer 3
-  :diminish " ⛫"
+  :delight " ⛫"
   :load-path "elisp/auto-capitalize"
   :config
   (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode))
@@ -488,7 +486,7 @@
               ("C-: C-r" . origami-reset)))
 
 (use-package whitespace
-  :diminish whitespace-mode
+  :delight whitespace-mode
   :defer 3
   :init
   (dolist (hook '(prog-mode-hook text-mode-hook))
@@ -544,6 +542,7 @@
 
 ;;; emacs is home
 (require 'aza-home)
+(require 'aza-erc)
 
 ;; emacs fix
 (require 'aza-emacs-fix)

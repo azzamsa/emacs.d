@@ -4,7 +4,7 @@
 
 (use-package yasnippet
   :defer t
-  :diminish " ⚄"
+  :delight " ⚄"
   :config
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode))
@@ -34,13 +34,14 @@
 (use-package editorconfig
   :defer t
   :disabled
-  :diminish
+  :delight
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
 
 (use-package guru-mode
+  :disabled
   :defer 3
-  :diminish
+  :delight
   :config
   (setq guru-warn-only t)
   (guru-global-mode +1))

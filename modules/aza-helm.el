@@ -1,5 +1,5 @@
 (use-package helm
-  :diminish helm-mode
+  :delight helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x C-m" . helm-M-x)
          ("C-x b" . helm-mini)
@@ -56,7 +56,7 @@
 (use-package helm-ag
   :ensure-system-package ag
   :after helm
-  :diminish helm-ag-mode
+  :delight helm-ag-mode
   :bind ("C-c a" . helm-ag))
 
 (use-package helm-projectile
