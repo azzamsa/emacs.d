@@ -47,7 +47,6 @@
 (column-number-mode t)
 
 (use-package beacon
-  :ensure t
   :defer 1
   :diminish beacon-mode
   :config
@@ -56,7 +55,6 @@
   (setq beacon-color "#b4eeb4"))
 
 (use-package which-key
-  :ensure t
   :defer 3
   :diminish which-key-mode
   :config
@@ -73,7 +71,6 @@
    sml/theme nil))
 
 (use-package dimmer
-  :ensure t
   :defer 1
   :config
   (setq dimmer-exclusion-regexp "^\*helm.*\\|^ \*Minibuf-.*\\|^ \*Echo.*")
@@ -81,8 +78,7 @@
   (dimmer-mode t))
 
 (use-package golden-ratio-scroll-screen
-  :ensure t
-  :defer 2
+  :defer 0.2
   :config
   (global-set-key [remap scroll-down-command] 'golden-ratio-scroll-screen-down)
   (global-set-key [remap scroll-up-command] 'golden-ratio-scroll-screen-up)
@@ -90,8 +86,7 @@
   (golden-ratio-scroll-screen-ratio 1.718))
 
 (use-package yascroll
-  :ensure t
-  :defer 2
+  :defer 0.2
   :config
   (global-yascroll-bar-mode t)
   :custom-face
