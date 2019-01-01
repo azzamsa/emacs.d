@@ -2,13 +2,16 @@
   :ensure auctex
   :defer t
   :config
+  (require 'smartparens-latex)
   (setq LaTeX-verbatim-environments
         '("verbatim" "Verbatim" "lstlisting" "minted" "ignasicblock"))
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   (add-hook 'LaTeX-mode-hook
             (lambda ()
+              (turn-on-auto-fill)
               (yas-minor-mode t)
               (turn-on-reftex)
+              (smartparens-mode +1)
               (flyspell-mode)))
   :custom
   (TeX-PDF-mode t) ; output to pdf
