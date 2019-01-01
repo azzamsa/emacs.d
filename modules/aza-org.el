@@ -20,19 +20,14 @@
                                       "DONE(d!)"
                                       "CANCELLED(c@)")))
   (my-org-mode-hook)
-
   :preface
   (defun my-org-mode-hook ()
     (add-hook
      'completion-at-point-functions
-     'pcomplete-completions-at-point nil t)
-    (add-hook 'org-mode-hook
-              (lambda ()
-                (modify-syntax-entry ?~ "$~" org-mode-syntax-table))))
+     'pcomplete-completions-at-point nil t))
   :config
   ;; inline image
   (setq org-image-actual-width nil)
-  ;;org-refil
   (setq org-refile-targets '(("~/.emacs.d/documents/gtd/inbox.org" :maxlevel . 1)
                              ("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
                              ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
@@ -48,9 +43,16 @@
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
   (add-hook 'org-shiftright-final-hook 'windmove-right)
 
+  (require 'smartparens-config)
+  (sp-with-modes 'org-mode
+    (sp-local-pair "~" "~")
+    (sp-local-pair "*" "*") ;; wow it doesn't start when cursor in the first column
+    (sp-local-pair "/" "/")
+    (sp-local-pair "_" "_"))
+
   (add-hook 'org-mode-hook (lambda ()
                              (my-org-mode-hook)
-                             (electric-pair-mode +1)
+                             (smartparens-mode +1)
                              (which-function-mode -1))))
 
 (use-package ob-org :ensure nil :after org)
