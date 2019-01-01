@@ -154,20 +154,26 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
-;; TODO research about smartparens
 (use-package smartparens
-  :defer t
   :delight " Sp"
+  :bind (:map smartparens-mode-map
+              ("C-M-a" . sp-beginning-of-sexp)
+              ("C-M-e" . sp-end-of-sexp))
+  :preface
+  (defun prelude-wrap-with (s)
+    "Create a wrapper function for smartparens using S."
+    `(lambda (&optional arg)
+       (interactive "P")
+       (sp-wrap-with-pair ,s)))
   :config
+  (define-key smartparens-mode-map (kbd "M-(") (prelude-wrap-with "("))
   (require 'smartparens-config)
-  ;;(setq sp-base-key-bindings 'paredit)
   (setq sp-autoskip-closing-pair 'always)
   (setq sp-hybrid-kill-entire-symbol nil)
-  ;;(sp-use-paredit-bindings)
-  ;; replacement for show-paren-mode
   (show-smartparens-global-mode +1))
 
 (use-package electric-pair
+  :disabled
   :ensure nil
   :commands electric-pair-mode
   :init
@@ -554,6 +560,8 @@
 ;; emacs fix
 (require 'aza-emacs-fix)
 
+(require 'aza-emacs-enhc)
+
 ;; my packages
 (require 'aza-scripts)
 
@@ -571,6 +579,7 @@
 ;;------------------------------------------------
 ;; Misc
 ;;------------------------------------------------
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; I hate that custom fruit
 (setq custom-file (expand-file-name "custom.el" azzamsa-savefile-dir))
