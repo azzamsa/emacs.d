@@ -83,12 +83,6 @@
 (use-package presentation
   :defer t)
 
-(defun crontab-e ()
-  (interactive)
-  (with-editor-async-shell-command "crontab -e"))
-
-;; TODO pyuic
-
 (use-package keyfreq
   :defer 3
   :config
@@ -96,7 +90,6 @@
   (setq keyfreq-file-lock (expand-file-name "emacs.keyfreq.lock" azzamsa-savefile-dir))
   (keyfreq-mode 1)
   (keyfreq-autosave-mode 1))
-
 
 (use-package calfw
   :defer t
