@@ -1,6 +1,6 @@
-;;; ---
-;;; fix emacs for my own convenience
-;;; ---
+;;------------------------------------------------
+;; Change Emacs behavior to my convenience
+;;------------------------------------------------
 
 (defun my-delete-word (arg)
   "Delete characters forward until encountering the end of a word.
@@ -51,15 +51,5 @@ This command does not push text to `kill-ring'."
 
 ;; (add-hook 'find-file-hook 'my-treat-largefile-special-way)
 
-;;; ---
-;;; emacs additional capability
-;;; ---
-
-(defun unfill-paragraph ()
-  "Takes a multi-line paragraph and makes it into a single line
-of text. By Stefan Monnier"
-  (interactive)
-  (let ((fill-column (point-max)))
-    (fill-paragraph nil)))
 
 (provide 'aza-emacs-fix)
