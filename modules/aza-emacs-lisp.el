@@ -26,7 +26,6 @@ Start `ielm' if it's not already running."
     (when (and file-name (string-match-p ".*-tests?\\.el\\'" file-name))
       (setq-local flycheck-checkers '(emacs-lisp)))))
 
-
 (defun prelude-emacs-lisp-mode-defaults ()
   "Sensible defaults for `emacs-lisp-mode'."
   (rainbow-delimiters-mode +1)
@@ -38,12 +37,9 @@ Start `ielm' if it's not already running."
 
 (setq prelude-emacs-lisp-mode-hook 'prelude-emacs-lisp-mode-defaults)
 
-
 (add-hook
  'emacs-lisp-mode-hook (lambda ()
                          (run-hooks 'prelude-emacs-lisp-mode-hook)))
-
-
 
 ;; ielm is an interactive Emacs Lisp shell
 (defun prelude-ielm-mode-defaults ()
