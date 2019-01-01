@@ -36,7 +36,7 @@
 (global-set-key (kbd "M-Q") 'unfill-paragraph)
 (global-set-key (kbd "C-c U") 'unfill-paragraph)
 
-;; minibuffer
 (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
+(global-set-key (kbd "<f12>") 'menu-bar-mode)
 
 (provide 'aza-global-keybinding)

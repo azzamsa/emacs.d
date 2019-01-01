@@ -10,8 +10,6 @@
 
 ;; disable menu-bar. I have <f12> to toggle it
 (menu-bar-mode -1)
-;; toggle menu-bar visibility
-(global-set-key (kbd "<f12>") 'menu-bar-mode)
 
 ;; the blinking cursor is nothing, but an annoyance
 (blink-cursor-mode -1)
