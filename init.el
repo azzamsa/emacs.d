@@ -146,7 +146,10 @@
 ;; packages
 (use-package projectile
   :delight " P"
-  :bind ("s-p" . projectile-command-map))
+  :bind ("s-p" . projectile-command-map)
+  :config
+  (setq projectile-known-projects-file
+        (expand-file-name "projectile-bookmarks.eld" azzamsa-savefile-dir)))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
@@ -175,8 +178,10 @@
   :defer 3
   :delight " ☈"
   :config
-  (cond ((file-exists-p "~/.abbrev_defs")
-         (read-abbrev-file "~/.abbrev_defs")))
+  (setq abbrev-file-name
+        (expand-file-name "abbrev.el" azzamsa-savefile-dir))
+  (cond ((file-exists-p "~/abbrev.el")
+         (read-abbrev-file "~/abbrev.el")))
   (setq save-abbrevs t)
   (setq save-abbrevs 'silently)
   (setq-default abbrev-mode t))
@@ -569,6 +574,8 @@
 
 ;; I hate that custom fruit
 (setq custom-file (expand-file-name "custom.el" azzamsa-savefile-dir))
+(setq tramp-persistency-file-name
+      (expand-file-name "tramp-persistency.el" azzamsa-savefile-dir))
 
 (when (file-exists-p custom-file)
   (load custom-file))
