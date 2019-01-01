@@ -153,7 +153,7 @@
 
 ;; TODO research about smartparens
 (use-package smartparens
-  :defer 3
+  :defer t
   :delight " Sp"
   :config
   (require 'smartparens-config)
@@ -543,6 +543,7 @@
 ;;; emacs is home
 (require 'aza-home)
 (require 'aza-erc)
+(require 'aza-mu4e)
 
 ;; emacs fix
 (require 'aza-emacs-fix)
