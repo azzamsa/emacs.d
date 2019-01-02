@@ -68,6 +68,10 @@
 (use-package gitignore-mode :defer t)
 (use-package gitattributes-mode :defer t)
 
+(use-package yaml-mode
+  :mode "\\.yml\\'"
+  :interpreter ("yml" . yml-mode))
+
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
   (smartparens-mode +1)
