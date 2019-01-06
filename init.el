@@ -551,6 +551,7 @@
 (require 'aza-rust)
 (require 'aza-go)
 (require 'aza-xml)
+(require 'aza-php)
 
 ;;; emacs is home
 (require 'aza-home)
