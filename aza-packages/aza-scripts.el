@@ -73,4 +73,12 @@ Emacs"
     (start-process "" nil "pyuic5" inputfile
                    (concat "--output=" default-directory outputfile ".py"))))
 
+(defun mpv-here ()
+  "Play all multimedia files in current directory"
+  (interactive)
+  (start-process-shell-command "" nil (concat "mpv"
+                                              " --loop --force-window"
+                                              " "
+                                              default-directory)))
+
 (provide 'aza-scripts)
