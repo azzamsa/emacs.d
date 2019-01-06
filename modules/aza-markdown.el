@@ -6,6 +6,6 @@
   (setq markdown-asymmetric-header t))
 
 (use-package markdown-toc
-  :defer t)
+  :after markdown-mode)
 
 (provide 'aza-markdown)
