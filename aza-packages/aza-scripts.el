@@ -76,9 +76,6 @@ Emacs"
 (defun mpv-here ()
   "Play all multimedia files in current directory"
   (interactive)
-  (start-process-shell-command "" nil (concat "mpv"
-                                              " --loop --force-window"
-                                              " "
-                                              default-directory)))
+  (start-process "" nil "mpv" "--force-window" "--loop" default-directory))
 
 (provide 'aza-scripts)
