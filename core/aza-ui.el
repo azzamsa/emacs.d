@@ -70,8 +70,11 @@
 
 (use-package dimmer
   :defer 1
+  :load-path "~/emacs-packages/dimmer.el/"
   :config
-  (setq dimmer-exclusion-regexp "^\*helm.*\\|^ \*Minibuf-.*\\|^ \*Echo.*")
+  (setq dimmer-exclusion-predicates '(helm--alive-p window-minibuffer-p))
+  (setq dimmer-exclusion-regexp-list
+        '("^\\*[h|H]elm.*\\*" "^\\*Minibuf-[0-9]+\\*" "^.\\*which-key\\*$" "^*Messages*"))
   (setq dimmer-fraction 0.50)
   (dimmer-mode t))
 
