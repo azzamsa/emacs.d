@@ -147,5 +147,9 @@
   (cfw:face-toolbar-button-off ((t :foreground "#f5f5f5" :weight bold)))
   (cfw:face-toolbar-button-on ((t :foreground "#ffffff" :weight bold))))
 
+(use-package pelican-mode
+  :ensure nil
+  :defer t
+  :load-path "~/emacs-packages/pelican-mode/")
 
 (provide 'aza-home)
