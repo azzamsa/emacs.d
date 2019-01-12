@@ -66,10 +66,12 @@
 (use-package org-download
   :defer 3
   :after org
+  :load-path "~/emacs-packages/org-download/"
+  :bind (:map org-mode-map
+              ("C-c y" . org-download-yank))
   :config
-  ;; FIXME take from screenshot
   (setq org-download-annotate-function (lambda (_link) ""))
-  (setq org-download-screenshot-method "scrot -s %s")
+  (setq org-download-screenshot-method "maim -s")
   (setq org-download-image-org-width 400))
 
 (use-package org-bullets
@@ -81,7 +83,8 @@
 
 (use-package org-cliplink
   :defer 3
-  :bind ("C-l" . org-cliplink)
+  :bind (:map org-mode-map
+              ("C-l" . org-cliplink))
   :config
   (setq org-cliplink-max-length 60))
 
