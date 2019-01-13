@@ -35,8 +35,8 @@
 
 (defconst azzamsa-savefile-dir (expand-file-name "savefile" user-emacs-directory))
 (defconst azzamsa-eshell-dir (expand-file-name "eshell" azzamsa-savefile-dir))
-(defconst azzamsa-core-dir (expand-file-name "modules" user-emacs-directory))
-(defconst azzamsa-modules-dir (expand-file-name "core" user-emacs-directory))
+(defconst azzamsa-core-dir (expand-file-name "core" user-emacs-directory))
+(defconst azzamsa-modules-dir (expand-file-name "modules" user-emacs-directory))
 (defconst aza-packages-dir (expand-file-name "aza-packages" user-emacs-directory))
 
 ;; create the savefile dir if it doesn't exist
