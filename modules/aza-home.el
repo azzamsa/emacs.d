@@ -148,8 +148,16 @@
   (cfw:face-toolbar-button-on ((t :foreground "#ffffff" :weight bold))))
 
 (use-package pelican-mode
-  :ensure nil
   :defer t
-  :load-path "~/emacs-packages/pelican-mode/")
+  :load-path "~/emacs-packages/pelican-mode/"
+  :config
+  (pelican-global-mode))
+
+(use-package atomic-chrome
+  :defer t
+  :config
+  (setq atomic-chrome-url-major-mode-alist
+        '(("github\\.com" . gfm-mode)))
+  (atomic-chrome-start-server))
 
 (provide 'aza-home)
