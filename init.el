@@ -565,6 +565,7 @@
 
 ;; my packages
 (require 'aza-scripts)
+(require 'aza-waktu-shalat)
 
 ;; unpublished configuration
 (when (file-exists-p (expand-file-name "aza-local.el" azzamsa-modules-dir))
