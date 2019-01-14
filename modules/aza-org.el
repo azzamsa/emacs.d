@@ -72,7 +72,8 @@
   :config
   (setq org-download-annotate-function (lambda (_link) ""))
   (setq org-download-screenshot-method "maim -s")
-  (setq org-download-image-org-width 400))
+  (setq org-download-image-org-width 400)
+  (setq org-download-delete-image-after-download t))
 
 (use-package org-bullets
   :after org
