@@ -160,4 +160,14 @@
         '(("github\\.com" . gfm-mode)))
   (atomic-chrome-start-server))
 
+(use-package emojify
+  :hook
+  ((markdown-mode . emojify-mode)
+   (git-commit-mode . emojify-mode)
+   (magit-status-mode . emojify-mode)
+   (magit-log-mode . emojify-mode))
+  :config
+  (setq emojify-emojis-dir
+        (expand-file-name "emojify/"  azzamsa-savefile-dir)))
+
 (provide 'aza-home)
