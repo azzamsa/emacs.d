@@ -39,4 +39,8 @@
 (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
 
+(global-set-key [C-next] (lambda ()
+                           (interactive)
+                           (message "Ups, wrong key. Calm dude :)")))
+
 (provide 'aza-global-keybinding)

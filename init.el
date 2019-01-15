@@ -596,10 +596,9 @@
   (load custom-file))
 
 ;; Run at full power please
+(setq disabled-command-function 'ignore)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-(put 'scroll-left 'disabled nil)
-(put 'scroll-right 'disabled nil)
 
 ;; diminish
 (diminish 'visual-line-mode "Wr")
