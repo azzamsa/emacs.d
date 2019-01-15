@@ -26,6 +26,7 @@ aza-secrets.el
 
 # git
 .git-credential-cache/
+*.patch
 
 # languages
 .python-environments/
