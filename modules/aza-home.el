@@ -148,7 +148,7 @@
   (cfw:face-toolbar-button-on ((t :foreground "#ffffff" :weight bold))))
 
 (use-package pelican-mode
-  :defer t
+  :defer 4
   :load-path "~/emacs-packages/pelican-mode/"
   :config
   (pelican-global-mode))
@@ -167,6 +167,7 @@
    (magit-status-mode . emojify-mode)
    (magit-log-mode . emojify-mode))
   :config
+  (setq emojify-emoji-styles '(github unicode))
   (setq emojify-emojis-dir
         (expand-file-name "emojify/"  azzamsa-savefile-dir)))
 
