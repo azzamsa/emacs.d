@@ -1,5 +1,6 @@
 (use-package mu4e
   :ensure nil
+  :defer t
   :ensure-system-package mu
   :preface
   (defun my-mu4e-compose-hook ()
