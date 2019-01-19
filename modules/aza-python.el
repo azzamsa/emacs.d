@@ -17,14 +17,6 @@
 
   (setq elpy-rpc-backend "jedi"))
 
-(use-package virtualenvwrapper
-  ;; demanded by eshell prompt
-  ;; for venv-current-name symbols
-  :after eshell
-  :init
-  (venv-initialize-interactive-shells)
-  (venv-initialize-eshell))
-
 (defun my/python-mode-hook ()
   (add-to-list 'company-backends 'company-jedi))
 
