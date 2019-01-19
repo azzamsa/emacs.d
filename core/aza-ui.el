@@ -53,6 +53,7 @@
   (setq beacon-color "#b4eeb4"))
 
 (use-package which-key
+  :disabled
   :defer 3
   :delight which-key-mode
   :config
