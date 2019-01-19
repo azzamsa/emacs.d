@@ -83,7 +83,7 @@ Version 2015-07-30"
 (setq dired-guess-shell-alist-user
       '(("\\.pdf\\'" "evince" "okular")
         ("\\.\\(?:djvu\\|eps\\)\\'" "evince")
-        ("\\.\\(?:jpg\\|jpeg\\|png\\|svg\\|gif\\|tiff\\|xpm\\|bmp\\)\\'" "sxiv")
+        ("\\.\\(?:jpg\\|jpeg\\|png\\|svg\\|tiff\\|xpm\\|bmp\\)\\'" "sxiv")
         ("\\.\\(?:xcf\\)\\'" "gimp")
         ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\|ifo\\|m4v\\|wmv\\|m4a\\|webm\\)\\(?:\\.part\\)?\\'"
          "mpv --force-window")
@@ -92,6 +92,7 @@ Version 2015-07-30"
         ("\\.mm?\\'" "freeplane")
         ("\\.\\(?:pptx?\\|odt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
         ("\\.ui?\\'" "qtchooser -run-tool=designer -qt=5")
+        ("\\.gif?\\'" "sxiv -a")
         ("\\.\\(?:zip\\|tgz\\)\\'" "file-roller")))
 
 (defun dired-open-directory-in-thunar ()
