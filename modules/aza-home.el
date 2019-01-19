@@ -148,10 +148,9 @@
   (cfw:face-toolbar-button-on ((t :foreground "#ffffff" :weight bold))))
 
 (use-package pelican-mode
+  :pin manual
   :defer 4
-  :load-path "~/emacs-packages/pelican-mode/"
-  :config
-  (pelican-global-mode))
+  :load-path "~/emacs-packages/pelican-mode/")
 
 (use-package atomic-chrome
   :defer t
@@ -170,5 +169,26 @@
   (setq emojify-emoji-styles '(github unicode))
   (setq emojify-emojis-dir
         (expand-file-name "emojify/"  azzamsa-savefile-dir)))
+
+(use-package chronos
+  :pin manual
+  :defer t
+  :load-path "~/emacs-packages/chronos/"
+  :config
+  (setq chronos-shell-notify-program "mpv"
+        chronos-shell-notify-parameters '("--really-quiet"
+                                          "--af=scaletempo=speed=pitch"
+                                          "--speed=0.65"
+                                          "~/sounds/early-sunrise-yey.wav")
+        chronos-text-to-speech-program "espeak-ng"
+        chronos-text-to-speech-program-parameters '("-s 100"
+                                                    "-v mb-id1")
+        chronos-expiry-functions '(chronos-dunstify
+                                   chronos-buffer-notify
+                                   chronos-shell-notify
+                                   chronos-text-to-speech-notify)))
+
+(use-package define-word
+  :defer t)
 
 (provide 'aza-home)
