@@ -2,7 +2,7 @@
 
 (use-package dired
   :ensure nil
-  :ensure-system-package (thunar urxvt)
+  :ensure-system-package (thunar urxvt tmux sxiv)
   :bind ((:map dired-mode-map
                ("/" . ora-dired-up-directory)
                ("C-r" . ora-dired-rsync)
