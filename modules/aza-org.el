@@ -55,15 +55,16 @@
                              (smartparens-mode +1)
                              (which-function-mode -1))))
 
-(use-package ob-org :ensure nil :after org)
-(use-package ob-lisp :ensure nil :after org)
-(use-package ob-python :ensure nil :after org)
+(use-package ob-org :ensure nil :after org :defer 3)
+(use-package ob-lisp :ensure nil :after org :defer 3)
+(use-package ob-python :ensure nil :after org :defer 3)
 
 (use-package ox-gfm
   :defer 3
   :after org)
 
 (use-package org-download
+  :pin manual
   :defer 3
   :after org
   :load-path "~/emacs-packages/org-download/"
