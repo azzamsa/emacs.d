@@ -147,9 +147,13 @@
 (use-package projectile
   :delight " P"
   :bind ("s-p" . projectile-command-map)
+  :init
+  (setq projectile-completion-system 'helm)
   :config
   (setq projectile-known-projects-file
-        (expand-file-name "projectile-bookmarks.eld" azzamsa-savefile-dir)))
+        (expand-file-name "projectile-bookmarks.eld" azzamsa-savefile-dir))
+  (setq projectile-cache-file
+        (expand-file-name "projectile.cache" azzamsa-savefile-dir)))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
@@ -529,6 +533,7 @@
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 (use-package request
+  :defer t
   :config
   (setq request-storage-directory
         (expand-file-name "request/" azzamsa-savefile-dir)))
@@ -561,10 +566,12 @@
 (require 'aza-home)
 (require 'aza-erc)
 (require 'aza-mu4e)
+(require 'aza-fun)
 
 ;; emacs fix
 (require 'aza-emacs-fix)
 
+;; emacs enhancements
 (require 'aza-emacs-enhc)
 
 ;; my packages
@@ -586,6 +593,11 @@
 ;; Misc
 ;;------------------------------------------------
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+(setq url-cache-directory
+      (expand-file-name "url/cache/" azzamsa-savefile-dir))
+(setq url-configuration-directory
+      (expand-file-name "url/configuration/" azzamsa-savefile-dir))
 
 ;; I hate that custom fruit
 (setq custom-file (expand-file-name "custom.el" azzamsa-savefile-dir))
