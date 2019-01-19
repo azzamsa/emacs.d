@@ -60,7 +60,7 @@
   :bind ("C-c a" . helm-ag))
 
 (use-package helm-projectile
-  :defer t
+  :after helm projectile
   :config
   (helm-projectile-on))
 
