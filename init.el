@@ -470,9 +470,11 @@
   :config
   (add-hook 'text-mode-hook #'visual-line-mode))
 
-(use-package winner-mode
+(use-package winner
   :defer 2
-  :ensure nil)
+  :ensure nil
+  :config
+  (winner-mode 1))
 
 (use-package paradox
   :defer t
@@ -545,6 +547,7 @@
 (require 'aza-dired)
 (require 'aza-helm)
 (require 'aza-shell)
+(require 'aza-hydra)
 
 ;; writing
 (require 'aza-org)
