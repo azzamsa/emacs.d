@@ -2,10 +2,6 @@
 ;; Global keybindings
 ;;------------------------------------------------
 
-;; Font size
-(global-set-key (kbd "C-+") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-
 ;; use hippie-expand instead of dabbrev
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "s-/") #'hippie-expand)
@@ -13,12 +9,6 @@
 ;; misc useful keybindings
 (global-set-key (kbd "s-<") #'beginning-of-buffer)
 (global-set-key (kbd "s->") #'end-of-buffer)
-
-;; resize windows in more more comfortable way
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;; emacs fix
 (global-set-key (kbd "C-k") 'my-delete-line)
