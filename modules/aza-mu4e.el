@@ -54,9 +54,10 @@
 (use-package smtpmail
   :ensure nil
   :after mu4e
-  :custom
-  (smtpmail-smtp-server "secret.com")
-  (smtpmail-smtp-service 465)
-  (smtpmail-stream-type 'ssl))
+  :config
+  (require 'aza-secrets)
+  (setq smtpmail-smtp-server my-smtpmail-smtp-server)
+  (setq smtpmail-smtp-service 465)
+  (setq smtpmail-stream-type 'ssl))
 
 (provide 'aza-mu4e)
