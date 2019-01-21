@@ -78,4 +78,8 @@ Emacs"
   (interactive)
   (start-process "" nil "mpv" "--force-window" "--loop" default-directory))
 
+(defun trash-empty ()
+  "Empty trash using trash-cli. It's safer and painless"
+  (interactive)
+  (start-process "" nil "rm" "-rf" trash-dir1 trash-dir2 trash-dir3))
 (provide 'aza-scripts)
