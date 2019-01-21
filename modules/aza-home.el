@@ -3,6 +3,7 @@
 ;;------------------------------------------------
 
 (use-package pomidor
+  :disabled
   :defer t
   :config
   (setq pomidor-sound-tick nil
@@ -15,6 +16,22 @@
   :custom-face
   (pomidor-time-face ((t (:height 3.0))))
   (pomidor-timer-face ((t (:height 3.0)))))
+
+(use-package pomodoro
+  :defer 3
+  :load-path "~/emacs-packages/pomodoro.el/"
+  :config
+  (setq pomodoro-show-number t)
+  (setq pomodoro-long-break-time 20)
+  (setq pomodoro-work-time 25)
+  (setq pomodoro-break-time 5)
+  (setq pomodoro-sound-player "/usr/bin/mpv")
+  (setq pomodoro-break-start-sound
+        "~/sounds/ding-rest-long.mp3")
+  (setq pomodoro-work-start-sound
+        "~/sounds/coin-work-long.mp3")
+  (add-to-list 'mode-line-format
+               '(pomodoro-mode-line-string pomodoro-mode-line-string)))
 
 (use-package pdf-tools
   :defer t
@@ -164,7 +181,8 @@
   ((markdown-mode . emojify-mode)
    (git-commit-mode . emojify-mode)
    (magit-status-mode . emojify-mode)
-   (magit-log-mode . emojify-mode))
+   (magit-log-mode . emojify-mode)
+   (org-mode . emojify-mode))
   :config
   (setq emojify-emoji-styles '(github unicode))
   (setq emojify-emojis-dir
@@ -190,5 +208,10 @@
 
 (use-package define-word
   :defer t)
+
+(use-package salah-time
+  :load-path "~/emacs-packages/salah-time"
+  :config
+  (setq salah-time-city "Malang"))
 
 (provide 'aza-home)
