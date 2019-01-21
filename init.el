@@ -336,6 +336,7 @@
   (crux-with-region-or-line kill-region))
 
 (use-package aza-scripts
+  :ensure-system-package mpv
   :load-path "/aza-packages/"
   :bind (("C-c k" . aza-kill-other-buffers)
          ("C-c t" . aza-today)
@@ -374,7 +375,7 @@
   :defer 3)
 
 (use-package ace-window
-  :bind ("s-q" . ace-window)
+  :bind ("s-j" . ace-window)
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (global-set-key [remap other-window] 'ace-window))
@@ -576,7 +577,6 @@
 
 ;; my packages
 (require 'aza-scripts)
-(require 'aza-waktu-shalat)
 
 ;; unpublished configuration
 (when (file-exists-p (expand-file-name "aza-local.el" azzamsa-modules-dir))
