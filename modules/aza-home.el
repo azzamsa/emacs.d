@@ -165,8 +165,10 @@
 
 (use-package pelican-mode
   :pin manual
-  :defer 4
-  :load-path "~/emacs-packages/pelican-mode/")
+  :commands pelican-mode
+  :load-path "~/emacs-packages/pelican-mode/"
+  :config
+  (pelican-global-mode))
 
 (use-package atomic-chrome
   :defer t
@@ -210,6 +212,7 @@
 
 (use-package salah-time
   :load-path "~/emacs-packages/salah-time"
+  :commands salah-time
   :config
   (setq salah-time-city "Malang"))
 
