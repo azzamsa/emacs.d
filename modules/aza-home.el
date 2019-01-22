@@ -30,8 +30,7 @@
         "~/sounds/ding-rest-long.mp3")
   (setq pomodoro-work-start-sound
         "~/sounds/coin-work-long.mp3")
-  (add-to-list 'mode-line-format
-               '(pomodoro-mode-line-string pomodoro-mode-line-string)))
+  (pomodoro-add-to-mode-line))
 
 (use-package pdf-tools
   :defer t
@@ -213,5 +212,15 @@
   :load-path "~/emacs-packages/salah-time"
   :config
   (setq salah-time-city "Malang"))
+
+(use-package google-translate
+  :config
+  (require 'google-translate-smooth-ui)
+  (setq google-translate-translation-directions-alist
+        '(("en" . "id") ("id" . "en")))
+  (setq google-translate-output-destination nil)
+  (setq google-translate-pop-up-buffer-set-focus t)
+  (setq google-translate-default-source-language "en")
+  (setq google-translate-default-target-language "id"))
 
 (provide 'aza-home)
