@@ -43,26 +43,31 @@
 (defhydra hydra-go-to (:color blue)
   "
   ^
-  ^Go To^           ^File^        ^Directory^
-  ^─────^───────────^────^────────^─────────^
-  _q_ quit          _fe_ emacs      _dp_ projects
-  ^^                _fi_ inbox      _dc_ code-coba
-  ^^                _fp_ project    _dh_ home
-  ^^                _dn_ notes      ^^
-  ^^                _dt_ thoughts   ^^
-  ^^                _dm_ moments    ^^
-  ^^                _ds_ success    ^^
+  ^Go To^      ^File^        ^Directory^    ^Action^
+  ^─────^──────^────^────────^─────────^────^─────────^
+  _q_ quit     _fe_ emacs      _dp_ proj   _ap_ pmdr-start
+  ^^           _fi_ inbox      _dc_ code   _at_ translate
+  ^^           _fp_ project    _dh_ home   _as_ salah
+  ^^           _fn_ notes      _fa_ artcl  ^^
+  ^^           _ft_ thoughts   ^^          ^^
+  ^^           _fm_ moments    ^^          ^^
+  ^^           _fs_ success    ^^          ^^
+  ^^           ^^              ^^          ^^
   "
   ("q" nil)
   ("fe" (find-file user-init-file))
   ("fi" (find-file (expand-file-name "documents/gtd/inbox.org" user-emacs-directory)))
   ("fp" (find-file (expand-file-name "documents/gtd/project.org" user-emacs-directory)))
+  ("fn" (find-file my-notes))
+  ("ft" (find-file my-thoughts))
+  ("fm" (find-file my-moments))
+  ("fs" (find-file my-success))
+  ("fa" (find-file my-article-tracking))
   ("dp" (find-file my-projects-dir))
   ("dc" (find-file my-code-coba-dir))
   ("dh" (find-file my-home-dir))
-  ("dn" (find-file my-notes))
-  ("dt" (find-file my-thoughts))
-  ("dm" (find-file my-moments))
-  ("ds" (find-file my-success)))
+  ("ap" (pomodoro-start 25))
+  ("at" (google-translate-smooth-translate))
+  ("as" (salah-time)))
 
 (provide 'aza-hydra)
