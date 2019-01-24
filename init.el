@@ -375,7 +375,7 @@
   :defer 3)
 
 (use-package ace-window
-  :bind ("s-j" . ace-window)
+  :bind ("s-b" . ace-window)
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (global-set-key [remap other-window] 'ace-window))
