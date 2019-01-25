@@ -4,7 +4,8 @@
   :pin org
   :bind (:map org-mode-map
               ("C-c l" . org-store-link)
-              ("C-c a" . org-agenda))
+              ("C-c a" . org-agenda)
+              ("C-k" . my-delete-line))
   :init
   (setq org-src-tab-acts-natively t)
   (setq org-log-done t)
@@ -35,7 +36,6 @@
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/.emacs.d/documents/gtd/inbox.org" "Inbox")
                                  "* TODO %i%?")))
-  (global-set-key (kbd "C-c c") 'org-capture)
 
   ;; Make windmove work in org-mode:
   (add-hook 'org-shiftup-final-hook 'windmove-up)

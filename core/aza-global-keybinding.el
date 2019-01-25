@@ -25,6 +25,7 @@
 
 (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
+(global-set-key (kbd "C-c c") 'org-capture)
 
 (global-set-key [C-next] (lambda ()
                            (interactive)
