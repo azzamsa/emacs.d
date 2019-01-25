@@ -596,6 +596,9 @@
 ;;------------------------------------------------
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "firefox-dev")
+
 (setq url-cache-directory
       (expand-file-name "url/cache/" azzamsa-savefile-dir))
 (setq url-configuration-directory
