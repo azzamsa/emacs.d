@@ -45,6 +45,7 @@
   (setq dired-listing-switches "-AltGhF --group-directories-first")
   (add-hook 'dired-mode-hook #'dired-filter-group-mode)
   (add-hook 'dired-mode-hook #'dired-filter-mode)
+  (add-hook 'dired-mode-hook #'dired-collapse-mode)
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt
@@ -78,6 +79,9 @@
               ("\\" . dired-narrow)))
 
 (use-package dired-avfs
+  :after dired)
+
+(use-package dired-collapse
   :after dired)
 
 (use-package dired-filter
