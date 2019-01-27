@@ -98,18 +98,6 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-;; hippie expand is dabbrev expand on steroids
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev
-                                         try-expand-dabbrev-all-buffers
-                                         try-expand-dabbrev-from-kill
-                                         try-complete-file-name-partially
-                                         try-complete-file-name
-                                         try-expand-all-abbrevs
-                                         try-expand-list
-                                         try-expand-line
-                                         try-complete-lisp-symbol-partially
-                                         try-complete-lisp-symbol))
-
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
 
@@ -144,6 +132,22 @@
 (use-package delight :ensure t)
 
 ;; packages
+(use-package hippie-expand
+  :ensure nil
+  :bind ("M-/" . hippie-expand)
+  :config
+  ;; hippie expand is dabbrev expand on steroids
+  (setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                           try-expand-dabbrev-all-buffers
+                                           try-expand-dabbrev-from-kill
+                                           try-complete-file-name-partially
+                                           try-complete-file-name
+                                           try-expand-all-abbrevs
+                                           try-expand-list
+                                           try-expand-line
+                                           try-complete-lisp-symbol-partially
+                                           try-complete-lisp-symbol)))
+
 (use-package projectile
   :delight " P"
   :bind ("s-p" . projectile-command-map)
