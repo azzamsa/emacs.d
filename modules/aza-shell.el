@@ -28,8 +28,7 @@
     (exec-path-from-shell-initialize)))
 
 (use-package bash-completion
-  :ensure t
-  :defer 3
+  :after shell
   :init
   (bash-completion-setup))
 
