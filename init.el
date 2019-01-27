@@ -255,6 +255,7 @@
   :delight super-save-mode
   :config
   (add-to-list 'super-save-triggers 'ace-window)
+  (add-to-list 'super-save-triggers 'helm)
   (super-save-mode +1))
 
 (use-package rainbow-delimiters
