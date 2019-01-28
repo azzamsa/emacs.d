@@ -49,7 +49,7 @@
   ^^           _fi_ inbox      _dc_ code   _at_ translate
   ^^           _fp_ project    _dh_ home   _as_ salah
   ^^           _fn_ notes      _fa_ artcl  _af_ autofill
-  ^^           _ft_ thoughts   ^^          ^^
+  ^^           _ft_ thoughts   ^^          _am_ menubar
   ^^           _fm_ moments    ^^          ^^
   ^^           _fs_ success    ^^          ^^
   ^^           ^^              ^^          ^^
@@ -69,6 +69,7 @@
   ("ap" (pomodoro-start 25))
   ("at" (google-translate-smooth-translate))
   ("as" (salah-time))
-  ("af" auto-fill-mode "fill"))
+  ("af" auto-fill-mode)
+  ("am" menu-bar-mode))
 
 (provide 'aza-hydra)
