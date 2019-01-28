@@ -20,9 +20,6 @@
 (add-to-list 'load-path "~/.emacs.d/core/")
 (add-to-list 'load-path "~/.emacs.d/aza-packages/")
 
-;; find my PATH. Solve auctex can't find xelatex
-(setenv "PATH" (shell-command-to-string "bash -i -c 'echo -n $PATH'"))
-
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
