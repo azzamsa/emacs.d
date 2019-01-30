@@ -380,7 +380,14 @@
   :bind ("s-b" . ace-window)
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  (global-set-key [remap other-window] 'ace-window))
+  (global-set-key [remap other-window] 'ace-window)
+  (setq aw-background nil)
+  :custom-face
+  (aw-leading-char-face
+        ((t
+          (:box
+           (:line-width 3 :color "lemon chiffon" :style released-button)
+           :height 2.0)))))
 
 (use-package zop-to-char
   :bind (("M-z" . zop-up-to-char)
