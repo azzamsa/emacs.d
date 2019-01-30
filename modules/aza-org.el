@@ -7,6 +7,7 @@
               ("C-c a" . org-agenda)
               ("C-k" . my-delete-line))
   :init
+  (setq org-use-extra-keys t)
   (setq org-src-tab-acts-natively t)
   (setq org-log-done t)
   (setq org-startup-indented t)
