@@ -88,7 +88,7 @@ Version 2015-07-30"
         ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\|ifo\\|m4v\\|wmv\\|m4a\\|webm\\)\\(?:\\.part\\)?\\'"
          "mpv --force-window")
         ("\\.\\(?:mp3\\|flac\\|wv\\)\\'" "mpv --force-window")
-        ("\\.html?\\'" "firefox")
+        ("\\.html?\\'" "firefox-dev")
         ("\\.mm?\\'" "freeplane")
         ("\\.\\(?:pptx?\\|odt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
         ("\\.ui?\\'" "qtchooser -run-tool=designer -qt=5")
