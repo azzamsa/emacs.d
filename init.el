@@ -277,6 +277,7 @@
 
 (use-package windmove
   ;; use shift + arrow keys to switch between visible buffers
+  :defer 3
   :config
   (windmove-default-keybindings))
 
@@ -420,6 +421,7 @@
         bookmark-save-flag 1))
 
 (use-package desktop
+  :defer 2
   :config
   (setq desktop-path (list azzamsa-savefile-dir))
   (setq desktop-dirname azzamsa-savefile-dir)
@@ -429,6 +431,7 @@
 
 (use-package desktop+
   ;; additional package to save term/shell buffers
+  :after desktop
   )
 
 (use-package avy

@@ -1,6 +1,7 @@
 (require 'aza-shell-prompt)
 
 (use-package shell
+  :defer t
   :bind ((:map shell-mode-map
                ("M-p" . helm-comint-input-ring))
          ("s-g" . dirs))
@@ -23,7 +24,9 @@
 
 ;; Need this even in GNU/Linux e.g for GOPATH
 (use-package exec-path-from-shell
+  :defer 2
   :config
+  (setq exec-path-from-shell-check-startup-files nil)
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 

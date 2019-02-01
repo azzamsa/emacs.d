@@ -2,6 +2,7 @@
 
 (use-package dired
   :ensure nil
+  :defer 2
   :ensure-system-package (thunar urxvt tmux sxiv)
   :bind ((:map dired-mode-map
                ("/" . ora-dired-up-directory)
