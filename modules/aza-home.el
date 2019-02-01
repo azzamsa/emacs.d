@@ -109,11 +109,6 @@
 
 (use-package calfw
   :defer t
-  :init
-  (use-package calfw-cal
-    :ensure t)
-  (use-package calfw-org
-    :ensure t)
   :bind (("C-c A" . my-calendar)
          :map cfw:calendar-mode-map
          ("M-n" . cfw:navi-next-month-command)
@@ -162,6 +157,12 @@
   (cfw:face-toolbar ((t :foreground "Steelblue4" :background "#3F3F3F")))
   (cfw:face-toolbar-button-off ((t :foreground "#f5f5f5" :weight bold)))
   (cfw:face-toolbar-button-on ((t :foreground "#ffffff" :weight bold))))
+
+(use-package calfw-cal
+  :after calfw)
+
+(use-package calfw-org
+  :after calfw)
 
 (use-package pelican-mode
   :pin manual
