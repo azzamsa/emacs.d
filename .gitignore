@@ -23,6 +23,7 @@ snippets/
 documents
 image-dired/
 aza-secrets.el
+aza-macro.el
 
 # git
 .git-credential-cache/
