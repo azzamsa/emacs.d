@@ -218,7 +218,7 @@
   (setq salah-time-city "Malang"))
 
 (use-package google-translate
-  :defer t
+  :defer 3
   :config
   (require 'google-translate-smooth-ui)
   (setq google-translate-translation-directions-alist
