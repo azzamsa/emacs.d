@@ -2,6 +2,7 @@
   :ensure nil
   :defer t
   :ensure-system-package mu
+  :commands mu4e
   :preface
   (defun my-mu4e-compose-hook ()
     (set-fill-column 72)
