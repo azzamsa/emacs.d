@@ -59,6 +59,7 @@
 (use-package ob-org :ensure nil :after org :defer 3)
 (use-package ob-lisp :ensure nil :after org :defer 3)
 (use-package ob-python :ensure nil :after org :defer 3)
+(use-package ob-ruby :ensure nil :after org :defer 3)
 
 (use-package ox-gfm
   :defer 3
