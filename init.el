@@ -187,13 +187,10 @@
 (use-package abbrev
   :ensure nil
   :defer 3
-  :delight " ☈"
+  :delight " Ab"
   :config
   (setq abbrev-file-name
         (expand-file-name "abbrev.el" azzamsa-savefile-dir))
-  (cond ((file-exists-p "~/abbrev.el")
-         (read-abbrev-file "~/abbrev.el")))
-  (setq save-abbrevs t)
   (setq save-abbrevs 'silently)
   (setq-default abbrev-mode t))
 
@@ -467,7 +464,7 @@
 
 (use-package auto-capitalize
   :defer 3
-  :delight " ⛫"
+  :delight " Ac"
   :load-path "elisp/auto-capitalize"
   :config
   (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode))
