@@ -13,7 +13,6 @@
   "Kill all buffers but current buffer and special buffers.
 (Buffer that start with '*' and white space ignored)"
   (interactive)
-  (save-all-buffers-silently)
   (when (y-or-n-p "Really kill all other buffers ? ")
     (let ((killed-bufs 0))
       (dolist (buffer (delq (current-buffer) (buffer-list)))
