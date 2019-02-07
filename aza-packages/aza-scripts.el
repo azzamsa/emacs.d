@@ -1,6 +1,7 @@
 (require 'cl-lib)
 (require 's)
 (require 'f)
+(require 'ts)
 
 (when (file-exists-p (expand-file-name "aza-secrets.el" aza-packages-dir))
   (require 'aza-secrets))
@@ -24,16 +25,21 @@
             (funcall 'kill-buffer buffer))))
       (message "Killed %d buffer(s)" killed-bufs))))
 
-(defun aza-today ()
-  "Insert date according to given argument.
-If no argument is given, insert today's date"
-  (interactive)
-  (insert
-   (format-time-string "%A, %B %e, %Y"
-                       (if current-prefix-arg
-                           (time-add (current-time) (* (* 24 3600)
-                                                       current-prefix-arg))
-                         (current-time)))))
+(defun aza-today (&optional arg)
+  "Insert today's date.
+
+A prefix ARG specifies how many days to move;
+negative means previous day.
+
+If region selected, parse region as today's date pivot."
+  (interactive "P")
+  (let ((date (if (use-region-p)
+                  (ts-parse (buffer-substring-no-properties (region-beginning) (region-end)))
+                (ts-now)))
+        (arg (or arg 0)))
+    (if (use-region-p)
+        (delete-region (region-beginning) (region-end)))
+    (insert (ts-format "%A, %B %e, %Y" (ts-adjust 'day arg date)))))
 
 (defun insert-filename-as-heading ()
   "Take current filename (word separated by dash) as heading."
