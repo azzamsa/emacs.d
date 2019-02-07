@@ -86,8 +86,8 @@ Version 2015-07-30"
         ("\\.\\(?:jpg\\|jpeg\\|png\\|svg\\|tiff\\|xpm\\|bmp\\)\\'" "sxiv")
         ("\\.\\(?:xcf\\)\\'" "gimp")
         ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\|ifo\\|m4v\\|wmv\\|m4a\\|webm\\)\\(?:\\.part\\)?\\'"
-         "mpv --force-window")
-        ("\\.\\(?:mp3\\|flac\\|wv\\)\\'" "mpv --force-window")
+         "mpv --force-window --loop")
+        ("\\.\\(?:mp3\\|flac\\|wv\\)\\'" "mpv --force-window --loop")
         ("\\.html?\\'" "firefox-dev")
         ("\\.mm?\\'" "freeplane")
         ("\\.\\(?:pptx?\\|odt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
