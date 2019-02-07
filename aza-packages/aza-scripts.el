@@ -37,6 +37,7 @@ If no argument is given, insert today's date"
                          (current-time)))))
 
 (defun insert-filename-as-heading ()
+  "Take current filename (word separated by dash) as heading."
   (interactive)
   (insert
    (capitalize
