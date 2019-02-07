@@ -19,6 +19,7 @@
 (add-to-list 'load-path "~/.emacs.d/modules/")
 (add-to-list 'load-path "~/.emacs.d/core/")
 (add-to-list 'load-path "~/.emacs.d/aza-packages/")
+(add-to-list 'load-path "~/emacs-packages/")
 
 ;; Always load newest byte code
 (setq load-prefer-newer t)
@@ -439,25 +440,6 @@
   (setq avy-background t)
   (setq avy-style 'at-full))
 
-(use-package spinner :defer t)
-
-(use-package async
-  :defer 3
-  :config
-  (async-bytecomp-package-mode t)
-
-  (defun my/dired-async-message-function (text _face &rest args)
-    "Log messages from dired-async to messages buffer."
-    ;; For whatever reason, the default for this *doesn't* log it to
-    ;; *Messages*.  Instead, it just displays the notification in the
-    ;; mode line for 3 seconds, but if you type something it
-    ;; immediately goes away.  So just log it to *Messages* like a sane
-    ;; person instead:
-    (message (format "Finished %s" (apply #'format text args))))
-  ;; do dired actions asynchronously
-  (dired-async-mode)
-  :custom
-  (dired-async-message-function #'my/dired-async-message-function))
 
 (use-package with-editor
   :defer t)
@@ -543,12 +525,6 @@
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
-(use-package request
-  :defer t
-  :config
-  (setq request-storage-directory
-        (expand-file-name "request/" azzamsa-savefile-dir)))
-
 ;;------------------------------------------------
 ;; Modules
 ;;------------------------------------------------
@@ -587,6 +563,7 @@
 (require 'aza-emacs-enhc)
 
 ;; my packages
+(require 'aza-lib)
 (require 'aza-scripts)
 
 ;; unpublished configuration
