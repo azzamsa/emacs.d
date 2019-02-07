@@ -52,8 +52,7 @@ If no argument is given, insert today's date"
   (insert (format-time-string "%H:%M")))
 
 (defun rm-mysecrets ()
-  "Remove all confidential information.
-Thanks Trey Jackson for dolist and save-excursion"
+  "Remove all confidential information."
   (interactive)
   (dolist (pair (list-my-secrets))
     (save-excursion
