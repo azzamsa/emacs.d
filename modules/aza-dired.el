@@ -88,9 +88,10 @@
   :after dired)
 
 (use-package dired-filter
-  :after dired
+  :defer t
   :init
-  (setq dired-filter-prefix "f"))
+  (setq dired-filter-prefix "f")
+  :commands dired-filter-by-mode)
 
 (use-package dired-rainbow
   :after dired
