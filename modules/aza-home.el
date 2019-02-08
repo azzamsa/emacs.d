@@ -18,8 +18,9 @@
   (pomidor-timer-face ((t (:height 3.0)))))
 
 (use-package pomodoro
-  :defer 3
+  :defer t
   :load-path "~/emacs-packages/pomodoro.el/"
+  :commands pomodoro-start
   :config
   (setq pomodoro-show-number t)
   (setq pomodoro-long-break-time 20)
