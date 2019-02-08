@@ -24,7 +24,7 @@
 
 ;; Need this even in GNU/Linux e.g for GOPATH
 (use-package exec-path-from-shell
-  :defer 2
+  :defer 3.1
   :config
   (setq exec-path-from-shell-check-startup-files nil)
   (when (memq window-system '(mac ns x))
