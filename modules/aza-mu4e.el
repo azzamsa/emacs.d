@@ -5,10 +5,6 @@
   :commands mu4e
   :bind (:map mu4e-main-mode-map
               ("C-c x" . omail-compose))
-  :preface
-  (defun my-mu4e-compose-hook ()
-    (set-fill-column 72)
-    (flyspell-mode))
   :custom
   (mu4e-change-filenames-when-moving t)
   (mu4e-confirm-quit nil)
@@ -34,8 +30,7 @@
   (mu4e-view-show-images t)
   :config
   (add-to-list 'mu4e-view-actions '("Add to contact " . mu4e-action-add-org-contact) t)
-  (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser) t)
-  (add-hook 'mu4e-compose-mode-hook #'my-mu4e-compose-hook))
+  (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser) t))
 
 (use-package org-mu4e
   :ensure nil
@@ -51,7 +46,8 @@
     (interactive)
     (when (member 'org~mu4e-mime-switch-headers-or-body post-command-hook)
       (org-mime-htmlize)
-      (message-send-and-exit)))
+      (org-mu4e-compose-org-mode)
+      (message-send)))
 
   (add-hook 'org-ctrl-c-ctrl-c-hook 'omail-send t)
   :custom
