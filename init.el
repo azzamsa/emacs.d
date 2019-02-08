@@ -12,9 +12,6 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq user-full-name "azzamsa"
-      user-mail-address "azzam@azzamsa.com")
-
 ;;; loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/modules/")
 (add-to-list 'load-path "~/.emacs.d/core/")
@@ -255,6 +252,8 @@
   :config
   (add-to-list 'super-save-triggers 'ace-window)
   (add-to-list 'super-save-triggers 'helm)
+  ;;FIXME dind't work in winner
+  (add-to-list 'super-save-triggers 'winner)
   (super-save-mode +1))
 
 (use-package rainbow-delimiters
@@ -335,6 +334,10 @@
   ;; add the ability to cut the current line, without marking it (C-w)
   (require 'rect)
   (crux-with-region-or-line kill-region))
+
+(use-package aza-secrets
+  :ensure nil
+  :load-path "~/emacs-packages/aza-secrets/")
 
 (use-package aza-scripts
   :ensure-system-package mpv
