@@ -274,6 +274,7 @@
 
 (use-package windmove
   ;; use shift + arrow keys to switch between visible buffers
+  :disabled
   :defer 3
   :config
   (windmove-default-keybindings))
