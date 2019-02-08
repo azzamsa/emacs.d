@@ -46,7 +46,7 @@ If region selected, parse region as today's date pivot."
   (interactive)
   (insert
    (capitalize
-    (replace-regexp-in-string "-" " " (file-name-sans-extension (buffer-name))))))
+    (s-join " " (s-split-words (file-name-sans-extension (buffer-name)))))))
 
 (defun now ()
   (interactive)
