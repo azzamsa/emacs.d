@@ -1,5 +1,5 @@
 (use-package request
-  :defer 3
+  :defer t
   :config
   (setq request-storage-directory
         (expand-file-name "request/" azzamsa-savefile-dir)))
