@@ -211,6 +211,7 @@
   :defer t)
 
 (use-package salah-time
+  :defer t
   :load-path "~/emacs-packages/salah-time"
   :commands salah-time
   :config
