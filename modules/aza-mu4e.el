@@ -64,9 +64,18 @@
                "blockquote" "margin:1.2em 0px;border-left:4px solid rgb(221,221,221);padding:0px 1em;color:rgb(119,119,119);quotes:none"))))
 
 (use-package mu4e-alert
-  :hook ((after-init . mu4e-alert-enable-mode-line-display)
-         (after-init . mu4e-alert-enable-notifications))
-  :config (mu4e-alert-set-default-style 'libnotify))
+  :hook
+  ((after-init . mu4e-alert-enable-mode-line-display)
+   (after-init . mu4e-alert-enable-notifications))
+  :config
+  ;; FIXME filter gitlab notification
+  ;; (setq mu4e-alert-interesting-mail-query
+  ;;       (concat
+  ;;        "flag:unread"
+  ;;        " AND NOT flag:trashed"
+  ;;        " AND NOT maildir:"
+  ;;        "\"/[Gmail].All Mail\""))
+  (mu4e-alert-set-default-style 'libnotify))
 
 (use-package message
   :ensure nil
