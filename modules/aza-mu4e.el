@@ -3,6 +3,8 @@
   :defer t
   :ensure-system-package mu
   :commands mu4e
+  :bind (:map mu4e-main-mode-map
+              ("C-c x" . omail-compose))
   :preface
   (defun my-mu4e-compose-hook ()
     (set-fill-column 72)
