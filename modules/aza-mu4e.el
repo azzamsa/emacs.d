@@ -38,11 +38,32 @@
 (use-package org-mu4e
   :ensure nil
   :after mu4e
+  :config
+  (defun omail-compose ()
+    (interactive)
+    (mu4e-compose-new)
+    (org-mu4e-compose-org-mode))
+
+  (defun omail-send ()
+    "When in an org-mu4e-compose-org-mode message, htmlize and send it."
+    (interactive)
+    (when (member 'org~mu4e-mime-switch-headers-or-body post-command-hook)
+      (org-mime-htmlize)
+      (message-send-and-exit)))
+
+  (add-hook 'org-ctrl-c-ctrl-c-hook 'omail-send t)
   :custom
   (org-mu4e-convert-to-html t))
 
-(use-package mu4e-alert
+(use-package org-mime
   :after mu4e
+  :config
+  (add-hook 'org-mime-html-hook
+            (lambda ()
+              (org-mime-change-element-style
+               "blockquote" "margin:1.2em 0px;border-left:4px solid rgb(221,221,221);padding:0px 1em;color:rgb(119,119,119);quotes:none"))))
+
+(use-package mu4e-alert
   :hook ((after-init . mu4e-alert-enable-mode-line-display)
          (after-init . mu4e-alert-enable-notifications))
   :config (mu4e-alert-set-default-style 'libnotify))
