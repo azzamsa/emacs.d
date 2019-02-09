@@ -18,6 +18,7 @@
   (setq elpy-rpc-backend "jedi"))
 
 (defun my/python-mode-hook ()
+  (subword-mode +1)
   (add-to-list 'company-backends 'company-jedi))
 
 (use-package company-jedi

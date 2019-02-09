@@ -23,6 +23,7 @@
   (add-to-list 'completion-ignored-extensions ".test")
   (add-hook 'before-save-hook 'gofmt-before-save nil t)
   (add-hook 'go-mode-hook (lambda ()
+                            (subword-mode +1)
                             (go-mode-config))))
 
 (use-package company-go

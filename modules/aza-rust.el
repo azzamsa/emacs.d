@@ -2,7 +2,8 @@
   :defer t
   :config
   (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'rust-mode-hook #'cargo-minor-mode))
+  (add-hook 'rust-mode-hook #'cargo-minor-mode)
+  (add-hook 'rust-mode-hook #'subword-mode))
 
 (use-package racer
   :defer t
