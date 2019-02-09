@@ -181,9 +181,11 @@
 
 (use-package emojify
   :hook
-  ((git-commit-mode . emojify-mode)
+  ((markdown-mode . emojify-mode)
+   (git-commit-mode . emojify-mode)
    (magit-status-mode . emojify-mode)
-   (magit-log-mode . emojify-mode))
+   (magit-log-mode . emojify-mode)
+   (org-mode . emojify-mode))
   :config
   (setq emojify-emoji-styles '(github unicode))
   (setq emojify-emojis-dir
