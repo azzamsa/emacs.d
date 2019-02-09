@@ -252,6 +252,7 @@
   :config
   (add-to-list 'super-save-triggers 'ace-window)
   (add-to-list 'super-save-triggers 'helm)
+  (add-to-list 'super-save-triggers 'dired-jump)
   ;;FIXME dind't work in winner
   (add-to-list 'super-save-triggers 'winner)
   (super-save-mode +1))
