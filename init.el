@@ -253,8 +253,7 @@
   (add-to-list 'super-save-triggers 'ace-window)
   (add-to-list 'super-save-triggers 'helm)
   (add-to-list 'super-save-triggers 'dired-jump)
-  ;;FIXME dind't work in winner
-  (add-to-list 'super-save-triggers 'winner)
+  (add-to-list 'super-save-triggers 'winner-undo)
   (super-save-mode +1))
 
 (use-package rainbow-delimiters
