@@ -3,7 +3,14 @@
          ("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . markdown-mode))
   :config
-  (setq markdown-asymmetric-header t))
+  (require 'smartparens-config)
+  (sp-with-modes 'markdown-mode
+    (sp-local-pair "~~" "~~")
+    (sp-local-pair "*" "*")
+    (sp-local-pair "**" "**")
+    (sp-local-pair "_" "_"))
+  (setq markdown-asymmetric-header t)
+  (add-hook 'markdown-mode-hook #'smartparens-mode))
 
 (use-package markdown-toc
   :after markdown-mode)
