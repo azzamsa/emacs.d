@@ -26,6 +26,10 @@
 (set-frame-font "Source Code Pro 12")
 ;;evaluate this everytime load emacs from daemon.
 (setq default-frame-alist '((font . "Source Code Pro 12")))
+;; fallback fonts for unicode icons
+(set-fontset-font "fontset-default" nil
+                  (font-spec :size 20 :name "Symbola"))
+
 ;; highlight the current line
 (global-hl-line-mode +1)
 
