@@ -1,4 +1,4 @@
-(defun crontab-e ()
+(defun crontab-edit ()
   (interactive)
   (with-editor-async-shell-command "crontab -e"))
 
