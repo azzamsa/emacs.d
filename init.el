@@ -428,7 +428,7 @@
   (setq desktop-path (list azzamsa-savefile-dir))
   (setq desktop-dirname azzamsa-savefile-dir)
   (setq desktop-restore-eager 5)
-  (setq adesktop-load-locked-desktop t)
+  (setq desktop-load-locked-desktop t)
   (desktop-save-mode +1))
 
 (use-package desktop+
