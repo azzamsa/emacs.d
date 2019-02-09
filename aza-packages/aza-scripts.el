@@ -96,5 +96,12 @@ Emacs"
   (let ((contents (f-read "~/cron-report/anacron-status.txt" 'utf-8)))
     (message (car (last (delete "" (split-string contents "\n")))))))
 
+(defun what-day ()
+  "Show day name from spesific time"
+  (interactive)
+  (let ((date (read-string "Date: "))
+        (month (read-string "Month: "))
+        (year (read-string "Year: " (number-to-string (ts-year (ts-now))))))
+    (message (ts-day-name (ts-parse (s-join " " (list date month year)))))))
 
 (provide 'aza-scripts)
