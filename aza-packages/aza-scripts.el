@@ -6,9 +6,6 @@
 (when (file-exists-p (expand-file-name "aza-secrets.el" aza-packages-dir))
   (require 'aza-secrets))
 
-(defun save-all-buffers-silently ()
-  (save-some-buffers t))
-
 ;;;###autoload
 (defun aza-kill-other-buffers ()
   "Kill all buffers but current buffer and special buffers.
