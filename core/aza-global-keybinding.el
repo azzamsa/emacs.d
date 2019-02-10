@@ -2,9 +2,11 @@
 ;; Global keybindings
 ;;------------------------------------------------
 
-;; misc useful keybindings
 (global-set-key (kbd "s-<") #'beginning-of-buffer)
 (global-set-key (kbd "s->") #'end-of-buffer)
+
+(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
+(global-set-key (kbd "C-c c") 'org-capture)
 
 ;; emacs fix
 (global-set-key (kbd "C-k") 'my-delete-line)
@@ -17,8 +19,5 @@
 
 ;; emacs enhancement
 (global-set-key (kbd "M-Q") 'unfill-paragraph)
-
-(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
-(global-set-key (kbd "C-c c") 'org-capture)
 
 (provide 'aza-global-keybinding)
