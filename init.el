@@ -189,7 +189,7 @@
   :config
   (setq abbrev-file-name
         (expand-file-name "abbrev.el" azzamsa-savefile-dir))
-  (setq save-abbrevs 'silently)
+  (setq save-abbrevs nil)
   (setq-default abbrev-mode t))
 
 (use-package company
