@@ -387,10 +387,10 @@
   (setq aw-background nil)
   :custom-face
   (aw-leading-char-face
-        ((t
-          (:box
-           (:line-width 3 :color "lemon chiffon" :style released-button)
-           :height 2.0)))))
+   ((t
+     (:box
+      (:line-width 3 :color "lemon chiffon" :style released-button)
+      :height 2.0)))))
 
 (use-package zop-to-char
   :bind (("M-z" . zop-up-to-char)
