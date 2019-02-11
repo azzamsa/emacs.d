@@ -28,15 +28,15 @@
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
 
-(defconst azzamsa-savefile-dir (expand-file-name "savefile" user-emacs-directory))
-(defconst azzamsa-eshell-dir (expand-file-name "eshell" azzamsa-savefile-dir))
-(defconst azzamsa-core-dir (expand-file-name "core" user-emacs-directory))
-(defconst azzamsa-modules-dir (expand-file-name "modules" user-emacs-directory))
-(defconst aza-packages-dir (expand-file-name "aza-packages" user-emacs-directory))
+(defconst aza-savefile-dir (expand-file-name "savefile" user-emacs-directory))
+(defconst aza-core-dir (expand-file-name "core" user-emacs-directory))
+(defconst aza-modules-dir (expand-file-name "modules" user-emacs-directory))
+(defconst aza-pkgs-dir (expand-file-name "aza-packages" user-emacs-directory))
+(defconst aza-epgk-dir "~/emacs-packages")
 
 ;; create the savefile dir if it doesn't exist
-(unless (file-exists-p azzamsa-savefile-dir)
-  (make-directory azzamsa-savefile-dir))
+(unless (file-exists-p aza-savefile-dir)
+  (make-directory aza-savefile-dir))
 
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -150,9 +150,9 @@
   (setq projectile-completion-system 'helm)
   :config
   (setq projectile-known-projects-file
-        (expand-file-name "projectile-bookmarks.eld" azzamsa-savefile-dir))
+        (expand-file-name "projectile-bookmarks.eld" aza-savefile-dir))
   (setq projectile-cache-file
-        (expand-file-name "projectile.cache" azzamsa-savefile-dir)))
+        (expand-file-name "projectile.cache" aza-savefile-dir)))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
@@ -188,7 +188,7 @@
   :delight " Ab"
   :config
   (setq abbrev-file-name
-        (expand-file-name "abbrev.el" azzamsa-savefile-dir))
+        (expand-file-name "abbrev.el" aza-savefile-dir))
   (setq save-abbrevs nil)
   (setq-default abbrev-mode t))
 
@@ -288,7 +288,7 @@
         ;; save every minute
         savehist-autosave-interval 60
         ;; keep the home clean
-        savehist-file (expand-file-name "savehist" azzamsa-savefile-dir))
+        savehist-file (expand-file-name "savehist" aza-savefile-dir))
   (savehist-mode +1))
 
 (use-package saveplace
@@ -296,14 +296,14 @@
   :defer 2
   :init (save-place-mode 1)
   :config
-  (setq save-place-file (expand-file-name "saveplace" azzamsa-savefile-dir))
+  (setq save-place-file (expand-file-name "saveplace" aza-savefile-dir))
   ;; activate it for all buffers
   (setq-default save-place t))
 
 (use-package recentf
   :defer 1
   :config
-  (setq recentf-save-file (expand-file-name "recentf" azzamsa-savefile-dir)
+  (setq recentf-save-file (expand-file-name "recentf" aza-savefile-dir)
         recentf-max-saved-items 500
         recentf-max-menu-items 15
         ;; disable recentf-cleanup on Emacs start, because it can cause
@@ -419,14 +419,14 @@
 
 (use-package bookmark
   :config
-  (setq bookmark-default-file (expand-file-name "bookmarks" azzamsa-savefile-dir)
+  (setq bookmark-default-file (expand-file-name "bookmarks" aza-savefile-dir)
         bookmark-save-flag 1))
 
 (use-package desktop
   :defer 2
   :config
-  (setq desktop-path (list azzamsa-savefile-dir))
-  (setq desktop-dirname azzamsa-savefile-dir)
+  (setq desktop-path (list aza-savefile-dir))
+  (setq desktop-dirname aza-savefile-dir)
   (setq desktop-restore-eager 5)
   (setq desktop-load-locked-desktop t)
   (desktop-save-mode +1))
@@ -520,7 +520,7 @@
 (use-package multiple-cursors
   :defer 3
   :init
-  (setq mc/list-file (expand-file-name ".mc-lists.el" azzamsa-savefile-dir))
+  (setq mc/list-file (expand-file-name ".mc-lists.el" aza-savefile-dir))
   ;; these need to be defined here - if they're lazily loaded with
   ;; :bind they don't work.
   (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
@@ -559,6 +559,7 @@
 (require 'aza-erc)
 (require 'aza-mu4e)
 (require 'aza-fun)
+(require 'aza-ledger)
 
 ;; emacs fix
 (require 'aza-emacs-fix)
@@ -571,7 +572,7 @@
 (require 'aza-scripts)
 
 ;; unpublished configuration
-(when (file-exists-p (expand-file-name "aza-local.el" azzamsa-modules-dir))
+(when (file-exists-p (expand-file-name "aza-local.el" aza-modules-dir))
   (require 'aza-local))
 
 ;;------------------------------------------------
@@ -590,14 +591,14 @@
       browse-url-generic-program "firefox-dev")
 
 (setq url-cache-directory
-      (expand-file-name "url/cache/" azzamsa-savefile-dir))
+      (expand-file-name "url/cache/" aza-savefile-dir))
 (setq url-configuration-directory
-      (expand-file-name "url/configuration/" azzamsa-savefile-dir))
+      (expand-file-name "url/configuration/" aza-savefile-dir))
 
 ;; I hate that custom fruit
-(setq custom-file (expand-file-name "custom.el" azzamsa-savefile-dir))
+(setq custom-file (expand-file-name "custom.el" aza-savefile-dir))
 (setq tramp-persistency-file-name
-      (expand-file-name "tramp-persistency.el" azzamsa-savefile-dir))
+      (expand-file-name "tramp-persistency.el" aza-savefile-dir))
 
 (when (file-exists-p custom-file)
   (load custom-file))

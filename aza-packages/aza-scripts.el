@@ -3,7 +3,7 @@
 (require 'f)
 (require 'ts)
 
-(when (file-exists-p (expand-file-name "aza-secrets.el" aza-packages-dir))
+(when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
   (require 'aza-secrets))
 
 ;;;###autoload
