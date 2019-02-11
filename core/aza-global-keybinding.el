@@ -7,6 +7,7 @@
 
 (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 (global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "s-j") 'dired-jump)
 
 ;; emacs fix
 (global-set-key (kbd "C-k") 'my-delete-line)
