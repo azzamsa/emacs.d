@@ -43,47 +43,6 @@
   :ensure-system-package mpd
   :defer t)
 
-(use-package ledger-mode
-  :mode ("\\.journal\\'" "\\.hledger\\'")
-  :config
-  (setq ledger-binary-path "hledger")
-  (setq ledger-mode-should-check-version nil)
-  ;; fix report when using hldeger
-  (setq ledger-report-auto-width nil
-        ledger-report-use-native-highlighting nil)
-
-  ;; automatically show new transactions from hledger add or hledger-web
-  (add-hook 'ledger-mode-hook 'auto-revert-tail-mode)
-
-  ;; M-1 to collapse all transactions to one line, M-0 to reset. Useful for quickly scanning
-  (global-set-key "\M-0" (lambda () (interactive) (set-selective-display (* tab-width 0))))
-  (global-set-key "\M-1" (lambda () (interactive) (set-selective-display (* tab-width 1))))
-  (add-hook 'ledger-mode-hook (lambda () (setq tab-width 4)))
-
-  (defvar ledger-report-balance
-    (list "bal" (concat ledger-binary-path " -f %(ledger-file) bal")))
-  (defvar ledger-report-reg
-    (list "reg" (concat ledger-binary-path " -f %(ledger-file) reg")))
-  (defvar ledger-report-payee
-    (list "payee" (concat ledger-binary-path " -f %(ledger-file) reg @%(payee)")))
-  (defvar ledger-report-account
-    (list "account" (concat ledger-binary-path " -f %(ledger-file) reg %(account)")))
-
-  (setq ledger-reports
-        (list ledger-report-balance
-              ledger-report-reg
-              ledger-report-payee
-              ledger-report-account))
-  :custom
-  (ledger-init-file-name " ")
-  ;; move default amount position right allowing longer account names
-  (ledger-post-amount-alignment-column 64)
-  ;; disable distracting highlight
-  (ledger-highlight-xact-under-point nil))
-
-(use-package flycheck-ledger
-  :after ledger-mode)
-
 (use-package org-brain
   :defer t
   :init
@@ -103,8 +62,8 @@
 (use-package keyfreq
   :defer 3
   :config
-  (setq keyfreq-file (expand-file-name "emacs.keyfreq" azzamsa-savefile-dir))
-  (setq keyfreq-file-lock (expand-file-name "emacs.keyfreq.lock" azzamsa-savefile-dir))
+  (setq keyfreq-file (expand-file-name "emacs.keyfreq" aza-savefile-dir))
+  (setq keyfreq-file-lock (expand-file-name "emacs.keyfreq.lock" aza-savefile-dir))
   (keyfreq-mode 1)
   (keyfreq-autosave-mode 1))
 
@@ -189,7 +148,7 @@
   :config
   (setq emojify-emoji-styles '(github unicode))
   (setq emojify-emojis-dir
-        (expand-file-name "emojify/"  azzamsa-savefile-dir)))
+        (expand-file-name "emojify/"  aza-savefile-dir)))
 
 (use-package chronos
   :pin manual
