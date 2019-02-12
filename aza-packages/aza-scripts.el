@@ -89,7 +89,7 @@ Emacs"
   (interactive)
   (start-process "" nil "rm" "-rf" trash-dir1 trash-dir2 trash-dir3))
 
-(defun anacron-last-bup ()
+(defun show-anacron-last-backup ()
   "Show last backup of my anacron status."
   (interactive)
   (let ((contents (f-read "~/cron-report/anacron-status.txt" 'utf-8)))
