@@ -3,7 +3,7 @@
 (require 'f)
 (require 'ts)
 (require 'request)
-(require 'keys (expand-file-name "keys/keys.el.gpg" aza-epgk-dir))
+(require 'keys (expand-file-name "keys/keys.el.gpg" aza-epkgs-dir))
 
 (when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
   (require 'aza-secrets))

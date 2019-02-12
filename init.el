@@ -32,7 +32,7 @@
 (defconst aza-core-dir (expand-file-name "core" user-emacs-directory))
 (defconst aza-modules-dir (expand-file-name "modules" user-emacs-directory))
 (defconst aza-pkgs-dir (expand-file-name "aza-packages" user-emacs-directory))
-(defconst aza-epgk-dir "~/emacs-packages")
+(defconst aza-epkgs-dir "~/emacs-packages")
 
 ;; create the savefile dir if it doesn't exist
 (unless (file-exists-p aza-savefile-dir)
