@@ -188,7 +188,7 @@
   :delight " Ab"
   :config
   (setq abbrev-file-name
-        (expand-file-name "abbrev.el" aza-savefile-dir))
+        (expand-file-name "abbrevs/abbrev.el" aza-epkgs-dir))
   (setq save-abbrevs nil)
   (setq-default abbrev-mode t))
 
