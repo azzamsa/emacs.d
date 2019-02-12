@@ -127,4 +127,24 @@ Reduce Distraction."
           (message "Yey, You have notification!"))
       (message "Request failed"))))
 
+(defun ask-archive (url)
+  "Get request to Wayback API"
+  (let* ((archive-response (request (concat "http://archive.org/wayback/available?url=" url)
+                                    :parser 'json-read
+                                    :sync t))
+         (data (request-response-data archive-response))
+         (status (request-response-status-code archive-response)))
+    (if (eq status 200)
+        data
+      404)))
+
+(defun save-to-wayback ()
+  "Archive page to Wayback"
+  (interactive)
+  (let* ((url (read-string "Url: "))
+         (response (nth 1 (nth 1 (ask-archive url)))))
+    (if response
+        (message "Webpage had an archive")
+      (message "Webpage archived"))))
+
 (provide 'aza-scripts)
