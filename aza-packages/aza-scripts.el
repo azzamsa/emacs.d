@@ -2,6 +2,8 @@
 (require 's)
 (require 'f)
 (require 'ts)
+(require 'request)
+(require 'keys (expand-file-name "keys/keys.el.gpg" aza-epgk-dir))
 
 (when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
   (require 'aza-secrets))
@@ -100,5 +102,29 @@ Emacs"
         (month (read-string "Month: "))
         (year (read-string "Year: " (number-to-string (ts-year (ts-now))))))
     (message (ts-day-name (ts-parse (s-join " " (list date month year)))))))
+
+(defun ask-github ()
+  "GET Github notification API."
+  (let* ((archive-response (request "https://api.github.com/notifications?all"
+                                    :parser 'json-read
+                                    :headers `(("Authorization" . ,(concat "token" " " github-pass))
+                                               ("Content-Type" . "application/json"))
+                                    :sync t))
+         (data (request-response-data archive-response))
+         (status (request-response-status-code archive-response)))
+    (if (eq status 200)
+        data
+      404)))
+
+(defun show-github-notification ()
+  "Check if Github notification exist without opening browser
+Reduce Distraction."
+  (interactive)
+  (let ((result (ask-github)))
+    (if (not (equal result 404))
+        (if (equal result '[])
+            (message "No notification.")
+          (message "Yey, You have notification!"))
+      (message "Request failed"))))
 
 (provide 'aza-scripts)
