@@ -3,8 +3,7 @@
   (add-hook 'after-save-hook
             (lambda ()
               (when (and
-                     (string-prefix-p (file-name-directory load-file-name)
-                                      (file-truename buffer-file-name))
+                     (string-prefix-p user-emacs-directory (file-truename buffer-file-name))
                      (file-exists-p (byte-compile-dest-file buffer-file-name)))
                 (emacs-lisp-byte-compile)))
             nil
@@ -57,5 +56,13 @@ Start `ielm' if it's not already running."
   '(diminish 'rainbow-mode))
 (eval-after-load "eldoc"
   '(diminish 'eldoc-mode))
+
+
+(defun conditionally-enable-smartparens-mode ()
+  "Enable `smartparens-mode' in the minibuffer, during `eval-expression'."
+  (if (eq this-command 'eval-expression)
+      (smartparens-mode 1)))
+
+(add-hook 'minibuffer-setup-hook 'conditionally-enable-smartparens-mode)
 
 (provide 'aza-emacs-lisp)
