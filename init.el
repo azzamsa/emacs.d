@@ -152,7 +152,8 @@
   (setq projectile-known-projects-file
         (expand-file-name "projectile-bookmarks.eld" aza-savefile-dir))
   (setq projectile-cache-file
-        (expand-file-name "projectile.cache" aza-savefile-dir)))
+        (expand-file-name "projectile.cache" aza-savefile-dir))
+  (projectile-mode +1))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
