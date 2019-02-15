@@ -62,13 +62,13 @@ If region selected, parse region as today's date pivot."
     (save-excursion
       (replace-string (car pair) (cdr pair)))))
 
-(defun set-light ()
+(defun light-set-value ()
   "Set light value directly inside Emacs"
   (interactive)
   (let ((light-value (read-string "Set Value: ")))
     (start-process "" nil "light" "-S" light-value)))
 
-(defun compile-ui-to-py ()
+(defun pyqt-compile-ui ()
   "Compile Qt5 user interfaces to Python code directly from
 Emacs"
   (interactive)
@@ -89,7 +89,7 @@ Emacs"
   (interactive)
   (start-process "" nil "rm" "-rf" trash-dir1 trash-dir2 trash-dir3))
 
-(defun show-anacron-last-backup ()
+(defun anacron-show-last-backup ()
   "Show last backup of my anacron status."
   (interactive)
   (let ((contents (f-read "~/cron-report/anacron-status.txt" 'utf-8)))
@@ -116,7 +116,7 @@ Emacs"
         data
       404)))
 
-(defun show-github-notification ()
+(defun github-show-notification ()
   "Check if Github notification exist without opening browser
 Reduce Distraction."
   (interactive)
@@ -138,7 +138,7 @@ Reduce Distraction."
         data
       404)))
 
-(defun save-to-wayback ()
+(defun wayback-save-page ()
   "Archive page to Wayback"
   (interactive)
   (let* ((url (read-string "Url: "))
