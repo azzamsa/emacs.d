@@ -5,6 +5,7 @@
   :custom (js-indent-level 2))
 
 (use-package xref-js2
-  :after js2-mode)
+  :after js2-mode
+  :mode "\\.js\\'")
 
 (provide 'aza-js)
