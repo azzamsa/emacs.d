@@ -72,6 +72,15 @@
   :mode "\\.yml\\'"
   :interpreter ("yml" . yml-mode))
 
+(use-package json-mode
+  :delight " J"
+  :mode "\\.json\\'"
+  :hook (before-save . my/json-mode-before-save-hook)
+  :preface
+  (defun my/json-mode-before-save-hook ()
+    (when (eq major-mode 'json-mode)
+      (json-pretty-print-buffer))))
+
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
   (smartparens-mode +1)
