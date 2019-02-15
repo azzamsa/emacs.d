@@ -591,15 +591,21 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "firefox-dev")
 
-(setq url-cache-directory
-      (expand-file-name "url/cache/" aza-savefile-dir))
+;; Litter
 (setq url-configuration-directory
       (expand-file-name "url/configuration/" aza-savefile-dir))
-
-;; I hate that custom fruit
+(setq url-cache-directory
+      (expand-file-name "url/cache/" aza-savefile-dir))
 (setq custom-file (expand-file-name "custom.el" aza-savefile-dir))
 (setq tramp-persistency-file-name
       (expand-file-name "tramp-persistency.el" aza-savefile-dir))
+(setq transient-history-file
+      (expand-file-name "transient/history.el" aza-savefile-dir))
+(setq transient-levels-file
+      (expand-file-name "transient/levels.el" aza-savefile-dir))
+(setq transient-values-file
+      (expand-file-name "transient/values.el" aza-savefile-dir))
+
 
 (when (file-exists-p custom-file)
   (load custom-file))
