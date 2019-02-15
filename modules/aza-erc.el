@@ -38,7 +38,7 @@
         erc-nick "azzamsa")
 
   ;; Logging
-  (setq erc-log-channels-directory "~/erclogs/")
+  (setq erc-log-channels-directory "~/irclogs/")
   (setq erc-generate-log-file-name-function (quote erc-generate-log-file-name-with-date))
   (setq erc-save-buffer-on-part nil)
   (setq erc-save-queries-on-quit nil)
