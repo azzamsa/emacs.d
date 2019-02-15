@@ -35,8 +35,9 @@
 
   ;; automatically show new transactions from hledger add or hledger-web
   (add-hook 'ledger-mode-hook 'auto-revert-tail-mode)
-  (add-hook 'ledger-mode-hook 'auto-fill-mode -1)
   (add-hook 'ledger-mode-hook (lambda () (setq tab-width 4)))
+  (add-hook 'ledger-mode-hook (lambda ()
+                                (auto-fill-mode -1)))
 
   :custom
   (ledger-init-file-name " ")
