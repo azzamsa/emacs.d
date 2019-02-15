@@ -553,6 +553,7 @@
 (require 'aza-go)
 (require 'aza-xml)
 (require 'aza-php)
+(require 'aza-js)
 
 ;;; emacs is home
 (require 'aza-home)
