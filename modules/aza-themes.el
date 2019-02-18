@@ -19,13 +19,13 @@
 ;;------------------------------------------------------------------------------
 ;; Toggle between light and dark
 ;;------------------------------------------------------------------------------
-(defun light-theme ()
+(defun theme-toggle-light ()
   "Activate a light color theme."
   (interactive)
   (setq custom-enabled-themes '(github))
   (reapply-themes))
 
-(defun dark-theme ()
+(defun theme-toggle-dark ()
   "Activate a dark color theme."
   (interactive)
   (setq custom-enabled-themes '(zenburn))
