@@ -83,8 +83,7 @@
 
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
-  (smartparens-mode +1)
-  (ws-butler-global-mode +1))
+  (smartparens-mode +1))
 
 (setq aza-prog-mode-hook 'aza-prog-mode-defaults)
 

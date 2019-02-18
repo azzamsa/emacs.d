@@ -141,7 +141,8 @@
                                            try-expand-list
                                            try-expand-line
                                            try-complete-lisp-symbol-partially
-                                           try-complete-lisp-symbol)))
+                                           try-complete-lisp-symbol))
+  (setq dabbrev-ignored-buffer-regexps '(".*\.gpg$" "^ [*].*")))
 
 (use-package projectile
   :delight " P"
@@ -201,6 +202,15 @@
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
   (setq company-show-numbers t)
+
+  (defun my-company-dabbrev-ignore (buffer)
+    (let (res)
+      ;; don't search in org files, encrypted files, or hidden buffers
+      (dolist (re '("\.gpg$" "^ [*]") res)
+        (if (string-match-p re (buffer-name buffer))
+            (setq res t)))))
+
+  (setq company-dabbrev-ignore-buffers 'my-company-dabbrev-ignore)
   (global-company-mode +1))
 
 (use-package company-quickhelp
@@ -500,20 +510,21 @@
               ("C-: C-r" . origami-reset)))
 
 (use-package whitespace
-  :delight whitespace-mode
+  :delight ""
   :defer 3
   :init
   (dolist (hook '(prog-mode-hook text-mode-hook))
     (add-hook hook #'whitespace-mode))
   ;; clean up handled by ws-butler
-  ;;(add-hook 'before-save-hook #'whitespace-cleanup)
+  (add-hook 'before-save-hook #'whitespace-cleanup)
   :config
   ;; limit line length
   (setq whitespace-line-column 80)
-  (setq whitespace-style '(face tabs trailing lines-tail)))
+  (setq whitespace-style '(face tabs empty trailing lines-tail)))
 
 (use-package ws-butler
   ;; clean only edited lines
+  :disabled
   :defer 3
   :config
   (ws-butler-global-mode t))
@@ -616,9 +627,10 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-;; diminish
-(diminish 'visual-line-mode "Wr")
-(diminish 'auto-fill-function "Fl")
+;; delight
+(delight 'rainbow-mode)
+(delight 'auto-fill-function "" t)
+(delight 'auto-capitalize-mode)
 
 
 ;;; init.el ends here
