@@ -1,4 +1,5 @@
 (use-package elpy
+  :delight "Ep"
   :init (with-eval-after-load 'python (elpy-enable))
   :commands elpy-enable
   :bind (:map elpy-mode-map
@@ -15,16 +16,14 @@
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
     (add-hook 'elpy-mode-hook 'flycheck-mode))
 
-  (setq elpy-rpc-backend "jedi"))
+  (setq elpy-rpc-backend "jedi")
+  (add-hook 'elpy-mode-hook (lambda ()
+                              (subword-mode +1))))
 
-(defun my/python-mode-hook ()
-  (subword-mode +1)
-  (add-to-list 'company-backends 'company-jedi))
-
-(use-package company-jedi
+(use-package pyvenv
   :after elpy
-  :init
-  (add-hook 'python-mode-hook 'my/python-mode-hook))
-
+  :config
+  (add-hook 'pyvenv-post-activate-hooks (lambda ()
+                                          (revert-buffer t t))))
 
 (provide 'aza-python)
