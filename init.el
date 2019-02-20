@@ -88,6 +88,10 @@
 
 (setq history-delete-duplicates t)
 
+;; use extra key in org.
+;; must be placed here. :init and :hook didn't work
+(setq org-use-extra-keys t)
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -187,7 +191,7 @@
 (use-package abbrev
   :ensure nil
   :defer 3
-  :delight " Ab"
+  :delight ""
   :config
   (setq abbrev-file-name
         (expand-file-name "abbrevs/abbrev.el" aza-epkgs-dir))
@@ -259,7 +263,7 @@
 
 (use-package super-save
   :defer 2
-  :delight super-save-mode
+  :delight " Ss"
   :config
   (add-to-list 'super-save-triggers 'ace-window)
   (add-to-list 'super-save-triggers 'helm)
@@ -520,7 +524,7 @@
   :config
   ;; limit line length
   (setq whitespace-line-column 80)
-  (setq whitespace-style '(face tabs empty trailing lines-tail)))
+  (setq whitespace-style '(face trailing lines-tail space-before-tab)))
 
 (use-package ws-butler
   ;; clean only edited lines
@@ -631,6 +635,7 @@
 (delight 'rainbow-mode)
 (delight 'auto-fill-function "" t)
 (delight 'auto-capitalize-mode)
+(delight 'highlight-indentation-mode)
 
 
 ;;; init.el ends here
