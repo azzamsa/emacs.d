@@ -46,10 +46,10 @@
   ;; current subdir, instead of the current subdir of this dired buffer
   (setq dired-dwim-target t)
   (setq dired-listing-switches "-AltGhF --group-directories-first")
-  ;; (add-hook 'dired-mode-hook #'dired-filter-group-mode)
-  ;; (add-hook 'dired-mode-hook #'dired-filter-mode)
-  (add-hook 'dired-mode-hook #'dired-omit-mode)
-  (add-hook 'dired-mode-hook #'dired-collapse-mode)
+  (add-hook 'dired-mode-hook (lambda ()
+                               (dired-omit-mode 1)
+                               (dired-collapse-mode 1)
+                               (beacon-mode -1)))
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt
@@ -99,27 +99,16 @@
 (use-package dired-rainbow
   :after dired
   :config
-  (dired-rainbow-define html "#4e9a06" ("htm" "html" "xhtml"))
-  (dired-rainbow-define xml "#b4fa70" ("xml" "xsd" "xsl" "xslt" "wsdl"))
+  (dired-rainbow-define-chmod executable-unix "#77e323" "-.*x.*")
+  (dired-rainbow-define sourcefile "#b4fa70" ("py" "cl" "el" "ruby" "java"
+                                              "html" "xml"))
+  (dired-rainbow-define document "#fce94f" ("odt" "ods" "pdf" "epub"))
+  (dired-rainbow-define media "#dfe3ee" ("mp3" "mp4" "MP3" "MP4" "avi" "mpg"
+                                         "flv" "ogg" "mkv"))
+  (dired-rainbow-define image "#8b9dc3" ("jpg" "png" "jpeg" "gif"))
 
-  (dired-rainbow-define document "#fce94f" ("doc" "docx" "odt" "pdb" "pdf" "ps"
-                                            "rtf" "djvu" "epub"))
-  (dired-rainbow-define excel "#3465a4" ("xlsx"))
-  (dired-rainbow-define media "#ce5c00" ("mp3" "mp4" "MP3" "MP4" "avi" "mpg" "flv"
-                                         "ogg" "wmv" "mkv" "mov" "wma"))
-  (dired-rainbow-define image "#ff4b4b" ("jpg" "png" "jpeg" "gif"))
-
-  (dired-rainbow-define log "#c17d11" ("log"))
-  (dired-rainbow-define sourcefile "#fcaf3e" ("py" "c" "cc" "h" "java" "pl" "rb"
-                                              "R" "php"))
-
-  (dired-rainbow-define executable "#8cc4ff" ("exe" "msi"))
-  (dired-rainbow-define compressed "#ad7fa8" ("zip" "bz2" "tgz" "txz" "gz" "xz"
-                                              "z" "Z" "jar" "war" "ear" "rar"
-                                              "sar" "xpi" "apk" "xz" "tar"))
-  (dired-rainbow-define packaged "#e6a8df" ("deb" "rpm"))
-  (dired-rainbow-define encrypted "LightBlue" ("gpg" "pgp"))
-
-  (dired-rainbow-define-chmod executable-unix "Green" "-.*x.*"))
+  (dired-rainbow-define compressed "#ad7fa8" ("zip" "bz2" "tgz"  "gz"
+                                              "rar" "7z" "tar"))
+  (dired-rainbow-define encrypted "#ffcc5c" ("gpg" "pgp")))
 
 (provide 'aza-dired)
