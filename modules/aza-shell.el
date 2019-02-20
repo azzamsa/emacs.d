@@ -3,7 +3,7 @@
 (use-package shell
   :defer t
   :bind ((:map shell-mode-map
-               ("M-p" . helm-comint-input-ring))
+               ("C-c C-l" . helm-comint-input-ring))
          ("s-g" . dirs))
   :config
   (setq comint-prompt-read-only t) ; make shell-prompt read-only
