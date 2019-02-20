@@ -1,16 +1,12 @@
 (use-package elpy
-  :delight "Ep"
+  :delight " Ep"
   :init (with-eval-after-load 'python (elpy-enable))
   :commands elpy-enable
-  :bind (:map elpy-mode-map
-              ("C-c C-y l" . elpy-shell-clear-shell))
+  :bind ((:map elpy-refactor-map
+               ("f" . elpy-yapf-fix-code))
+         (:map inferior-python-mode-map
+               ("C-c C-l" . helm-comint-input-ring)))
   :config
-  (defun elpy-shell-clear-shell ()
-    "Clear the current shell buffer."
-    (interactive)
-    (with-current-buffer (process-buffer (elpy-shell-get-or-create-process))
-      (comint-clear-buffer)))
-
   ;; Use Flycheck instead of Flymake
   (when (require 'flycheck nil t)
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
