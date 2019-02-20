@@ -64,6 +64,9 @@
   :config
   (add-hook 'prog-mode-hook #'hl-todo-mode))
 
+(use-package realgud
+  :defer t)
+
 (use-package gitconfig-mode :defer t)
 (use-package gitignore-mode :defer t)
 (use-package gitattributes-mode :defer t)
