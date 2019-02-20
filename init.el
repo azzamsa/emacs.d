@@ -634,7 +634,7 @@
 ;; delight
 (delight 'rainbow-mode)
 (delight 'auto-fill-function "" t)
-(delight 'auto-capitalize-mode)
+(delight 'auto-capitalize-mode "" t)
 (delight 'highlight-indentation-mode)
 
 
