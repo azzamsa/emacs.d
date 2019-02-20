@@ -1,13 +1,13 @@
 (use-package org
-  :ensure org
   :defer 1
   :pin org
+  :ensure org-plus-contrib ; use this to make sure Emacs didn't pick
+                                        ; the default version
   :bind (:map org-mode-map
               ("C-c l" . org-store-link)
               ("C-c a" . org-agenda)
               ("C-k" . my-delete-line))
   :init
-  (setq org-use-extra-keys t)
   (setq org-src-tab-acts-natively t)
   (setq org-log-done t)
   (setq org-startup-indented t)
@@ -52,7 +52,6 @@
     (sp-local-pair "_" "_"))
 
   (add-hook 'org-mode-hook (lambda ()
-                             (my-org-mode-hook)
                              (smartparens-mode +1)
                              (which-function-mode -1))))
 
