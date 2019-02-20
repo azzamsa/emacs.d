@@ -46,8 +46,9 @@
   ;; current subdir, instead of the current subdir of this dired buffer
   (setq dired-dwim-target t)
   (setq dired-listing-switches "-AltGhF --group-directories-first")
-  (add-hook 'dired-mode-hook #'dired-filter-group-mode)
-  (add-hook 'dired-mode-hook #'dired-filter-mode)
+  ;; (add-hook 'dired-mode-hook #'dired-filter-group-mode)
+  ;; (add-hook 'dired-mode-hook #'dired-filter-mode)
+  (add-hook 'dired-mode-hook #'dired-omit-mode)
   (add-hook 'dired-mode-hook #'dired-collapse-mode)
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
@@ -71,12 +72,14 @@
               ("Y" . dired-ranger-paste)))
 
 (use-package dired-subtree
+  :defer t
   :after dired
   :bind (:map dired-mode-map
               ("i" . dired-subtree-insert)
               (";" . dired-subtree-remove)))
 
 (use-package dired-narrow
+  :defer t
   :after dired
   :bind (:map dired-mode-map
               ("\\" . dired-narrow)))
