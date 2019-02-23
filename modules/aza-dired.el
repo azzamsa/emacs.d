@@ -104,7 +104,7 @@
                                               "html" "xml"))
   (dired-rainbow-define document "#fce94f" ("odt" "ods" "pdf" "epub"))
   (dired-rainbow-define media "#dfe3ee" ("mp3" "mp4" "MP3" "MP4" "avi" "mpg"
-                                         "flv" "ogg" "mkv"))
+                                         "flv" "ogg" "mkv" "m4a"))
   (dired-rainbow-define image "#8b9dc3" ("jpg" "png" "jpeg" "gif"))
 
   (dired-rainbow-define compressed "#ad7fa8" ("zip" "bz2" "tgz"  "gz"
