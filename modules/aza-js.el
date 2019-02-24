@@ -6,6 +6,6 @@
 
 (use-package xref-js2
   :after js2-mode
-  :mode "\\.js\\'")
+  :mode ("\\.js\\'" . js2-mode))
 
 (provide 'aza-js)
