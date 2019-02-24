@@ -57,7 +57,9 @@
   :ensure-system-package ag
   :after helm
   :delight helm-ag-mode
-  :bind ("C-c a" . helm-ag))
+  :bind (("C-c a a" . helm-ag)
+         ("C-c a t" . helm-ag-this-file)
+         ("C-c a p" . helm-ag-project-root)))
 
 (use-package helm-projectile
   :after projectile
