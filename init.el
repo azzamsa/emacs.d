@@ -154,6 +154,7 @@
   :init
   (setq projectile-completion-system 'helm)
   :config
+  (setq projectile-indexing-method 'alien)
   (setq projectile-known-projects-file
         (expand-file-name "projectile-bookmarks.eld" aza-savefile-dir))
   (setq projectile-cache-file
@@ -520,7 +521,7 @@
   (dolist (hook '(prog-mode-hook text-mode-hook))
     (add-hook hook #'whitespace-mode))
   ;; clean up handled by ws-butler
-  (add-hook 'before-save-hook #'whitespace-cleanup)
+  ;; (add-hook 'before-save-hook #'whitespace-cleanup)
   :config
   ;; limit line length
   (setq whitespace-line-column 80)
@@ -528,7 +529,7 @@
 
 (use-package ws-butler
   ;; clean only edited lines
-  :disabled
+  :delight " ws"
   :defer 3
   :config
   (ws-butler-global-mode t))
