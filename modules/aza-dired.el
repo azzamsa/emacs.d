@@ -48,8 +48,7 @@
   (setq dired-listing-switches "-AltGhF --group-directories-first")
   (add-hook 'dired-mode-hook (lambda ()
                                (dired-omit-mode 1)
-                               (dired-collapse-mode 1)
-                               (beacon-mode -1)))
+                               (dired-collapse-mode 1)))
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt
