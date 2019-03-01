@@ -165,7 +165,7 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package smartparens
-  :delight " Sp"
+  :delight " ()"
   :bind (:map smartparens-mode-map
               ("C-M-a" . sp-beginning-of-sexp)
               ("C-M-e" . sp-end-of-sexp))
@@ -264,7 +264,7 @@
 
 (use-package super-save
   :defer 2
-  :delight " Ss"
+  :delight ""
   :config
   (add-to-list 'super-save-triggers 'ace-window)
   (add-to-list 'super-save-triggers 'helm)
@@ -462,12 +462,13 @@
 
 
 (use-package with-editor
-  :defer t)
+  :defer t
+  :disabled)
 
 (use-package auto-capitalize
   :defer 3
-  :delight " Ac"
-  :load-path "elisp/auto-capitalize"
+  :delight ""
+  :load-path "~/emacs-packages/auto-capitalize/"
   :config
   (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode))
 
@@ -529,7 +530,7 @@
 
 (use-package ws-butler
   ;; clean only edited lines
-  :delight " ws"
+  :delight ""
   :defer 3
   :config
   (ws-butler-global-mode t))
@@ -633,10 +634,8 @@
 (put 'upcase-region 'disabled nil)
 
 ;; delight
-(delight 'rainbow-mode)
 (delight 'auto-fill-function "" t)
-(delight 'auto-capitalize-mode "" t)
-(delight 'highlight-indentation-mode)
+
 
 
 ;;; init.el ends here
