@@ -71,6 +71,16 @@
 (use-package gitignore-mode :defer t)
 (use-package gitattributes-mode :defer t)
 
+(use-package subword
+  :ensure nil
+  :defer t
+  :delight "")
+
+(use-package highlight-indentation
+  :ensure nil
+  :defer t
+  :delight "")
+
 (use-package yaml-mode
   :mode "\\.yml\\'"
   :interpreter ("yml" . yml-mode))
