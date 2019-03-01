@@ -8,8 +8,10 @@
 
 (use-package async
   :defer 3
+  :delight " 🏃"
   :load-path "~/emacs-packages/emacs-async/"
   :config
+  (setq dired-async-mode-lighter " 🏃")
   (async-bytecomp-package-mode t)
 
   (defun my/dired-async-message-function (text _face &rest args)
