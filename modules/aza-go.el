@@ -18,8 +18,12 @@
     (set (make-local-variable 'company-backends) '(company-go))
     (go-eldoc-setup)
     (subword-mode +1))
-
   :config
+
+  (setenv "PATH" (concat "/usr/local/go/bin:"
+                         (getenv "PATH")))
+  (add-to-list 'exec-path "/usr/local/go/bin")
+
   (add-to-list 'completion-ignored-extensions ".test")
   (add-hook 'before-save-hook 'gofmt-before-save nil t)
   (add-hook 'go-mode-hook (lambda ()
