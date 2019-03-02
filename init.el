@@ -550,6 +550,7 @@
 ;;------------------------------------------------
 ;; Modules
 ;;------------------------------------------------
+(require 'aza-path)
 (require 'aza-themes)
 (require 'aza-dired)
 (require 'aza-helm)

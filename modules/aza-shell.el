@@ -1,4 +1,4 @@
-(require 'aza-shell-prompt)
+;;(require 'aza-shell-prompt)
 
 (use-package shell
   :defer t
@@ -29,8 +29,11 @@
   :init
   (bash-completion-setup))
 
-;; Need this even in GNU/Linux e.g for GOPATH
+;; what app need it ?
+;; - GOPATH : solved
+;; - latex : solved
 (use-package exec-path-from-shell
+  :disabled
   :defer 3.1
   :config
   (setq exec-path-from-shell-check-startup-files nil)
