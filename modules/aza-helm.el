@@ -12,6 +12,7 @@
          ("C-c h l" . helm-locate)
          ("C-c p h" . helm-projectile)
          ("C-h SPC" . helm-all-mark-rings)
+         ("C-c m" . helm-imenu)
          (:map isearch-mode-map
                ("C-o" . helm-occur-from-isearch)))
   :config
