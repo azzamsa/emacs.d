@@ -95,6 +95,20 @@
   (setq dired-filter-prefix "f")
   :commands dired-filter-by-mode)
 
+(use-package dired-async
+  :after dired
+  :delight ""
+  :load-path "~/emacs-packages/emacs-async/"
+  :preface
+  (defun my/dired-async-message-function (text _face &rest args)
+    "Log messages from dired-async to messages buffer."
+    (message (format "Finished %s" (apply #'format text args))))
+  :config
+  (dired-async-mode 1)
+  :custom
+  (dired-async-message-function #'my/dired-async-message-function))
+
+
 (use-package dired-rainbow
   :after dired
   :config

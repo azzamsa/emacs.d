@@ -499,6 +499,13 @@
   (paradox-hide-wiki-packages t)
   (paradox-github-token t))
 
+(use-package async-bytecomp-package
+  :after paradox
+  :delight ""
+  :load-path "~/emacs-packages/emacs-async/"
+  :config
+  (async-bytecomp-package-mode 1))
+
 (use-package helpful
   :bind (("C-h f" . helpful-callable)
          ("C-h v" . helpful-variable)
@@ -546,6 +553,11 @@
   (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+
+(use-package auth-source
+  :no-require t
+  :config
+  (setq auth-sources '("~/.authinfo.gpg")))
 
 ;;------------------------------------------------
 ;; Modules
