@@ -13,6 +13,15 @@
               (turn-on-reftex)
               (smartparens-mode +1)
               (flyspell-mode)))
+  (setenv "PATH" (concat "/usr/local/texlive/2018/bin/x86_64-linux:"
+                     (getenv "PATH")))
+  (add-to-list 'exec-path "/usr/local/texlive/2018/bin/x86_64-linux")
+
+  ;; FIXME can we add -shell-escape to local variable ?
+  (setcdr (assoc "LaTeX" TeX-command-list)
+          '("%`%l%(mode) -shell-escape%' %t"
+          TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX"))
+
   :custom
   (TeX-PDF-mode t) ; output to pdf
   (TeX-auto-save t) ; enable parse on save.
