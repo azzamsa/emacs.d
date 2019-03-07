@@ -79,7 +79,8 @@
   (setq dimmer-exclusion-predicates '(helm--alive-p window-minibuffer-p))
   (setq dimmer-exclusion-regexp-list
         '("^\\*[h|H]elm.*\\*" "^\\*Minibuf-[0-9]+\\*"
-          "^.\\*which-key\\*$" "^*Messages*" "*LV*"))
+          "^.\\*which-key\\*$" "^*Messages*" "*LV*"
+          "transient"))
   (setq dimmer-fraction 0.50)
   (dimmer-mode t))
 
