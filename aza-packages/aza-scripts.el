@@ -65,7 +65,7 @@ If region selected, parse region as today's date pivot."
 (defun light-set-value ()
   "Set light value directly inside Emacs"
   (interactive)
-  (let ((light-value (read-string "Set Value: ")))
+  (let ((light-value (read-string "Set Value: " "10")))
     (start-process "" nil "light" "-S" light-value)))
 
 (defun pyqt-compile-ui ()
