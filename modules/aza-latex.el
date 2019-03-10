@@ -6,18 +6,20 @@
   (setq LaTeX-verbatim-environments
         '("verbatim" "Verbatim" "lstlisting" "minted" "ignasicblock"))
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+  (setq TeX-command-extra-options "-shell-escape")
   (add-hook 'LaTeX-mode-hook
             (lambda ()
               (turn-on-auto-fill)
+              (turn-on-auto-capitalize-mode)
               (yas-minor-mode t)
               (turn-on-reftex)
               (smartparens-mode +1)
               (flyspell-mode)))
   (aza-latex-path)
-  ;; FIXME can we add -shell-escape to local variable ?
-  (setcdr (assoc "LaTeX" TeX-command-list)
-          '("%`%l%(mode) -shell-escape%' %t"
-            TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX"))
+  ;; ;; FIXME can we add -shell-escape to local variable ?
+  ;; (setcdr (assoc "LaTeX" TeX-command-list)
+  ;;         '("%`%l%(mode) -shell-escape%' %t"
+  ;;           TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX"))
 
   :custom
   (TeX-PDF-mode t) ; output to pdf

@@ -53,7 +53,8 @@
 
   (add-hook 'org-mode-hook (lambda ()
                              (smartparens-mode +1)
-                             (which-function-mode -1))))
+                             (which-function-mode -1)
+                             (turn-on-auto-capitalize-mode))))
 
 (use-package ob-org :ensure nil :after org :defer 3)
 (use-package ob-lisp :ensure nil :after org :defer 3)
