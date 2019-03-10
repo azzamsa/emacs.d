@@ -548,10 +548,9 @@
   ;; these need to be defined here - if they're lazily loaded with
   ;; :bind they don't work.
   (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+  (global-set-key (kbd "C-c /") 'mc/skip-to-next-like-this)
+  (global-set-key (kbd "C-c C-.") 'mc/mark-all-like-this))
 
 (use-package auth-source
   :no-require t
