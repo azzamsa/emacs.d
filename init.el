@@ -244,7 +244,12 @@
   :config
   (setq ispell-program-name "aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra"))
-  (add-hook 'text-mode-hook 'flyspell-mode))
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  :custom-face
+  (flyspell-duplicate
+   ((t (:inherit nil :underline (:color "dark violet" :style wave)))))
+  (flyspell-incorrect
+   ((t (:inherit nil :underline (:color "magenta" :style wave))))))
 
 (use-package flyspell-correct-helm
   :after flyspell
