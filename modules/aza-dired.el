@@ -19,7 +19,8 @@
                ("s-o" . dired-open-directory-in-thunar)
                ("]" . term-here)
                ("j" . dired-next-line)
-               ("k" . dired-previous-line)))
+               ("k" . dired-previous-line)
+               ("[" . hydra-dired/body)))
   :init
   (require 'aza-dired-ext)
   (require 'dired-x) ; dired-jump is cool

@@ -73,4 +73,20 @@
   ("af" auto-fill-mode)
   ("am" menu-bar-mode))
 
+(defhydra hydra-dired (:color blue)
+  "
+  ^
+  ^Go To^      ^Action^
+  ^─────^──────^──────^────────
+  _q_ quit     _ac_ collapse
+  ^^           _ao_ omit
+  ^^           ^^
+  ^^           ^^
+  ^^           ^^
+  ^^           ^^
+  "
+  ("q" nil)
+  ("ac" dired-collapse-mode)
+  ("ao" dired-omit-mode))
+
 (provide 'aza-hydra)
