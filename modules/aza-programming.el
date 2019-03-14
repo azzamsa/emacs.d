@@ -95,7 +95,7 @@
       (json-pretty-print-buffer))))
 
 (defun aza-prog-mode-defaults ()
-  ;; (flyspell-prog-mode)
+  (flyspell-prog-mode)
   (smartparens-mode +1))
 
 (setq aza-prog-mode-hook 'aza-prog-mode-defaults)
