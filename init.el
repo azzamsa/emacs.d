@@ -467,7 +467,7 @@
 
 (use-package auto-capitalize
   :defer 3
-  :delight " ac"
+  :delight " Ac"
   :load-path "~/emacs-packages/auto-capitalize/")
 
 (use-package alert
@@ -673,7 +673,7 @@
 (put 'upcase-region 'disabled nil)
 
 ;; delight
-(delight 'auto-fill-function "" t)
+(delight 'auto-fill-function " Af" t)
 
 
 
