@@ -31,6 +31,10 @@
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
+(use-package symbol-overlay
+  :defer t
+  :bind ( "C-c '" . symbol-overlay-put))
+
 (use-package editorconfig
   :defer t
   :disabled
@@ -96,7 +100,8 @@
 
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
-  (smartparens-mode +1))
+  (smartparens-mode +1)
+  (symbol-overlay-mode))
 
 (setq aza-prog-mode-hook 'aza-prog-mode-defaults)
 
