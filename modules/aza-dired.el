@@ -53,11 +53,10 @@
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt
-                 '("aux" "log" "pickle" "synctex.gz" "run.xml" "bcf" "am" "in" "blx.bib"
+                 '("aux" "log" "pickle" "synctex.gz" "run.xml" "bcf" "am" "blx.bib"
                    "vrb" "opt" "nav" "snm" "out" "org_archive"))
                 (regexp-opt
-                 '("compile_commands.json"
-                   "__pycache__")))))
+                 '("compile_commands.json" "__pycache__" ".pytest_cache")))))
 
 (use-package wdired
   :after dired
