@@ -77,7 +77,7 @@ Emacs"
          (file-name-sans-extension
           (file-name-nondirectory (dired-get-filename)))))
     (start-process "" nil "pyuic5" inputfile
-                   (concat "--output=" default-directory outputfile ".py"))))
+                   (concat "--output=" default-directory outputfile "_ui.py"))))
 
 (defun mpv-here ()
   "Play all multimedia files in current directory"
