@@ -29,15 +29,4 @@
   :init
   (bash-completion-setup))
 
-;; what app need it ?
-;; - GOPATH : solved
-;; - latex : solved
-(use-package exec-path-from-shell
-  :disabled
-  :defer 3.1
-  :config
-  (setq exec-path-from-shell-check-startup-files nil)
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
-
 (provide 'aza-shell)
