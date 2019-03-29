@@ -87,6 +87,8 @@
 
 (use-package dired-collapse
   :disabled
+  ;; disabled until this issue solved
+  ;; https://github.com/Fuco1/dired-hacks/issues/144
   :after dired)
 
 (use-package dired-filter
