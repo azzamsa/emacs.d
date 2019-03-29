@@ -408,12 +408,11 @@
   (setq ediff-split-window-function (quote split-window-horizontally)))
 
 (use-package eyebrowse
-  :disabled
   :defer t
+  :bind ("C-\"" . eyebrowse-last-window-config)
   :init
   (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
   (global-unset-key (kbd "C-c C-w"))
-  :bind ("C-\"" . eyebrowse-last-window-config)
   :config
   (eyebrowse-mode t)
   :custom
@@ -469,14 +468,6 @@
   (paradox-execute-asynchronously t)
   (paradox-hide-wiki-packages t)
   (paradox-github-token t))
-
-(use-package async-bytecomp-package
-  :after paradox
-  :disabled ; handled by paradox natively
-  :delight ""
-  :load-path "~/emacs-packages/emacs-async/"
-  :config
-  (async-bytecomp-package-mode 1))
 
 (use-package helpful
   :bind (("C-h f" . helpful-callable)
