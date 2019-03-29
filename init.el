@@ -182,13 +182,6 @@
   (setq sp-hybrid-kill-entire-symbol nil)
   (show-smartparens-global-mode +1))
 
-(use-package electric-pair
-  :disabled
-  :ensure nil
-  :commands electric-pair-mode
-  :init
-  (electric-pair-mode 1))
-
 (use-package abbrev
   :ensure nil
   :defer 3
