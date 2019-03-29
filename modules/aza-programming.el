@@ -42,26 +42,11 @@
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
 
-(use-package guru-mode
-  :disabled
-  :defer 3
-  :delight
-  :config
-  (setq guru-warn-only t)
-  (guru-global-mode +1))
-
 (use-package prettify-symbols-mode
   :defer t
   :ensure nil
   :config
   (add-hook 'prog-mode-hook #'prettify-symbols-mode))
-
-(use-package which-function
-  :ensure nil
-  :disabled
-  :defer 3
-  :config
-  (add-hook 'prog-mode-hook #'which-function-mode))
 
 (use-package hl-todo
   :defer 3
