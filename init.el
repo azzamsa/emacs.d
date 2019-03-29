@@ -286,13 +286,6 @@
 
 (use-package git-timemachine :defer t)
 
-(use-package windmove
-  ;; use shift + arrow keys to switch between visible buffers
-  :disabled
-  :defer 3
-  :config
-  (windmove-default-keybindings))
-
 (use-package savehist
   :defer 2
   :config
