@@ -4,7 +4,7 @@
 
 (use-package yasnippet
   :defer t
-  :delight " ⚄"
+  :delight yas-minor-mode " Ys"
   :config
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode))
@@ -33,6 +33,7 @@
 
 (use-package symbol-overlay
   :defer t
+  :delight " So"
   :bind ( "C-c '" . symbol-overlay-put))
 
 (use-package editorconfig
