@@ -1,5 +1,3 @@
-;;(require 'aza-shell-prompt)
-
 (use-package shell
   :defer t
   :bind ((:map shell-mode-map
