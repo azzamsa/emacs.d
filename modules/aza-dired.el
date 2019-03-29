@@ -48,13 +48,12 @@
   (setq dired-dwim-target t)
   (setq dired-listing-switches "-AltGhF --group-directories-first")
   (add-hook 'dired-mode-hook (lambda ()
-                               (dired-omit-mode 1)
-                               (dired-collapse-mode 1)))
+                               (dired-omit-mode 1)))
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt
                  '("aux" "log" "pickle" "synctex.gz" "run.xml" "bcf" "am" "blx.bib"
-                   "vrb" "opt" "nav" "snm" "out" "org_archive"))
+                   "vrb" "opt" "nav" "snm" "out" "org_archive" "auto"))
                 (regexp-opt
                  '("compile_commands.json" "__pycache__" ".pytest_cache")))))
 
@@ -87,6 +86,7 @@
   :after dired)
 
 (use-package dired-collapse
+  :disabled
   :after dired)
 
 (use-package dired-filter
