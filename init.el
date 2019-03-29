@@ -348,6 +348,8 @@
          ("C-^" . crux-top-join-line)
          ("C-c D" . crux-delete-file-and-buffer)
          ("C-c d" . crux-duplicate-current-line-or-region)
+         ("C-c M-d" . crux-duplicate-and-comment-current-line-or-region)
+         ("s-k" . crux-smart-kill-line)
          ("C-c n" . crux-cleanup-buffer-or-region)
          ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
          ([(shift return)] . crux-smart-open-line)
