@@ -445,20 +445,6 @@
   (setq bookmark-default-file (expand-file-name "bookmarks" aza-savefile-dir)
         bookmark-save-flag 1))
 
-(use-package desktop
-  :defer 2
-  :config
-  (setq desktop-path (list aza-savefile-dir))
-  (setq desktop-dirname aza-savefile-dir)
-  (setq desktop-restore-eager 5)
-  (setq desktop-load-locked-desktop t)
-  (desktop-save-mode +1))
-
-(use-package desktop+
-  ;; additional package to save term/shell buffers
-  :after desktop
-  )
-
 (use-package avy
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char-timer))
