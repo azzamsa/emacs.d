@@ -635,6 +635,8 @@
       (expand-file-name "transient/levels.el" aza-savefile-dir))
 (setq transient-values-file
       (expand-file-name "transient/values.el" aza-savefile-dir))
+(setq nsm-settings-file
+      (expand-file-name "network-security.data" aza-savefile-dir))
 
 
 (when (file-exists-p custom-file)
