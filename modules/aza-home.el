@@ -2,21 +2,6 @@
 ;; Emacs is a home
 ;;------------------------------------------------
 
-(use-package pomidor
-  :disabled
-  :defer t
-  :config
-  (setq pomidor-sound-tick nil
-        pomidor-sound-tack nil
-        pomidor-sound-overwork
-        (expand-file-name (concat (getenv "HOME") "/sounds/ding-rest.wav"))
-        pomidor-sound-break-over
-        (expand-file-name (concat (getenv "HOME") "/sounds/coin-work.wav")))
-  (setq alert-default-style 'libnotify)
-  :custom-face
-  (pomidor-time-face ((t (:height 3.0))))
-  (pomidor-timer-face ((t (:height 3.0)))))
-
 (use-package pomodoro
   :defer t
   :load-path "~/emacs-packages/pomodoro.el/"
