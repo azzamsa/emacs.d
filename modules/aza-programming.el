@@ -75,6 +75,14 @@
   :mode "\\.yml\\'"
   :interpreter ("yml" . yml-mode))
 
+(use-package rst-mode
+  :ensure nil
+  :mode "\\.rst\\'")
+
+(use-package sphinx-mode
+  :delight " Sphinx"
+  :after rst)
+
 (use-package json-mode
   :delight " J"
   :mode "\\.json\\'"
