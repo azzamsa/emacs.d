@@ -20,24 +20,25 @@ This command does not push text to `kill-ring'."
   (interactive "p")
   (my-delete-word (- arg)))
 
-(defun my-delete-line ()
-  "Delete text from current position to end of line char.
-This command does not push text to `kill-ring'."
+(defun aza-delete-line ()
+  "Delete from current position to end of line without pushing to `kill-ring'."
   (interactive)
-  (delete-region
-   (point)
-   (progn (end-of-line 1) (point)))
-  (delete-char 1))
+  (delete-region (point) (line-end-position)))
 
-(defun my-delete-line-backward ()
-  "Delete text between the beginning of the line to the cursor position.
-This command does not push text to `kill-ring'."
+(defun aza-delete-whole-line ()
+  "Delete whole line without pushing to kill-ring."
   (interactive)
-  (let (p1 p2)
-    (setq p1 (point))
-    (beginning-of-line 1)
-    (setq p2 (point))
-    (delete-region p1 p2)))
+  (delete-region (line-beginning-position) (line-end-position)))
+
+(defun crux-smart-delete-line ()
+  "Kill to the end of the line and kill whole line on the next call."
+  (interactive)
+  (let ((orig-point (point)))
+    (move-end-of-line 1)
+    (if (= orig-point (point))
+        (aza-delete-whole-line)
+      (goto-char orig-point)
+      (aza-delete-line))))
 
 ;; FIXME It will treat all images and pdfs larger than specified value
 ;; to be opened in fundamental mode.
