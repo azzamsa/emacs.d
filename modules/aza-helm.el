@@ -50,7 +50,8 @@
 
 (use-package helm-org-rifle
   :after helm
-  :bind ("C-c h r" . helm-org-rifle))
+  :bind (("C-c h r c" . helm-org-rifle-current-buffer)
+         ("C-c h r a" . helm-org-rifle)))
 
 (use-package helm-ag
   :ensure-system-package ag
