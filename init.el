@@ -521,34 +521,6 @@
   :config
   (setq auth-sources '("~/.authinfo.gpg")))
 
-(use-package bm
-  :demand t
-  :bind (("<f2>" . bm-next)
-         ("S-<f2>" . bm-previous)
-         ("C-<f2>" . bm-toggle))
-  :init
-  ;; restore on load (even before you require bm)
-  (setq bm-restore-repository-on-load t)
-  :config
-  (setq bm-highlight-style 'bm-highlight-only-fringe)
-  (setq bm-cycle-all-buffers t)
-  (setq bm-repository-file (expand-file-name "bm-repository" aza-savefile-dir))
-  (setq-default bm-buffer-persistence t)
-  (add-hook 'after-init-hook 'bm-repository-load)
-  (add-hook 'kill-buffer-hook #'bm-buffer-save)
-
-  (add-hook 'kill-emacs-hook #'(lambda nil
-                                 (bm-buffer-save-all)
-                                 (bm-repository-save)))
-  (add-hook 'after-save-hook #'bm-buffer-save)
-  ;; Restoring bookmarks
-  (add-hook 'find-file-hooks   #'bm-buffer-restore)
-  (add-hook 'after-revert-hook #'bm-buffer-restore)
-  (add-hook 'vc-before-checkin-hook #'bm-buffer-save)
-  :custom-face
-  '(bm-fringe-persistent-face ((t (:background "#E0CF9F" :foreground "#3F3F3F")))))
-
-
 ;;------------------------------------------------
 ;; Modules
 ;;------------------------------------------------
