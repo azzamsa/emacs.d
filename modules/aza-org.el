@@ -1,3 +1,6 @@
+(when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
+  (require 'aza-secrets))
+
 (use-package org
   :defer 1
   :pin org
@@ -12,9 +15,7 @@
   (setq org-log-done t)
   (setq org-startup-indented t)
   (setq org-src-fontify-natively t)
-  (setq org-agenda-files '("~/.emacs.d/documents/gtd/inbox.org"
-                           "~/.emacs.d/documents/gtd/project.org"
-                           "~/.emacs.d/documents/gtd/tickler.org"))
+  (setq org-agenda-files my-agenda-files)
   (setq org-todo-keywords '((sequence "TODO(t)"
                                       "STARTED(s!)"
                                       "WAITING(w@/!)"
@@ -30,12 +31,12 @@
   :config
   ;; inline image
   (setq org-image-actual-width nil)
-  (setq org-refile-targets '(("~/.emacs.d/documents/gtd/inbox.org" :maxlevel . 1)
-                             ("~/.emacs.d/documents/gtd/project.org" :maxlevel . 3)
-                             ("~/.emacs.d/documents/gtd/someday.org" :level . 1)
-                             ("~/.emacs.d/documents/gtd/tickler.org" :maxlevel . 2)))
+  (setq org-refile-targets '((my-inbox-gtd :maxlevel . 1)
+                             (my-projects-gtd :maxlevel . 3)
+                             (my-someday-gtd :level . 1)
+                             (my-tickler-gtd :maxlevel . 2)))
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                                 (file+headline "~/.emacs.d/documents/gtd/inbox.org" "Inbox")
+                                 (file+headline my-inbox-gtd "Inbox")
                                  "* TODO %i%?")))
 
   ;; Make windmove work in org-mode:
