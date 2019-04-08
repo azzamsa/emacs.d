@@ -25,6 +25,7 @@
       (cfw:org-create-source "#e0a899")  ; orgmode source
       (cfw:cal-create-source "#ffffba")
       (cfw:org-create-file-source "Success" my-success-cal "#baffc9")
+      (cfw:org-create-file-source "Success Atom" my-success-atom-cal "#E3FFE9")
       (cfw:org-create-file-source "Moment" my-moment-cal "#bae1ff")
       (cfw:org-create-file-source "Target" my-target-cal "#40e0d0")
       (cfw:org-create-file-source "Hevent" my-hevent-cal "#ffb3ba"))))
