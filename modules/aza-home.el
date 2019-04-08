@@ -72,6 +72,7 @@
    (git-commit-mode . emojify-mode)
    (magit-status-mode . emojify-mode)
    (magit-log-mode . emojify-mode)
+   (calfw-mode . emojify-mode)
    (org-mode . emojify-mode))
   :config
   (setq emojify-emoji-styles '(github unicode))
