@@ -2,6 +2,7 @@
   :mode ("\\.ml[ily]?$"
          "\\.topml$")
   :hook ((merlin-mode. tuareg-mode)
+         (flycheck-ocaml . tuareg-mode)
          (utop-minor-mode . tuareg-mode))
   :bind (:map tuareg-mode-map ("C-c C-s" . 'utop))
   :config
@@ -14,15 +15,15 @@
 
 (use-package merlin
   :after tuareg
-  :hook (company-mode . merlin-mode)
   :config
   (with-eval-after-load 'company
     (add-to-list 'company-backends 'merlin-company-backend))
-
-  (setq merlin-error-after-save nil)
-  (flycheck-ocaml-setup))
+  (add-hook 'merlin-mode-hook 'company-mode)
+  (setq merlin-error-after-save nil))
 
 (use-package flycheck-ocaml
-  :after tuareg)
+  :after tuareg
+  :config
+  (flycheck-ocaml-setup))
 
 (provide 'aza-ocaml)
