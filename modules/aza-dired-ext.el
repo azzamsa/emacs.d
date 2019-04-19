@@ -90,7 +90,7 @@ Version 2015-07-30"
         ("\\.\\(?:mp3\\|flac\\|wv\\)\\'" "mpv --force-window --loop")
         ("\\.html?\\'" "firefox-dev")
         ("\\.mm?\\'" "freeplane")
-        ("\\.\\(?:pptx?\\|odt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
+        ("\\.\\(?:pptx?\\|odt\\|fodt\\|xlsx?\\|docx?\\)\\'" "libreoffice")
         ("\\.ui?\\'" "qtchooser -run-tool=designer -qt=5")
         ("\\.gif?\\'" "sxiv -a")
         ("\\.\\(?:zip\\|tgz\\)\\'" "file-roller")))
