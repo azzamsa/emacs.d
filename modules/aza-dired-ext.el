@@ -101,7 +101,9 @@ Version 2015-07-30"
 
 (defun term-here ()
   (interactive)
-  (start-process "" nil "term-here"))
+  (start-process "" nil "urxvtc"
+                 "-e" "bash"
+                 "-c" "tmux -q has-session && exec tmux new-window || exec tmux new-session -n$USER -s$USER@$HOSTNAME"))
 
 (defun ora-shell-command-sentinel (process signal)
   (when (memq (process-status process) '(exit signal))
@@ -133,5 +135,6 @@ Version 2015-07-30"
     (if (string-match "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$" res)
         (message (match-string 1 res))
       (error "unexpected output %s" res))))
+
 
 (provide 'aza-dired-ext)
