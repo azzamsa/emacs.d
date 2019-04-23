@@ -233,10 +233,35 @@
 
 (use-package flyspell
   :defer t
-  :delight " ⛿"
   :config
-  (setq ispell-program-name "aspell" ; use aspell instead of ispell
+  (setq ispell-dictionary "en"
+        ispell-program-name "aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra"))
+
+  (defun mu-current-dictionary-mode-line (language)
+    "Return the current dictionary from LANGUAGE for the mode line."
+    (interactive)
+    (let ((dict (substring language 0 2)))
+      (concat " ⛿:" dict)))
+
+  (defvar mu-languages-ring nil "Languages ring for Ispell")
+
+  (let ((languages '("id" "en")))
+    (setq mu-languages-ring (make-ring (length languages)))
+    (dolist (elem languages) (ring-insert mu-languages-ring elem)))
+
+  (defun mu-cycle-ispell-languages ()
+    "Cycle ispell languages in `mu-languages-ring'.
+Change dictionary and mode-line lighter accordingly."
+    (interactive)
+    (let ((language (ring-ref mu-languages-ring -1)))
+      (ring-insert mu-languages-ring language)
+      (ispell-change-dictionary language)
+      (setq flyspell-mode-line-string (mu-current-dictionary-mode-line language))
+      (force-mode-line-update)))
+
+  (setq flyspell-mode-line-string (mu-current-dictionary-mode-line ispell-dictionary))
+
   (add-hook 'text-mode-hook 'flyspell-mode)
   :custom-face
   (flyspell-duplicate
