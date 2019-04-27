@@ -1,19 +1,22 @@
 (use-package tex
   :ensure auctex
-  :defer t
+  :defer t  
   :config
   (require 'smartparens-latex)
   (setq LaTeX-verbatim-environments
         '("verbatim" "Verbatim" "lstlisting" "minted" "ignasicblock"))
-  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   (setq TeX-command-extra-options "-shell-escape")
+
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   (add-hook 'LaTeX-mode-hook
             (lambda ()
+              (define-key LaTeX-mode-map (kbd "<C-tab>") 'outline-toggle-children)
               (turn-on-auto-fill)
               (turn-on-auto-capitalize-mode)
               (yas-minor-mode t)
               (turn-on-reftex)
               (smartparens-mode +1)
+              (outline-minor-mode)
               (flyspell-mode)))
   (aza-latex-path)
   ;; ;; FIXME can we add -shell-escape to local variable ?
