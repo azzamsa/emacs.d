@@ -307,7 +307,9 @@ Change dictionary and mode-line lighter accordingly."
 
 (use-package magit
   :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch)))
+         ("C-x M-g" . magit-dispatch))
+  :custom
+  (magit-diff-refine-hunk '(all)))
 
 (use-package git-timemachine :defer t)
 
