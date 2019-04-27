@@ -11,9 +11,6 @@
 (global-set-key [remap just-one-space] 'cycle-spacing)
 
 ;; emacs fix
-(global-set-key (kbd "C-k") 'my-delete-line) ;; crux-smart-kill-line
-(global-set-key (kbd "<C-backspace>") 'my-delete-line-backward) ;; crux-smart-kill-line
-
 (global-set-key (kbd "M-d") 'my-delete-word)
 (global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
 
