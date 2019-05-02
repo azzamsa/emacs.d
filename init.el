@@ -233,36 +233,16 @@
 
 (use-package flyspell
   :defer t
+  :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
   :config
   (setq ispell-dictionary "en"
         ispell-program-name "aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra"))
 
-  (defun mu-current-dictionary-mode-line (language)
-    "Return the current dictionary from LANGUAGE for the mode line."
-    (interactive)
-    (let ((dict (substring language 0 2)))
-      (concat " ⛿:" dict)))
+  (defadvice ispell-init-process (after ispell-init-process-after activate)
+    (setq flyspell-mode-line-string
+          (concat " ⛿:" (or ispell-local-dictionary ispell-dictionary "default"))))
 
-  (defvar mu-languages-ring nil "Languages ring for Ispell")
-
-  (let ((languages '("id" "en")))
-    (setq mu-languages-ring (make-ring (length languages)))
-    (dolist (elem languages) (ring-insert mu-languages-ring elem)))
-
-  (defun mu-cycle-ispell-languages ()
-    "Cycle ispell languages in `mu-languages-ring'.
-Change dictionary and mode-line lighter accordingly."
-    (interactive)
-    (let ((language (ring-ref mu-languages-ring -1)))
-      (ring-insert mu-languages-ring language)
-      (ispell-change-dictionary language)
-      (setq flyspell-mode-line-string (mu-current-dictionary-mode-line language))
-      (force-mode-line-update)))
-
-  (setq flyspell-mode-line-string (mu-current-dictionary-mode-line ispell-dictionary))
-
-  (add-hook 'text-mode-hook 'flyspell-mode)
   :custom-face
   (flyspell-duplicate
    ((t (:inherit nil :underline (:color "dark violet" :style wave)))))
@@ -459,7 +439,6 @@ Change dictionary and mode-line lighter accordingly."
   (setq avy-background t)
   (setq avy-style 'at-full))
 
-
 (use-package with-editor
   :defer t
   :disabled)
@@ -547,6 +526,10 @@ Change dictionary and mode-line lighter accordingly."
   :no-require t
   :config
   (setq auth-sources '("~/.authinfo.gpg")))
+
+;; (use-package outline-minor-mode
+;;   :ensure nil
+;;   :delight " ⛶")
 
 ;;------------------------------------------------
 ;; Modules
