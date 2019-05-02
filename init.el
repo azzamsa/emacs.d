@@ -513,23 +513,17 @@
 
 (use-package multiple-cursors
   :defer 3
-  :init
-  (setq mc/list-file (expand-file-name ".mc-lists.el" aza-savefile-dir))
-  ;; these need to be defined here - if they're lazily loaded with
-  ;; :bind they don't work.
-  (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c /") 'mc/skip-to-next-like-this)
-  (global-set-key (kbd "C-c C-.") 'mc/mark-all-like-this))
+  :bind (("C->" . 'mc/mark-next-like-this)
+         ("C-<" . 'mc/mark-previous-like-this)
+         ("C-/" . 'mc/skip-to-next-like-this)
+         ("C-c C-<" . 'mc/mark-all-like-this))
+  :config
+  (setq mc/list-file (expand-file-name ".mc-lists.el" aza-savefile-dir)))
 
 (use-package auth-source
   :no-require t
   :config
   (setq auth-sources '("~/.authinfo.gpg")))
-
-;; (use-package outline-minor-mode
-;;   :ensure nil
-;;   :delight " ⛶")
 
 ;;------------------------------------------------
 ;; Modules
@@ -624,7 +618,7 @@
 
 ;; delight
 (delight 'auto-fill-function " Af" t)
-
+(delight 'outline-minor-mode " ⛶" t)
 
 
 ;;; init.el ends here
