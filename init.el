@@ -403,8 +403,8 @@
   (setq aw-background nil))
 
 (use-package zop-to-char
-  :bind (("M-z" . zop-up-to-char)
-         ("M-Z" . zop-to-char)))
+  :bind (("M-Z" . zop-up-to-char)
+         ("M-z" . zop-to-char)))
 
 (use-package ediff
   :defer t
