@@ -20,7 +20,7 @@
 
   (add-hook 'shell-mode-hook
             (lambda () (add-hook 'comint-preoutput-filter-functions
-                            'xterm-color-filter nil t))))
+                                 'xterm-color-filter nil t))))
 
 (use-package bash-completion
   :after shell-here
