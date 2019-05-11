@@ -400,7 +400,11 @@
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (global-set-key [remap other-window] 'ace-window)
-  (setq aw-background nil))
+  (setq aw-background nil)
+  :custom-face
+  (aw-leading-char-face
+   ((t (:box (:line-width 3 :color "#78f503" :style released-button)
+             :height 1.0)))))
 
 (use-package zop-to-char
   :bind (("M-Z" . zop-up-to-char)
