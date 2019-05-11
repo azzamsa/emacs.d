@@ -420,7 +420,7 @@
 
 (use-package eyebrowse
   :defer t
-  :bind ("C-\"" . eyebrowse-last-window-config)
+  :bind ("s-v" . eyebrowse-last-window-config)
   :init
   (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
   (global-unset-key (kbd "C-c C-w"))
