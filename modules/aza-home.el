@@ -13,9 +13,9 @@
   (setq pomodoro-break-time 5)
   (setq pomodoro-sound-player "/usr/bin/mpv")
   (setq pomodoro-break-start-sound
-        "~/sounds/ding-rest-long.mp3")
+        "~/sounds/ding-rest-medium.mp3")
   (setq pomodoro-work-start-sound
-        "~/sounds/coin-work-long.mp3")
+        "~/sounds/coin-work-medium.mp3")
   (pomodoro-add-to-mode-line))
 
 (use-package pdf-tools
