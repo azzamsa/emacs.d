@@ -75,8 +75,7 @@
   :config
   (setq org-download-annotate-function (lambda (_link) ""))
   (setq org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")
-  (setq org-download-image-org-width 400)
-  (setq org-download-delete-image-after-download t))
+  (setq org-download-image-org-width 400))
 
 (use-package org-bullets
   :after org
