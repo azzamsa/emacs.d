@@ -63,4 +63,7 @@
 (use-package calfw-org
   :after calfw)
 
+(use-package calfw-ical
+  :after calfw)
+
 (provide 'aza-calfw)
