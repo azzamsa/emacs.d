@@ -147,4 +147,14 @@ Reduce Distraction."
         (message "Webpage had an archive")
       (message "Webpage archived"))))
 
+(defun play-reminder-sound ()
+  (start-process "" nil "mpv" coin-work-medium-sound))
+
+(defun remind-me ()
+  "Notify with a sound after certain time"
+  (interactive)
+  (let ((time (read-string "Time (min|sec): " "10 min")))
+    (message "I will remind you after %s" time)
+    (run-at-time time nil #'play-reminder-sound)))
+
 (provide 'aza-scripts)
