@@ -8,12 +8,16 @@
 (when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
   (require 'aza-secrets))
 
+(defun save-all-buffers-silently ()
+  (save-some-buffers t))
+
 ;;;###autoload
 (defun aza-kill-other-buffers ()
   "Kill all buffers but current buffer and special buffers.
 (Buffer that start with '*' and white space ignored)"
   (interactive)
-  (when (y-or-n-p "Really kill all other buffers ? ")
+  (when (y-or-n-p "Save and kill all other buffers ? ")
+    (save-all-buffers-silently)
     (let ((killed-bufs 0))
       (dolist (buffer (delq (current-buffer) (buffer-list)))
         (let ((name (buffer-name buffer)))
@@ -22,7 +26,7 @@
                      (string-match "^[^\*]" name))
             (cl-incf killed-bufs)
             (funcall 'kill-buffer buffer))))
-      (message "Killed %d buffer(s)" killed-bufs))))
+      (message "Saved & killed %d buffer(s)" killed-bufs))))
 
 (defun aza-today (&optional arg)
   "Insert today's date.
