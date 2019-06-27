@@ -44,12 +44,8 @@
 ;; no need double click to insert, Yey!
 (delete-selection-mode +1)
 
-;; more useful frame title, that show either a file or a
-;; buffer name (if the buffer isn't visiting a file)
-(setq frame-title-format
-      '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name))
-                 "%b"))))
+;; frame title
+(setq-default  frame-title-format '("" invocation-name " - " "%b"))
 
 ;; Emacs modes typically provide a standard means to change the
 ;; indentation width -- eg. c-basic-offset: use that to adjust your
