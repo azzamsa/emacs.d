@@ -18,9 +18,9 @@
   (delight 'python-mode " Py")
   (delight 'highlight-indentation-mode "")
   (delight 'subword-mode "")
-  (add-hook 'before-save-hook #'elpy-black-fix-code nil 'make-it-local)
   (add-hook 'elpy-mode-hook (lambda ()
-                              (subword-mode +1))))
+                              (subword-mode +1)
+                              (message "Please activate your virtualenv"))))
 
 (use-package pyvenv
   :after elpy
