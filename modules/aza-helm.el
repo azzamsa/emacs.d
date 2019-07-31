@@ -31,7 +31,8 @@
         helm-move-to-line-cycle-in-source t
         helm-echo-input-in-header-line t
         helm-ff-search-library-in-sexp t
-        helm-ff-file-name-history-use-recentf t)
+        helm-ff-file-name-history-use-recentf t
+        helm-buffers-truncate-lines nil)
 
   (setq helm-M-x-fuzzy-match t
         helm-buffers-fuzzy-matching t
