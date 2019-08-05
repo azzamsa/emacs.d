@@ -267,11 +267,15 @@
 (use-package super-save
   :defer 2
   :delight ""
+  :load-path "~/emacs-packages/super-save/"
   :config
   (add-to-list 'super-save-triggers 'ace-window)
   (add-to-list 'super-save-triggers 'helm)
   (add-to-list 'super-save-triggers 'dired-jump)
   (add-to-list 'super-save-triggers 'winner-undo)
+
+  (setq super-save-exclude '(".gpg"))
+
   (super-save-mode +1))
 
 (use-package rainbow-delimiters
