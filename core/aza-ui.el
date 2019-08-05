@@ -22,10 +22,9 @@
 ;; cursor color dissappear on emacs 25
 (set-cursor-color "#f0fff0")
 
-;;(set-frame-font "InconsolataGo-13")
-(set-frame-font "Source Code Pro 12")
-;;evaluate this everytime load emacs from daemon.
-(setq default-frame-alist '((font . "Source Code Pro 12")))
+(set-frame-font "Source Code Pro 13")
+;; evaluate this everytime load emacs from daemon.
+(setq default-frame-alist '((font . "Source Code Pro 13")))
 ;; fallback fonts for unicode icons
 (set-fontset-font "fontset-default" nil
                   (font-spec :size 20 :name "Symbola"))
