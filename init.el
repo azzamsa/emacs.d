@@ -309,6 +309,7 @@
   :defer 2
   :init (save-place-mode 1)
   :config
+  (setq save-place-limit 100)
   (setq save-place-file (expand-file-name "saveplace" aza-savefile-dir))
   ;; activate it for all buffers
   (setq-default save-place t))
@@ -317,7 +318,7 @@
   :defer 1
   :config
   (setq recentf-save-file (expand-file-name "recentf" aza-savefile-dir)
-        recentf-max-saved-items 500
+        recentf-max-saved-items 100
         recentf-max-menu-items 15
         ;; disable recentf-cleanup on Emacs start, because it can cause
         ;; problems with remote files
