@@ -551,6 +551,7 @@
 ;;; programming modules
 (require 'aza-common-lisp)
 (require 'aza-emacs-lisp)
+(require 'aza-scheme)
 (require 'aza-java)
 (require 'aza-python)
 (require 'aza-web)
