@@ -17,6 +17,7 @@
 (add-to-list 'load-path "~/.emacs.d/core/")
 (add-to-list 'load-path "~/.emacs.d/aza-packages/")
 (add-to-list 'load-path "~/emacs-packages/")
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
 ;; Always load newest byte code
 (setq load-prefer-newer t)
