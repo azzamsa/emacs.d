@@ -28,7 +28,7 @@
 
   ;; error when outside dired config
   (use-package dired+
-    :load-path "~/.emacs.d/elisp/diredp/"
+    :load-path "~/emacs-packages/diredp/"
     :config
     (diredp-toggle-find-file-reuse-dir 1))
 
