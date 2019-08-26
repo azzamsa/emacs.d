@@ -24,10 +24,6 @@
   :config
   (pdf-tools-install))
 
-(use-package mingus
-  :ensure-system-package mpd
-  :defer t)
-
 (use-package org-brain
   :defer t
   :init
