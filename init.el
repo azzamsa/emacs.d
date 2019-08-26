@@ -236,6 +236,7 @@
   :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
   :config
   (setq ispell-dictionary "en"
+        ispell-local-dictionary "id"
         ispell-program-name "aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra"))
 
@@ -355,7 +356,9 @@
   :config
   ;; add the ability to cut the current line, without marking it (C-w)
   (require 'rect)
-  (crux-with-region-or-line kill-region))
+  (crux-with-region-or-line kill-region)
+
+  (crux-reopen-as-root-mode))
 
 (use-package aza-secrets
   :ensure nil
