@@ -11,11 +11,11 @@
   (setq pomodoro-long-break-time 20)
   (setq pomodoro-work-time 25)
   (setq pomodoro-break-time 5)
-  (setq pomodoro-sound-player "/usr/bin/mpv")
+  (setq pomodoro-sound-player "/usr/bin/ogg123")
   (setq pomodoro-break-start-sound
-        "~/sounds/ding-rest-medium.mp3")
+        "~/sounds/ding-rest-medium.ogg")
   (setq pomodoro-work-start-sound
-        "~/sounds/coin-work-medium.mp3")
+        "~/sounds/coin-work-medium.ogg")
   (pomodoro-add-to-mode-line))
 
 (use-package pdf-tools
