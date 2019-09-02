@@ -4,7 +4,8 @@
          ("<f7>" . hydra-go-to/body)
          ("s-l" . hydra-page/body))
   :config
-  (require 'aza-secrets))
+  (when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
+    (require 'aza-secrets)))
 
 (defhydra hydra-page (:color pink)
   "

@@ -78,7 +78,8 @@
   :ensure nil
   :after mu4e
   :config
-  (require 'aza-secrets)
+  (when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
+    (require 'aza-secrets))
   (setq smtpmail-smtp-server my-smtpmail-smtp-server)
   (setq smtpmail-smtp-service 465)
   (setq smtpmail-stream-type 'ssl))
