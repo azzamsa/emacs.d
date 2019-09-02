@@ -91,6 +91,6 @@
   :config
   (setq org-cliplink-max-length 60))
 
-(eval-after-load 'org-indent '(diminish 'org-indent-mode))
+(eval-after-load 'org-indent '(delight 'org-indent-mode))
 
 (provide 'aza-org)

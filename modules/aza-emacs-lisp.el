@@ -55,11 +55,11 @@ Start `ielm' if it's not already running."
 (add-hook 'ielm-mode-hook (lambda ()
                             (run-hooks 'prelude-ielm-mode-hook)))
 (eval-after-load "elisp-slime-nav"
-  '(diminish 'elisp-slime-nav-mode))
+  '(delight 'elisp-slime-nav-mode))
 (eval-after-load "rainbow-mode"
-  '(diminish 'rainbow-mode))
+  '(delight 'rainbow-mode))
 (eval-after-load "eldoc"
-  '(diminish 'eldoc-mode))
+  '(delight 'eldoc-mode))
 
 
 (defun conditionally-enable-smartparens-mode ()

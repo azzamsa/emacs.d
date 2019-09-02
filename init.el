@@ -1,9 +1,9 @@
 ;; Initialize the package system.
 (require 'package)
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")))
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; keep the installed packages in .emacs.d
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
@@ -74,7 +74,6 @@
 
 ;; revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
-(diminish 'auto-revert-mode)
 
 ;; Don't prompt for running process
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
@@ -632,6 +631,6 @@
 ;; delight
 (delight 'auto-fill-function " Af" t)
 (delight 'outline-minor-mode " ⛶" t)
-
+(delight 'auto-revert-mode)
 
 ;;; init.el ends here
