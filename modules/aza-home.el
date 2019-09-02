@@ -20,6 +20,7 @@
 
 (use-package pdf-tools
   :defer t
+  :disabled
   :magic ("%PDF" . pdf-view-mode)
   :config
   (pdf-tools-install))
