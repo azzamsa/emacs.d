@@ -1,7 +1,6 @@
 (use-package mu4e
   :ensure nil
   :defer t
-  :ensure-system-package mu
   :commands mu4e
   :bind (:map mu4e-main-mode-map
               ("C-c x" . omail-compose))

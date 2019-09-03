@@ -126,7 +126,6 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-(use-package use-package-ensure-system-package :ensure t)
 (use-package delight :ensure t)
 
 ;; packages
@@ -364,7 +363,6 @@
   :load-path "~/emacs-packages/aza-secrets/")
 
 (use-package aza-scripts
-  :ensure-system-package mpv
   :load-path "/aza-packages/"
   :bind (("C-c k" . aza-kill-other-buffers)
          ("C-c t" . aza-today)

@@ -55,7 +55,6 @@
          ("C-c h r a" . helm-org-rifle)))
 
 (use-package helm-ag
-  :ensure-system-package ag
   :after helm
   :delight helm-ag-mode
   :bind (("C-c a a" . helm-ag)
