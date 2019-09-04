@@ -102,7 +102,7 @@ Version 2015-07-30"
 
 (defun term-here ()
   (interactive)
-  (start-process "" nil "urxvtc"
+  (start-process "" nil "stterm"
                  "-e" "bash"
                  "-c" "tmux -q has-session && exec tmux new-window || exec tmux new-session -n$USER -s$USER@$HOSTNAME"))
 
