@@ -18,9 +18,9 @@
   (delight 'python-mode " Py")
   (delight 'highlight-indentation-mode "")
   (delight 'subword-mode "")
+  (pyvenv-workon "global37")
   (add-hook 'elpy-mode-hook (lambda ()
-                              (subword-mode +1)
-                              (message "Please activate your virtualenv"))))
+                              (subword-mode +1))))
 
 (use-package pyvenv
   :after elpy
