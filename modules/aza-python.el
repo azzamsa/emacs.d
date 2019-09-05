@@ -28,6 +28,12 @@
   (add-hook 'pyvenv-post-activate-hooks (lambda ()
                                           (revert-buffer t t))))
 
+(use-package blacken
+  :after elpy
+  :delight " Bl"
+  :config
+  (add-hook 'python-mode-hook 'blacken-mode))
+
 (add-hook 'inferior-python-mode-hook (lambda ()
                                        (smartparens-mode 1)))
 (provide 'aza-python)
