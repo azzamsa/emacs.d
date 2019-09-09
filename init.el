@@ -423,17 +423,24 @@
   ;; put windows side by side
   (setq ediff-split-window-function (quote split-window-horizontally)))
 
-(use-package eyebrowse
-  :defer t
-  :bind ("s-v" . eyebrowse-last-window-config)
+(use-package perspective
+  :defer 3
+  :bind ("s-v" . persp-next)
   :init
-  (setq eyebrowse-keymap-prefix (kbd "C-c M-e"))
-  (global-unset-key (kbd "C-c C-w"))
+  (setq persp-mode-prefix-key (kbd "C-c M-e"))
+  (global-unset-key (kbd "C-x x"))
   :config
-  (eyebrowse-mode t)
+  (persp-mode)
+  (persp-new "term")
   :custom
-  (eyebrowse-switch-back-and-forth t)
-  (eyebrowse-new-workspace t))
+  (persp-save-dir (expand-file-name "persp-mode/" aza-savefile-dir))
+  (persp-initial-frame-name "main")
+  (persp-modestring-dividers (quote ("{" "}" "|")))
+  :custom-face
+  (persp-selected-face
+   ((t (:inherit mode-line
+                 :foreground "white smoke"
+                 :weight extra-bold)))))
 
 (use-package bookmark
   :config
@@ -606,8 +613,10 @@
 (setq url-cache-directory
       (expand-file-name "url/cache/" aza-savefile-dir))
 (setq custom-file (expand-file-name "custom.el" aza-savefile-dir))
+(setq tramp-auto-save-directory
+      (expand-file-name "tramp/tramp-persistency.el" aza-savefile-dir))
 (setq tramp-persistency-file-name
-      (expand-file-name "tramp-persistency.el" aza-savefile-dir))
+      (expand-file-name "tramp/tramp-persistency.el" aza-savefile-dir))
 (setq transient-history-file
       (expand-file-name "transient/history.el" aza-savefile-dir))
 (setq transient-levels-file
