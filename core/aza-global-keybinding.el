@@ -20,4 +20,6 @@
 ;; emacs enhancement
 (global-set-key (kbd "M-Q") 'unfill-paragraph)
 
+(global-unset-key (kbd "C-x m"))
+
 (provide 'aza-global-keybinding)
