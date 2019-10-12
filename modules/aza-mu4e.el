@@ -9,7 +9,7 @@
   (mu4e-confirm-quit nil)
   (mu4e-compose-dont-reply-to-self t)
   (mu4e-compose-signature-auto-include nil)
-  (mu4e-get-mail-command "mbsync memail")
+  (mu4e-get-mail-command "mbsync -c ~/Email/.mbsyncrc memail")
   (mu4e-maildir "~/Email/memail/")
   (mu4e-maildir-shortcuts
    '(("/INBOX" . ?i)
