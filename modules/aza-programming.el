@@ -12,18 +12,6 @@
 (use-package yasnippet-snippets
   :after yasnippet)
 
-(use-package neotree
-  :bind ([f8] . neotree-toggle)
-  :config
-  (use-package all-the-icons)
-  (setq neo-theme
-        (if (display-graphic-p)
-            'icons
-          'arrow))
-  (setq neo-smart-open t)
-  ;;work with projectile
-  (setq projectile-switch-project-action 'neotree-projectile-action))
-
 (use-package diff-hl
   :defer 3
   :config
@@ -73,7 +61,9 @@
 
 (use-package yaml-mode
   :mode "\\.yml\\'"
-  :interpreter ("yml" . yml-mode))
+  :interpreter ("yml" . yml-mode)
+  :config
+  (setq yaml-indent-offset 4))
 
 (use-package rst-mode
   :ensure nil
