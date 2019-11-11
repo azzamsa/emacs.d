@@ -14,6 +14,7 @@
 
   (setq elpy-rpc-backend "jedi")
   (setq whitespace-line-column 90)
+  (setq elpy-rpc-virtualenv-path "~/.virtualenvs/global37")
 
   (delight 'python-mode " Py")
   (delight 'highlight-indentation-mode "")
