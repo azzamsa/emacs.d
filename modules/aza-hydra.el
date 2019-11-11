@@ -46,7 +46,7 @@
   ^
   ^Go To^      ^File^        ^Directory^    ^Action^
   ^─────^──────^────^────────^─────────^────^─────────^
-  _q_ quit     _fe_ emacs      _dp_ proj   _ap_ pmdr-start
+  _q_ quit     _fe_ emacs      _dp_ proj   _ap_ pomodoro
   ^^           _fi_ inbox      _dc_ code   _at_ translate
   ^^           _fp_ project    _dh_ home   _as_ salah
   ^^           _fn_ notes      _fa_ artcl  _af_ autofill
@@ -68,7 +68,7 @@
   ("dc" (find-file my-code-coba-dir))
   ("dh" (find-file my-home-dir))
   ("ds" (find-file my-songs-dir))
-  ("ap" (pomodoro-start 25))
+  ("ap" (hydra-pomodoro/body))
   ("at" (google-translate-smooth-translate))
   ("as" (salah-time))
   ("af" auto-fill-mode)
@@ -87,5 +87,22 @@
   "
   ("q" nil)
   ("ao" dired-omit-mode))
+
+(defhydra hydra-pomodoro (:color blue)
+  "
+  ^
+  ^Go To^      ^Action^
+  ^─────^──────^──────^────────
+  _q_ quit    _s_ start
+  ^^          _p_ pause
+  ^^          _P_ resume
+  ^^          _S_ stop
+  ^^           ^^
+  "
+  ("q" nil)
+  ("s" (pomodoro-start 25))
+  ("p" (pomodoro-pause))
+  ("P" (pomodoro-resume))
+  ("S" (pomodoro-stop)))
 
 (provide 'aza-hydra)
