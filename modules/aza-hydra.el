@@ -1,23 +1,10 @@
 (use-package hydra
   :defer 2
   :bind (("C-x }" . hydra-windows/body)
-         ("<f7>" . hydra-go-to/body)
-         ("s-l" . hydra-page/body))
+         ("<f7>" . hydra-go-to/body))
   :config
   (when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
     (require 'aza-secrets)))
-
-(defhydra hydra-page (:color pink)
-  "
-  ^
-  ^Windows^           ^Page^
-  ^───────^───────────^──────^──────
-  _q_ quit            _k_ up
-  ^^                  _j_ down
-  "
-  ("q" nil)
-  ("k" (golden-ratio-scroll-screen-down))
-  ("j" (golden-ratio-scroll-screen-up)))
 
 (defhydra hydra-windows (:color pink)
   "
