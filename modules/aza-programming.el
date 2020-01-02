@@ -25,8 +25,7 @@
   :bind ( "C-c '" . symbol-overlay-put))
 
 (use-package editorconfig
-  :defer t
-  :disabled
+  :defer 3
   :delight
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
