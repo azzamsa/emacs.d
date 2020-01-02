@@ -18,6 +18,7 @@ projectile-bookmarks.eld
 games/
 snippets/
 .org-id-locations
+.lsp-session-*
 
 # Documents
 documents
