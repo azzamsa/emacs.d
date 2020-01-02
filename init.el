@@ -569,6 +569,7 @@
 (require 'aza-php)
 (require 'aza-js)
 (require 'aza-ocaml)
+(require 'aza-lsp)
 
 ;;; emacs is home
 (require 'aza-home)

@@ -37,4 +37,17 @@
 
 (use-package prettier-js)
 
+(use-package vue-mode
+  :mode "\\.vue\\'"
+  :hook (prettier-js)
+  :config
+  (add-hook 'vue-mode-hook #'lsp)
+  (setq prettier-js-args '("--parser vue"))
+
+  (add-hook 'vue-mode-hook
+            (lambda ()
+              (emmet-mode +1)
+              (subword-mode +1)
+              (smartparens-mode -1))))
+
 (provide 'aza-web)
