@@ -1,14 +1,19 @@
 (use-package lsp-mode
+  :defer t
   :commands (lsp lsp-deferred)  
   :hook ((before-save . lsp-format-buffer)
-         (before-save . lsp-organize-imports)
-         (vue-mode . lsp-deferred))
+         (before-save . lsp-organize-imports))
   :config
   (setq lsp-auto-guess-root t)
   (setq lsp-document-sync-method 'incremental)
   (setq lsp-log-io nil)
   (setq lsp-trace nil)
-  (setq lsp-print-performance nil))
+  (setq lsp-print-performance nil)
+  :custom
+  (lsp-vetur-format-default-formatter-css "none")
+  (lsp-vetur-format-default-formatter-html "none")
+  (lsp-vetur-format-default-formatter-js "none")
+  (lsp-vetur-validation-template nil))
 
 (use-package company-lsp
   :after lsp-mode

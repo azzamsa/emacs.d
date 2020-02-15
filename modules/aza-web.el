@@ -35,11 +35,12 @@
               ("M-e" . emmet-expand-line))
   :hook (css-mode sgml-mode web-mode))
 
-(use-package prettier-js)
+(use-package prettier-js
+  :delight " Pr")
 
 (use-package vue-mode
   :mode "\\.vue\\'"
-  :hook (prettier-js)
+  :hook (vue-mode . prettier-js-mode)
   :config
   (add-hook 'vue-mode-hook #'lsp)
   (setq prettier-js-args '("--parser vue"))
