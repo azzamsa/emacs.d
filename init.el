@@ -251,7 +251,7 @@
 (use-package flyspell-correct-helm
   :after flyspell
   :bind (:map flyspell-mode-map
-              ("C-;" . flyspell-correct-previous-word-generic)))
+              ("C-;" . flyspell-correct-previous)))
 
 (use-package uniquify
   :ensure nil
