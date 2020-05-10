@@ -6,8 +6,6 @@
 
 (use-package spinner :defer t)
 
-(use-package ts
-  :defer 3
-  :load-path "~/emacs-packages/ts.el")
+(use-package ts :defer 3)
 
 (provide 'aza-lib)
