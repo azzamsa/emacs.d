@@ -171,5 +171,20 @@ Reduce Distraction."
         (insert (s-snake-case camel-case-str)))
     (message "No region selected")))
 
+(defun connect-remote ()
+  "Open dired buffer in selected remote machine"
+  (interactive)
+  (let* ((remote-source `((name . "")
+                          (candidates . ,(mapcar 'car remote-machines))
+                          (action . (lambda (candidate)
+                                      candidate))))
+         (selected-machine (helm :sources '(remote-source)))
+         (machine-data (cdr (assoc selected-machine remote-machines)))
+         (username (plist-get machine-data :username))
+         (ip-address (plist-get machine-data :ip)))
+    (if (string= username "root")
+        (dired (concat "/ssh:" username "@" ip-address ":/"))
+      (dired (concat "/ssh:" username "@" ip-address ":/home/" username "/")))
+    (message "Connected")))
 
 (provide 'aza-scripts)
