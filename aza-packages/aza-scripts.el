@@ -70,7 +70,7 @@ If region selected, parse region as today's date pivot."
   "Set light value directly inside Emacs"
   (interactive)
   (let* ((current-value (s-trim (shell-command-to-string "light -G")))
-        (light-value (read-string "Set Value: " current-value)))
+         (light-value (read-string "Set Value: " current-value)))
     (start-process "" nil "light" "-S" light-value)))
 
 (defun pyqt-compile-ui ()
@@ -111,10 +111,10 @@ Emacs"
 (defun ask-github ()
   "GET Github notification API."
   (let* ((archive-response (request "https://api.github.com/notifications?all"
-                                    :parser 'json-read
-                                    :headers `(("Authorization" . ,(concat "token" " " github-pass))
-                                               ("Content-Type" . "application/json"))
-                                    :sync t))
+                             :parser 'json-read
+                             :headers `(("Authorization" . ,(concat "token" " " github-pass))
+                                        ("Content-Type" . "application/json"))
+                             :sync t))
          (data (request-response-data archive-response))
          (status (request-response-status-code archive-response)))
     (if (eq status 200)
@@ -135,8 +135,8 @@ Reduce Distraction."
 (defun ask-archive (url)
   "Get request to Wayback API"
   (let* ((archive-response (request (concat "http://archive.org/wayback/available?url=" url)
-                                    :parser 'json-read
-                                    :sync t))
+                             :parser 'json-read
+                             :sync t))
          (data (request-response-data archive-response))
          (status (request-response-status-code archive-response)))
     (if (eq status 200)
