@@ -35,6 +35,12 @@
   :config
   (add-hook 'python-mode-hook 'blacken-mode))
 
+(use-package isortify
+  :after elpy
+  :delight " Is"
+  :config
+  (add-hook 'python-mode-hook 'isortify-mode))
+
 (add-hook 'inferior-python-mode-hook (lambda ()
                                        (smartparens-mode 1)))
 (provide 'aza-python)
