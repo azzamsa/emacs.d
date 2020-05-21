@@ -559,18 +559,18 @@
 (require 'aza-markdown)
 
 ;;; programming modules
-(require 'aza-common-lisp)
-(require 'aza-emacs-lisp)
-(require 'aza-scheme)
-(require 'aza-java)
 (require 'aza-python)
 (require 'aza-web)
-(require 'aza-rust)
-(require 'aza-go)
-(require 'aza-xml)
-(require 'aza-php)
 (require 'aza-js)
-(require 'aza-ocaml)
+(require 'aza-emacs-lisp)
+(require 'aza-common-lisp)
+(require 'aza-scheme)
+;(require 'aza-rust)
+;(require 'aza-go)
+;(require 'aza-java)
+;(require 'aza-php)
+;;(require 'aza-ocaml)
+(require 'aza-xml)
 (require 'aza-lsp)
 
 ;;; emacs is home
