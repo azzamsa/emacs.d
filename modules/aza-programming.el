@@ -31,8 +31,8 @@
   (add-hook 'prog-mode-hook #'editorconfig-mode))
 
 (use-package prettify-symbols-mode
+  :straight (:type built-in)
   :defer t
-  :ensure nil
   :config
   (add-hook 'prog-mode-hook #'prettify-symbols-mode))
 
@@ -65,7 +65,7 @@
   (setq yaml-indent-offset 4))
 
 (use-package rst-mode
-  :ensure nil
+  :straight (:type built-in)
   :mode "\\.rst\\'")
 
 (use-package sphinx-mode

@@ -1,7 +1,7 @@
 (require 'aza-dired-ext)
 
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :defer 2
   :bind ((:map dired-mode-map
                ("/" . ora-dired-up-directory)
@@ -22,12 +22,13 @@
                ("[" . hydra-dired/body)))
   :init
   (require 'aza-dired-ext)
-  (require 'dired-x) ; dired-jump is cool
+  (use-package dired-x
+    :straight (:type built-in))
   :config
 
   ;; error when outside dired config
   (use-package dired+
-    :load-path "~/emacs-packages/diredp/"
+    :straight (dired+ :type git :host github :repo "emacsmirror/dired-plus")    
     :config
     (diredp-toggle-find-file-reuse-dir 1))
 
@@ -97,9 +98,9 @@
   :commands dired-filter-by-mode)
 
 (use-package dired-async
+  :straight (dired-async :type git :host github :repo "jwiegley/emacs-async")
   :after dired
   :delight ""
-  :load-path "~/emacs-packages/emacs-async/"
   :preface
   (defun my/dired-async-message-function (text _face &rest args)
     "Log messages from dired-async to messages buffer."

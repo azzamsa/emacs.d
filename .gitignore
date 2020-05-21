@@ -3,6 +3,7 @@
 *.elc
 auto-save-list/
 elpa/
+straight/
 elisp/
 url/
 savefile/*

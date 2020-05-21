@@ -1,6 +1,6 @@
-(use-package tex
-  :ensure auctex
-  :defer t  
+(use-package auctex
+  :straight (auctex :type git :host github :repo "emacs-straight/auctex" :files ("*" (:exclude ".git")))
+  :defer t
   :config
   (require 'smartparens-latex)
   (setq LaTeX-verbatim-environments

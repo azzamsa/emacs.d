@@ -1,6 +1,6 @@
 (use-package nxml-mode
+  :straight (:type built-in)
   :defer t
-  :ensure nil
   :config
   (setq nxml-child-indent 4)
   (setq nxml-attribute-indent 4)

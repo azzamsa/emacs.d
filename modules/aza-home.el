@@ -98,6 +98,7 @@
   :defer t)
 
 (use-package salah-time
+  :disabled
   :defer t
   :load-path "~/emacs-packages/salah-time"
   :commands salah-time

@@ -1,5 +1,4 @@
 (use-package mu4e
-  :ensure nil
   :defer t
   :commands mu4e
   :bind (:map mu4e-main-mode-map
@@ -32,7 +31,7 @@
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser) t))
 
 (use-package org-mu4e
-  :ensure nil
+  :straight (org-mu4e :type git :host github :repo "djcb/mu" :files ("mu/mu4e/*" (:exclude ".git")))
   :after mu4e
   :config
   (defun omail-compose ()
@@ -69,6 +68,7 @@
   (mu4e-alert-enable-notifications))
 
 (use-package message
+  :straight (:type built-in)
   :ensure nil
   :after mu4e
   :custom (send-mail-function 'smtpmail-send-it))

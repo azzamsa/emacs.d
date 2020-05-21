@@ -37,6 +37,7 @@
   :config
   (setq cursor-type 'bar))
 
-(use-package vterm-toggle)
+(use-package vterm-toggle
+  :straight (vterm-toggle :type git :host github :repo "jixiuf/vterm-toggle"))
 
 (provide 'aza-shell)

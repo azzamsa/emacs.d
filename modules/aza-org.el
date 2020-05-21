@@ -1,11 +1,6 @@
-(when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
-  (require 'aza-secrets))
-
 (use-package org
+  :straight (org-plus-contrib :type git :repo "https://code.orgmode.org/bzg/org-mode.git" :local-repo "org" :files (:defaults "contrib/lisp/*.el"))
   :defer 1
-  :pin org
-  :ensure org-plus-contrib ; use this to make sure Emacs didn't pick
-                                        ; the default version
   :bind (:map org-mode-map
               ("C-c l" . org-store-link)
               ("C-c a" . org-agenda)
@@ -57,10 +52,10 @@
                              (which-function-mode -1)
                              (turn-on-auto-capitalize-mode))))
 
-(use-package ob-org :ensure nil :after org :defer 3)
-(use-package ob-lisp :ensure nil :after org :defer 3)
-(use-package ob-python :ensure nil :after org :defer 3)
-(use-package ob-ruby :ensure nil :after org :defer 3)
+(use-package ob-org :straight (:type built-in) :after org :defer 3)
+(use-package ob-lisp :straight (:type built-in) :after org :defer 3)
+(use-package ob-python :straight (:type built-in) :after org :defer 3)
+(use-package ob-ruby :straight (:type built-in) :after org :defer 3)
 
 (use-package ox-gfm
   :defer 3

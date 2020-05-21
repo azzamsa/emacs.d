@@ -9,8 +9,8 @@
                (add-to-list 'company-backends 'company-ac-php-backend))))
 
 (use-package php-beautifier
-  :defer t
-  :load-path "elisp/php-beautifier/")
+  :straight (php-beautifier :type git :host github :repo "Sodaware/php-beautifier.el")  
+  :defer t)
 
 (use-package company-php
   :after php)

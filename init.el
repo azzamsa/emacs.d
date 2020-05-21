@@ -1,16 +1,21 @@
-;; Initialize the package system.
-(require 'package)
+;; Bootstrap straight.el
+(setq straight-recipes-gnu-elpa-use-mirror t)
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; keep the installed packages in .emacs.d
-(setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
-(package-initialize)
-;; update the package metadata is the local cache is missing
-(unless package-archive-contents
-  (package-refresh-contents))
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 ;;; loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/modules/")
@@ -118,19 +123,12 @@
 
 ")
 
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(setq use-package-always-ensure t)
-(setq use-package-verbose t)
-
-(use-package delight :ensure t)
+(use-package delight
+  :straight (delight :type git :host github :repo "emacs-straight/delight" :files ("*" (:exclude ".git"))))
 
 ;; packages
 (use-package hippie-expand
-  :ensure nil
+  :straight (:type built-in)
   :bind ("M-/" . hippie-expand)
   :config
   ;; hippie expand is dabbrev expand on steroids
@@ -153,6 +151,8 @@
   (setq projectile-completion-system 'helm)
   :config
   (setq projectile-indexing-method 'alien)
+  (setq projectile-enable-caching t)
+  (setq projectile-switch-project-action #'projectile-dired)
   (setq projectile-known-projects-file
         (expand-file-name "projectile-bookmarks.eld" aza-savefile-dir))
   (setq projectile-cache-file
@@ -181,6 +181,7 @@
   (show-smartparens-global-mode +1))
 
 (use-package abbrev
+  :straight (:type built-in)
   :ensure nil
   :defer 3
   :delight ""
@@ -254,7 +255,7 @@
               ("C-;" . flyspell-correct-previous)))
 
 (use-package uniquify
-  :ensure nil
+  :straight (:type built-in)
   :defer 2
   :config
   (setq uniquify-buffer-name-style 'forward)
@@ -359,11 +360,10 @@
   (crux-reopen-as-root-mode))
 
 (use-package aza-secrets
-  :ensure nil
-  :load-path "~/emacs-packages/aza-secrets/")
+  :straight (aza-secrets :type git :local-repo "aza-secrets"))
 
 (use-package aza-scripts
-  :load-path "/aza-packages/"
+  :straight (aza-scripts :type git :local-repo "aza-scripts")
   :bind (("C-c k" . aza-kill-other-buffers)
          ("C-c t" . aza-today)
          ("C-c i" . insert-filename-as-heading)))
@@ -425,17 +425,17 @@
 
 (use-package perspective
   :defer 3
-  :bind ("s-v" . persp-next)
   :init
-  (setq persp-mode-prefix-key (kbd "C-c M-e"))
+  (setq persp-mode-prefix-key (kbd "s-v"))
   (global-unset-key (kbd "C-x x"))
   :config
   (persp-mode)
-  (persp-new "term")
-  :custom
-  (persp-save-dir (expand-file-name "persp-mode/" aza-savefile-dir))
-  (persp-initial-frame-name "main")
-  (persp-modestring-dividers (quote ("{" "}" "|")))
+  (add-hook 'kill-emacs-hook #'persp-state-save)
+  (setq persp-initial-frame-name "*")
+  (setq persp-modestring-dividers (quote ("{" "}" "|")))
+  ;;(setq persp-save-dir (expand-file-name "persp-mode/" aza-savefile-dir))
+  (setq persp-state-default-file
+        (expand-file-name "perspective-el" aza-savefile-dir))
   :custom-face
   (persp-selected-face
    ((t (:inherit mode-line
@@ -470,11 +470,13 @@
 
 (use-package visual-line-mode
   :defer t
+  :straight (:type built-in)
   :ensure nil
   :config
   (add-hook 'text-mode-hook #'visual-line-mode))
 
 (use-package winner
+  :straight (:type built-in)
   :defer 2
   :ensure nil
   :config
@@ -607,6 +609,13 @@
 
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "firefox-dev")
+
+(setq remote-file-name-inhibit-cache nil)
+(setq vc-ignore-dir-regexp
+      (format "%s\\|%s"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
+(setq tramp-verbose 1)
 
 ;; Litter
 (setq url-configuration-directory
