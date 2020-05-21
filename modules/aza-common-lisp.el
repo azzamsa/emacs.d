@@ -15,6 +15,7 @@
 (use-package slime-company
   :after slime
   :config
+  ;; run `(ql:quickload "quicklisp-slime-helper")` if it's doesn't exist
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl"))
 
