@@ -27,4 +27,16 @@
   :init
   (bash-completion-setup))
 
+(use-package vterm
+  :bind (:map vterm-mode-map
+              ("<f2>" . vterm-toggle)
+              ([(control return)]  . vterm-toggle-insert-cd)
+              ("C-c C-l" . helm-comint-input-ring)
+              ("C-n" . vterm-toggle-forward)
+              ("C-b" . vterm-toggle-backward))
+  :config
+  (setq cursor-type 'bar))
+
+(use-package vterm-toggle)
+
 (provide 'aza-shell)
