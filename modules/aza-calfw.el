@@ -1,7 +1,8 @@
-(when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
-  (require 'aza-secrets))
-
 (use-package calfw
+  :after aza-secet
+  :straight (calfw :type git :flavor melpa :files ("calfw.el" "calfw-pkg.el")
+                   :host github :repo "kiwanami/emacs-calfw"
+                   :fork (:host github :repo "azzamsa/emacs-calfw"  :branch "myhack"))
   :defer t
   :bind (("C-c A" . my-calendar)
          :map cfw:calendar-mode-map

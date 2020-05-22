@@ -50,7 +50,9 @@
   (keyfreq-autosave-mode 1))
 
 (use-package pelican-mode
-  :pin manual
+  :straight (pelican-mode :type git :flavor melpa
+                          :repo "https://git.korewanetadesu.com/pelican-mode.git"
+                          :fork (:host github :repo "azzamsa/pelican-mode" :branch "myhack"))
   :commands pelican-mode
   :load-path "~/emacs-packages/pelican-mode/"
   :config
@@ -77,7 +79,8 @@
         (expand-file-name "emojify/"  aza-savefile-dir)))
 
 (use-package chronos
-  :pin manual
+  :straight (chronos :type git :flavor melpa :host github :repo "dxknight/chronos"
+                     :fork (:host github :repo "azzamsa/chronos" :branch "myhack"))
   :defer t
   :load-path "~/emacs-packages/chronos/"
   :config

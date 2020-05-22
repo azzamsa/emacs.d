@@ -1,5 +1,7 @@
 (use-package org
-  :straight (org-plus-contrib :type git :repo "https://code.orgmode.org/bzg/org-mode.git" :local-repo "org" :files (:defaults "contrib/lisp/*.el"))
+  :after aza-secrets
+  :straight (org-plus-contrib :type git :repo "https://code.orgmode.org/bzg/org-mode.git"
+                              :local-repo "org" :files (:defaults "contrib/lisp/*.el"))
   :defer 1
   :bind (:map org-mode-map
               ("C-c l" . org-store-link)

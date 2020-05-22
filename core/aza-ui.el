@@ -72,6 +72,8 @@
    sml/theme nil))
 
 (use-package dimmer
+  :straight (dimmer :type git :flavor melpa :host github :repo "gonewest818/dimmer.el" :remote "upstream"
+                    :fork (:host github :repo "azzamsa/dimmer.el" :remote "origin" :branch "myhack"))
   :defer 1
   :load-path "~/emacs-packages/dimmer.el/"
   :config
