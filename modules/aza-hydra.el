@@ -1,10 +1,8 @@
 (use-package hydra
+  :after aza-secet
   :defer 2
   :bind (("C-x }" . hydra-windows/body)
-         ("<f7>" . hydra-go-to/body))
-  :config
-  (when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
-    (require 'aza-secrets)))
+         ("<f7>" . hydra-go-to/body)))
 
 (defhydra hydra-windows (:color pink)
   "

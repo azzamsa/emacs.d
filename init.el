@@ -363,6 +363,7 @@
   :straight (aza-secrets :type git :local-repo "aza-secrets"))
 
 (use-package aza-scripts
+  :after aza-secet
   :straight (aza-scripts :type git :local-repo "aza-scripts")
   :bind (("C-c k" . aza-kill-other-buffers)
          ("C-c t" . aza-today)

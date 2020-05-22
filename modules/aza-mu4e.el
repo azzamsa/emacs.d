@@ -1,4 +1,5 @@
 (use-package mu4e
+  :after aza-secet
   :defer t
   :commands mu4e
   :bind (:map mu4e-main-mode-map
@@ -77,8 +78,6 @@
   :ensure nil
   :after mu4e
   :config
-  (when (file-exists-p (expand-file-name "aza-secrets.el" aza-pkgs-dir))
-    (require 'aza-secrets))
   (setq smtpmail-smtp-server my-smtpmail-smtp-server)
   (setq smtpmail-smtp-service 465)
   (setq smtpmail-stream-type 'ssl))
