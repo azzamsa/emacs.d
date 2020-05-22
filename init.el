@@ -126,6 +126,28 @@
 (use-package delight
   :straight (delight :type git :host github :repo "emacs-straight/delight" :files ("*" (:exclude ".git"))))
 
+;; core packages
+(use-package ts)
+(use-package s)
+(use-package f)
+(use-package request)
+
+;; my packages
+(require 'keys (expand-file-name "straight/repos/keys/keys.el.gpg" user-emacs-directory))
+
+(use-package aza-secrets
+  :straight (aza-secrets :type git :local-repo "aza-secrets"))
+
+(use-package aza-scripts
+  :after aza-secrets
+  :straight (aza-scripts :type git :local-repo "aza-scripts")
+  :bind (("C-c k" . aza-kill-other-buffers)
+         ("C-c t" . aza-today)
+         ("C-c i" . insert-filename-as-heading))
+  :init
+  (require 'aza-scripts))
+
+
 ;; packages
 (use-package hippie-expand
   :straight (:type built-in)
@@ -359,16 +381,6 @@
 
   (crux-reopen-as-root-mode))
 
-(use-package aza-secrets
-  :straight (aza-secrets :type git :local-repo "aza-secrets"))
-
-(use-package aza-scripts
-  :after aza-secet
-  :straight (aza-scripts :type git :local-repo "aza-scripts")
-  :bind (("C-c k" . aza-kill-other-buffers)
-         ("C-c t" . aza-today)
-         ("C-c i" . insert-filename-as-heading)))
-
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
   :defer 3
@@ -587,10 +599,6 @@
 
 ;; emacs enhancements
 (require 'aza-emacs-enhc)
-
-;; my packages
-(require 'aza-lib)
-(require 'aza-scripts)
 
 ;; unpublished configuration
 (when (file-exists-p (expand-file-name "aza-local.el" aza-modules-dir))
