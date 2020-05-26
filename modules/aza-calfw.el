@@ -1,5 +1,5 @@
 (use-package calfw
-  :after aza-secet
+  :after aza-secrets
   :straight (calfw :type git :flavor melpa :files ("calfw.el" "calfw-pkg.el")
                    :host github :repo "kiwanami/emacs-calfw"
                    :fork (:host github :repo "azzamsa/emacs-calfw"  :branch "myhack"))

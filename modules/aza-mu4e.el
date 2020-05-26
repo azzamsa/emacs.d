@@ -1,5 +1,5 @@
 (use-package mu4e
-  :after aza-secet
+  :after aza-secrets
   :defer t
   :commands mu4e
   :bind (:map mu4e-main-mode-map

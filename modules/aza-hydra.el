@@ -1,5 +1,5 @@
 (use-package hydra
-  :after aza-secet
+  :after aza-secrets
   :defer 2
   :bind (("C-x }" . hydra-windows/body)
          ("<f7>" . hydra-go-to/body)))
@@ -31,19 +31,15 @@
   ^
   ^Go To^      ^File^        ^Directory^    ^Action^
   ^─────^──────^────^────────^─────────^────^─────────^
-  _q_ quit     _fe_ emacs      _dp_ proj   _ap_ pomodoro
-  ^^           _fi_ inbox      _dc_ code   _at_ translate
-  ^^           _fp_ project    _dh_ home   _as_ salah
-  ^^           _fn_ notes      _fa_ artcl  _af_ autofill
-  ^^           _ft_ thoughts   _ds_ song   _am_ menubar
-  ^^           _fm_ moments    ^^          ^^
-  ^^           _fs_ success    ^^          ^^
-  ^^           ^^              ^^          ^^
+  _q_ quit     _fe_ emacs     _dp_ 🎨     _ap_ ⌛
+  ^^           _fi_ inbox     _ds_ 🎵      _as_ 🔑
+  ^^           _fn_ notes     _dh_ home   ^^
+  ^^           ^^             _fa_ artcl  ^^
+  ^^           ^^             ^^          ^^
   "
   ("q" nil)
   ("fe" (find-file user-init-file))
-  ("fi" (find-file (expand-file-name "documents/gtd/inbox.org" user-emacs-directory)))
-  ("fp" (find-file (expand-file-name "documents/gtd/project.org" user-emacs-directory)))
+  ("fi" (find-file (expand-file-name "documents/gtd/inbox.org" user-emacs-directory)))  
   ("fn" (find-file my-notes))
   ("ft" (find-file my-thoughts))
   ("fm" (find-file my-moments))
@@ -55,9 +51,7 @@
   ("ds" (find-file my-songs-dir))
   ("ap" (hydra-pomodoro/body))
   ("at" (google-translate-smooth-translate))
-  ("as" (salah-time))
-  ("af" auto-fill-mode)
-  ("am" menu-bar-mode))
+  ("as" (hydra-pass/body)))
 
 (defhydra hydra-dired (:color blue)
   "
@@ -89,5 +83,20 @@
   ("p" (pomodoro-pause))
   ("P" (pomodoro-resume))
   ("S" (pomodoro-stop)))
+
+(defhydra hydra-pass (:color blue)
+  "
+  ^
+  ^Go To^      ^Action^
+  ^─────^──────^──────^────────
+  _q_ quit    _c_ copy
+  ^^          _e_ edit
+  ^^           ^^
+  ^^           ^^
+  ^^           ^^
+  "
+  ("q" nil)
+  ("c" password-store-copy-field)
+  ("e" password-store-edit))
 
 (provide 'aza-hydra)
