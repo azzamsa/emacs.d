@@ -133,7 +133,10 @@
 (use-package request)
 
 ;; my packages
-(require 'keys (expand-file-name "straight/repos/keys/keys.el.gpg" user-emacs-directory))
+(use-package auth-source
+  :no-require t
+  :config
+  (setq auth-sources '("~/.authinfo.gpg")))
 
 (use-package aza-secrets
   :straight (aza-secrets :type git :local-repo "aza-secrets"))
@@ -495,17 +498,6 @@
   :config
   (winner-mode 1))
 
-(use-package paradox
-  :defer t
-  :config
-  (paradox-enable)
-  :custom
-  (paradox-column-width-package 27)
-  (paradox-column-width-version 13)
-  (paradox-execute-asynchronously t)
-  (paradox-hide-wiki-packages t)
-  (paradox-github-token t))
-
 (use-package helpful
   :bind (("C-h f" . helpful-callable)
          ("C-h v" . helpful-variable)
@@ -551,10 +543,6 @@
   :config
   (setq mc/list-file (expand-file-name ".mc-lists.el" aza-savefile-dir)))
 
-(use-package auth-source
-  :no-require t
-  :config
-  (setq auth-sources '("~/.authinfo.gpg")))
 
 ;;------------------------------------------------
 ;; Modules
