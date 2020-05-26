@@ -120,4 +120,9 @@
   (setq google-translate-default-source-language "en")
   (setq google-translate-default-target-language "id"))
 
+(use-package password-store
+  :straight (password-store :type git :flavor melpa
+                            :files ("contrib/emacs/*.el" "password-store-pkg.el")
+                            :host github :repo "zx2c4/password-store"))
+
 (provide 'aza-home)
