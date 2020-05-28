@@ -100,4 +100,10 @@
   :custom-face
   (yascroll:thumb-fringe ((t (:background "#91ee98" :foreground "#91ee98")))))
 
+(use-package minions
+  :defer 0.2
+  :straight (minions :type git :flavor melpa :host github :repo "tarsius/minions")
+  :config
+  (minions-mode))
+
 (provide 'aza-ui)
