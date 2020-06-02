@@ -79,6 +79,7 @@
         (expand-file-name "emojify/"  aza-savefile-dir)))
 
 (use-package chronos
+  :disabled
   :straight (chronos :type git :flavor melpa :host github :repo "dxknight/chronos"
                      :fork (:host github :repo "azzamsa/chronos" :branch "myhack"))
   :defer t
@@ -109,6 +110,7 @@
   (setq salah-time-city "Malang"))
 
 (use-package google-translate
+  :disabled
   :defer t
   :commands google-translate-smooth-translate
   :init
