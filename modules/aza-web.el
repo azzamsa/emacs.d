@@ -21,7 +21,7 @@
   ;; (setq web-mode-enable-auto-quoting nil)
 
   ;; default to django
-  (setq web-mode-set-engine "django"))
+  (web-mode-set-engine "django"))
 
 (use-package css-mode
   :mode "\\.css\\'"
