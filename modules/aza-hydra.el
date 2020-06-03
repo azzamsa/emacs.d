@@ -33,7 +33,7 @@
   ^─────^──────^────^────────^─────────^────^─────────^
   _q_ quit     _fe_ emacs     _dp_ 🎨     _ap_ ⌛
   ^^           _fi_ inbox     _ds_ 🎵      _as_ 🔑
-  ^^           ^^             ^^
+  ^^           ^^             ^^          _ad_ 🔍
   ^^           ^^             ^^
   "
   ("q" nil)
@@ -42,7 +42,8 @@
   ("dp" (find-file my-projects-dir))
   ("ds" (hydra-mpv/body))
   ("ap" (hydra-pomodoro/body))
-  ("as" (hydra-pass/body)))
+  ("as" (hydra-pass/body))
+  ("ad" prelude-ddg))
 
 (defhydra hydra-dired (:color blue)
   "
