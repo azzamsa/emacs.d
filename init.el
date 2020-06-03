@@ -140,10 +140,7 @@
               :files ("request.el" "request-pkg.el") :host github :repo "tkf/emacs-request"))
 
 ;; my packages
-(use-package auth-source
-  :no-require t
-  :config
-  (setq auth-sources '("~/.authinfo.gpg")))
+(setq auth-sources '("~/.authinfo.gpg"))
 
 (use-package aza-secrets
   :straight (aza-secrets :type git :local-repo "aza-secrets"))
