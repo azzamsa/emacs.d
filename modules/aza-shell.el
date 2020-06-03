@@ -54,6 +54,6 @@
 
 (use-package vterm-toggle
   :after vterm
-  :straight (vterm-toggle :type git :host github :repo "jixiuf/vterm-toggle" :no-build t))
+  :straight (vterm-toggle :type git :host github :repo "jixiuf/vterm-toggle"))
 
 (provide 'aza-shell)
