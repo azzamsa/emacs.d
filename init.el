@@ -581,7 +581,6 @@
 (require 'aza-erc)
 (require 'aza-mu4e)
 (require 'aza-fun)
-(require 'aza-ledger)
 (require 'aza-calfw)
 
 ;; emacs fix
