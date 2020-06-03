@@ -545,6 +545,10 @@
   :config
   (setq mc/list-file (expand-file-name ".mc-lists.el" aza-savefile-dir)))
 
+(use-package transpose-frame
+  :defer 0.9
+  :straight (transpose-frame
+             :type git :flavor melpa :host github :repo "emacsorphanage/transpose-frame"))
 
 ;;------------------------------------------------
 ;; Modules
