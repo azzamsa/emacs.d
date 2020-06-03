@@ -9,8 +9,16 @@
   (setq cursor-type 'bar)
 
   (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *")
-  (setq vterm-history
+  (setq vterm-history '())
+  (setq vterm-history-file
         (expand-file-name "vterm-history" aza-savefile-dir))
+
+  (add-hook 'kill-emacs-hook
+            (lambda ()
+              (write-region (string-join vterm-history "\n") nil vterm-history-file)))
+
+  (if (not vterm-history)
+      (setq vterm-history (s-split "\n" (f-read vterm-history-file))))
 
   (defun vterm-send-return ()
     "Send `C-m' to the libvterm."
@@ -18,21 +26,20 @@
     (when vterm--term
       (let* ((beg (vterm--get-prompt-point))
              (end (vterm--get-end-of-line))
-             (string (buffer-substring-no-properties beg end))
-             (file vterm-history))
-        (if (not (string= string ""))
-            (write-region (concat string "\n") nil file t 0)))
+             (history (buffer-substring-no-properties beg end)))
+        (if (not (string= history ""))
+            (add-to-list 'vterm-history history)))
+
+      ;; default part from vterm.el
       (if (vterm--get-icrnl vterm--term)
           (process-send-string vterm--process "\C-j")
         (process-send-string vterm--process "\C-m"))))
 
   (defun helm-vterm-history ()
     (interactive)
-    (let ((contents (with-temp-buffer
-                      (insert-file-contents vterm-history)
-                      (reverse (split-string (buffer-string) "\n")))))
+    (let ((histories vterm-history))
       (helm :sources `((name . "vterm history")
-                       (candidates . contents)
+                       (candidates . histories)
                        (action . (lambda (candidate)
                                    (vterm-send-string candidate))))
             :candidate-number-limit 10000))))
