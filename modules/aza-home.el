@@ -108,16 +108,7 @@
 (use-package define-word
   :defer t)
 
-(use-package salah-time
-  :disabled
-  :defer t
-  :load-path "~/emacs-packages/salah-time"
-  :commands salah-time
-  :config
-  (setq salah-time-city "Malang"))
-
 (use-package google-translate
-  :disabled
   :defer t
   :commands google-translate-smooth-translate
   :init
