@@ -490,13 +490,13 @@
 
 (use-package visual-line-mode
   :defer t
-  :straight (:type built-in)  
+  :straight (:type built-in)
   :config
   (add-hook 'text-mode-hook #'visual-line-mode))
 
 (use-package winner
   :straight (:type built-in)
-  :defer 0.5  
+  :defer 0.5
   :config
   (winner-mode 1))
 
