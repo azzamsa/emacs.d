@@ -6,6 +6,8 @@
               ("<f2>" . hydra-vterm/body)
               ([(control return)]  . vterm-toggle-insert-cd))
   :config
+  (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=no")
+  (setq vterm-always-compile-module t)
   (setq cursor-type 'bar)
 
   (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *")
@@ -20,28 +22,34 @@
   (if (not vterm-history)
       (setq vterm-history (s-split "\n" (f-read vterm-history-file))))
 
+    (defun get-current-cmd ()
+    (let* ((beg (vterm--get-prompt-point))
+           (end (vterm--get-end-of-line)))
+      (buffer-substring-no-properties beg end)))
+
   (defun vterm-send-return ()
     "Send `C-m' to the libvterm."
     (interactive)
     (when vterm--term
-      (let* ((beg (vterm--get-prompt-point))
-             (end (vterm--get-end-of-line))
-             (history (buffer-substring-no-properties beg end)))
-        (if (not (string= history ""))
-            (add-to-list 'vterm-history history)))
+      (let* ((current-cmd (get-current-cmd)))
+        (if (not (string= current-cmd ""))
+            (add-to-list 'vterm-history current-cmd)))
 
       ;; default part from vterm.el
+      ;; (setq cursor-type 'bar)
       (if (vterm--get-icrnl vterm--term)
           (process-send-string vterm--process "\C-j")
         (process-send-string vterm--process "\C-m"))))
 
   (defun helm-vterm-history ()
     (interactive)
-    (let ((histories vterm-history))
+    (let ((histories vterm-history)
+          (current-cmd (get-current-cmd)))
       (helm :sources `((name . "vterm history")
                        (candidates . histories)
                        (action . (lambda (candidate)
                                    (vterm-send-string candidate))))
+            :input current-cmd
             :candidate-number-limit 10000))))
 
 (use-package vterm-toggle
