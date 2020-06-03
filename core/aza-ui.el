@@ -48,6 +48,7 @@
 (column-number-mode t)
 
 (use-package beacon
+  :straight (beacon :type git :flavor melpa :host github :repo "Malabarba/beacon")
   :defer 1
   :delight beacon-mode
   :config
@@ -56,12 +57,13 @@
   (setq beacon-color "#b4eeb4"))
 
 (use-package which-key
+  :straight (which-key :type git :flavor melpa :host github :repo "justbur/emacs-which-key")
   :defer 3
   :delight which-key-mode
   :config
   (which-key-mode +1))
 
-(use-package smart-mode-line
+(use-package smart-mode-line  
   :demand t
   :init
   (sml/setup)
@@ -86,6 +88,8 @@
   (dimmer-mode t))
 
 (use-package golden-ratio-scroll-screen
+  :straight (golden-ratio-scroll-screen
+             :type git :flavor melpa :host github :repo "jixiuf/golden-ratio-scroll-screen")
   :defer 0.2
   :config
   (global-set-key [remap scroll-down-command] 'golden-ratio-scroll-screen-down)
@@ -94,6 +98,7 @@
   (golden-ratio-scroll-screen-ratio 1.718))
 
 (use-package yascroll
+  :straight (yascroll :type git :flavor melpa :host github :repo "emacsorphanage/yascroll")
   :defer 0.2
   :config
   (global-yascroll-bar-mode t)
