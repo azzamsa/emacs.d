@@ -3,16 +3,11 @@
                    :files ("*" (:exclude ".dir-locals.el" ".gitignore" ".clang-format" ".travis.yml") "vterm-pkg.el")
                    :host github :repo "akermu/emacs-libvterm")
   :bind (:map vterm-mode-map
-              ("<f2>" . vterm-toggle)
-              ([(control return)]  . vterm-toggle-insert-cd)
-              ("C-c C-l" . helm-vterm-history)
-              ("C-n" . vterm-toggle-forward)
-              ("C-b" . vterm-toggle-backward))
+              ("<f2>" . hydra-vterm/body)
+              ([(control return)]  . vterm-toggle-insert-cd))
   :config
   (setq cursor-type 'bar)
-  (vterm "vterm-main")
 
-  :config
   (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *")
   (setq vterm-history
         (expand-file-name "vterm-history" aza-savefile-dir))
@@ -26,7 +21,7 @@
              (string (buffer-substring-no-properties beg end))
              (file vterm-history))
         (if (not (string= string ""))
-          (write-region (concat string "\n") nil file t 0)))
+            (write-region (concat string "\n") nil file t 0)))
       (if (vterm--get-icrnl vterm--term)
           (process-send-string vterm--process "\C-j")
         (process-send-string vterm--process "\C-m"))))

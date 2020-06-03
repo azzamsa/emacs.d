@@ -9,9 +9,6 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "s-j") 'dired-jump)
 (global-set-key [remap just-one-space] 'cycle-spacing)
-(global-set-key [f2] 'vterm-toggle)
-(global-set-key [C-f2] 'vterm-toggle-cd)
-
 
 ;; emacs fix
 (global-set-key (kbd "M-d") 'my-delete-word)

@@ -1,8 +1,8 @@
 (use-package hydra
   :after aza-secrets
-  :defer 2
   :bind (("C-x }" . hydra-windows/body)
-         ("<f7>" . hydra-go-to/body)))
+         ("<f7>" . hydra-go-to/body)
+         ("<f2>" . hydra-vterm/body)))
 
 (defhydra hydra-windows (:color pink)
   "
@@ -33,24 +33,15 @@
   ^─────^──────^────^────────^─────────^────^─────────^
   _q_ quit     _fe_ emacs     _dp_ 🎨     _ap_ ⌛
   ^^           _fi_ inbox     _ds_ 🎵      _as_ 🔑
-  ^^           _fn_ notes     _dh_ home   ^^
-  ^^           ^^             _fa_ artcl  ^^
-  ^^           ^^             ^^          ^^
+  ^^           ^^             ^^
+  ^^           ^^             ^^
   "
   ("q" nil)
   ("fe" (find-file user-init-file))
-  ("fi" (find-file (expand-file-name "documents/gtd/inbox.org" user-emacs-directory)))  
-  ("fn" (find-file my-notes))
-  ("ft" (find-file my-thoughts))
-  ("fm" (find-file my-moments))
-  ("fs" (find-file my-success))
-  ("fa" (find-file my-article-tracking))
+  ("fi" (find-file (expand-file-name "documents/gtd/inbox.org" user-emacs-directory)))
   ("dp" (find-file my-projects-dir))
-  ("dc" (find-file my-code-coba-dir))
-  ("dh" (find-file my-home-dir))
-  ("ds" (find-file my-songs-dir))
+  ("ds" (hydra-mpv/body))
   ("ap" (hydra-pomodoro/body))
-  ("at" (google-translate-smooth-translate))
   ("as" (hydra-pass/body)))
 
 (defhydra hydra-dired (:color blue)
@@ -59,9 +50,6 @@
   ^Go To^      ^Action^
   ^─────^──────^──────^────────
   _q_ quit    _ao_ omit
-  ^^           ^^
-  ^^           ^^
-  ^^           ^^
   ^^           ^^
   "
   ("q" nil)
@@ -92,11 +80,40 @@
   _q_ quit    _c_ copy
   ^^          _e_ edit
   ^^           ^^
-  ^^           ^^
-  ^^           ^^
   "
   ("q" nil)
   ("c" password-store-copy-field)
   ("e" password-store-edit))
+
+(defhydra hydra-mpv (:color blue)
+  "
+  ^
+  ^Go To^      ^Action^
+  ^─────^──────^──────^────────
+  _q_ quit    _m_ single
+  ^^          _d_ dir
+  ^^          _p_ playlist
+  ^^           ^^
+  ^^           ^^
+  "
+  ("q" nil)
+  ("m" mpv)
+  ("p" mpv-playlist)
+  ("d" mpv-here))
+
+(defhydra hydra-vterm (:color pink)
+  "
+  ^
+  ^Go To^      ^Action^
+  ^─────^──────^──────^────────
+  _q_ quit    _t_ toggle
+  ^^          _f_ forward
+  ^^          _h_ history
+  ^^           ^^
+  "
+  ("q" nil)
+  ("t" vterm-toggle :color blue)
+  ("f" vterm-toggle-forward)
+  ("h" helm-vterm-history :color blue))
 
 (provide 'aza-hydra)
