@@ -211,7 +211,6 @@
 
 (use-package abbrev
   :straight (:type built-in)
-  :ensure nil
   :defer 3
   :delight ""
   :config
@@ -491,15 +490,13 @@
 
 (use-package visual-line-mode
   :defer t
-  :straight (:type built-in)
-  :ensure nil
+  :straight (:type built-in)  
   :config
   (add-hook 'text-mode-hook #'visual-line-mode))
 
 (use-package winner
   :straight (:type built-in)
-  :defer 2
-  :ensure nil
+  :defer 2  
   :config
   (winner-mode 1))
 

@@ -28,7 +28,7 @@
 
   ;; error when outside dired config
   (use-package dired+
-    :straight (dired+ :type git :host github :repo "emacsmirror/dired-plus")    
+    :straight (dired+ :type git :host github :repo "emacsmirror/dired-plus")
     :config
     (diredp-toggle-find-file-reuse-dir 1))
 
