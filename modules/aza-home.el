@@ -85,26 +85,6 @@
   (setq emojify-emojis-dir
         (expand-file-name "emojify/"  aza-savefile-dir)))
 
-(use-package chronos
-  :disabled
-  :straight (chronos :type git :flavor melpa :host github :repo "dxknight/chronos"
-                     :fork (:host github :repo "azzamsa/chronos" :branch "myhack"))
-  :defer t
-  :load-path "~/emacs-packages/chronos/"
-  :config
-  (setq chronos-shell-notify-program "mpv"
-        chronos-shell-notify-parameters '("--really-quiet"
-                                          "--af=scaletempo=speed=pitch"
-                                          "--speed=0.65"
-                                          "~/sounds/early-sunrise-yey.wav")
-        chronos-text-to-speech-program "espeak-ng"
-        chronos-text-to-speech-program-parameters '("-s 100"
-                                                    "-v mb-id1")
-        chronos-expiry-functions '(chronos-dunstify
-                                   chronos-buffer-notify
-                                   chronos-shell-notify
-                                   chronos-text-to-speech-notify)))
-
 (use-package define-word
   :defer t)
 
