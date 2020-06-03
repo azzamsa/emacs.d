@@ -49,6 +49,7 @@
   (keyfreq-autosave-mode 1))
 
 (use-package explain-pause-mode
+  :disabled
   :straight (explain-pause-mode :type git
                            :files ("explain-pause-mode.el")
                            :host github :repo "lastquestion/explain-pause-mode")
