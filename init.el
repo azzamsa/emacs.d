@@ -127,10 +127,17 @@
   :straight (delight :type git :host github :repo "emacs-straight/delight" :files ("*" (:exclude ".git"))))
 
 ;; core packages
-(use-package ts)
-(use-package s)
-(use-package f)
-(use-package request)
+(use-package ts
+  :straight (ts :type git :flavor melpa :host github :repo "alphapapa/ts.el"))
+(use-package s
+  :straight (s :type git :flavor melpa
+               :files ("s.el" "s-pkg.el") :host github :repo "magnars/s.el"))
+(use-package f
+  :straight (f :type git :flavor melpa
+               :files ("f.el" "f-pkg.el") :host github :repo "rejeep/f.el"))
+(use-package request
+  :straight (request :type git :flavor melpa
+              :files ("request.el" "request-pkg.el") :host github :repo "tkf/emacs-request"))
 
 ;; my packages
 (use-package auth-source
@@ -315,6 +322,7 @@
   (add-hook 'prog-mode-hook #'rainbow-mode))
 
 (use-package magit
+  ;; TODO use auth-source
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch))
   :custom
