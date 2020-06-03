@@ -49,7 +49,7 @@
 
 (use-package beacon
   :straight (beacon :type git :flavor melpa :host github :repo "Malabarba/beacon")
-  :defer 1
+  :defer 0.2
   :delight beacon-mode
   :config
   (beacon-mode 1)
@@ -58,7 +58,7 @@
 
 (use-package which-key
   :straight (which-key :type git :flavor melpa :host github :repo "justbur/emacs-which-key")
-  :defer 3
+  :defer 0.9
   :delight which-key-mode
   :config
   (which-key-mode +1))
@@ -76,7 +76,7 @@
 (use-package dimmer
   :straight (dimmer :type git :flavor melpa :host github :repo "gonewest818/dimmer.el" :remote "upstream"
                     :fork (:host github :repo "azzamsa/dimmer.el" :remote "origin" :branch "myhack"))
-  :defer 1
+  :defer 0.2
   :load-path "~/emacs-packages/dimmer.el/"
   :config
   (setq dimmer-exclusion-predicates '(helm--alive-p window-minibuffer-p))

@@ -41,7 +41,7 @@
   :defer t)
 
 (use-package keyfreq
-  :defer 3
+  :defer 0.9
   :config
   (setq keyfreq-file (expand-file-name "emacs.keyfreq" aza-savefile-dir))
   (setq keyfreq-file-lock (expand-file-name "emacs.keyfreq.lock" aza-savefile-dir))

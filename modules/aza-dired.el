@@ -2,7 +2,7 @@
 
 (use-package dired
   :straight (:type built-in)
-  :defer 2
+  :defer 0.5
   :bind ((:map dired-mode-map
                ("/" . ora-dired-up-directory)
                ("C-r" . ora-dired-rsync)

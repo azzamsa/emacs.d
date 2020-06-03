@@ -2,7 +2,7 @@
   :after aza-secrets
   :straight (org-plus-contrib :type git :repo "https://code.orgmode.org/bzg/org-mode.git"
                               :local-repo "org" :files (:defaults "contrib/lisp/*.el"))
-  :defer 1
+  :defer 0.2
   :bind (:map org-mode-map
               ("C-c l" . org-store-link)
               ("C-c a" . org-agenda)
@@ -54,17 +54,17 @@
                              (which-function-mode -1)
                              (turn-on-auto-capitalize-mode))))
 
-(use-package ob-org :straight (:type built-in) :after org :defer 3)
-(use-package ob-lisp :straight (:type built-in) :after org :defer 3)
-(use-package ob-python :straight (:type built-in) :after org :defer 3)
-(use-package ob-ruby :straight (:type built-in) :after org :defer 3)
+(use-package ob-org :straight (:type built-in) :after org :defer 0.9)
+(use-package ob-lisp :straight (:type built-in) :after org :defer 0.9)
+(use-package ob-python :straight (:type built-in) :after org :defer 0.9)
+(use-package ob-ruby :straight (:type built-in) :after org :defer 0.9)
 
 (use-package ox-gfm
-  :defer 3
+  :defer 0.9
   :after org)
 
 (use-package org-download
-  :defer 3
+  :defer 0.9
   :after org
   :load-path "~/emacs-packages/org-download/"
   :bind (:map org-mode-map
@@ -82,7 +82,7 @@
                     (org-bullets-mode 1))))
 
 (use-package org-cliplink
-  :defer 3
+  :defer 0.9
   :bind (:map org-mode-map
               ("C-l" . org-cliplink))
   :config

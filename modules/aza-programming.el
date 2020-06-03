@@ -13,7 +13,7 @@
   :after yasnippet)
 
 (use-package diff-hl
-  :defer 3
+  :defer 0.9
   :config
   (global-diff-hl-mode +1)
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
@@ -25,7 +25,7 @@
   :bind ( "C-c '" . symbol-overlay-put))
 
 (use-package editorconfig
-  :defer 3
+  :defer 0.9
   :delight
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
@@ -37,7 +37,7 @@
   (add-hook 'prog-mode-hook #'prettify-symbols-mode))
 
 (use-package hl-todo
-  :defer 3
+  :defer 0.9
   :config
   (add-hook 'prog-mode-hook #'hl-todo-mode))
 

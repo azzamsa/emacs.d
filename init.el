@@ -211,7 +211,7 @@
 
 (use-package abbrev
   :straight (:type built-in)
-  :defer 3
+  :defer 0.9
   :delight ""
   :config
   (setq abbrev-file-name
@@ -220,7 +220,7 @@
   (setq-default abbrev-mode t))
 
 (use-package company
-  :defer 1
+  :defer 0.2
   :delight " ⚡"
   :config
   (setq company-idle-delay 0.5)
@@ -284,7 +284,7 @@
 
 (use-package uniquify
   :straight (:type built-in)
-  :defer 2
+  :defer 0.5
   :config
   (setq uniquify-buffer-name-style 'forward)
   (setq uniquify-separator "/")
@@ -294,7 +294,7 @@
   (setq uniquify-ignore-buffers-re "^\\*"))
 
 (use-package super-save
-  :defer 2
+  :defer 0.5
   :delight ""
   :load-path "~/emacs-packages/super-save/"
   :config
@@ -308,11 +308,11 @@
   (super-save-mode +1))
 
 (use-package rainbow-delimiters
-  :defer 3
+  :defer 0.9
   :delight rainbow-delimiters-mode)
 
 (use-package rainbow-mode
-  :defer 3
+  :defer 0.9
   :delight rainbow-mode
   :config
   (add-hook 'prog-mode-hook #'rainbow-mode))
@@ -327,7 +327,7 @@
 (use-package git-timemachine :defer t)
 
 (use-package savehist
-  :defer 2
+  :defer 0.5
   :config
   (setq savehist-additional-variables
         ;; search entries
@@ -340,7 +340,7 @@
 
 (use-package saveplace
   ;; saveplace remembers your location in a file when saving files
-  :defer 2
+  :defer 0.5
   :init (save-place-mode 1)
   :config
   (setq save-place-limit 100)
@@ -349,7 +349,7 @@
   (setq-default save-place t))
 
 (use-package recentf
-  :defer 1
+  :defer 0.2
   :config
   (setq recentf-save-file (expand-file-name "recentf" aza-savefile-dir)
         recentf-max-saved-items 100
@@ -390,7 +390,7 @@
 
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
-  :defer 3
+  :defer 0.9
   :delight volatile-highlights-mode
   :config
   (volatile-highlights-mode +1)
@@ -411,14 +411,14 @@
   (global-set-key [remap mark-sexp] 'easy-mark))
 
 (use-package move-text
-  :defer 3
+  :defer 0.9
   :bind
   (([(meta shift up)] . move-text-up)
    ([(meta shift down)] . move-text-down)))
 
 (use-package midnight
   ;; clean up obsolete buffers automatically
-  :defer 3)
+  :defer 0.9)
 
 (use-package ace-window
   :bind ("s-b" . ace-window)
@@ -444,7 +444,7 @@
   (setq ediff-split-window-function (quote split-window-horizontally)))
 
 (use-package perspective
-  :defer 3
+  :defer 0.9
   :init
   (setq persp-mode-prefix-key (kbd "s-v"))
   (global-unset-key (kbd "C-x x"))
@@ -480,12 +480,12 @@
   :disabled)
 
 (use-package auto-capitalize
-  :defer 3
+  :defer 0.9
   :delight " Ac"
   :load-path "~/emacs-packages/auto-capitalize/")
 
 (use-package alert
-  :defer 3
+  :defer 0.9
   :custom (alert-default-style 'libnotify))
 
 (use-package visual-line-mode
@@ -496,7 +496,7 @@
 
 (use-package winner
   :straight (:type built-in)
-  :defer 2  
+  :defer 0.5  
   :config
   (winner-mode 1))
 
@@ -518,7 +518,7 @@
 
 (use-package whitespace
   :delight ""
-  :defer 3
+  :defer 0.9
   :init
   (dolist (hook '(prog-mode-hook text-mode-hook))
     (add-hook hook #'whitespace-mode))
@@ -532,12 +532,12 @@
 (use-package ws-butler
   ;; clean only edited lines
   :delight ""
-  :defer 3
+  :defer 0.9
   :config
   (ws-butler-global-mode t))
 
 (use-package multiple-cursors
-  :defer 3
+  :defer 0.9
   :bind (("C->" . 'mc/mark-next-like-this)
          ("C-<" . 'mc/mark-previous-like-this)
          ("C-/" . 'mc/skip-to-next-like-this)
