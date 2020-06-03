@@ -4,7 +4,6 @@
 
 (use-package pomodoro
   :defer t
-  :load-path "~/emacs-packages/pomodoro.el/"
   :commands pomodoro-start
   :config
   (setq pomodoro-show-number t)
