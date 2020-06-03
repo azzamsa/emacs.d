@@ -49,6 +49,13 @@
   (keyfreq-mode 1)
   (keyfreq-autosave-mode 1))
 
+(use-package explain-pause-mode
+  :straight (explain-pause-mode :type git
+                           :files ("explain-pause-mode.el")
+                           :host github :repo "lastquestion/explain-pause-mode")
+  :config
+  (explain-pause-mode t))
+
 (use-package pelican-mode
   :straight (pelican-mode :type git :flavor melpa
                           :repo "https://git.korewanetadesu.com/pelican-mode.git"
