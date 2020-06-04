@@ -463,6 +463,7 @@
                  :weight extra-bold)))))
 
 (use-package bookmark
+  :straight (:type built-in)
   :config
   (setq bookmark-default-file (expand-file-name "bookmarks" aza-savefile-dir)
         bookmark-save-flag 1))
