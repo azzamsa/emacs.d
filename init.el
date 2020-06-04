@@ -449,13 +449,13 @@
   (setq persp-mode-prefix-key (kbd "s-v"))
   (global-unset-key (kbd "C-x x"))
   :config
-  (persp-mode)
   (add-hook 'kill-emacs-hook #'persp-state-save)
   (setq persp-initial-frame-name "*")
   (setq persp-modestring-dividers (quote ("{" "}" "|")))
   ;;(setq persp-save-dir (expand-file-name "persp-mode/" aza-savefile-dir))
   (setq persp-state-default-file
         (expand-file-name "perspective-el" aza-savefile-dir))
+  (persp-mode)
   :custom-face
   (persp-selected-face
    ((t (:inherit mode-line
