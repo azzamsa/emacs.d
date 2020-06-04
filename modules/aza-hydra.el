@@ -29,21 +29,17 @@
 (defhydra hydra-go-to (:color blue)
   "
   ^
-  ^Go To^      ^File^        ^Directory^    ^Action^
-  ^─────^──────^────^────────^─────────^────^─────────^
-  _q_ quit     _fe_ emacs     _dp_ 🎨     _ap_ ⌛
-  ^^           _fi_ inbox     _ds_ 🎵      _as_ 🔑
-  ^^           ^^             ^^          _ad_ 🔍
-  ^^           ^^             ^^
+  ^Go To^    ^Menu^
+  ^─────^────^─────────────────^
+  _q_ quit    _p_ ⌛      _d_ 🔍
+  ^^          _s_ 🔑
+  ^^          _m_ 🎵
   "
   ("q" nil)
-  ("fe" (find-file user-init-file))
-  ("fi" (find-file (expand-file-name "documents/gtd/inbox.org" user-emacs-directory)))
-  ("dp" (find-file my-projects-dir))
-  ("ds" (hydra-mpv/body))
-  ("ap" (hydra-pomodoro/body))
-  ("as" (hydra-pass/body))
-  ("ad" prelude-ddg))
+  ("p" (hydra-pomodoro/body))
+  ("s" (hydra-pass/body))
+  ("m" (hydra-mpv/body))
+  ("d" prelude-ddg))
 
 (defhydra hydra-dired (:color blue)
   "
