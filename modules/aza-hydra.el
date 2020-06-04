@@ -100,7 +100,7 @@
   ("q" nil)
   ("m" mpv)
   ("p" mpv-playlist)
-  ("d" mpv-here))
+  ("d" mpv-dir))
 
 (defhydra hydra-vterm (:color pink)
   "
