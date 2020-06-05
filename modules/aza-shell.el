@@ -4,6 +4,7 @@
                    :host github :repo "akermu/emacs-libvterm")
   :bind (:map vterm-mode-map
               ("<f2>" . hydra-vterm/body)
+              ("C-c C-l" . helm-vterm-history)
               ([(control return)]  . vterm-toggle-insert-cd))
   :config
   (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=no")
