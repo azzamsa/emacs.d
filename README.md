@@ -2,7 +2,8 @@
 
 This is my emacs configuration.
 
-If you're looking for a nice (copy and use) scripts, check out my [script.el](https://github.com/azzamsa/scripts.el)
+If you're looking for a nice (copy and use) scripts, check out my [useful Emacs
+Lisp scripts collection](https://azzamsa.com/blog/scripts-el/)
 
 ## Inspired by:
 
