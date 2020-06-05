@@ -222,6 +222,9 @@
 (use-package company
   :defer 0.2
   :delight " ⚡"
+  :bind (:map company-active-map
+              ("C-n" . company-select-next)
+              ("C-p" . company-select-previous))
   :config
   (setq company-idle-delay 0.5)
   (setq company-tooltip-limit 10)
