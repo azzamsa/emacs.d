@@ -51,10 +51,21 @@
                        (action . (lambda (candidate)
                                    (vterm-send-string candidate))))
             :input current-cmd
-            :candidate-number-limit 10000))))
+            :candidate-number-limit 10000)))
+
+  (defun remove-vterm-history ()
+    (interactive)
+    (setq vterm-history '())))
 
 (use-package vterm-toggle
   :after vterm
-  :straight (vterm-toggle :type git :host github :repo "jixiuf/vterm-toggle"))
+  :straight (vterm-toggle :type git :host github :repo "jixiuf/vterm-toggle")
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+               '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 (reusable-frames . visible)
+                 (window-height . 0.3))))
 
 (provide 'aza-shell)
