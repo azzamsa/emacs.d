@@ -75,11 +75,13 @@
   ^Go To^      ^Action^
   ^─────^──────^──────^────────
   _q_ quit    _c_ copy
+  ^^          _f_ copy-field
   ^^          _e_ edit
   ^^           ^^
   "
   ("q" nil)
-  ("c" password-store-copy-field)
+  ("c" password-store-copy)
+  ("f" password-store-copy-field)
   ("e" password-store-edit))
 
 (defhydra hydra-mpv (:color blue)
