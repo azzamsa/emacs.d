@@ -561,7 +561,9 @@
 (require 'aza-themes)
 (require 'aza-dired)
 (require 'aza-helm)
-(require 'aza-shell)
+;;(require 'aza-shell)
+;; vterm had Lot of bugs,
+;; use st & tmux for now
 (require 'aza-hydra)
 
 ;; writing
