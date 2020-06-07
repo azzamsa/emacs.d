@@ -1,4 +1,4 @@
-(use-package org
+(use-package org-plus-contrib
   :after aza-secrets
   :straight (org-plus-contrib :type git :repo "https://code.orgmode.org/bzg/org-mode.git"
                               :local-repo "org" :files (:defaults "contrib/lisp/*.el"))
