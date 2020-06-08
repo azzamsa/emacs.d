@@ -38,7 +38,6 @@
 (defconst aza-core-dir (expand-file-name "core" user-emacs-directory))
 (defconst aza-modules-dir (expand-file-name "modules" user-emacs-directory))
 (defconst aza-pkgs-dir (expand-file-name "aza-packages" user-emacs-directory))
-(defconst aza-epkgs-dir "~/emacs-packages")
 
 ;; create the savefile dir if it doesn't exist
 (unless (file-exists-p aza-savefile-dir)
@@ -215,7 +214,7 @@
   :delight ""
   :config
   (setq abbrev-file-name
-        (expand-file-name "abbrevs/abbrev.el" aza-epkgs-dir))
+        (expand-file-name "straight/repos/abbrevs/abbrev.el" user-emacs-directory))
   (setq save-abbrevs nil)
   (setq-default abbrev-mode t))
 
