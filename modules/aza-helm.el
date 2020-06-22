@@ -5,7 +5,6 @@
          ("s-m" . helm-mini)
          ("C-x C-f" . helm-find-files)
          ("C-c h o" . helm-occur)
-         ("C-c h s" . helm-swoop)
          ("C-c h /" . helm-find)
          ("C-c h l" . helm-locate)
          ("C-c p h" . helm-projectile)
@@ -65,9 +64,5 @@
   :after projectile
   :config
   (helm-projectile-on))
-
-(use-package helm-swoop
-  :defer t
-  :after helm)
 
 (provide 'aza-helm)
