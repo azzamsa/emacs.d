@@ -39,6 +39,13 @@
 (use-package hl-todo
   :defer 0.9
   :config
+  (setq hl-todo-keyword-faces
+        '(("HOLD" . "#d0bf8f")
+          ("TODO" . "#cc9393")
+          ("DONE" . "#afd8af")
+          ("NOTE"   . "#d0bf8f")
+          ("MAYBE" . "#d0bf8f")
+          ("FIXME"  . "#cc9393")))
   (add-hook 'prog-mode-hook #'hl-todo-mode))
 
 (use-package realgud
