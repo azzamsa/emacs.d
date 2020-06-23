@@ -40,7 +40,7 @@
 
   (setq helm-boring-buffer-regexp-list
         '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf"
-          "\\*Messages" "*magit-" "magit" "*vterm" "vterm" "^:"))
+          "\\*Messages" "*magit-" "magit" "*vterm" "vterm" "^:" "*Occur"))
 
   (when (executable-find "ack-grep")
     (setq helm-grep-default-command
