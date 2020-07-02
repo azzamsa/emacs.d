@@ -22,13 +22,29 @@
 (use-package symbol-overlay
   :defer t
   :delight " So"
-  :bind ( "C-c '" . symbol-overlay-put))
+  :bind (( "C-c '" . symbol-overlay-put)))
 
 (use-package editorconfig
   :defer 0.9
   :delight
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
+
+(use-package apheleia
+  :straight (apheleia :host github :repo "raxod502/apheleia")
+  :mode ("\\.scss\\'"
+         "\\.json\\'")
+  :config
+  (setq apheleia-mode-alist
+        '((css-mode . prettier)
+          (go-mode . gofmt)
+          (js-mode . prettier)
+          (js3-mode . prettier)
+          (html-mode . prettier)
+          (sass-mode . prettier)
+          (web-mode . prettier)
+          (yaml-mode . prettier)
+          (json-mode . prettier))))
 
 (use-package prettify-symbols-mode
   :straight (:type built-in)
@@ -49,7 +65,8 @@
   (add-hook 'prog-mode-hook #'hl-todo-mode))
 
 (use-package realgud
-  :defer t)
+  :defer t
+  :commands realgud:ipdb)
 
 (use-package gitconfig-mode :defer t)
 (use-package gitignore-mode :defer t)
@@ -67,7 +84,7 @@
 
 (use-package yaml-mode
   :mode "\\.yml\\'"
-  :interpreter ("yml" . yml-mode)
+  :interpreter (("yml" . yml-mode))
   :config
   (setq yaml-indent-offset 4))
 
@@ -81,12 +98,7 @@
 
 (use-package json-mode
   :delight " J"
-  :mode "\\.json\\'"
-  :hook (before-save . my/json-mode-before-save-hook)
-  :preface
-  (defun my/json-mode-before-save-hook ()
-    (when (eq major-mode 'json-mode)
-      (json-pretty-print-buffer))))
+  :mode "\\.json\\'")
 
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
