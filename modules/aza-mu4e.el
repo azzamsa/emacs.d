@@ -2,8 +2,8 @@
   :after aza-secrets
   :defer t
   :commands mu4e
-  :bind (:map mu4e-main-mode-map
-              ("C-c x" . omail-compose))
+  :bind ((:map mu4e-main-mode-map
+              ("C-c x" . omail-compose)))
   :custom
   (mu4e-change-filenames-when-moving t)
   (mu4e-confirm-quit nil)

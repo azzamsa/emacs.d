@@ -1,10 +1,10 @@
 (use-package go-mode
-  :bind (:map go-mode-map
+  :bind ((:map go-mode-map
               ("C-c a" . go-test-current-project)
               ("C-c m" . go-test-current-file)
               ("C-c ." . go-test-current-test)
               ("C-c b" . go-run)
-              ("C-h f" . godoc-at-point))
+              ("C-h f" . godoc-at-point)))
   :preface
   (defun go-mode-config ()
     ;; Prefer goimports to gofmt if installed

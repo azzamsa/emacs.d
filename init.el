@@ -192,9 +192,9 @@
 
 (use-package smartparens
   :delight " ()"
-  :bind (:map smartparens-mode-map
+  :bind ((:map smartparens-mode-map
               ("C-M-a" . sp-beginning-of-sexp)
-              ("C-M-e" . sp-end-of-sexp))
+              ("C-M-e" . sp-end-of-sexp)))
   :preface
   (defun prelude-wrap-with (s)
     "Create a wrapper function for smartparens using S."

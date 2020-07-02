@@ -44,13 +44,13 @@
 
 (use-package reftex
   :after auctex
-  :bind (:map reftex-mode-map
+  :bind ((:map reftex-mode-map
               ("C-c r r" . reftex-query-replace-document)
-              ("C-c r g" . reftex-grep-document)))
+              ("C-c r g" . reftex-grep-document))))
 
 (use-package helm-bibtex
   :after (helm auctex)
-  :bind ("C-c h b" . helm-bibtex-with-local-bibliography))
+  :bind (("C-c h b" . helm-bibtex-with-local-bibliography)))
 
 
 (provide 'aza-latex)

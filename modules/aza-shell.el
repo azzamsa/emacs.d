@@ -2,10 +2,10 @@
   :straight (vterm :type git :flavor melpa
                    :files ("*" (:exclude ".dir-locals.el" ".gitignore" ".clang-format" ".travis.yml") "vterm-pkg.el")
                    :host github :repo "akermu/emacs-libvterm")
-  :bind (:map vterm-mode-map
+  :bind ((:map vterm-mode-map
               ("<f2>" . hydra-vterm/body)
               ("C-c C-l" . helm-vterm-history)
-              ([(control return)]  . vterm-toggle-insert-cd))
+              ([(control return)]  . vterm-toggle-insert-cd)))
   :config
   (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=no")
   (setq vterm-always-compile-module t)

@@ -1,8 +1,8 @@
 (use-package slime
-  :bind ((:map slime-mode-map
+  :bind (((:map slime-mode-map
                ("C-c C-s" . slime-selector))
          (:map slime-repl-mode-map
-               ("C-c C-l" . helm-slime-repl-history)))
+               ("C-c C-l" . helm-slime-repl-history))))
   :config
   (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol
         slime-fuzzy-completion-in-place t
