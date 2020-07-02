@@ -1,34 +1,27 @@
+(straight-use-package 'org-plus-contrib)
+
 (use-package org
-  :demand t
   :after aza-secrets
-  :straight (org-plus-contrib :type git
-                              :repo "https://code.orgmode.org/bzg/org-mode.git"
-                              :local-repo "org"
-                              :files (:defaults "contrib/lisp/*.el")
-                              :includes (org))
-  :bind (:map org-mode-map
+  :bind ((:map org-mode-map
               ("C-c l" . org-store-link)
               ("C-c a" . org-agenda)
-              ("C-k" . my-delete-line))
-  :init
+              ("C-k" . my-delete-line)))
+  :config
   (setq org-src-tab-acts-natively t)
   (setq org-log-done t)
   (setq org-startup-indented t)
   (setq org-src-fontify-natively t)
   (setq org-agenda-files my-agenda-files)
+  ;; (setq org-agenda-files '("/media/azzamsya/rhd/azzamsa/gtd/"))
   (setq org-todo-keywords '((sequence "TODO(t)"
                                       "STARTED(s!)"
                                       "WAITING(w@/!)"
                                       "|"
                                       "DONE(d!)"
                                       "CANCELLED(c@)")))
-  (my-org-mode-hook)
-  :preface
-  (defun my-org-mode-hook ()
-    (add-hook
-     'completion-at-point-functions
-     'pcomplete-completions-at-point nil t))
-  :config
+  (add-hook
+   'completion-at-point-functions
+   'pcomplete-completions-at-point nil t)
   ;; inline image
   (setq org-image-actual-width nil)
   (setq org-refile-targets '((my-inbox-gtd :maxlevel . 1)
