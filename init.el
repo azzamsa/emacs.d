@@ -142,22 +142,23 @@
 (setq auth-sources '("~/.authinfo.gpg"))
 
 (use-package aza-secrets
+  :demand t
   :straight (aza-secrets :type git :local-repo "aza-secrets"))
 
 (use-package aza-scripts
   :after aza-secrets
   :straight (aza-scripts :type git :local-repo "aza-scripts")
-  :bind (("C-c k" . aza-kill-other-buffers)
+  :bind ((("C-c k" . aza-kill-other-buffers)
          ("C-c t" . aza-today)
-         ("C-c i" . insert-filename-as-heading))
-  :init
+         ("C-c i" . insert-filename-as-heading)))
+  :config
   (require 'aza-scripts))
 
 
 ;; packages
 (use-package hippie-expand
   :straight (:type built-in)
-  :bind ("M-/" . hippie-expand)
+  :bind (("M-/" . hippie-expand))
   :config
   ;; hippie expand is dabbrev expand on steroids
   (setq hippie-expand-try-functions-list '(try-expand-dabbrev
@@ -174,10 +175,9 @@
 
 (use-package projectile
   :delight " P"
-  :bind ("s-p" . projectile-command-map)
-  :init
-  (setq projectile-completion-system 'helm)
+  :bind (("s-p" . projectile-command-map))
   :config
+  (setq projectile-completion-system 'helm)
   (setq projectile-indexing-method 'alien)
   (setq projectile-enable-caching t)
   (setq projectile-switch-project-action #'projectile-dired)
@@ -188,7 +188,7 @@
   (projectile-mode +1))
 
 (use-package expand-region
-  :bind ("C-=" . er/expand-region))
+  :bind (("C-=" . er/expand-region)))
 
 (use-package smartparens
   :delight " ()"
@@ -240,11 +240,27 @@
   (setq company-dabbrev-ignore-buffers 'my-company-dabbrev-ignore)
   (global-company-mode +1))
 
-(use-package company-quickhelp
+(use-package company-box
   :after company
+  :diminish
+  :hook (company-mode . company-box-mode)
   :config
-  (company-quickhelp-mode)
-  (add-hook 'company-mode #'company-quickhelp-mode))
+  (defun company-box--render-buffer (string)
+    (let ((selection company-selection)
+          (common company-common))
+      (with-current-buffer (company-box--get-buffer)
+        (erase-buffer)
+        (insert string "\n")
+        (setq mode-line-format nil
+              display-line-numbers t
+              truncate-lines t
+              cursor-in-non-selected-windows nil)
+        (setq-local scroll-step 1)
+        (setq-local scroll-conservatively 10000)
+        (setq-local scroll-margin  0)
+        (setq-local scroll-preserve-screen-position t)
+        (add-hook 'window-configuration-change-hook 'company-box--prevent-changes t t)
+        (company-box--update-line selection common)))))
 
 (use-package flycheck
   :defer t)
@@ -343,8 +359,8 @@
 (use-package saveplace
   ;; saveplace remembers your location in a file when saving files
   :defer 0.5
-  :init (save-place-mode 1)
   :config
+  (save-place-mode 1)
   (setq save-place-limit 100)
   (setq save-place-file (expand-file-name "saveplace" aza-savefile-dir))
   ;; activate it for all buffers
@@ -447,10 +463,9 @@
 
 (use-package perspective
   :defer 0.9
-  :init
+  :config
   (setq persp-mode-prefix-key (kbd "s-v"))
   (global-unset-key (kbd "C-x x"))
-  :config
   (add-hook 'kill-emacs-hook #'persp-state-save)
   (setq persp-initial-frame-name "*")
   (setq persp-modestring-dividers (quote ("{" "}" "|")))

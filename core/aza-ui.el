@@ -63,11 +63,10 @@
   :config
   (which-key-mode +1))
 
-(use-package smart-mode-line  
+(use-package smart-mode-line
   :demand t
-  :init
-  (sml/setup)
   :config
+  (sml/setup)
   (setq
    sml/no-confirm-load-theme t
    ;; use current active theme
