@@ -37,6 +37,7 @@
 
 (use-package isortify
   :after elpy
+  :disabled
   :delight " Is"
   :config
   (add-hook 'python-mode-hook 'isortify-mode))
