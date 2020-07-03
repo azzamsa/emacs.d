@@ -2,7 +2,7 @@
   :after aza-secrets
   :commands mu4e
   :bind ((:map mu4e-main-mode-map
-              ("C-c x" . omail-compose)))
+               ("C-c x" . omail-compose)))
   :config
   (setq mu4e-change-filenames-when-moving t)
   (setq mu4e-confirm-quit nil)
@@ -11,10 +11,10 @@
   (setq mu4e-get-mail-command "mbsync -c ~/Email/.mbsyncrc me-azzamsa")
   (setq mu4e-maildir "~/Email/me-azzamsa/")
   (setq mu4e-maildir-shortcuts
-   '(("/INBOX" . ?i)
-     ("/Drafts" . ?d)
-     ("/Sent" . ?s)
-     ("/Trash" . ?t)))
+        '(("/INBOX" . ?i)
+          ("/Drafts" . ?d)
+          ("/Sent" . ?s)
+          ("/Trash" . ?t)))
   (setq mu4e-refile-folder "/Archive")
   (setq mu4e-sent-folder "/Sent")
   (setq mu4e-trash-folder "/Trash")
@@ -72,19 +72,15 @@
   (mu4e-alert-enable-mode-line-display)
   (mu4e-alert-enable-notifications))
 
-(use-package message
-  :straight (:type built-in)
-  :ensure nil
-  :after mu4e
-  :config
-  (setq send-mail-function 'smtpmail-send-it))
-
 (use-package smtpmail
-  :ensure nil
+  :straight (:type built-in)
   :after mu4e
   :config
-  (setq smtpmail-smtp-server my-smtpmail-smtp-server)
-  (setq smtpmail-smtp-service 465)
-  (setq smtpmail-stream-type 'ssl))
+  (setq message-send-mail-function 'smtpmail-send-it
+        smtpmail-starttls-credentials
+        '(("smtp.migadu.com" 587 nil nil)))
+  (setq smtpmail-smtp-server "smtp.migadu.com")
+  (setq smtpmail-smtp-service 587)
+  (setq smtpmail-debug-info t))
 
 (provide 'aza-mu4e)
