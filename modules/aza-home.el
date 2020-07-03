@@ -20,7 +20,7 @@
 (use-package pdf-tools
   :defer t
   :disabled
-  :magic ("%PDF" . pdf-view-mode)
+  :magic (("%PDF" . pdf-view-mode))
   :config
   (pdf-tools-install))
 
@@ -51,8 +51,8 @@
 (use-package explain-pause-mode
   :defer t
   :straight (explain-pause-mode :type git
-                           :files ("explain-pause-mode.el")
-                           :host github :repo "lastquestion/explain-pause-mode")
+                                :files ("explain-pause-mode.el")
+                                :host github :repo "lastquestion/explain-pause-mode")
   :config
   (explain-pause-mode t))
 
@@ -104,5 +104,13 @@
   :straight (password-store :type git :flavor melpa
                             :files ("contrib/emacs/*.el" "password-store-pkg.el")
                             :host github :repo "zx2c4/password-store"))
+
+(use-package elfeed)
+
+(use-package elfeed-org
+  :after elfeed
+  :config
+  (elfeed-org)
+  (setq rmh-elfeed-org-files (list "~/.config/elfeed.org")))
 
 (provide 'aza-home)
