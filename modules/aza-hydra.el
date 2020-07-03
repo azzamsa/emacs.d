@@ -1,8 +1,8 @@
 (use-package hydra
   :after aza-secrets
-  :bind (("C-x }" . hydra-windows/body)
+  :bind ((("C-x }" . hydra-windows/body)
          ("<f7>" . hydra-go-to/body)
-         ("<f2>" . hydra-vterm/body)))
+         ("<f2>" . hydra-vterm/body))))
 
 (defhydra hydra-windows (:color pink)
   "
@@ -32,14 +32,16 @@
   ^Go To^    ^Menu^
   ^─────^────^─────────────────^
   _q_ quit    _p_ ⌛      _d_ 🔍
-  ^^          _s_ 🔑
-  ^^          _m_ 🎵
+  ^^          _s_ 🔑     _e_ ✉️
+  ^^          _m_ 🎵      _n_ 📰  
   "
   ("q" nil)
   ("p" (hydra-pomodoro/body))
   ("s" (hydra-pass/body))
   ("m" (hydra-mpv/body))
-  ("d" prelude-ddg))
+  ("d" prelude-ddg)
+  ("e" mu4e)
+  ("n" elfeed))
 
 (defhydra hydra-dired (:color blue)
   "
