@@ -52,7 +52,8 @@
       (org-mu4e-compose-org-mode)
       (message-send)))
 
-  (add-hook 'org-ctrl-c-ctrl-c-hook 'omail-send t)
+  ;; call it manually, most people prefer plain-text email
+  ;; (add-hook 'org-ctrl-c-ctrl-c-hook 'omail-send t)
 
   (setq org-mu4e-convert-to-html t))
 
