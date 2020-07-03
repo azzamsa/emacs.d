@@ -1,33 +1,37 @@
 (use-package mu4e
   :after aza-secrets
-  :defer t
   :commands mu4e
   :bind ((:map mu4e-main-mode-map
               ("C-c x" . omail-compose)))
-  :custom
-  (mu4e-change-filenames-when-moving t)
-  (mu4e-confirm-quit nil)
-  (mu4e-compose-dont-reply-to-self t)
-  (mu4e-compose-signature-auto-include nil)
-  (mu4e-get-mail-command "mbsync -c ~/Email/.mbsyncrc memail")
-  (mu4e-maildir "~/Email/memail/")
-  (mu4e-maildir-shortcuts
+  :config
+  (setq mu4e-change-filenames-when-moving t)
+  (setq mu4e-confirm-quit nil)
+  (setq mu4e-compose-dont-reply-to-self t)
+  (setq mu4e-compose-signature-auto-include nil)
+  (setq mu4e-get-mail-command "mbsync -c ~/Email/.mbsyncrc me-azzamsa")
+  (setq mu4e-maildir "~/Email/me-azzamsa/")
+  (setq mu4e-maildir-shortcuts
    '(("/INBOX" . ?i)
      ("/Drafts" . ?d)
      ("/Sent" . ?s)
      ("/Trash" . ?t)))
-  (mu4e-refile-folder "/Archive")
-  (mu4e-sent-folder "/Sent")
-  (mu4e-trash-folder "/Trash")
-  (mu4e-drafts-folder "/Drafts")
-  (mu4e-attachment-dir "~/Email/memail/Attachments/")
-  (mu4e-html2text-command "w3m -T text/html")
-  (mu4e-org-contacts-file "~/Email/contacts.org")
-  (mu4e-update-interval 300)
-  (mu4e-use-fancy-chars t)
-  (mu4e-view-show-addresses t)
-  (mu4e-view-show-images t)
-  :config
+  (setq mu4e-refile-folder "/Archive")
+  (setq mu4e-sent-folder "/Sent")
+  (setq mu4e-trash-folder "/Trash")
+  (setq mu4e-drafts-folder "/Drafts")
+  (setq mu4e-attachment-dir "~/Email/me-azzamsa/Attachments/")
+  (setq mu4e-html2text-command "w3m -T text/html")
+  (setq mu4e-org-contacts-file "~/Email/contacts.org")
+  (setq mu4e-update-interval 300)
+  (setq mu4e-use-fancy-chars t)
+  (setq mu4e-view-show-addresses t)
+  (setq mu4e-view-show-images t)
+
+  ;; https://useplaintext.email/#mu4e
+  (add-hook 'message-mode-hook 'auto-fill-mode)
+  (setq mu4e-compose-format-flowed t)
+  (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
   (add-to-list 'mu4e-view-actions '("Add to contact " . mu4e-action-add-org-contact) t)
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser) t))
 
@@ -49,8 +53,8 @@
       (message-send)))
 
   (add-hook 'org-ctrl-c-ctrl-c-hook 'omail-send t)
-  :custom
-  (org-mu4e-convert-to-html t))
+
+  (setq org-mu4e-convert-to-html t))
 
 (use-package org-mime
   :after mu4e
@@ -72,7 +76,8 @@
   :straight (:type built-in)
   :ensure nil
   :after mu4e
-  :custom (send-mail-function 'smtpmail-send-it))
+  :config
+  (setq send-mail-function 'smtpmail-send-it))
 
 (use-package smtpmail
   :ensure nil
