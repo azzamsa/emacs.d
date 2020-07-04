@@ -79,8 +79,8 @@
   :config
   (setq message-send-mail-function 'smtpmail-send-it
         smtpmail-starttls-credentials
-        '(("smtp.migadu.com" 587 nil nil)))
-  (setq smtpmail-smtp-server "smtp.migadu.com")
+        '(("box.azzamsa.com" 587 nil nil)))
+  (setq smtpmail-smtp-server "box.azzamsa.com")
   (setq smtpmail-smtp-service 587)
   (setq smtpmail-debug-info t))
 
