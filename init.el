@@ -142,10 +142,10 @@
 (setq auth-sources '("~/.authinfo.gpg"))
 
 (use-package aza-secrets
-  :demand t
   :straight (aza-secrets :type git :local-repo "aza-secrets"))
 
 (use-package aza-scripts
+  :demand t
   :after aza-secrets
   :straight (aza-scripts :type git :local-repo "aza-scripts")
   :bind ((("C-c k" . aza-kill-other-buffers)
