@@ -19,4 +19,12 @@ of text. By Stefan Monnier"
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
 
+(defun unfill-region (beg end)
+  "Unfill the region, joining text paragraphs into a single
+    logical line.  This is useful, e.g., for use with
+    `visual-line-mode'."
+  (interactive "*r")
+  (let ((fill-column (point-max)))
+    (fill-region beg end)))
+
 (provide 'aza-emacs-enhc)

@@ -19,6 +19,7 @@
 
 ;; emacs enhancement
 (global-set-key (kbd "M-Q") 'unfill-paragraph)
+(global-set-key (kbd "C-M-Q") 'unfill-region)
 
 (global-unset-key (kbd "C-x m"))
 
