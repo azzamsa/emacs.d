@@ -149,8 +149,8 @@
   :after aza-secrets
   :straight (aza-scripts :type git :local-repo "aza-scripts")
   :bind ((("C-c k" . aza-kill-other-buffers)
-         ("C-c t" . aza-today)
-         ("C-c i" . insert-filename-as-heading)))
+          ("C-c t" . aza-today)
+          ("C-c i" . insert-filename-as-heading)))
   :config
   (require 'aza-scripts))
 
@@ -193,8 +193,8 @@
 (use-package smartparens
   :delight " ()"
   :bind ((:map smartparens-mode-map
-              ("C-M-a" . sp-beginning-of-sexp)
-              ("C-M-e" . sp-end-of-sexp)))
+               ("C-M-a" . sp-beginning-of-sexp)
+               ("C-M-e" . sp-end-of-sexp)))
   :preface
   (defun prelude-wrap-with (s)
     "Create a wrapper function for smartparens using S."
@@ -221,9 +221,9 @@
 (use-package company
   :defer 0.2
   :delight " ⚡"
-  :bind (:map company-active-map
-              ("C-n" . company-select-next)
-              ("C-p" . company-select-previous))
+  :bind ((:map company-active-map
+               ("C-n" . company-select-next)
+               ("C-p" . company-select-previous)))
   :config
   (setq company-idle-delay 0.5)
   (setq company-tooltip-limit 10)
@@ -592,10 +592,10 @@
 (require 'aza-emacs-lisp)
 (require 'aza-common-lisp)
 (require 'aza-scheme)
-;(require 'aza-rust)
-;(require 'aza-go)
-;(require 'aza-java)
-;(require 'aza-php)
+;;(require 'aza-rust)
+;;(require 'aza-go)
+;;(require 'aza-java)
+;;(require 'aza-php)
 ;;(require 'aza-ocaml)
 (require 'aza-xml)
 (require 'aza-lsp)
