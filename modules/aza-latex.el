@@ -10,7 +10,8 @@
   (add-hook 'LaTeX-mode-hook
             (lambda ()
               (define-key LaTeX-mode-map (kbd "<C-tab>") 'outline-toggle-children)
-              (turn-on-auto-fill)
+              ;; FIXME try using visual-line
+              ;; (turn-on-auto-fill)
               (turn-on-auto-capitalize-mode)
               (yas-minor-mode t)
               (turn-on-reftex)

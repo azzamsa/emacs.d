@@ -10,7 +10,11 @@
     (sp-local-pair "**" "**")
     (sp-local-pair "_" "_"))
   (setq markdown-asymmetric-header t)
-  (add-hook 'markdown-mode-hook #'smartparens-mode))
+
+  (add-hook 'markdown-mode-hook
+            (lambda ()
+              (smartparens-mode +1)
+              (visual-fll-column-mode))))
 
 (use-package markdown-toc
   :after markdown-mode)
