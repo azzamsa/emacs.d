@@ -185,6 +185,15 @@
         (expand-file-name "projectile-bookmarks.eld" aza-savefile-dir))
   (setq projectile-cache-file
         (expand-file-name "projectile.cache" aza-savefile-dir))
+
+  ;; we mainly want projects defined by a few markers and we always want to take
+  ;; the top-most marker.  Reorder so other cases are secondary
+  ;; @ambihelical
+  (setq projectile-project-root-files #'( ".projectile" ))
+  (setq projectile-project-root-files-functions #'(projectile-root-top-down
+                                                   projectile-root-top-down-recurring
+                                                   projectile-root-bottom-up
+                                                   projectile-root-local))
   (projectile-mode +1))
 
 (use-package expand-region
