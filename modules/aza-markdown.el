@@ -1,7 +1,7 @@
 (use-package markdown-mode
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . gfm-mode)
-         ("\\.markdown\\'" . markdown-mode))
+  :mode ((("README\\.md\\'" . gfm-mode)
+          ("\\.md\\'" . gfm-mode)
+          ("\\.markdown\\'" . markdown-mode)))
   :config
   (require 'smartparens-config)
   (sp-with-modes 'markdown-mode
