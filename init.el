@@ -472,9 +472,10 @@
 
 (use-package perspective
   :defer 0.9
-  :config
+  :init
   (setq persp-mode-prefix-key (kbd "s-v"))
   (global-unset-key (kbd "C-x x"))
+  :config
   (add-hook 'kill-emacs-hook #'persp-state-save)
   (setq persp-initial-frame-name "*")
   (setq persp-modestring-dividers (quote ("{" "}" "|")))
