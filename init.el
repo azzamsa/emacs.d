@@ -564,6 +564,8 @@
   :config
   (ws-butler-global-mode t))
 
+(use-package visual-fill-column)
+
 (use-package multiple-cursors
   :defer 0.9
   :bind (("C->" . 'mc/mark-next-like-this)
@@ -637,7 +639,7 @@
 ;;------------------------------------------------
 ;; Misc
 ;;------------------------------------------------
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
 
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "firefox-dev")

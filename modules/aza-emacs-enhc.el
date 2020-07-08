@@ -27,4 +27,36 @@ of text. By Stefan Monnier"
   (let ((fill-column (point-max)))
     (fill-region beg end)))
 
+(defvar ws-writing-state nil)
+
+(defun ws-writing-toggle ()
+  "Provide writing environment that prefer soft-breaks"
+  (interactive)
+  (make-local-variable 'whitespace-style)
+  (make-local-variable 'whitespace-display-mappings)
+
+  (if (not ws-writing-state)
+      (progn
+        (setq whitespace-style '(face trailing lines-tail space-before-tab newline newline-mark))
+
+        (setq whitespace-display-mappings
+              '((newline-mark 10 [?↷ 10])))      ; newline
+        (set-face-attribute 'whitespace-newline nil :foreground "#d3d7cf")
+
+        (whitespace-mode +1)
+        (visual-fill-column-mode +1)
+
+        (setq ws-writing-state t)
+        (message "Turn on ws-writing"))
+    (progn
+      (kill-local-variable 'whitespace-style)
+      (kill-local-variable 'whitespace-display-mappings)
+
+      (whitespace-mode -1)
+      (visual-fill-column-mode -1)
+
+      (setq ws-writing-state nil)
+      (message "Turn off ws-writing"))))
+
+
 (provide 'aza-emacs-enhc)
