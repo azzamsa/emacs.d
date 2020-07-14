@@ -6,9 +6,9 @@
                               :files (:defaults "contrib/lisp/*.el")
                               :includes (org))
   :bind ((:map org-mode-map
-              ("C-c l" . org-store-link)
-              ("C-c a" . org-agenda)
-              ("C-k" . my-delete-line)))
+               ("C-c l" . org-store-link)
+               ("C-c a" . org-agenda)
+               ("C-k" . my-delete-line)))
   :config
   (setq org-src-tab-acts-natively t)
   (setq org-log-done t)

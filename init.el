@@ -1,4 +1,5 @@
 ;; Bootstrap straight.el
+(setq straight-repository-branch "develop")
 (setq straight-recipes-gnu-elpa-use-mirror t)
 
 (defvar bootstrap-version)
@@ -15,6 +16,7 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
+(straight-use-package 'org-plus-contrib)
 (setq straight-use-package-by-default t)
 
 ;;; loading my  configuration
