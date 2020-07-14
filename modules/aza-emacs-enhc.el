@@ -37,7 +37,7 @@ of text. By Stefan Monnier"
 
   (if (not ws-writing-state)
       (progn
-        (setq whitespace-style '(face trailing lines-tail space-before-tab newline newline-mark))
+        (setq whitespace-style '(face trailing space-before-tab newline newline-mark))
 
         (setq whitespace-display-mappings
               '((newline-mark 10 [?↷ 10])))      ; newline
