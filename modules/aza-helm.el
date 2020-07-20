@@ -17,6 +17,10 @@
   (helm-autoresize-mode 1)
   ;; fix display not ready
   (setq helm-exit-idle-delay 0)
+  ;; fix flashing each time key pressed
+  ;; only happens in projectile
+  ;;(setq helm-input-idle-delay 0.6)
+  (setq helm-grep-input-idle-delay 0.6)
   (setq
    helm-autoresize-max-height 30
    helm-autoresize-min-height 20)
