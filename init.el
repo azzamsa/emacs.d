@@ -143,6 +143,8 @@
 ;; my packages
 (setq auth-sources '("~/.authinfo.gpg"))
 
+(use-package keychain-environment)
+
 (use-package aza-secrets
   :straight (aza-secrets :type git :local-repo "aza-secrets"))
 
