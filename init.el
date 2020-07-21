@@ -352,8 +352,9 @@
   ;; TODO use auth-source
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch))
-  :custom
-  (magit-diff-refine-hunk '(all)))
+  :config
+  (setq magit-diff-refine-hunk '(all))
+  (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
 (use-package git-timemachine :defer t)
 
