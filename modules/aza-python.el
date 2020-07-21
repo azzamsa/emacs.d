@@ -2,9 +2,7 @@
   :delight " Ep"
   :init (with-eval-after-load 'python (elpy-enable))
   :commands elpy-enable
-  :bind ((:map elpy-refactor-map
-               ("f" . elpy-black-fix-code))
-         (:map inferior-python-mode-map
+  :bind ((:map inferior-python-mode-map
                ("C-c C-l" . helm-comint-input-ring)))
   :config
   ;; Use Flycheck instead of Flymake
