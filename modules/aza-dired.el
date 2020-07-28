@@ -55,7 +55,8 @@
                  '("aux" "pickle" "synctex.gz" "run.xml" "bcf" "am" "blx.bib"
                    "vrb" "opt" "nav" "snm" "out" "org_archive" "auto"))
                 (regexp-opt
-                 '("compile_commands.json" "__pycache__" ".pytest_cache" ".retry")))))
+                 '("compile_commands.json" "__pycache__" ".pytest_cache" ".retry"
+                   "._sync_")))))
 
 (use-package wdired
   :after dired
