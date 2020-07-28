@@ -30,21 +30,7 @@
   :config
   (add-hook 'prog-mode-hook #'editorconfig-mode))
 
-(use-package apheleia
-  :straight (apheleia :host github :repo "raxod502/apheleia")
-  :mode ("\\.scss\\'"
-         "\\.json\\'")
-  :config
-  (setq apheleia-mode-alist
-        '((css-mode . prettier)
-          (go-mode . gofmt)
-          (js-mode . prettier)
-          (js3-mode . prettier)
-          (html-mode . prettier)
-          (sass-mode . prettier)
-          (web-mode . prettier)
-          (yaml-mode . prettier)
-          (json-mode . prettier))))
+(use-package format-all)
 
 (use-package prettify-symbols-mode
   :straight (:type built-in)
