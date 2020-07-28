@@ -21,7 +21,7 @@
 
 (use-package symbol-overlay
   :defer t
-  :delight " So"
+  :delight ""
   :bind (( "C-c '" . symbol-overlay-put)))
 
 (use-package editorconfig

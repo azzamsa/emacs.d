@@ -204,7 +204,7 @@
   :bind (("C-=" . er/expand-region)))
 
 (use-package smartparens
-  :delight " ()"
+  :delight ""
   :bind ((:map smartparens-mode-map
                ("C-M-a" . sp-beginning-of-sexp)
                ("C-M-e" . sp-end-of-sexp)))
@@ -233,7 +233,7 @@
 
 (use-package company
   :defer 0.2
-  :delight " ⚡"
+  :delight ""
   :bind ((:map company-active-map
                ("C-n" . company-select-next)
                ("C-p" . company-select-previous)))
@@ -255,7 +255,7 @@
 
 (use-package company-box
   :after company
-  :diminish
+  :delight ""
   :hook (company-mode . company-box-mode)
   :config
   (defun company-box--render-buffer (string)
