@@ -41,7 +41,8 @@ of text. By Stefan Monnier"
 
         (setq whitespace-display-mappings
               '((newline-mark 10 [?↷ 10])))      ; newline
-        (set-face-attribute 'whitespace-newline nil :foreground "#d3d7cf")
+        ;; colors: "#d3d7cf" "#666666"
+        (set-face-attribute 'whitespace-newline nil :foreground "#5c5b5b")
 
         (whitespace-mode +1)
         (visual-fill-column-mode +1)
