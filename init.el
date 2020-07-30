@@ -570,6 +570,7 @@
   (ws-butler-global-mode t))
 
 (use-package visual-fill-column)
+(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
 
 (use-package multiple-cursors
   :defer 0.9
@@ -644,8 +645,6 @@
 ;;------------------------------------------------
 ;; Misc
 ;;------------------------------------------------
-(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
-
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "firefox-dev")
 
