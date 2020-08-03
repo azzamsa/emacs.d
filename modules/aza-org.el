@@ -79,12 +79,19 @@
   (setq org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")
   (setq org-download-image-org-width 400))
 
-(use-package org-bullets
+;; (use-package org-bullets
+;;   :after org
+;;   :commands (org-bullets-mode)
+;;   :init (add-hook 'org-mode-hook
+;;                   (lambda ()
+;;                     (org-bullets-mode 1))))
+
+(use-package org-superstar
   :after org
-  :commands (org-bullets-mode)
-  :init (add-hook 'org-mode-hook
-                  (lambda ()
-                    (org-bullets-mode 1))))
+  :config
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-superstar-mode +1))))
 
 (use-package org-cliplink
   :defer 0.9
