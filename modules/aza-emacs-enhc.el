@@ -29,6 +29,36 @@ of text. By Stefan Monnier"
 
 (defvar ws-writing-state nil)
 
+(defun turn-on-ws-writing ()
+  (interactive)
+  (setq whitespace-style '(face trailing space-before-tab newline newline-mark))
+
+  (setq whitespace-display-mappings
+        '((newline-mark 10 [?↷ 10])))      ; newline
+  ;; colors: "#d3d7cf" "#666666"
+  (set-face-attribute 'whitespace-newline nil :foreground "#5c5b5b")
+
+  (whitespace-mode +1)
+  (visual-line-mode +1)
+  (visual-fill-column-mode +1)
+
+  (setq ws-writing-state t)
+  (message "Turn on ws-writing"))
+
+
+(defun turn-off-ws-writing ()
+  "Provide writing environment that prefer soft-breaks"
+  (interactive)
+  (kill-local-variable 'whitespace-style)
+  (kill-local-variable 'whitespace-display-mappings)
+
+  (whitespace-mode -1)
+  (visual-line-mode -1)
+  (visual-fill-column-mode -1)
+
+  (setq ws-writing-state nil)
+  (message "Turn off ws-writing"))
+
 (defun ws-writing-toggle ()
   "Provide writing environment that prefer soft-breaks"
   (interactive)
@@ -36,28 +66,8 @@ of text. By Stefan Monnier"
   (make-local-variable 'whitespace-display-mappings)
 
   (if (not ws-writing-state)
-      (progn
-        (setq whitespace-style '(face trailing space-before-tab newline newline-mark))
-
-        (setq whitespace-display-mappings
-              '((newline-mark 10 [?↷ 10])))      ; newline
-        ;; colors: "#d3d7cf" "#666666"
-        (set-face-attribute 'whitespace-newline nil :foreground "#5c5b5b")
-
-        (whitespace-mode +1)
-        (visual-fill-column-mode +1)
-
-        (setq ws-writing-state t)
-        (message "Turn on ws-writing"))
-    (progn
-      (kill-local-variable 'whitespace-style)
-      (kill-local-variable 'whitespace-display-mappings)
-
-      (whitespace-mode -1)
-      (visual-fill-column-mode -1)
-
-      (setq ws-writing-state nil)
-      (message "Turn off ws-writing"))))
+      (turn-on-ws-writing)
+    (turn-off-ws-writing)))
 
 
 (provide 'aza-emacs-enhc)
