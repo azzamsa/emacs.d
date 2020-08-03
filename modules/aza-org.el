@@ -51,7 +51,8 @@
   (add-hook 'org-mode-hook (lambda ()
                              (smartparens-mode +1)
                              (which-function-mode -1)
-                             (turn-on-auto-capitalize-mode))))
+                             (turn-on-auto-capitalize-mode)
+                             (turn-on-ws-writing))))
 
 (use-package ob-org :straight (:type built-in) :after org :defer 0.9)
 (use-package ob-lisp :straight (:type built-in) :after org :defer 0.9)

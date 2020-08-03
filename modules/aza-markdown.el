@@ -1,7 +1,6 @@
 (use-package markdown-mode
-  :mode ((("README\\.md\\'" . gfm-mode)
-          ("\\.md\\'" . gfm-mode)
-          ("\\.markdown\\'" . markdown-mode)))
+  :mode ((("\\.md\\'" . gfm-mode)
+         ("\\.markdown\\'" . markdown-mode)))
   :config
   (require 'smartparens-config)
   (sp-with-modes 'markdown-mode
@@ -14,7 +13,7 @@
   (add-hook 'markdown-mode-hook
             (lambda ()
               (smartparens-mode +1)
-              (visual-fll-column-mode))))
+              (turn-on-ws-writing))))
 
 (use-package markdown-toc
   :after markdown-mode)
