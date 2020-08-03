@@ -22,6 +22,11 @@
                                       "|"
                                       "DONE(d!)"
                                       "CANCELLED(c@)")))
+  ;; thanks @thraxys
+  (setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✓ DONE(d)")
+                            (sequence "⚑ WAITING(w)" "|")
+                            (sequence "|" "✘ CANCELED(c)")))
+
   (add-hook
    'completion-at-point-functions
    'pcomplete-completions-at-point nil t)
