@@ -56,15 +56,6 @@
   :config
   (explain-pause-mode t))
 
-(use-package pelican-mode
-  :straight (pelican-mode :type git :flavor melpa
-                          :repo "https://git.korewanetadesu.com/pelican-mode.git"
-                          :fork (:host github :repo "azzamsa/pelican-mode" :branch "myhack"))
-  :commands pelican-mode
-  :load-path "~/emacs-packages/pelican-mode/"
-  :config
-  (pelican-global-mode))
-
 (use-package atomic-chrome
   :defer t
   :config
