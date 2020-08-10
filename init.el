@@ -256,24 +256,7 @@
 (use-package company-box
   :after company
   :delight ""
-  :hook (company-mode . company-box-mode)
-  :config
-  (defun company-box--render-buffer (string)
-    (let ((selection company-selection)
-          (common company-common))
-      (with-current-buffer (company-box--get-buffer)
-        (erase-buffer)
-        (insert string "\n")
-        (setq mode-line-format nil
-              display-line-numbers t
-              truncate-lines t
-              cursor-in-non-selected-windows nil)
-        (setq-local scroll-step 1)
-        (setq-local scroll-conservatively 10000)
-        (setq-local scroll-margin  0)
-        (setq-local scroll-preserve-screen-position t)
-        (add-hook 'window-configuration-change-hook 'company-box--prevent-changes t t)
-        (company-box--update-line selection common)))))
+  :hook (company-mode . company-box-mode))
 
 (use-package flycheck
   :defer t)
