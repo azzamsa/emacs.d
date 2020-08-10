@@ -86,6 +86,8 @@
   :delight " J"
   :mode "\\.json\\'")
 
+(use-package toml-mode)
+
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
   (smartparens-mode +1)
