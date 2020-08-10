@@ -74,15 +74,14 @@
 
 (use-package dimmer
   :straight (dimmer :type git :flavor melpa :host github :repo "gonewest818/dimmer.el" :remote "upstream"
-                    :fork (:host github :repo "azzamsa/dimmer.el" :remote "origin" :branch "myhack"))
+                    :fork (:host github :repo "azzamsa/dimmer.el" :remote "origin" :branch "master"))
   :defer 0.2
-  :load-path "~/emacs-packages/dimmer.el/"
   :config
   (setq dimmer-exclusion-predicates '(helm--alive-p window-minibuffer-p))
   (setq dimmer-exclusion-regexp-list
         '("^\\*[h|H]elm.*\\*" "^\\*Minibuf-[0-9]+\\*"
           "^.\\*which-key\\*$" "^*Messages*" "*LV*"
-          "transient"))
+          "transient" " *company-box-"))
   (setq dimmer-fraction 0.50)
   (dimmer-mode t))
 
