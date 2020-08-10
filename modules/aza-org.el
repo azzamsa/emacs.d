@@ -71,7 +71,6 @@
 (use-package org-download
   :defer 0.9
   :after org
-  :load-path "~/emacs-packages/org-download/"
   :bind (:map org-mode-map
               ("C-c y" . org-download-yank))
   :config

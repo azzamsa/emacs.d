@@ -178,13 +178,12 @@
   (setq dabbrev-ignored-buffer-regexps '(".*\.gpg$" "^ [*].*")))
 
 (use-package projectile
-  :delight " P"
+  :delight ""
   :bind (("s-p" . projectile-command-map))
   :config
   (setq projectile-completion-system 'helm)
   (setq projectile-indexing-method 'alien)
   (setq projectile-enable-caching t)
-  (setq projectile-switch-project-action #'projectile-dired)
   (setq projectile-known-projects-file
         (expand-file-name "projectile-bookmarks.eld" aza-savefile-dir))
   (setq projectile-cache-file
@@ -309,8 +308,7 @@
 
 (use-package super-save
   :defer 0.5
-  :delight ""
-  :load-path "~/emacs-packages/super-save/"
+  :delight ""  
   :config
   (add-to-list 'super-save-triggers 'ace-window)
   (add-to-list 'super-save-triggers 'helm)
@@ -497,18 +495,11 @@
 
 (use-package auto-capitalize
   :defer 0.9
-  :delight " Ac"
-  :load-path "~/emacs-packages/auto-capitalize/")
+  :delight " Ac")
 
 (use-package alert
   :defer 0.9
   :custom (alert-default-style 'libnotify))
-
-(use-package visual-line-mode
-  :defer t
-  :straight (:type built-in)
-  :config
-  (add-hook 'text-mode-hook #'visual-line-mode))
 
 (use-package winner
   :straight (:type built-in)
