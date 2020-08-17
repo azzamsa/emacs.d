@@ -584,7 +584,7 @@
 (require 'aza-emacs-lisp)
 (require 'aza-common-lisp)
 (require 'aza-scheme)
-;;(require 'aza-rust)
+(require 'aza-rust)
 ;;(require 'aza-go)
 ;;(require 'aza-java)
 ;;(require 'aza-php)

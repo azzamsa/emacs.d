@@ -1,28 +1,10 @@
-(use-package rust-mode
+(use-package rustic
   :defer 0.3
-  :hook (rust-mode . lsp)
+  :hook (rustic-mode . lsp)
   :config
   (aza-rust-path)
-  (setq rust-format-on-save t)
+  (setq rustic-format-on-save t)
 
-  ;;(add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'rust-mode-hook #'cargo-minor-mode)
   (add-hook 'rust-mode-hook #'subword-mode))
-
-(use-package cargo
-  :after rust
-  :hook (rust-mode . cargo-minor-mode))
-
-;; (use-package racer
-;;   :after rust
-;;   :config
-;;   (setq racer-cmd "~/.cargo/bin/racer")
-;;   (setq racer-rust-src-path (expand-file-name (getenv "RUST_SRC_PATH")))
-;;   (add-hook 'racer-mode-hook #'company-mode)
-;;   (add-hook 'racer-mode-hook #'eldoc-mode))
-
-(use-package flycheck-rust
-  :after rust
-  :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (provide 'aza-rust)
