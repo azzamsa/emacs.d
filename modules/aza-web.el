@@ -1,16 +1,20 @@
 (use-package web-mode
   :mode ("\\.html?\\'"
          "\\.php\\'"
-         "\\.njk\\'"
+         "\\.svelte\\'"
+         "\\.js\\'"
          )
   :init (add-hook 'web-mode-hook
                   (lambda ()
                     (emmet-mode +1)
                     (subword-mode +1)
-                    (smartparens-mode -1)))
-  :config
-  ;; default to django
-  (web-mode-set-engine "django"))
+                    (smartparens-mode -1))))
+
+(add-to-list 'auto-mode-alist
+             '("\\.njk\\'" . (lambda ()
+                               (web-mode)
+                               (web-mode-set-engine "django")
+                               (setq web-mode-enable-front-matter-block t))))
 
 (use-package css-mode
   :mode "\\.css\\'"
