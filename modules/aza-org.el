@@ -15,17 +15,23 @@
   (setq org-startup-indented t)
   (setq org-src-fontify-natively t)
   (setq org-agenda-files my-agenda-files)
-  ;; (setq org-agenda-files '("/media/azzamsya/rhd/azzamsa/gtd/"))
-  (setq org-todo-keywords '((sequence "TODO(t)"
-                                      "STARTED(s!)"
-                                      "WAITING(w@/!)"
-                                      "|"
-                                      "DONE(d!)"
-                                      "CANCELLED(c@)")))
   ;; thanks @thraxys
   (setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✓ DONE(d)")
                             (sequence "⚑ WAITING(w)" "|")
+                            (sequence "◐ DOING(n)" "|")
                             (sequence "|" "✘ CANCELED(c)")))
+
+  ;; @Aaron Bieber
+  (setq org-agenda-custom-commands
+      '(("d" "Daily agenda and all TODOs"
+         ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
+          (agenda "" ((org-agenda-ndays 1)))
+          (alltodo ""
+                   ((org-agenda-skip-function '(or (org-agenda-skip-if nil '(scheduled deadline))))
+                    (org-agenda-overriding-header "ALL normal priority tasks:"))))
+         ((org-agenda-compact-blocks t)))))
 
   (add-hook
    'completion-at-point-functions
@@ -38,7 +44,7 @@
                              (my-tickler-gtd :maxlevel . 2)))
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline my-inbox-gtd "Inbox")
-                                 "* TODO %i%?")))
+                                 "* ☛ TODO %i%?")))
 
   ;; Make windmove work in org-mode:
   (add-hook 'org-shiftup-final-hook 'windmove-up)
