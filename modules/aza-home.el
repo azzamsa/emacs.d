@@ -104,4 +104,50 @@
   (elfeed-org)
   (setq rmh-elfeed-org-files (list "~/.config/elfeed.org")))
 
+(use-package keycast)
+
+(use-package appt
+  :straight (:type built-in)
+  :config
+  ;; thanks scaramouche
+  (appt-activate t)
+  (setq appt-message-warning-time 5)
+  (setq appt-display-interval appt-message-warning-time) ; Disable multiple reminders
+  (setq appt-display-mode-line nil)
+
+  (defun my-org-agenda-to-appt ()
+    (interactive)
+    (setq appt-time-msg-list nil)
+    (org-agenda-to-appt))
+
+  (my-org-agenda-to-appt)
+  (run-at-time "12:05am" (* 24 3600) 'my-org-agenda-to-appt)
+
+  (add-hook 'after-save-hook
+            '(lambda ()
+               (if (string= (buffer-file-name) my-inbox-gtd)
+                   (my-org-agenda-to-appt))))
+
+  (setq appt-disp-window-function 'my-appt-display)
+  (setq appt-delete-window-function (lambda () t))
+
+  (setq my-appt-notification-app (concat (getenv "HOME") "/bin/appt-notify"))
+
+  (defun my-appt-display (min-to-app new-time msg)
+    (if (atom min-to-app)
+        (start-process "my-appt-notification-app" nil my-appt-notification-app min-to-app msg)
+      (dolist (i (number-sequence 0 (1- (length min-to-app))))
+        (start-process "my-appt-notification-app" nil my-appt-notification-app (nth i min-to-app) (nth i msg))))))
+
+
+(use-package time
+  :straight (:type built-in)
+  :config
+  (setq display-time-world-time-format "%z\t%a %d %b %R")
+  (setq display-time-world-list '(("Africa/Timbuktu" "Troll")
+                                  ("Asia/Jakarta" "Jakarta"))))
+
+(use-package world-time-mode)
+
+
 (provide 'aza-home)
