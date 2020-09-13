@@ -10,16 +10,20 @@
                ("C-c a" . org-agenda)
                ("C-k" . my-delete-line)))
   :config
+  (defun goto-last-heading ()
+    (interactive)
+    (org-end-of-subtree))
+
   (setq org-src-tab-acts-natively t)
   (setq org-log-done t)
   (setq org-startup-indented t)
   (setq org-src-fontify-natively t)
   (setq org-agenda-files my-agenda-files)
   ;; thanks @thraxys
-  (setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✓ DONE(d)")
-                            (sequence "⚑ WAITING(w)" "|")
-                            (sequence "◐ DOING(n)" "|")
-                            (sequence "|" "✘ CANCELED(c)")))
+  (setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✓ DONE(d!)")
+                            (sequence "⚑ WAITING(w@/!)" "|")
+                            (sequence "◐ DOING(s!)" "|")
+                            (sequence "|" "✘ CANCELED(c@)")))
 
   ;; @Aaron Bieber
   (setq org-agenda-custom-commands
