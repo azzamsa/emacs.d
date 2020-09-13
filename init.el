@@ -585,7 +585,7 @@
 (require 'aza-common-lisp)
 (require 'aza-scheme)
 (require 'aza-rust)
-;;(require 'aza-go)
+(require 'aza-go)
 ;;(require 'aza-java)
 ;;(require 'aza-php)
 ;;(require 'aza-ocaml)
