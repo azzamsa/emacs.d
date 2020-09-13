@@ -1,8 +1,9 @@
 (use-package lsp-mode
   :defer t
   :commands (lsp lsp-deferred)
-  :hook (((before-save . lsp-format-buffer)
-          (before-save . lsp-organize-imports)))
+  ;; always breaks
+  ;; :hook ((before-save . lsp-format-buffer)
+  ;;        (before-save . lsp-organize-imports))
   :config
   (setq lsp-auto-guess-root t)
   (setq lsp-document-sync-method 'incremental)
