@@ -14,7 +14,10 @@
   (setq lsp-vetur-format-default-formatter-css "none")
   (setq lsp-vetur-format-default-formatter-html "none")
   (setq lsp-vetur-format-default-formatter-js "none")
-  (setq lsp-vetur-validation-template nil))
+  (setq lsp-vetur-validation-template nil)
+
+  (setq lsp-rust-server 'rust-analyzer)
+  (setq lsp-rust-analyzer-server-command '("/usr/local/bin/rust-analyzer")))
 
 (use-package company-lsp
   :after lsp-mode
