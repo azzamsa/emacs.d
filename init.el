@@ -22,8 +22,7 @@
 ;;; loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/modules/")
 (add-to-list 'load-path "~/.emacs.d/core/")
-(add-to-list 'load-path "~/.emacs.d/aza-packages/")
-(add-to-list 'load-path "~/emacs-packages/")
+(add-to-list 'load-path "~/.emacs.d/vendors/")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
 ;; Always load newest byte code
@@ -615,7 +614,7 @@
 (require 'aza-ui)
 (require 'aza-global-keybinding)
 (require 'aza-programming)
-
+(require 'fira-code)
 ;;------------------------------------------------
 ;; Misc
 ;;------------------------------------------------
