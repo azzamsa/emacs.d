@@ -31,17 +31,12 @@ of text. By Stefan Monnier"
 
 (defun turn-on-ws-writing ()
   (interactive)
-  (setq whitespace-style '(face trailing space-before-tab newline newline-mark))
-
-  (setq whitespace-display-mappings
-        '((newline-mark 10 [?↷ 10])))      ; newline
-  ;; colors: "#d3d7cf" "#666666"
-  (set-face-attribute 'whitespace-newline nil :foreground "#5c5b5b")
 
   (whitespace-mode +1)
   (visual-line-mode +1)
   (visual-fill-column-mode +1)
   (turn-off-auto-fill)
+  (display-line-numbers-mode +1)
 
   (setq ws-writing-state t)
   (message "Turn on ws-writing"))
@@ -57,6 +52,7 @@ of text. By Stefan Monnier"
   (visual-line-mode -1)
   (visual-fill-column-mode -1)
   (turn-on-auto-fill)
+  (display-line-numbers-mode -1)
 
   (setq ws-writing-state nil)
   (message "Turn off ws-writing"))
