@@ -69,7 +69,9 @@
   (setq doom-modeline-env-version nil)
   (setq doom-modeline-minor-modes t)
   (setq doom-modeline-buffer-encoding nil)
-  (setq doom-modeline-indent-info nil))
+  (setq doom-modeline-indent-info nil)
+
+  (setq doom-modeline-percent-position '(-3 "")))
 
 (use-package dimmer
   :straight (dimmer :type git :flavor melpa :host github :repo "gonewest818/dimmer.el" :remote "upstream"
