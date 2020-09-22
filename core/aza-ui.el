@@ -63,14 +63,13 @@
   :config
   (which-key-mode +1))
 
-(use-package smart-mode-line
-  :demand t
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
   :config
-  (sml/setup)
-  (setq
-   sml/no-confirm-load-theme t
-   ;; use current active theme
-   sml/theme nil))
+  (setq doom-modeline-env-version nil)
+  (setq doom-modeline-minor-modes t)
+  (setq doom-modeline-buffer-encoding nil)
+  (setq doom-modeline-indent-info nil))
 
 (use-package dimmer
   :straight (dimmer :type git :flavor melpa :host github :repo "gonewest818/dimmer.el" :remote "upstream"
@@ -109,5 +108,7 @@
   :straight (minions :type git :flavor melpa :host github :repo "tarsius/minions")
   :config
   (minions-mode))
+
+(use-package all-the-icons)
 
 (provide 'aza-ui)
