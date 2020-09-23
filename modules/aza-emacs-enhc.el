@@ -68,4 +68,23 @@ of text. By Stefan Monnier"
     (turn-off-ws-writing)))
 
 
+;; default minor mode format
+(defvar aza-modeline-toggle-state nil)
+(setq doom-modeline-minor-modes nil)
+(setq pyvenv-mode-line-indicator '(pyvenv-virtual-env-name ("")))
+
+(defun aza-modeline-toggle ()
+  (interactive)
+  (if (not aza-modeline-toggle-state)
+      (progn
+        (setq doom-modeline-minor-modes t)
+        (setq pyvenv-mode-line-indicator '(pyvenv-virtual-env-name
+                                           ("[" pyvenv-virtual-env-name "] ")))
+        (setq aza-modeline-toggle-state t))
+    (progn
+      (setq doom-modeline-minor-modes nil)
+      (setq pyvenv-mode-line-indicator '(pyvenv-virtual-env-name
+                                         ("")))
+      (setq aza-modeline-toggle-state nil))))
+
 (provide 'aza-emacs-enhc)

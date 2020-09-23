@@ -6,7 +6,7 @@
 
 ;;  disable scroll bar
 (when (fboundp 'set-scroll-bar-mode)
-(set-scroll-bar-mode nil))
+  (set-scroll-bar-mode nil))
 
 ;; disable menu-bar. I have <f12> to toggle it
 (menu-bar-mode -1)
@@ -67,7 +67,6 @@
   :init (doom-modeline-mode 1)
   :config
   (setq doom-modeline-env-version nil)
-  (setq doom-modeline-minor-modes t)
   (setq doom-modeline-buffer-encoding nil)
   (setq doom-modeline-indent-info nil)
 
