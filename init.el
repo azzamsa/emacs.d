@@ -137,7 +137,9 @@
                :files ("f.el" "f-pkg.el") :host github :repo "rejeep/f.el"))
 (use-package request
   :straight (request :type git :flavor melpa
-              :files ("request.el" "request-pkg.el") :host github :repo "tkf/emacs-request"))
+              :files ("request.el" "request-pkg.el") :host github :repo "tkf/emacs-request")
+  :config
+  (setq request-storage-directory (expand-file-name "request" aza-savefile-dir)))
 
 ;; my packages
 (setq auth-sources '("~/.authinfo.gpg"))
