@@ -17,6 +17,20 @@
         "~/sounds/coin-work-medium.ogg")
   (pomodoro-add-to-mode-line))
 
+(use-package org-pomodoro
+  :config
+  (setq org-pomodoro-audio-player "/usr/bin/mpv")
+  (setq org-pomodoro-start-sound "~/sounds/coin-work-medium.ogg")
+  (setq org-pomodoro-start-sound-args "--volume 30")
+  (setq org-pomodoro-short-break-sound "~/sounds/ding-rest-medium.ogg")
+  (setq org-pomodoro-short-break-args "--volume 30")
+  (setq org-pomodoro-overtime-sound "~/sounds/ding-rest-medium.ogg")
+  (setq org-pomodoro-overtime-sound-args "--volume 30")
+  (setq org-pomodoro-long-break-sound "~/sounds/ding-rest-medium.ogg")
+  (setq org-pomodoro-long-break-sound-args "--volume 30")
+  (setq org-pomodoro-finished-sound "~/sounds/ding-rest-medium.ogg")
+  (setq org-pomodoro-finished-sound-args "--volume 30"))
+
 (use-package pdf-tools
   :defer t
   :disabled
