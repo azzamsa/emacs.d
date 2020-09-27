@@ -87,6 +87,7 @@
   :mode "\\.json\\'")
 
 (use-package toml-mode)
+(use-package fish-mode)
 
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
