@@ -50,9 +50,6 @@
           ("FIXME"  . "#cc9393")))
   (add-hook 'prog-mode-hook #'hl-todo-mode))
 
-(use-package realgud
-  :defer t
-  :commands realgud:ipdb)
 
 (use-package gitconfig-mode :defer t)
 (use-package gitignore-mode :defer t)
