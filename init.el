@@ -564,6 +564,11 @@
 ;;------------------------------------------------
 ;; Modules
 ;;------------------------------------------------
+;; emacs fix
+(require 'aza-emacs-fix)
+;; emacs enhancements
+(require 'aza-emacs-enhc)
+
 (require 'aza-path)
 (require 'aza-themes)
 (require 'aza-dired)
@@ -599,12 +604,6 @@
 (require 'aza-mu4e)
 (require 'aza-fun)
 (require 'aza-calfw)
-
-;; emacs fix
-(require 'aza-emacs-fix)
-
-;; emacs enhancements
-(require 'aza-emacs-enhc)
 
 ;; unpublished configuration
 (when (file-exists-p (expand-file-name "aza-local.el" aza-modules-dir))
