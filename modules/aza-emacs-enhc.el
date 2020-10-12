@@ -35,7 +35,8 @@ of text. By Stefan Monnier"
   (whitespace-mode +1)
   (visual-line-mode +1)
   (visual-fill-column-mode +1)
-  (turn-off-auto-fill)
+
+   (auto-fill-mode -1)
   (display-line-numbers-mode +1)
 
   (setq ws-writing-state t)
@@ -51,7 +52,7 @@ of text. By Stefan Monnier"
   (whitespace-mode -1)
   (visual-line-mode -1)
   (visual-fill-column-mode -1)
-  (turn-on-auto-fill)
+  (auto-fill-mode +1)
   (display-line-numbers-mode -1)
 
   (setq ws-writing-state nil)
