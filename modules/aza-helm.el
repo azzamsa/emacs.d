@@ -67,6 +67,7 @@
           ("C-c a p" . helm-ag-project-root))))
 
 (use-package helm-projectile
+  :disabled
   :after projectile
   :config
   (helm-projectile-on))
