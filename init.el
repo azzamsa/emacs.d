@@ -585,16 +585,18 @@
 
 ;;; programming modules
 (require 'aza-python)
+(require 'aza-rust)
 (require 'aza-web)
 (require 'aza-js)
 (require 'aza-emacs-lisp)
-(require 'aza-common-lisp)
-(require 'aza-scheme)
-(require 'aza-rust)
-(require 'aza-go)
+;;(require 'aza-common-lisp)
+;;(require 'aza-scheme)
+;;(require 'aza-go)
 ;;(require 'aza-java)
 ;;(require 'aza-php)
 ;;(require 'aza-ocaml)
+
+
 (require 'aza-xml)
 (require 'aza-lsp)
 
