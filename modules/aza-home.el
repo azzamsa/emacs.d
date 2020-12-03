@@ -159,6 +159,7 @@
   :config
   (setq display-time-world-time-format "%z\t%a %d %b %R")
   (setq display-time-world-list '(("Africa/Timbuktu" "Troll")
+                                  ("America/New_York" "New York")
                                   ("Asia/Jakarta" "Jakarta"))))
 
 (use-package world-time-mode)
