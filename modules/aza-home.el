@@ -164,5 +164,9 @@
 
 (use-package world-time-mode)
 
+(use-package activity-watch-mode
+  :config
+  (global-activity-watch-mode))
+
 
 (provide 'aza-home)
