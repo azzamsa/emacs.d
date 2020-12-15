@@ -38,19 +38,6 @@
   :config
   (pdf-tools-install))
 
-(use-package org-brain
-  :defer t
-  :init
-  (setq org-brain-path "~/.emacs.d/documents/brain")
-  :config
-  (setq org-id-track-globally t)
-  (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
-  (push '("b" "Brain" plain (function org-brain-goto-end)
-          "* %i%?" :empty-lines 1)
-        org-capture-templates)
-  (setq org-brain-visualize-default-choices 'all)
-  (setq org-brain-title-max-length 30))
-
 (use-package presentation
   :defer t)
 
