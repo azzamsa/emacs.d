@@ -13,6 +13,7 @@ custom.el
 aza-local.el
 abbrev_defs
 tramp
+eln-cache/
 
 # packages
 projectile-bookmarks.eld
