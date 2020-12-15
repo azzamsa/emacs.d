@@ -110,14 +110,6 @@
                             :files ("contrib/emacs/*.el" "password-store-pkg.el")
                             :host github :repo "zx2c4/password-store"))
 
-(use-package elfeed)
-
-(use-package elfeed-org
-  :after elfeed
-  :config
-  (elfeed-org)
-  (setq rmh-elfeed-org-files (list "~/.config/elfeed.org")))
-
 (use-package keycast)
 
 (use-package appt
