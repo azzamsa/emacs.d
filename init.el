@@ -309,7 +309,7 @@
 
 (use-package super-save
   :defer 0.5
-  :delight ""  
+  :delight ""
   :config
   (add-to-list 'super-save-triggers 'ace-window)
   (add-to-list 'super-save-triggers 'helm)
@@ -663,5 +663,9 @@
 (delight 'auto-fill-function " Af" t)
 (delight 'outline-minor-mode " ⛶" t)
 (delight 'auto-revert-mode)
+(delight 'org-indent-mode)
+(delight 'eldoc-mode "")
+(delight 'visual-line-mode)
+(delight 'auto-capitalize-mode)
 
 ;;; init.el ends here

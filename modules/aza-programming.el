@@ -4,7 +4,7 @@
 
 (use-package yasnippet
   :defer t
-  :delight yas-minor-mode " Ys"
+  :delight yas-minor-mode ""
   :config
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode))
