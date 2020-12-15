@@ -93,18 +93,6 @@
 (use-package define-word
   :defer t)
 
-(use-package google-translate
-  :defer t
-  :commands google-translate-smooth-translate
-  :init
-  (require 'google-translate-smooth-ui)
-  (setq google-translate-translation-directions-alist
-        '(("en" . "id") ("id" . "en")))
-  (setq google-translate-output-destination nil)
-  (setq google-translate-pop-up-buffer-set-focus t)
-  (setq google-translate-default-source-language "en")
-  (setq google-translate-default-target-language "id"))
-
 (use-package password-store
   :straight (password-store :type git :flavor melpa
                             :files ("contrib/emacs/*.el" "password-store-pkg.el")
