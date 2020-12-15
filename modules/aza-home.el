@@ -90,9 +90,6 @@
   (setq emojify-emojis-dir
         (expand-file-name "emojify/"  aza-savefile-dir)))
 
-(use-package define-word
-  :defer t)
-
 (use-package password-store
   :straight (password-store :type git :flavor melpa
                             :files ("contrib/emacs/*.el" "password-store-pkg.el")
