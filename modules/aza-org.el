@@ -18,6 +18,7 @@
   (setq org-log-done t)
   (setq org-startup-indented t)
   (setq org-src-fontify-natively t)
+  (setq org-clock-clocked-in-display nil)
   (setq org-agenda-files my-agenda-files)
   ;; thanks @thraxys
   (setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✓ DONE(d!)")
