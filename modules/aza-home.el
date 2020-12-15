@@ -70,13 +70,6 @@
   :config
   (explain-pause-mode t))
 
-(use-package atomic-chrome
-  :defer t
-  :config
-  (setq atomic-chrome-url-major-mode-alist
-        '(("github\\.com" . gfm-mode)))
-  (atomic-chrome-start-server))
-
 (use-package emojify
   :hook
   ((markdown-mode . emojify-mode)
