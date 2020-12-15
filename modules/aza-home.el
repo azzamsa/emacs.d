@@ -31,13 +31,6 @@
   (setq org-pomodoro-finished-sound "~/sounds/ding-rest-medium.ogg")
   (setq org-pomodoro-finished-sound-args "--volume 30"))
 
-(use-package pdf-tools
-  :defer t
-  :disabled
-  :magic (("%PDF" . pdf-view-mode))
-  :config
-  (pdf-tools-install))
-
 (use-package presentation
   :defer t)
 
