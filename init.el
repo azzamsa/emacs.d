@@ -561,6 +561,21 @@
   :straight (transpose-frame
              :type git :flavor melpa :host github :repo "emacsorphanage/transpose-frame"))
 
+(use-package tramp
+  :straight (:type built-in)
+  :config
+  ;; make TRAMP faster
+  (setq remote-file-name-inhibit-cache nil)
+  (setq vc-ignore-dir-regexp
+        (format "%s\\|%s"
+                vc-ignore-dir-regexp
+                tramp-file-name-regexp))
+  (setq tramp-verbose 1)
+  (setq tramp-use-ssh-controlmaster-options nil) ; Don't override SSH config.
+  (setq tramp-default-method "ssh")
+  (setq tramp-auto-save-directory "~/tmp/tramp/")
+  (setq tramp-chunksize 2000))
+
 ;;------------------------------------------------
 ;; Modules
 ;;------------------------------------------------
@@ -624,13 +639,6 @@
 ;;------------------------------------------------
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "firefox-dev")
-
-(setq remote-file-name-inhibit-cache nil)
-(setq vc-ignore-dir-regexp
-      (format "%s\\|%s"
-              vc-ignore-dir-regexp
-              tramp-file-name-regexp))
-(setq tramp-verbose 1)
 
 ;; Litter
 (setq url-configuration-directory
