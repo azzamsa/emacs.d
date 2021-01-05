@@ -182,7 +182,7 @@
   :delight ""
   :bind (("s-p" . projectile-command-map))
   :config
-  (setq projectile-completion-system 'helm)
+  (setq projectile-completion-system 'default)
   (setq projectile-indexing-method 'alien)
   (setq projectile-enable-caching t)
   (setq projectile-known-projects-file
@@ -572,7 +572,8 @@
 (require 'aza-path)
 (require 'aza-themes)
 (require 'aza-dired)
-(require 'aza-helm)
+(require 'aza-selectrum)
+;;(require 'aza-helm)
 ;;(require 'aza-shell)
 ;; vterm had Lot of bugs,
 ;; use st & tmux for now
