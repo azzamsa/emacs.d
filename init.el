@@ -473,7 +473,7 @@
   :custom-face
   (persp-selected-face
    ((t (:inherit mode-line
-                 :foreground "white smoke"
+                 :foreground "dodger blue"
                  :weight extra-bold)))))
 
 (use-package bookmark
