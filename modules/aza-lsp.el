@@ -5,12 +5,6 @@
   ;; :hook ((before-save . lsp-format-buffer)
   ;;        (before-save . lsp-organize-imports))
   :config
-  (setq lsp-auto-guess-root t)
-  (setq lsp-document-sync-method 'incremental)
-  (setq lsp-log-io nil)
-  (setq lsp-trace nil)
-  (setq lsp-print-performance nil)
-
   (setq lsp-vetur-format-default-formatter-css "none")
   (setq lsp-vetur-format-default-formatter-html "none")
   (setq lsp-vetur-format-default-formatter-js "none")
