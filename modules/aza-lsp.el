@@ -1,9 +1,8 @@
 (use-package lsp-mode
   :defer t
   :commands (lsp lsp-deferred)
-  ;; always breaks
-  ;; :hook ((before-save . lsp-format-buffer)
-  ;;        (before-save . lsp-organize-imports))
+  :hook ((before-save . lsp-format-buffer)
+         (before-save . lsp-organize-imports))
   :config
   (setq lsp-vetur-format-default-formatter-css "none")
   (setq lsp-vetur-format-default-formatter-html "none")
