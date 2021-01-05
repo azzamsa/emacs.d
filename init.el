@@ -281,9 +281,9 @@
         ispell-program-name "aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra"))
 
-  (defadvice ispell-init-process (after ispell-init-process-after activate)
-    (setq flyspell-mode-line-string
-          (concat " ⛿:" (or ispell-local-dictionary ispell-dictionary "default"))))
+  ;; (defadvice ispell-init-process (after ispell-init-process-after activate)
+  ;;   (setq flyspell-mode-line-string
+  ;;         (concat " ⛿:" (or ispell-local-dictionary ispell-dictionary "default"))))
 
   :custom-face
   (flyspell-duplicate
