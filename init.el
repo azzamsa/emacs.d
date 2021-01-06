@@ -375,6 +375,7 @@
                           "/\\.emacs\\.d/documents/brain/"
                           "/thought/brain/"
                           "/\\.emacs\\.d/elpa/"
+                          "/\\.emacs\\.d/straight/build/"
                           "/tmp/"
                           ".jpg" ".png" ".pdf" ".org_archive"
                           "/Email/memail/"))
