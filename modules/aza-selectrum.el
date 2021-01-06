@@ -22,6 +22,11 @@
          ("s-m f" . consult-ripgrep)
          )
   :config
+  (setq consult-buffer-filter '("^ " "\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf"
+                                "\\*Messages" "\\*Warning" "*magit-" "magit" "*vterm" "vterm" "^:" "*Occur"
+                                "*straight-" "*elfeed-log" "*trace of SMTP session"
+                                "*format-all-error" "*Async-" ))
+
   (consult-preview-mode)
   :custom-face
   (font-lock-function-name-face ((t (:foreground "salmon1")))))
