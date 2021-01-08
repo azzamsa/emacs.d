@@ -228,8 +228,13 @@
   :config
   (setq abbrev-file-name
         (expand-file-name "straight/repos/abbrevs/abbrev.el" user-emacs-directory))
-  (setq save-abbrevs nil)
-  (setq-default abbrev-mode t))
+  (setq save-abbrevs t)
+  (setq-default abbrev-mode t)
+  (quietly-read-abbrev-file)
+  ;; bug: emacs28 doesn't save abbrevs count before quit
+  (add-hook 'kill-emacs-hook
+            (lambda ()
+              (write-abbrev-file abbrev-file-name nil))))
 
 (use-package company
   :defer 0.2
