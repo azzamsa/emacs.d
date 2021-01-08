@@ -60,9 +60,4 @@
 
 (use-package erc-hl-nicks :after erc)
 
-(use-package erc-view-log
-  :after erc
-  :config
-  (add-to-list 'auto-mode-alist '("\\.erclogs/.*\\.log" . erc-view-log-mode)))
-
 (provide 'aza-erc)
