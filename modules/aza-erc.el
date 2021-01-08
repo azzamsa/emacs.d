@@ -21,6 +21,8 @@
            (replace-regexp-in-string "\n+" " " str))))
   :hook (((erc-send-pre . my/erc-preprocess)))
   :config
+  (require 'erc-desktop-notifications)
+
   (setq erc-hide-list '("PART" "QUIT" "JOIN"))
   (setq erc-autojoin-channels-alist '(("freenode.net"))
         erc-server "irc.freenode.net"
