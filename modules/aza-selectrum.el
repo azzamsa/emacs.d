@@ -29,7 +29,7 @@
 
   (consult-preview-mode)
   :custom-face
-  (font-lock-function-name-face ((t (:foreground "salmon1")))))
+  (font-lock-function-name-face ((t (:foreground "#ff9d47")))))
 
 (use-package consult-selectrum
   :after consult
