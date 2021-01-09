@@ -296,7 +296,7 @@
   (flyspell-incorrect
    ((t (:inherit nil :underline (:color "magenta" :style wave))))))
 
-(use-package flyspell-correct-helm
+(use-package flyspell-correct
   :after flyspell
   :bind (:map flyspell-mode-map
               ("C-;" . flyspell-correct-previous)))
@@ -317,7 +317,7 @@
   :delight ""
   :config
   (add-to-list 'super-save-triggers 'ace-window)
-  (add-to-list 'super-save-triggers 'helm)
+  (add-to-list 'super-save-triggers 'selectrum)
   (add-to-list 'super-save-triggers 'dired-jump)
   (add-to-list 'super-save-triggers 'winner-undo)
 
