@@ -18,9 +18,7 @@
          ("s-m o" . consult-outline)
          ("s-m r" . consult-mark)
          ("s-m R" . consult-global-mark)
-         ;;("s-m s" . consult-multi-occur)
-         ("s-m f" . consult-ripgrep)
-         )
+         ("s-m s" . consult-ripgrep))
   :config
   (setq consult-buffer-filter '("^ " "\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf"
                                 "\\*Messages" "\\*Warning" "*magit-" "magit" "*vterm" "vterm" "^:" "*Occur"
