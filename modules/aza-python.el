@@ -1,45 +1,14 @@
-(use-package elpy
-  :delight " Ep"
-  :init (with-eval-after-load 'python (elpy-enable))
-  :commands elpy-enable
-  :bind ((:map inferior-python-mode-map
-               ("C-c C-l" . helm-comint-input-ring)))
+(use-package python
+  :straight (:type built-in)
   :config
-  ;; Use Flycheck instead of Flymake
-  (when (require 'flycheck nil t)
-    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-    (add-hook 'elpy-mode-hook 'flycheck-mode))
+  (add-hook 'python-mode-hook #'lsp)
+  (add-hook 'python-mode-hook (lambda ()
+                                (yas-minor-mode)))
 
-  (setq elpy-rpc-backend "jedi")
-  (setq whitespace-line-column 90)
-  (setq elpy-rpc-virtualenv-path "~/.virtualenvs/global37")
+  (setq lsp-pyls-plugins-flake8-enabled t)
+  ;; https://github.com/emacs-lsp/lsp-mode/issues/746#issuecomment-480565612
+  ;; https://github.com/palantir/python-language-server/issues/190
+  (setq lsp-pyls-configuration-sources ["flake8"])
+  )
 
-  (delight 'python-mode " Py")
-  (delight 'highlight-indentation-mode "")
-  (delight 'subword-mode "")
-  (pyvenv-workon "global37")
-  (add-hook 'elpy-mode-hook (lambda ()
-                              (subword-mode +1))))
-
-(use-package pyvenv
-  :after elpy
-  :config
-  (add-hook 'pyvenv-post-activate-hooks (lambda ()
-                                          (revert-buffer t t))))
-
-(use-package blacken
-  :after elpy
-  :delight " Bl"
-  :config
-  (add-hook 'python-mode-hook 'blacken-mode))
-
-(use-package isortify
-  :after elpy
-  :disabled
-  :delight " Is"
-  :config
-  (add-hook 'python-mode-hook 'isortify-mode))
-
-(add-hook 'inferior-python-mode-hook (lambda ()
-                                       (smartparens-mode 1)))
 (provide 'aza-python)

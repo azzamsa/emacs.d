@@ -8,7 +8,13 @@
   (setq lsp-vetur-format-default-formatter-css "none")
   (setq lsp-vetur-format-default-formatter-html "none")
   (setq lsp-vetur-format-default-formatter-js "none")
-  (setq lsp-vetur-validation-template nil))
+  (setq lsp-vetur-validation-template nil)
+
+  ;; python
+  (lsp-register-custom-settings
+   '(("pyls.plugins.pyls_black.enabled" nil t)
+     ))
+  )
 
 (use-package company-lsp
   :after lsp-mode
