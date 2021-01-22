@@ -23,7 +23,8 @@
   (setq consult-buffer-filter '("^ " "\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf"
                                 "\\*Messages" "\\*Warning" "*magit-" "magit" "*vterm" "vterm" "^:" "*Occur"
                                 "*straight-" "*elfeed-log" "*trace of SMTP session"
-                                "*format-all-error" "*Async-" ))
+                                "*format-all-error" "*Async-"
+                                "*lsp-" "*rust-" "*company-" "*pyls"))
 
   (consult-preview-mode)
   :custom-face
