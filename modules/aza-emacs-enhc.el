@@ -32,11 +32,11 @@ of text. By Stefan Monnier"
 (defun turn-on-ws-writing ()
   (interactive)
 
-  (whitespace-mode +1)
+  (whitespace-mode -1)
   (visual-line-mode +1)
   (visual-fill-column-mode +1)
 
-   (auto-fill-mode -1)
+  (auto-fill-mode -1)
   (display-line-numbers-mode +1)
 
   (setq ws-writing-state t)
@@ -46,8 +46,6 @@ of text. By Stefan Monnier"
 (defun turn-off-ws-writing ()
   "Provide writing environment that prefer soft-breaks"
   (interactive)
-  (kill-local-variable 'whitespace-style)
-  (kill-local-variable 'whitespace-display-mappings)
 
   (whitespace-mode -1)
   (visual-line-mode -1)
@@ -61,8 +59,6 @@ of text. By Stefan Monnier"
 (defun ws-writing-toggle ()
   "Provide writing environment that prefer soft-breaks"
   (interactive)
-  (make-local-variable 'whitespace-style)
-  (make-local-variable 'whitespace-display-mappings)
 
   (if (not ws-writing-state)
       (turn-on-ws-writing)
