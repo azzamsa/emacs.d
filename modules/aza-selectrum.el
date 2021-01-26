@@ -30,10 +30,6 @@
   :custom-face
   (font-lock-function-name-face ((t (:foreground "#ff9d47")))))
 
-(use-package consult-selectrum
-  :after consult
-  :demand t)
-
 (use-package marginalia
   :after consult
   :init
