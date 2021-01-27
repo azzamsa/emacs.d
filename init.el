@@ -19,6 +19,8 @@
 (straight-use-package 'org-plus-contrib)
 (setq straight-use-package-by-default t)
 
+(setq warning-minimum-level :emergency)
+
 ;;; loading my  configuration
 (add-to-list 'load-path "~/.emacs.d/modules/")
 (add-to-list 'load-path "~/.emacs.d/core/")
