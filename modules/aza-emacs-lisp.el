@@ -20,7 +20,7 @@ Start `ielm' if it's not already running."
 (define-key emacs-lisp-mode-map (kbd "C-c C-b") 'eval-buffer)
 
 (eval-after-load "ielm"
-  '(define-key ielm-map (kbd "C-c C-l") 'helm-comint-input-ring))
+  '(define-key ielm-map (kbd "C-c C-l") 'consult-history))
 
 
 (defun prelude-conditional-emacs-lisp-checker ()
