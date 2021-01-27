@@ -106,10 +106,4 @@
 
 (use-package world-time-mode)
 
-(use-package activity-watch-mode
-  :delight ""
-  :config
-  (global-activity-watch-mode))
-
-
 (provide 'aza-home)
