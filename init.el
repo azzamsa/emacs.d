@@ -502,7 +502,7 @@
   :disabled)
 
 (use-package auto-capitalize
-  :defer 0.9
+  :demand
   :delight " Ac")
 
 (use-package alert
