@@ -3,6 +3,12 @@
   :commands mu4e
   :bind ((:map mu4e-main-mode-map
                ("C-c x" . omail-compose)))
+  :straight ( :host github
+              :repo "djcb/mu"
+              :branch "master"
+              :files ("mu4e/*")
+              :pre-build (("./autogen.sh") ("make")))
+  :custom   (mu4e-mu-binary (expand-file-name "mu/mu" (straight--repos-dir "mu")))
   :config
   ;; thanks @irreal.org
   (setq mu4e-headers-date-format "%Y-%m-%d %H:%M")
