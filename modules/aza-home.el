@@ -81,7 +81,8 @@
 
   (add-hook 'after-save-hook
             '(lambda ()
-               (if (string= (buffer-file-name) my-inbox-gtd)
+               (if (string= (buffer-file-name)
+                            (or my-inbox-gtd my-projects-gtd my-tickler-gtd))
                    (my-org-agenda-to-appt))))
 
   (setq appt-disp-window-function 'my-appt-display)
