@@ -2,8 +2,8 @@
   :mode ("\\.ml[ily]?$"
          "\\.topml$")
   :hook (((merlin-mode. tuareg-mode)
-         (flycheck-ocaml . tuareg-mode)
-         (utop-minor-mode . tuareg-mode)))
+          (flycheck-ocaml . tuareg-mode)
+          (utop-minor-mode . tuareg-mode)))
   :bind (:map tuareg-mode-map ("C-c C-s" . 'utop))
   :config
   (setq compile-command "opam config exec corebuild "))

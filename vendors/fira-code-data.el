@@ -244,4 +244,4 @@
     ["minus.dnom" "−" "\xe1f1"]  ;   
     ["minus.numr" "−" "\xe1f2"]  ;   
     ["infinity.case" "∞" "\xe1f3"]  ;   
-))
+    ))

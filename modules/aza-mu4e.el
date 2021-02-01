@@ -14,9 +14,9 @@
   (setq mu4e-headers-date-format "%Y-%m-%d %H:%M")
   (setq mu4e-headers-fields
         '((:date          .  20)
-           (:flags         .   6)
-           (:from          .  22)
-           (:subject       .  nil)))
+          (:flags         .   6)
+          (:from          .  22)
+          (:subject       .  nil)))
 
   (setq mu4e-change-filenames-when-moving t)
   (setq mu4e-confirm-quit nil)

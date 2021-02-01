@@ -1,8 +1,8 @@
 (use-package hydra
   :after aza-secrets
   :bind ((("C-x }" . hydra-windows/body)
-         ("<f7>" . hydra-go-to/body)
-         ("<f2>" . hydra-vterm/body))))
+          ("<f7>" . hydra-go-to/body)
+          ("<f2>" . hydra-vterm/body))))
 
 (defhydra hydra-windows (:color pink)
   "

@@ -3,9 +3,9 @@
                    :files ("*" (:exclude ".dir-locals.el" ".gitignore" ".clang-format" ".travis.yml") "vterm-pkg.el")
                    :host github :repo "akermu/emacs-libvterm")
   :bind ((:map vterm-mode-map
-              ("<f2>" . hydra-vterm/body)
-              ("C-c C-l" . helm-vterm-history)
-              ([(control return)]  . vterm-toggle-insert-cd)))
+               ("<f2>" . hydra-vterm/body)
+               ("C-c C-l" . helm-vterm-history)
+               ([(control return)]  . vterm-toggle-insert-cd)))
   :config
   (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=no")
   (setq vterm-always-compile-module t)
@@ -23,7 +23,7 @@
   (if (not vterm-history)
       (setq vterm-history (s-split "\n" (f-read vterm-history-file))))
 
-    (defun get-current-cmd ()
+  (defun get-current-cmd ()
     (let* ((beg (vterm--get-prompt-point))
            (end (vterm--get-end-of-line)))
       (buffer-substring-no-properties beg end)))
