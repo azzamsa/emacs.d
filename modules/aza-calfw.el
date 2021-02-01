@@ -31,7 +31,6 @@
       (cfw:org-create-file-source "Target" my-target-cal "#40e0d0")
       (cfw:org-create-file-source "Hevent" my-hevent-cal "#ffb3ba"))))
 
-  (setq diary-file my-diary-cal)
   (setq cfw:display-calendar-holidays nil)
   (setq holiday-christian-holidays nil
         holiday-bahai-holidays nil

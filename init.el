@@ -162,6 +162,8 @@
   (require 'aza-scripts))
 
 
+(setq diary-file my-diary-cal)
+
 ;; packages
 (use-package hippie-expand
   :straight (:type built-in)
