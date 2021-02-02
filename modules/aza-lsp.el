@@ -12,7 +12,7 @@
 
   ;; python
   (lsp-register-custom-settings
-   '(("pyls.plugins.pyls_black.enabled" nil t)
+   '(("pyls.plugins.pyls_black.enabled" t t) ;; change to `nil t' to disable
      ))
   )
 
