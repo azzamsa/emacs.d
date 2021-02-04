@@ -11,10 +11,16 @@
   (setq lsp-vetur-validation-template nil)
 
   ;; python
+  (defcustom lsp-pyls-plugins-black-enabled t
+    "Enable or disable the plugin."
+    :type 'boolean
+    :group 'lsp-pyls)
+
   (lsp-register-custom-settings
-   '(("pyls.plugins.pyls_black.enabled" t t) ;; change to `nil t' to disable
-     ))
-  )
+   '(("pyls.plugins.pyls_black.enabled" lsp-pyls-plugins-black-enabled t)))
+
+  (add-hook 'hack-local-variables-hook
+            (lambda () (when (derived-mode-p 'python-mode) (lsp)))))
 
 (use-package company-lsp
   :after lsp-mode
