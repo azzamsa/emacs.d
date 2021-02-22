@@ -675,6 +675,7 @@
 (setq disabled-command-function 'ignore)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+(put 'capitalize-word 'disabled t)
 
 ;; delight
 (delight 'auto-fill-function " Af" t)
