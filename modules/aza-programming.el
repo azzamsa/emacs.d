@@ -69,7 +69,9 @@
   :mode "\\.yml\\'"
   :interpreter (("yml" . yml-mode))
   :config
-  (setq yaml-indent-offset 4))
+  (setq yaml-indent-offset 2)
+  (add-hook 'yaml-mode-hook (lambda ()
+                              (highlight-indentation-mode +1))))
 
 (use-package rst-mode
   :straight (:type built-in)

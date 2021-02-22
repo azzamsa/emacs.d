@@ -2,13 +2,14 @@
   :mode ("\\.html?\\'"
          "\\.php\\'"
          "\\.svelte\\'"
-         "\\.js\\'"
-         )
+         "\\.js\\'")
   :init (add-hook 'web-mode-hook
                   (lambda ()
                     (emmet-mode +1)
                     (subword-mode +1)
-                    (smartparens-mode -1))))
+                    (smartparens-mode -1)))
+  :config
+  (setq web-mode-markup-indent-offset 2))
 
 (add-to-list 'auto-mode-alist
              '("\\.njk\\'" . (lambda ()
@@ -19,8 +20,8 @@
 (use-package css-mode
   :mode "\\.css\\'"
   :config
-  (setq css-indent-level 4)
-  (setq css-indent-offset 4))
+  (setq css-indent-level 2)
+  (setq css-indent-offset 2))
 
 (use-package emmet-mode
   :delight
