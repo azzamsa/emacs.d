@@ -370,7 +370,7 @@
   :defer 0.2
   :config
   (setq recentf-save-file (expand-file-name "recentf" aza-savefile-dir)
-        recentf-max-saved-items 100
+        recentf-max-saved-items 200
         recentf-max-menu-items 15
         ;; disable recentf-cleanup on Emacs start, because it can cause
         ;; problems with remote files
