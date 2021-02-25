@@ -87,6 +87,7 @@
 
 (use-package toml-mode)
 (use-package fish-mode)
+(use-package dockerfile-mode)
 
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
