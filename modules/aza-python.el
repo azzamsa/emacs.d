@@ -3,7 +3,8 @@
   :config
   (add-hook 'python-mode-hook #'lsp)
   (add-hook 'python-mode-hook (lambda ()
-                                (yas-minor-mode)))
+                                (yas-minor-mode)
+                                (highlight-indentation-mode +1)))
 
   (setq lsp-pyls-plugins-flake8-enabled t)
   ;; https://github.com/emacs-lsp/lsp-mode/issues/746#issuecomment-480565612
