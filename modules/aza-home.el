@@ -100,10 +100,13 @@
 (use-package time
   :straight (:type built-in)
   :config
-  (setq display-time-world-time-format "%z\t%a %d %b %R")
+  (setq display-time-world-time-format "%z\t%a %d %b %I:%M %p")
   (setq display-time-world-list '(("Africa/Timbuktu" "Troll")
                                   ("America/New_York" "New York")
-                                  ("Asia/Jakarta" "Jakarta"))))
+                                  ("Asia/Jakarta" "Jakarta")
+                                  ("Asia/Singapore" "Singapore")
+                                  ("Asia/Shanghai" "Shanghai")
+                                  ("Europe/Berlin" "Berlin"))))
 
 (use-package world-time-mode)
 
