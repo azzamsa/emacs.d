@@ -56,7 +56,8 @@
                    "vrb" "opt" "nav" "snm" "out" "org_archive" "auto"))
                 (regexp-opt
                  '("compile_commands.json" "__pycache__" ".pytest_cache" ".retry"
-                   "._sync_")))))
+                   "._sync_"
+                   "Cargo.lock" "yarn.lock" "node_modules")))))
 
 (use-package wdired
   :after dired
