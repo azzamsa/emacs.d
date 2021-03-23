@@ -83,7 +83,12 @@
 
 (use-package json-mode
   :delight " J"
-  :mode "\\.json\\'")
+  :mode "\\.json\\'"
+  :config
+  (add-hook 'json-mode-hook
+            (lambda ()
+              (make-local-variable 'js-indent-level)
+              (setq js-indent-level 2))))
 
 (use-package toml-mode)
 (use-package fish-mode)
