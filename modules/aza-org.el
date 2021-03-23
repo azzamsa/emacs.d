@@ -101,7 +101,8 @@
   :bind (:map org-mode-map
               ("C-l" . org-cliplink))
   :config
-  (setq org-cliplink-max-length 60))
+  (setq org-cliplink-max-length 60)
+  (setq org-cliplink-transport-implementation 'curl))
 
 (eval-after-load 'org-indent '(delight 'org-indent-mode))
 
