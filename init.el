@@ -646,7 +646,7 @@
 ;; Misc
 ;;------------------------------------------------
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "firefox-dev")
+      browse-url-generic-program "firefox")
 
 ;; Litter
 (setq url-configuration-directory
