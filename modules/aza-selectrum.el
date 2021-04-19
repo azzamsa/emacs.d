@@ -19,7 +19,8 @@
          ("s-m r" . consult-mark)
          ("s-m R" . consult-global-mark)
          ("s-m s" . consult-ripgrep)
-         ("s-m g" . consult-grep))
+         ("s-m g" . consult-grep)
+         ("C-x 4 b" . consult-buffer-other-window))
   :config
   (setq consult-buffer-filter '("^ " "\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf"
                                 "\\*Messages" "\\*Warning" "*magit-" "magit" "*vterm" "vterm" "^:" "*Occur"
