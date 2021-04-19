@@ -1,3 +1,6 @@
+;; defer native compilation
+(setq comp-deferred-compilation t)
+
 ;; Bootstrap straight.el
 (setq straight-repository-branch "develop")
 (setq straight-recipes-gnu-elpa-use-mirror t)
