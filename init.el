@@ -343,7 +343,21 @@
          ("C-x M-g" . magit-dispatch))
   :config
   (setq magit-diff-refine-hunk '(all))
-  (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
+  (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
+
+  ;; Protect against accident pushes to upstream
+  (defun query-magit-push-upstream (args)
+    (when-let ((branch (magit-get-current-branch)))
+      (when (string-equal branch "master")
+        (unless (yes-or-no-p (format "Push \"%s\" branch to \"%s\"? "
+                                     branch
+                                     ;;(magit-get "branch" branch "remote")
+                                     (magit-get-push-remote branch)
+                                     ))
+          (user-error "Pushed aborted")))))
+
+  (advice-add 'magit-push-current-to-upstream :before #'query-magit-push-upstream)
+  (advice-add 'magit-push-current-to-pushremote :before #'query-magit-push-upstream))
 
 (use-package git-timemachine :defer t)
 
