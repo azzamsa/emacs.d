@@ -1,10 +1,6 @@
 (use-package org
   :after aza-secrets
-  :straight (org-plus-contrib :type git
-                              :repo "https://code.orgmode.org/bzg/org-mode.git"
-                              :local-repo "org"
-                              :files (:defaults "contrib/lisp/*.el")
-                              :includes (org))
+  :straight (org-contrib)
   :bind ((:map org-mode-map
                ("C-c l" . org-store-link)
                ("C-c a" . org-agenda)

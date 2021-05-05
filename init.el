@@ -19,7 +19,6 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
-(straight-use-package 'org-plus-contrib)
 (setq straight-use-package-by-default t)
 
 (setq warning-minimum-level :emergency)
