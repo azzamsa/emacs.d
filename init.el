@@ -347,7 +347,8 @@
   ;; Protect against accident pushes to upstream
   (defun query-magit-push-upstream (args)
     (when-let ((branch (magit-get-current-branch)))
-      (when (string-equal branch "master")
+      (when (or (string-equal branch "master")
+                (string-equal branch "main"))
         (unless (yes-or-no-p (format "Push \"%s\" branch to \"%s\"? "
                                      branch
                                      ;;(magit-get "branch" branch "remote")
