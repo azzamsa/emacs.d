@@ -658,7 +658,7 @@
 (require 'aza-ui)
 (require 'aza-global-keybinding)
 (require 'aza-programming)
-(require 'fira-code)
+
 ;;------------------------------------------------
 ;; Misc
 ;;------------------------------------------------
