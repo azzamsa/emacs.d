@@ -684,6 +684,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+(put 'overwrite-mode 'disabled t)
 ;; Run at full power please
 (setq disabled-command-function 'ignore)
 (put 'downcase-region 'disabled nil)
