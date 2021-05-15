@@ -42,7 +42,10 @@
   (setq mu4e-view-show-images t)
 
   ;; https://useplaintext.email/#mu4e
-  (add-hook 'message-mode-hook 'auto-fill-mode)
+  (add-hook 'message-mode-hook
+            (lambda ()
+              (auto-fill-mode +1)
+              (display-line-numbers-mode +1)))
   (setq mu4e-compose-format-flowed t)
   (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 

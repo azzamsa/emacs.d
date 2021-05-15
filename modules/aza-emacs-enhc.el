@@ -27,44 +27,6 @@ of text. By Stefan Monnier"
   (let ((fill-column (point-max)))
     (fill-region beg end)))
 
-(defvar ws-writing-state nil)
-
-(defun turn-on-ws-writing ()
-  (interactive)
-
-  (whitespace-mode -1)
-  (visual-line-mode +1)
-  (visual-fill-column-mode +1)
-
-  (auto-fill-mode -1)
-  (display-line-numbers-mode +1)
-
-  (setq ws-writing-state t)
-  (message "Turn on ws-writing"))
-
-
-(defun turn-off-ws-writing ()
-  "Provide writing environment that prefer soft-breaks"
-  (interactive)
-
-  (whitespace-mode -1)
-  (visual-line-mode -1)
-  (visual-fill-column-mode -1)
-  (auto-fill-mode +1)
-  (display-line-numbers-mode -1)
-
-  (setq ws-writing-state nil)
-  (message "Turn off ws-writing"))
-
-(defun ws-writing-toggle ()
-  "Provide writing environment that prefer soft-breaks"
-  (interactive)
-
-  (if (not ws-writing-state)
-      (turn-on-ws-writing)
-    (turn-off-ws-writing)))
-
-
 ;; default minor mode format
 (defvar aza-modeline-toggle-state nil)
 (setq doom-modeline-minor-modes nil)

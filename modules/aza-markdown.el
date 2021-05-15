@@ -13,7 +13,7 @@
   (add-hook 'markdown-mode-hook
             (lambda ()
               (smartparens-mode +1)
-              (turn-on-ws-writing))))
+              (display-line-numbers-mode +1))))
 
 (use-package markdown-toc
   :after markdown-mode)
