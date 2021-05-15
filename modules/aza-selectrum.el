@@ -1,6 +1,9 @@
 (use-package selectrum
   :init
-  (selectrum-mode +1))
+  (selectrum-mode +1)
+  :config
+  ;; fix selectrum minibuffer is not resized
+  (setq selectrum-fix-vertical-window-height t))
 
 (use-package selectrum-prescient
   :after selectrum
