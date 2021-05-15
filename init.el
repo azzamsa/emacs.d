@@ -440,10 +440,6 @@
   :config
   (global-anzu-mode))
 
-(use-package ctrlf
-  :config
-  (ctrlf-mode +1))
-
 (use-package easy-kill
   :demand t
   :config
