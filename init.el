@@ -643,6 +643,7 @@
 (require 'aza-mu4e)
 (require 'aza-fun)
 (require 'aza-calfw)
+;;(require 'aza-screencast)
 
 ;; unpublished configuration
 (when (file-exists-p (expand-file-name "aza-local.el" aza-modules-dir))
