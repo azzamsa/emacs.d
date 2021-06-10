@@ -103,7 +103,7 @@ Version 2015-07-30"
 (defun term-here ()
   (interactive)
   (start-process "" nil "stterm"
-                 "-e" "bash"
+                 "-e" "fish"
                  "-c" "tmux -q has-session && exec tmux new-window || exec tmux new-session -n$USER -s$USER@$HOSTNAME"))
 
 (defun ora-shell-command-sentinel (process signal)
