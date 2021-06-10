@@ -109,8 +109,4 @@
     (global-flycheck-mode +1)
   (add-hook 'prog-mode-hook 'flycheck-mode))
 
-;; make a shell script executable automatically on save
-(add-hook 'after-save-hook
-          'executable-make-buffer-file-executable-if-script-p)
-
 (provide 'aza-programming)
