@@ -19,19 +19,13 @@
                ("]" . term-here)
                ("j" . dired-next-line)
                ("k" . dired-previous-line)
-               ("[" . hydra-dired/body)))
+               ("[" . hydra-dired/body)
+               ("RET" . dired-find-alternate-file)))
   :init
   (require 'aza-dired-ext)
   (use-package dired-x
     :straight (:type built-in))
   :config
-
-  ;; error when outside dired config
-  (use-package dired+
-    :straight (dired+ :type git :host github :repo "emacsmirror/dired-plus")
-    :config
-    (diredp-toggle-find-file-reuse-dir 1))
-
   ;; dired - reuse current buffer by pressing 'a'
   (put 'dired-find-alternate-file 'disabled nil)
 
@@ -48,7 +42,8 @@
   (setq dired-dwim-target t)
   (setq dired-listing-switches "-AltGhF --group-directories-first")
   (add-hook 'dired-mode-hook (lambda ()
-                               (dired-omit-mode 1)))
+                               (dired-omit-mode 1)
+                               (dired-hide-details-mode +1)))
   (setq dired-omit-files
         (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
                 (regexp-opt
