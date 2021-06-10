@@ -36,16 +36,6 @@
   :custom-face
   (font-lock-function-name-face ((t (:foreground "#ed9366")))))
 
-(use-package marginalia
-  :after consult
-  :init
-  (marginalia-mode)
-
-  (setq fringes-outside-margins nil)
-  (setq left-margin-width 1)
-  (setq right-margin-width 1))
-
-
 (use-package embark
   :after selectrum
   :bind (:map minibuffer-local-map
