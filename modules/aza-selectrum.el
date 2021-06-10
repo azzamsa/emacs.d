@@ -25,13 +25,14 @@
          ("s-m g" . consult-grep)
          ("C-x 4 b" . consult-buffer-other-window))
   :config
+  ;; live preview *loads* a file, thus loads all it's mode
+  ;; and hog the machine
+  (setq consult-preview-key nil)
   (setq consult-buffer-filter '("^ " "\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf"
                                 "\\*Messages" "\\*Warning" "*magit-" "magit" "*vterm" "vterm" "^:" "*Occur"
                                 "*straight-" "*elfeed-log" "*trace of SMTP session"
                                 "*format-all-error" "*Async-"
                                 "*lsp-" "*rust-" "*company-" "*pyls"))
-
-  (consult-preview-mode)
   :custom-face
   (font-lock-function-name-face ((t (:foreground "#ed9366")))))
 
