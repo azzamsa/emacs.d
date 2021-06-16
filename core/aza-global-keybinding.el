@@ -2,9 +2,6 @@
 ;; Global keybindings
 ;;------------------------------------------------
 
-(global-set-key (kbd "s-<") #'beginning-of-buffer)
-(global-set-key (kbd "s->") #'end-of-buffer)
-
 (define-key minibuffer-local-map (kbd "C-c C-l") 'consult-history)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "s-j") 'dired-jump)
