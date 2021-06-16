@@ -34,7 +34,7 @@
                                 "*format-all-error" "*Async-"
                                 "*lsp-" "*rust-" "*company-" "*pyls"))
   :custom-face
-  (font-lock-function-name-face ((t (:foreground "#ed9366")))))
+  (font-lock-function-name-face ((t (:foreground "#4338CA")))))
 
 (use-package embark
   :after selectrum
