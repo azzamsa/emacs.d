@@ -449,8 +449,8 @@
 (use-package move-text
   :defer 0.9
   :bind
-  (([(meta shift up)] . move-text-up)
-   ([(meta shift down)] . move-text-down)))
+  (([(meta up)] . move-text-up)
+   ([(meta down)] . move-text-down)))
 
 (use-package midnight
   ;; clean up obsolete buffers automatically
