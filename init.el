@@ -341,7 +341,7 @@
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch))
   :config
-  (setq magit-diff-refine-hunk '(all))
+  (setq magit-diff-refine-hunk 'all)
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
 
   ;; Protect against accident pushes to upstream
