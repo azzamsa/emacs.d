@@ -26,7 +26,7 @@
 (setq default-frame-alist '((font . "Fira Code 15")))
 ;; fallback fonts for unicode icons
 (set-fontset-font "fontset-default" nil
-                  (font-spec :size 20 :name "Symbola"))
+                  (font-spec :size 20 :name "FontAwesome5Free"))
 
 ;; highlight the current line
 (global-hl-line-mode +1)
