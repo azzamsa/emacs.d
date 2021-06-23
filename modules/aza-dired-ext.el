@@ -102,9 +102,11 @@ Version 2015-07-30"
 
 (defun term-here ()
   (interactive)
-  (start-process "" nil "stterm"
-                 "-e" "fish"
-                 "-c" "tmux -q has-session && exec tmux new-window || exec tmux new-session -n$USER -s$USER@$HOSTNAME"))
+  (let* ((cur-dir (s-join "" (last (s-split "/" (s-chop-suffix "/" default-directory)))))
+         (command (s-concat "tmux -q has-session && exec tmux new-window -n " cur-dir " || exec tmux new-session -n$USER -s$USER@$HOSTNAME")))
+    (start-process "" nil "st"
+                   "-e" "fish"
+                   "-c" command)))
 
 (defun ora-shell-command-sentinel (process signal)
   (when (memq (process-status process) '(exit signal))
