@@ -40,17 +40,4 @@ This command does not push text to `kill-ring'."
       (goto-char orig-point)
       (aza-delete-line))))
 
-;; FIXME It will treat all images and pdfs larger than specified value
-;; to be opened in fundamental mode.
-;; (defun my-treat-largefile-special-way ()
-;;   "If a file is over a given size, treat it special way.
-;; by Trey Jackson"
-;;   (when (> (buffer-size) (* 1024 1024))
-;;     (buffer-disable-undo)
-;;     (fundamental-mode)
-;;     (diff-hl-mode -1)))
-
-;; (add-hook 'find-file-hook 'my-treat-largefile-special-way)
-
-
 (provide 'aza-emacs-fix)

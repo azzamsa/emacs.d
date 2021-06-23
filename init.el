@@ -452,10 +452,6 @@
   (([(meta up)] . move-text-up)
    ([(meta down)] . move-text-down)))
 
-(use-package midnight
-  ;; clean up obsolete buffers automatically
-  :defer 0.9)
-
 (use-package ace-window
   :bind ("s-b" . ace-window)
   :config
@@ -606,14 +602,9 @@
 ;; emacs enhancements
 (require 'aza-emacs-enhc)
 
-(require 'aza-path)
 (require 'aza-themes)
 (require 'aza-dired)
 (require 'aza-selectrum)
-;;(require 'aza-helm)
-;;(require 'aza-shell)
-;; vterm had Lot of bugs,
-;; use st & tmux for now
 (require 'aza-hydra)
 
 ;; writing
@@ -633,13 +624,11 @@
 ;;(require 'aza-java)
 ;;(require 'aza-php)
 ;;(require 'aza-ocaml)
-
 (require 'aza-xml)
 (require 'aza-lsp)
 
 ;;; emacs is home
 (require 'aza-home)
-(require 'aza-erc)
 (require 'aza-mu4e)
 (require 'aza-fun)
 (require 'aza-calfw)

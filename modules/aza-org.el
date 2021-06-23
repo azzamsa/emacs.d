@@ -3,8 +3,7 @@
   :straight (org-contrib)
   :bind ((:map org-mode-map
                ("C-c l" . org-store-link)
-               ("C-c a" . org-agenda)
-               ("C-k" . my-delete-line)))
+               ("C-c a" . org-agenda)))
   :config
   (defun goto-last-heading ()
     (interactive)

@@ -19,10 +19,8 @@
   :bind (("s-m m" . consult-buffer) ;; dwim
          ("s-m l" . consult-line)
          ("s-m o" . consult-outline)
-         ("s-m r" . consult-mark)
-         ("s-m R" . consult-global-mark)
+         ("s-m r" . consult-global-mark)
          ("s-m s" . consult-ripgrep)
-         ("s-m g" . consult-grep)
          ("C-x 4 b" . consult-buffer-other-window))
   :config
   ;; live preview *loads* a file, thus loads all it's mode

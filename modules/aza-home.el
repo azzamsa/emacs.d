@@ -34,14 +34,6 @@
 (use-package presentation
   :defer t)
 
-(use-package keyfreq
-  :defer 0.9
-  :config
-  (setq keyfreq-file (expand-file-name "emacs.keyfreq" aza-savefile-dir))
-  (setq keyfreq-file-lock (expand-file-name "emacs.keyfreq.lock" aza-savefile-dir))
-  (keyfreq-mode 1)
-  (keyfreq-autosave-mode 1))
-
 (use-package emojify
   :hook
   ((markdown-mode . emojify-mode)
@@ -54,11 +46,6 @@
   (setq emojify-emoji-styles '(github unicode))
   (setq emojify-emojis-dir
         (expand-file-name "emojify/"  aza-savefile-dir)))
-
-(use-package password-store
-  :straight (password-store :type git :flavor melpa
-                            :files ("contrib/emacs/*.el" "password-store-pkg.el")
-                            :host github :repo "zx2c4/password-store"))
 
 (use-package keycast
   :config
