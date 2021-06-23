@@ -17,4 +17,4 @@
 
 (advice-add 'save-buffer :after #'hide-save-buffer-message)
 
-(provide 'aza-fun)
+(provide 'aza-screencast)
