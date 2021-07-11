@@ -13,13 +13,10 @@
                ("&" . ora-dired-do-async-shell-command)
                ("O" . ora-dired-other-window)
                ("z" . ora-dired-get-size)
-               ("'" . eshell-this-dir)
-               ("`" . shell-here)
                ("s-o" . dired-open-directory-in-thunar)
                ("]" . term-here)
                ("j" . dired-next-line)
                ("k" . dired-previous-line)
-               ("[" . hydra-dired/body)
                ("RET" . dired-find-alternate-file)))
   :init
   (require 'aza-dired-ext)
@@ -78,15 +75,6 @@
   :after dired
   :bind (:map dired-mode-map
               ("\\" . dired-narrow)))
-
-(use-package dired-avfs
-  :after dired)
-
-(use-package dired-collapse
-  :disabled
-  ;; disabled until this issue solved
-  ;; https://github.com/Fuco1/dired-hacks/issues/144
-  :after dired)
 
 (use-package dired-filter
   :defer t

@@ -506,10 +506,6 @@
   (setq avy-background t)
   (setq avy-style 'at-full))
 
-(use-package with-editor
-  :defer t
-  :disabled)
-
 (use-package auto-capitalize
   :demand
   :delight " Ac")

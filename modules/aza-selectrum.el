@@ -34,13 +34,4 @@
   :custom-face
   (font-lock-function-name-face ((t (:foreground "#4338CA")))))
 
-(use-package embark
-  :after selectrum
-  :bind (:map minibuffer-local-map
-              ("s-/" . embark-act)
-              ("s-?" . embark-act-noexit)
-              :map embark-file-map
-              ("j" . dired-jump)
-              ("s" . sudo-edit)))
-
 (provide 'aza-selectrum)

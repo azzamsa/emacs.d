@@ -101,13 +101,6 @@
   :custom-face
   (yascroll:thumb-fringe ((t (:background "#91ee98" :foreground "#91ee98")))))
 
-(use-package minions
-  :disabled
-  :defer 0.2
-  :straight (minions :type git :flavor melpa :host github :repo "tarsius/minions")
-  :config
-  (minions-mode))
-
 (use-package all-the-icons)
 
 (use-package ligature
