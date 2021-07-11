@@ -1,17 +1,17 @@
 (use-package helm
   :delight helm-mode
-  :bind ((("M-x" . helm-M-x)
-          ("C-x C-m" . helm-M-x)
-          ("s-m" . helm-mini)
-          ("C-x C-f" . helm-find-files)
-          ("C-c h o" . helm-occur)
-          ("C-c h /" . helm-find)
-          ("C-c h l" . helm-locate)
-          ("C-c p h" . helm-projectile)
-          ("C-h SPC" . helm-all-mark-rings)
-          ("C-c m" . helm-imenu)
-          (:map isearch-mode-map
-                ("C-o" . helm-occur-from-isearch))))
+  :bind (("M-x" . helm-M-x)
+         ("C-x C-m" . helm-M-x)
+         ("s-m" . helm-mini)
+         ("C-x C-f" . helm-find-files)
+         ("C-c h o" . helm-occur)
+         ("C-c h /" . helm-find)
+         ("C-c h l" . helm-locate)
+         ("C-c p h" . helm-projectile)
+         ("C-h SPC" . helm-all-mark-rings)
+         ("C-c m" . helm-imenu)
+         (:map isearch-mode-map
+               ("C-o" . helm-occur-from-isearch)))
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -56,15 +56,15 @@
 
 (use-package helm-org-rifle
   :after helm
-  :bind ((("C-c h r c" . helm-org-rifle-current-buffer)
-          ("C-c h r a" . helm-org-rifle))))
+  :bind (("C-c h r c" . helm-org-rifle-current-buffer)
+         ("C-c h r a" . helm-org-rifle)))
 
 (use-package helm-ag
   :after helm
   :delight helm-ag-mode
-  :bind ((("C-c a a" . helm-ag)
-          ("C-c a t" . helm-ag-this-file)
-          ("C-c a p" . helm-ag-project-root))))
+  :bind (("C-c a a" . helm-ag)
+         ("C-c a t" . helm-ag-this-file)
+         ("C-c a p" . helm-ag-project-root)))
 
 (use-package helm-projectile
   :disabled

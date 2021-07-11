@@ -51,7 +51,7 @@
 
 (use-package helm-bibtex
   :after (helm auctex)
-  :bind (("C-c h b" . helm-bibtex-with-local-bibliography)))
+  :bind ("C-c h b" . helm-bibtex-with-local-bibliography))
 
 
 (provide 'aza-latex)

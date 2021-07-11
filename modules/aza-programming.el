@@ -20,9 +20,9 @@
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
 (use-package symbol-overlay
-  :defer t
+  :defer 0.9
   :delight ""
-  :bind (( "C-c '" . symbol-overlay-put)))
+  :bind ("C-c '" . symbol-overlay-put))
 
 (use-package editorconfig
   :defer 0.9

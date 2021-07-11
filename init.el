@@ -157,9 +157,9 @@
   :demand t
   :after aza-secrets
   :straight (aza-scripts :type git :local-repo "aza-scripts")
-  :bind ((("C-c k" . aza-kill-other-buffers)
-          ("C-c t" . aza-today)
-          ("C-c i" . insert-filename-as-heading)))
+  :bind (("C-c k" . aza-kill-other-buffers)
+         ("C-c t" . aza-today)
+         ("C-c i" . insert-filename-as-heading))
   :config
   (require 'aza-scripts))
 
@@ -169,7 +169,7 @@
 ;; packages
 (use-package hippie-expand
   :straight (:type built-in)
-  :bind (("M-/" . hippie-expand))
+  :bind ("M-/" . hippie-expand)
   :config
   ;; hippie expand is dabbrev expand on steroids
   (setq hippie-expand-try-functions-list '(try-expand-dabbrev
@@ -186,7 +186,7 @@
 
 (use-package projectile
   :delight ""
-  :bind (("s-p" . projectile-command-map))
+  :bind ("s-p" . projectile-command-map)
   :config
   (setq projectile-completion-system 'default)
   (setq projectile-indexing-method 'alien)
@@ -245,9 +245,9 @@
 (use-package company
   :defer 0.2
   :delight ""
-  :bind ((:map company-active-map
-               ("C-n" . company-select-next)
-               ("C-p" . company-select-previous)))
+  :bind (:map company-active-map
+              ("C-n" . company-select-next)
+              ("C-p" . company-select-previous))
   :config
   (setq company-idle-delay 0.5)
   (setq company-tooltip-limit 10)
@@ -446,9 +446,8 @@
 
 (use-package move-text
   :defer 0.9
-  :bind
-  (([(meta up)] . move-text-up)
-   ([(meta down)] . move-text-down)))
+  :bind (([(meta up)] . move-text-up)
+         ([(meta down)] . move-text-down)))
 
 (use-package ace-window
   :bind ("s-b" . ace-window)
