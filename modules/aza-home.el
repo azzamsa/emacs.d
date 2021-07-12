@@ -108,5 +108,6 @@
                                   ("Europe/Berlin" "Berlin"))))
 
 (use-package world-time-mode)
+(use-package password-generator)
 
 (provide 'aza-home)
