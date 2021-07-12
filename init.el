@@ -340,11 +340,11 @@
 
 (use-package magit
   ;; TODO use auth-source
-  :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch))
+  :bind ("C-x g" . magit-status)
   :config
   (setq magit-diff-refine-hunk 'all)
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 
   ;; Protect against accident pushes to upstream
   (defun query-magit-push-upstream (args)
