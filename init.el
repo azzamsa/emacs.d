@@ -207,7 +207,7 @@
   (projectile-mode +1))
 
 (use-package expand-region
-  :bind (("C-=" . er/expand-region)))
+  :bind ("C-c e" . er/expand-region))
 
 (use-package smartparens
   :delight ""
@@ -274,7 +274,9 @@
 
 (use-package undo-tree
   :delight undo-tree-mode
-  :bind ("C-x u" . undo-tree-visualize)
+  :bind (("C-x u" . undo-tree-visualize)
+         ("C-z" . undo-tree-undo)
+         ("C-S-z". undo-tree-redo))
   :config
   (setq undo-tree-history-directory-alist
         `((".*" . ,temporary-file-directory)))
@@ -403,20 +405,17 @@
   (recentf-mode +1))
 
 (use-package crux
-  :bind (("C-c w" . crux-swap-windows)
+  :bind (([remap move-beginning-of-line] . crux-move-beginning-of-line)
          ("C-a" . crux-move-beginning-of-line)
-         ("M-o" . crux-smart-open-line)
-         ("s-o" . crux-smart-open-line-above)
-         ("C-c r" . crux-rename-buffer-and-file)
-         ("C-^" . crux-top-join-line)
-         ("C-c D" . crux-delete-file-and-buffer)
          ("C-c d" . crux-duplicate-current-line-or-region)
+         ("s-c" . crux-smart-delete-line)
+         ("s-i" . crux-top-join-line)
+         ("s-o" . crux-smart-open-line-above)
+         ("C-c w" . crux-swap-windows)
          ("C-c M-d" . crux-duplicate-and-comment-current-line-or-region)
-         ("s-k" . crux-smart-delete-line)
          ("C-c n" . crux-cleanup-buffer-or-region)
          ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
-         ([(shift return)] . crux-smart-open-line)
-         ([remap move-beginning-of-line] . crux-move-beginning-of-line))
+         ([(shift return)] . crux-smart-open-line))
   :config
   ;; add the ability to cut the current line, without marking it (C-w)
   (require 'rect)
@@ -435,6 +434,7 @@
 
 (use-package anzu
   :delight anzu-mode
+  :bind ("C-c r" . anzu-query-replace-regexp)
   :config
   (global-anzu-mode))
 
@@ -516,6 +516,8 @@
 (use-package winner
   :straight (:type built-in)
   :defer 0.5
+  :bind (("s-<left>" . winner-undo)
+         ("s-<right>" . winner-redo))
   :config
   (winner-mode 1))
 
@@ -560,10 +562,8 @@
 
 (use-package multiple-cursors
   :defer 0.9
-  :bind (("C->" . 'mc/mark-next-like-this)
-         ("C-<" . 'mc/mark-previous-like-this)
-         ("C-/" . 'mc/skip-to-next-like-this)
-         ("C-c C-<" . 'mc/mark-all-like-this))
+  :bind (("C-c m" . 'mc/mark-next-like-this)
+         ("C-c M" . 'mc/mark-all-like-this))
   :config
   (setq mc/list-file (expand-file-name ".mc-lists.el" aza-savefile-dir)))
 

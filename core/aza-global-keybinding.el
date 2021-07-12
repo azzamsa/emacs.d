@@ -17,4 +17,7 @@
 
 (global-unset-key (kbd "C-x m"))
 
+(global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-S-z") 'undo-tree-redo)
+
 (provide 'aza-global-keybinding)
