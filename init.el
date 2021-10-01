@@ -457,8 +457,8 @@
   (setq aw-background nil)
   :custom-face
   (aw-leading-char-face
-   ((t (:box (:line-width 3 :color "#78f503" :style released-button)
-             :height 1.0)))))
+   ((t (:box (:line-width 5 :color "#78f503" :style released-button)
+             :height 5.0)))))
 
 (use-package zop-to-char
   :bind (("M-Z" . zop-up-to-char)
