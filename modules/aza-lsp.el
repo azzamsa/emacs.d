@@ -30,11 +30,6 @@
 
 (use-package lsp-ui
   :after lsp-mode
-  :commands lsp-ui-mode
-  :config
-  (setq lsp-ui-sideline-enable t)
-  (setq lsp-ui-doc-enable nil)
-  (setq lsp-ui-peek-enable t)
-  (setq lsp-ui-peek-always-show t))
+  :commands lsp-ui-mode)
 
 (provide 'aza-lsp)
