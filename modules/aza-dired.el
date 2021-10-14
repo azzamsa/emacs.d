@@ -13,10 +13,11 @@
                ("&" . ora-dired-do-async-shell-command)
                ("O" . ora-dired-other-window)
                ("z" . ora-dired-get-size)
-               ("s-o" . dired-open-directory-in-thunar)
+               ("[" . dired-open-directory-in-thunar)
                ("]" . term-here)
                ("j" . dired-next-line)
                ("k" . dired-previous-line)
+               ("'" . dired-omit-mode)
                ("RET" . dired-find-alternate-file)))
   :init
   (require 'aza-dired-ext)
