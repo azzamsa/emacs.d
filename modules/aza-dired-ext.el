@@ -68,17 +68,17 @@
   "Sort dired dir listing in different ways.
 Prompt for a choice.
 URL `http://ergoemacs.org/emacs/dired_sort.html'
-Version 2015-07-30"
+Modified for my needs."
   (interactive)
-  (let ($sort-by $arg)
-    (setq $sort-by (ido-completing-read "Sort by:" '( "date" "size" "name" "dir")))
+  (let (sort-by arg)
+    (setq sort-by (completing-read "Sort by:" '( "date" "size" "name" "dir")))
     (cond
-     ((equal $sort-by "name") (setq $arg "-Al --si --time-style long-iso "))
-     ((equal $sort-by "date") (setq $arg "-Al --si --time-style long-iso -t"))
-     ((equal $sort-by "size") (setq $arg "-Al --si --time-style long-iso -S"))
-     ((equal $sort-by "dir") (setq $arg "-Al --si --time-style long-iso --group-directories-first"))
+     ((equal sort-by "name") (setq arg "-Al"))
+     ((equal sort-by "date") (setq arg "-Al -t"))
+     ((equal sort-by "size") (setq arg "-Al -S"))
+     ((equal sort-by "dir") (setq arg "-Al --group-directories-first"))
      (t (error "logic error 09535" )))
-    (dired-sort-other $arg )))
+    (dired-sort-other arg)))
 
 (setq dired-guess-shell-alist-user
       '(("\\.pdf\\'" "evince" "okular")
