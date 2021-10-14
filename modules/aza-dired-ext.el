@@ -102,11 +102,8 @@ Modified for my needs."
 
 (defun term-here ()
   (interactive)
-  (let* ((cur-dir (s-join "" (last (s-split "/" (s-chop-suffix "/" default-directory)))))
-         (command (s-concat "tmux -q has-session && exec tmux new-window -n " cur-dir " || exec tmux new-session -n$USER -s$USER@$HOSTNAME")))
-    (start-process "" nil "st"
-                   "-e" "fish"
-                   "-c" command)))
+  (message "Opening terminal in current directory...")
+  (start-process "" nil "wezterm-here" default-directory))
 
 (defun ora-shell-command-sentinel (process signal)
   (when (memq (process-status process) '(exit signal))
