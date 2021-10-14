@@ -42,15 +42,28 @@
   (add-hook 'dired-mode-hook (lambda ()
                                (dired-omit-mode 1)
                                (dired-hide-details-mode +1)))
+
+  ;; avoid having hard to read `dired-omit-files regexs'
+  (defun ora-omit-regex (names postfixes prefixes &optional dotfiles)
+    (mapconcat #'identity
+               (delq nil
+                     (list
+                      (and postfixes (format "\\(?:\\.%s\\)" (regexp-opt postfixes)))
+                      (and prefixes (format "\\(?:\\`%s\\)" (regexp-opt prefixes)))
+                      (and names (regexp-opt names))
+                      (and dotfiles "\\`\\.[^.]")))
+               "\\|"))
+
   (setq dired-omit-files
-        (format "\\(?:\\.%s\\'\\)\\|%s\\|\\`_minted"
-                (regexp-opt
-                 '("aux" "pickle" "synctex.gz" "run.xml" "bcf" "am" "blx.bib"
-                   "vrb" "opt" "nav" "snm" "out" "org_archive" "auto"))
-                (regexp-opt
-                 '("compile_commands.json" "__pycache__" ".pytest_cache" ".retry"
-                   "._sync_"
-                   "Cargo.lock" "yarn.lock" "node_modules")))))
+        (ora-omit-regex
+         ;; names
+         '("node_modules")
+         ;; postfixes
+         '("lock" "org_archive" "aux" "log")
+         ;; prefixes
+         '("_minted" "__")
+         ;; dotfiles
+         t)))
 
 (use-package wdired
   :after dired
