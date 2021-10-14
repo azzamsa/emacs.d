@@ -11,4 +11,11 @@
   ;; https://github.com/palantir/python-language-server/issues/190
   (setq lsp-pyls-configuration-sources ["flake8"]))
 
+(use-package pyvenv
+  :after python
+  :config
+   (setq pyvenv-mode-line-indicator
+        '(pyvenv-virtual-env-name ("[venv:" pyvenv-virtual-env-name "] ")))
+   (pyvenv-mode +1))
+
 (provide 'aza-python)
