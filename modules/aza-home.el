@@ -100,12 +100,17 @@
   :straight (:type built-in)
   :config
   (setq display-time-world-time-format "%z\t%a %d %b %I:%M %p")
-  (setq display-time-world-list '(("Africa/Timbuktu" "Troll")
+  ;; see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  (setq display-time-world-list '( ;; +00:00
+                                  ("Africa/Timbuktu" "UTC+0")
+                                  ;; america
                                   ("America/New_York" "New York")
+                                  ;; +07:00
                                   ("Asia/Jakarta" "Jakarta")
+                                  ;; friends
                                   ("Asia/Singapore" "Singapore")
-                                  ("Asia/Shanghai" "Shanghai")
-                                  ("Europe/Berlin" "Berlin"))))
+                                  ;; work
+                                  ("Europe/Dublin" "Dublin"))))
 
 (use-package world-time-mode)
 (use-package password-generator)
