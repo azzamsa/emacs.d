@@ -51,9 +51,7 @@
   (add-hook 'prog-mode-hook #'hl-todo-mode))
 
 
-(use-package gitconfig-mode :defer t)
-(use-package gitignore-mode :defer t)
-(use-package gitattributes-mode :defer t)
+(use-package git-modes :defer t)
 
 (use-package subword
   :ensure nil
