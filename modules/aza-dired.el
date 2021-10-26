@@ -59,7 +59,7 @@
          ;; names
          '("node_modules")
          ;; postfixes
-         '("lock" "org_archive" "aux" "log")
+         '("lock" "org_archive" "aux" "log" "egg-info")
          ;; prefixes
          '("_minted" "__")
          ;; dotfiles
