@@ -96,7 +96,8 @@
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
   (smartparens-mode +1)
-  (symbol-overlay-mode))
+  (symbol-overlay-mode)
+  (yas-minor-mode))
 
 (setq aza-prog-mode-hook 'aza-prog-mode-defaults)
 
