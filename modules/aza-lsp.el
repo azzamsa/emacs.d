@@ -30,6 +30,8 @@
 
 (use-package lsp-ui
   :after lsp-mode
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-doc-enable nil))
 
 (provide 'aza-lsp)
