@@ -408,7 +408,7 @@
   :bind (([remap move-beginning-of-line] . crux-move-beginning-of-line)
          ("C-a" . crux-move-beginning-of-line)
          ("C-c d" . crux-duplicate-current-line-or-region)
-         ("s-c" . crux-smart-delete-line)
+         ("s-k" . crux-smart-delete-line)
          ("s-i" . crux-top-join-line)
          ("s-o" . crux-smart-open-line-above)
          ("C-c w" . crux-swap-windows)
@@ -450,7 +450,7 @@
          ([(meta down)] . move-text-down)))
 
 (use-package ace-window
-  :bind ("s-b" . ace-window)
+  :bind ("s-t" . ace-window)
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (global-set-key [remap other-window] 'ace-window)
