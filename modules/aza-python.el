@@ -15,7 +15,9 @@
   :after python
   :config
    (setq pyvenv-mode-line-indicator
-        '(pyvenv-virtual-env-name ("[venv:" pyvenv-virtual-env-name "] ")))
+         '(pyvenv-virtual-env-name ("[venv:" pyvenv-virtual-env-name "] ")))
+   (setq pyvenv-workon "global3")
+   (pyvenv-tracking-mode 1)
    (pyvenv-mode +1))
 
 (provide 'aza-python)
