@@ -29,33 +29,4 @@
                ("M-e" . emmet-expand-line)))
   :hook (css-mode sgml-mode web-mode))
 
-(use-package prettier-js
-  :delight " Pr")
-
-(use-package vue-mode
-  :mode "\\.vue\\'"
-  :hook ((vue-mode . prettier-js-mode))
-  :config
-  (add-hook 'vue-mode-hook #'lsp)
-  (setq prettier-js-args '("--parser vue"))
-
-  (add-hook 'vue-mode-hook
-            (lambda ()
-              (emmet-mode +1)
-              (subword-mode +1)
-              (smartparens-mode -1))))
-
-(use-package svelte-mode
-  :mode "\\.svelte\\'"
-  :hook ((svelte-mode . prettier-js-mode))
-  :config
-  (add-hook 'svelte-mode-hook #'lsp)
-  (setq prettier-js-args '("--plugin-search-dir=."))
-
-  (add-hook 'svelte-mode-hook
-            (lambda ()
-              (emmet-mode +1)
-              (subword-mode +1)
-              (smartparens-mode -1))))
-
 (provide 'aza-web)
