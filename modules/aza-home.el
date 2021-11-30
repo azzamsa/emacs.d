@@ -3,6 +3,7 @@
 ;;------------------------------------------------
 
 (use-package pomodoro
+  :disabled
   :defer t
   :commands pomodoro-start
   :config
@@ -18,6 +19,7 @@
   (pomodoro-add-to-mode-line))
 
 (use-package org-pomodoro
+  :disabled
   :config
   (setq org-pomodoro-audio-player "/usr/bin/mpv")
   (setq org-pomodoro-start-sound "~/sounds/coin-work-medium.ogg")
@@ -35,6 +37,7 @@
   :defer t)
 
 (use-package emojify
+  :disabled ;; will fallback to symbola font
   :hook
   ((markdown-mode . emojify-mode)
    (git-commit-mode . emojify-mode)
