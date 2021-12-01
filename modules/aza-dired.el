@@ -57,7 +57,7 @@
   (setq dired-omit-files
         (ora-omit-regex
          ;; names
-         '("node_modules" "target")
+         '("node_modules" "target" "htmlcov")
          ;; postfixes
          '("lock" "org_archive" "aux" "log" "egg-info")
          ;; prefixes
