@@ -36,20 +36,6 @@
 (use-package presentation
   :defer t)
 
-(use-package emojify
-  :disabled ;; will fallback to symbola font
-  :hook
-  ((markdown-mode . emojify-mode)
-   (git-commit-mode . emojify-mode)
-   (magit-status-mode . emojify-mode)
-   (magit-log-mode . emojify-mode)
-   (cfw:calendar-mode . emojify-mode)
-   (org-mode . emojify-mode))
-  :config
-  (setq emojify-emoji-styles '(github unicode))
-  (setq emojify-emojis-dir
-        (expand-file-name "emojify/"  aza-savefile-dir)))
-
 (use-package keycast
   :config
   ;; keycast doesn't work well with doom-modeline
