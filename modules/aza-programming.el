@@ -92,6 +92,7 @@
 (use-package dockerfile-mode)
 (use-package lua-mode)
 (use-package csv-mode)
+(use-package just-mode)
 
 (defun aza-prog-mode-defaults ()
   (flyspell-prog-mode)
