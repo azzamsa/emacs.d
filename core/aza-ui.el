@@ -68,7 +68,7 @@
   (setq doom-modeline-env-version nil)
   (setq doom-modeline-buffer-encoding nil)
   (setq doom-modeline-indent-info nil)
-  (setq doom-modeline-buffer-file-name-style 'truncate-with-project)
+  (setq doom-modeline-buffer-file-name-style 'truncate-upto-root)
 
   (setq doom-modeline-percent-position '(-3 "")))
 
