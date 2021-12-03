@@ -69,8 +69,10 @@
   (setq doom-modeline-buffer-encoding nil)
   (setq doom-modeline-indent-info nil)
   (setq doom-modeline-buffer-file-name-style 'truncate-upto-root)
-
-  (setq doom-modeline-percent-position '(-3 "")))
+  (setq doom-modeline-percent-position '(-3 ""))
+  :custom-face
+  (mode-line ((t (:family "Fira Code" :height 1.0))))
+  (mode-line-inactive ((t (:family "Fira Code" :height 1.0)))))
 
 (use-package dimmer
   :defer 0.2
