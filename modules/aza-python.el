@@ -3,6 +3,7 @@
   :config
   (add-hook 'python-mode-hook #'lsp)
   (add-hook 'python-mode-hook (lambda ()
+                                 (pyvenv-mode)
                                 (yas-minor-mode)
                                 (highlight-indentation-mode +1)))
 
@@ -17,7 +18,6 @@
    (setq pyvenv-mode-line-indicator
          '(pyvenv-virtual-env-name ("[venv:" pyvenv-virtual-env-name "] ")))
    (setq pyvenv-workon "global3")
-   (pyvenv-tracking-mode 1)
-   (pyvenv-mode +1))
+   (pyvenv-tracking-mode 1))
 
 (provide 'aza-python)
