@@ -516,8 +516,6 @@
 (use-package winner
   :straight (:type built-in)
   :defer 0.5
-  :bind (("s-<left>" . winner-undo)
-         ("s-<right>" . winner-redo))
   :config
   (winner-mode 1))
 
