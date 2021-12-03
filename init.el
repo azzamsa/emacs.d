@@ -621,6 +621,7 @@
 ;;(require 'aza-ocaml)
 (require 'aza-xml)
 (require 'aza-lsp)
+(require 'aza-elgot)
 
 ;;; emacs is home
 (require 'aza-home)

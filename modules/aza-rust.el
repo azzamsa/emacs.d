@@ -1,12 +1,9 @@
-(use-package rustic
-  :defer 0.3
-  :hook (rustic-mode . lsp)
+(use-package rust-mode
   :config
-  (setq lsp-rust-server 'rust-analyzer)
-  (setq lsp-rust-analyzer-server-command '("/usr/local/bin/rust-analyzer"))
-
   (add-hook 'rust-mode-hook (lambda ()
+                              (eglot-ensure)
                               (subword-mode +1)
                               (run-hooks 'aza-prog-mode-hook))))
+
 
 (provide 'aza-rust)
