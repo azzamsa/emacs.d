@@ -150,19 +150,16 @@
 
 (use-package keychain-environment)
 
-(use-package aza-secrets
-  :straight (aza-secrets :type git :local-repo "aza-secrets"))
+(use-package secrets.el
+  :straight (secrets.el :type git :local-repo "secrets.el"))
 
-(use-package aza-scripts
+(use-package scripts.el
   :demand t
-  :after aza-secrets
-  :straight (aza-scripts :type git :local-repo "aza-scripts")
+  :after secrets.el
+  :straight (scripts.el :type git :host github :repo "azzamsa/scripts.el")
   :bind (("C-c k" . aza-kill-other-buffers)
          ("C-c t" . aza-today)
-         ("C-c i" . insert-filename-as-heading))
-  :config
-  (require 'aza-scripts))
-
+         ("C-c i" . insert-filename-as-heading)))
 
 (setq diary-file my-diary-cal)
 
