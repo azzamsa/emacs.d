@@ -25,10 +25,9 @@
   :bind ("C-c '" . symbol-overlay-put))
 
 (use-package editorconfig
-  :defer 0.9
   :delight
   :config
-  (add-hook 'prog-mode-hook #'editorconfig-mode))
+  (editorconfig-mode 1))
 
 (use-package format-all)
 

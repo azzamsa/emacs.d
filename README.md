@@ -20,11 +20,20 @@ If you're looking for a nice (copy and use) scripts, check out my [useful Emacs 
 <p align="center"><img src="assets/preview2.png"/></p>
 <p align="center"><img src="assets/preview3.png"/></p>
 
-## Features:
+## Features
 
-- Modular configurations
+- Most used command reachable under `C-c` and `super`.
+- Cryptic command accessible under `hydra` menu.
+- Modular configurations. Enable only what you need.
+- Versioned package dependencies using `straight.el`.
+- Blazing fast startup. Thanks to `use-package defer` and native compilation.
+- Litters are keep in the separate directory.
+- Separate places for your secrets.
+- Sensible dired: omit non-interesting files, colorize by extension.
+- Ligature support.
+- More...
 
-## Usage:
+## Usage
 
 Clone the repository:
 
@@ -46,7 +55,12 @@ So that it loads yours instead of the dummy one.
 
 Now, Run your Emacs! 🚀
 
-## Credits:
+## Contribution
+
+I don't plan to accept any contribution that adds new functionality. But it is OK for fixes and improvement.
+I don't recommend using this repository directly. Instead, use it as a source of inspiration.
+
+## Credits
 
 Most parts comes from:
 
@@ -59,5 +73,4 @@ Other comes from:
 [Dr Ben Maughan](http://pragmaticemacs.com/), [Xah Lee](http://ergoemacs.org),
 [Terencio (rememberYou) Agozzino](https://github.com/rememberYou/.emacs.d),
 and [John Kitchin](http://kitchingroup.cheme.cmu.edu/about.html).
-
 I also look to various .emacs.d repositories to take any insight, so the credits also go for them.
