@@ -602,7 +602,7 @@
 
 ;; writing
 (require 'aza-org)
-(require 'aza-latex)
+;;(require 'aza-latex)
 (require 'aza-markdown)
 
 ;;; programming modules
