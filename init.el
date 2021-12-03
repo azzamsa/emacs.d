@@ -546,7 +546,7 @@
   :config
   ;; limit line length
   (setq whitespace-line-column 80)
-  (setq whitespace-style '(face trailing lines-tail space-before-tab)))
+  (setq whitespace-style '(face trailing space-before-tab)))
 
 (use-package ws-butler
   ;; clean only edited lines
