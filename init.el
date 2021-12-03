@@ -623,7 +623,7 @@
 
 ;;; emacs is home
 (require 'aza-home)
-(require 'aza-mu4e)
+;;(require 'aza-mu4e)
 (require 'aza-fun)
 (require 'aza-calfw)
 ;;(require 'aza-screencast)
