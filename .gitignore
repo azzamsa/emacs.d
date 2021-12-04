@@ -9,10 +9,8 @@ url/
 savefile/*
 session*
 tramp/
-custom.el
-aza-local.el
-abbrev_defs
-tramp
+var
+etc
 eln-cache/
 
 # packages
@@ -23,10 +21,7 @@ snippets/
 .lsp-session-*
 
 # Documents
-documents
 image-dired/
-aza-secrets.el
-aza-macro.el
 
 # git
 .git-credential-cache/
