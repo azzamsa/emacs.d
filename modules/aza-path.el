@@ -1,2 +1,0 @@
-
-(provide 'aza-path)

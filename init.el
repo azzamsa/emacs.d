@@ -1,7 +1,16 @@
-;; defer native compilation
-(setq comp-deferred-compilation t)
+;;
+;; straigth.el
+;;
 
-;; Bootstrap straight.el
+(when (boundp 'comp-eln-load-path)
+  (setcar comp-eln-load-path
+          (expand-file-name (convert-standard-filename "var/eln-cache/")
+                            user-emacs-directory)))
+
+;; native compilation
+(setq comp-deferred-compilation t)
+(setq warning-minimum-level :emergency)
+
 (setq straight-repository-branch "develop")
 (setq straight-recipes-gnu-elpa-use-mirror t)
 
@@ -21,57 +30,9 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-(setq warning-minimum-level :emergency)
-
-;;; loading my  configuration
-(add-to-list 'load-path "~/.emacs.d/modules/")
-(add-to-list 'load-path "~/.emacs.d/core/")
-(add-to-list 'load-path "~/.emacs.d/vendors/")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-
-;; Always load newest byte code
-(setq load-prefer-newer t)
-
-;; reduce the frequency of garbage collection by making it happen on
-;; each 50MB of allocated data (the default is on every 0.76MB)
-(setq gc-cons-threshold 50000000)
-
-;; warn when opening files bigger than 100MB
-(setq large-file-warning-threshold 100000000)
-
-(defconst aza-savefile-dir (expand-file-name "savefile" user-emacs-directory))
-(defconst aza-core-dir (expand-file-name "core" user-emacs-directory))
-(defconst aza-modules-dir (expand-file-name "modules" user-emacs-directory))
-(defconst aza-pkgs-dir (expand-file-name "aza-packages" user-emacs-directory))
-
-;; create the savefile dir if it doesn't exist
-(unless (file-exists-p aza-savefile-dir)
-  (make-directory aza-savefile-dir))
-
-;; enable y/n answers
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; no need double click to insert, Yey!
-(delete-selection-mode +1)
-
-;; frame title
-(setq-default  frame-title-format '("" invocation-name " - " "%b"))
-
-;; Emacs modes typically provide a standard means to change the
-;; indentation width -- eg. c-basic-offset: use that to adjust your
-;; personal indentation width, while maintaining the style (and
-;; meaning) of any files you load.
-(setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
-(setq-default tab-width 8)            ;; but maintain correct appearance
-
-;; Newline at end of file
-(setq require-final-newline t)
-
-;; Wrap lines at 80 characters
-(setq-default fill-column 80)
-
-;; delete the selection with a keypress
-(delete-selection-mode t)
+;;
+;; better defaults
+;;
 
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
@@ -79,265 +40,415 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-(setq create-lockfiles nil)
+;; No startup  screen
+(setq inhibit-startup-screen t)
 
-;; revert buffers automatically when underlying files are changed externally
+;; No startup message
+(setq inhibit-startup-message t)
+(setq inhibit-startup-echo-area-message t)
+
+;; No message in scratch buffer
+(setq initial-scratch-message nil)
+
+;; Initial buffer
+(setq initial-buffer-choice nil)
+
+;; No frame title
+(setq frame-title-format " ")
+
+;; No file dialog
+(setq use-file-dialog nil)
+
+;; No dialog box
+(setq use-dialog-box nil)
+
+;; No popup windows
+(setq pop-up-windows nil)
+
+;; No empty line indicators
+(setq indicate-empty-lines nil)
+
+;; No cursor in inactive windows
+(setq cursor-in-non-selected-windows nil)
+
+;; Text mode is initial mode
+(setq initial-major-mode 'text-mode)
+
+;; Text mode is default major mode
+(setq default-major-mode 'text-mode)
+
+;; Moderate font lock
+(setq font-lock-maximum-decoration nil)
+
+;; No limit on font lock
+(setq font-lock-maximum-size nil)
+
+;; No line break space points
+(setq auto-fill-mode nil)
+
+;; Fill column at 80
+(setq fill-column 80)
+
+;; No confirmation for visiting non-existent files
+(setq confirm-nonexistent-file-or-buffer nil)
+
+;; Completion style, see
+;; gnu.org/software/emacs/manual/html_node/emacs/Completion-Styles.html
+(setq completion-styles '(basic substring))
+
+;; No scroll bars
+(if (fboundp 'scroll-bar-mode) (set-scroll-bar-mode nil))
+
+;; No toolbar
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+
+;; No menu bar
+(menu-bar-mode -1)
+
+;; y/n for  answering yes/no questions
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; No tabs
+(setq-default indent-tabs-mode nil)
+
+;; Tab.space equivalence
+(setq-default tab-width 4)
+
+;; Size of temporary buffers
+(temp-buffer-resize-mode)
+(setq temp-buffer-max-height 8)
+
+;; Minimum window height
+(setq window-min-height 1)
+
+;; Buffer encoding
+(prefer-coding-system       'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment   'utf-8)
+
+;; Unique buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse
+      uniquify-separator " • "
+      uniquify-after-kill-buffer-p t
+      uniquify-ignore-buffers-re "^\\*")
+
+;; Always load newest byte code
+(setq load-prefer-newer t)
+
+;; Delete the selection with a keypress
+(delete-selection-mode t)
+
+;; Revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
-
-;; Don't prompt for running process
-(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
-  (cl-letf (((symbol-function #'process-list) (lambda ())))
-    ad-do-it))
-(setq kill-buffer-query-functions nil)
 
 ;; Make it hard to kill emacs
 (setq confirm-kill-emacs #'y-or-n-p)
 
 (setq history-delete-duplicates t)
 
-;; use extra key in org.
-;; must be placed here. :init and :hook didn't work
-(setq org-use-extra-keys t)
+;; Kill current buffer (instead of asking first buffer name)
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
 
-(prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
+(setq scroll-preserve-screen-position 'always)
+;;
+;;
+;;
+(use-package exec-path-from-shell)
+(add-to-list 'load-path "~/.emacs.d/modules/")
 
-;; smart tab behavior - indent or complete
-(setq tab-always-indent 'complete)
+;;
+;; no littering
+;;
 
-(setq initial-major-mode 'fundamental-mode)
-
-;; (setq initial-scratch-message "\
-;; ℝ𝕖𝕒𝕕𝕪 𝕥𝕠 𝕤𝕖𝕣𝕧𝕖 𝕪𝕠𝕦. 𝕄𝕒𝕤𝕥𝕖𝕣! ")
-(setq initial-scratch-message "\
-
-  ██╗   ██╗███████╗███████╗       ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗ ██╗
-  ╚██╗ ██╔╝██╔════╝██╔════╝       ████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗██║
-   ╚████╔╝ █████╗  ███████╗       ██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝██║
-    ╚██╔╝  ██╔══╝  ╚════██║       ██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗╚═╝
-     ██║   ███████╗███████║▄█╗    ██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║██╗
-     ╚═╝   ╚══════╝╚══════╝╚═╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝
-
-  ╦  ┌─┐┌┬┐  ┬─┐┌─┐┌─┐┌┬┐┬ ┬  ┌┬┐┌─┐  ┌─┐┌─┐┬─┐┬  ┬┌─┐  ┬ ┬┌─┐┬ ┬
-  ║  ├─┤│││  ├┬┘├┤ ├─┤ ││└┬┘   │ │ │  └─┐├┤ ├┬┘└┐┌┘├┤   └┬┘│ ││ │
-  ╩  ┴ ┴┴ ┴  ┴└─└─┘┴ ┴─┴┘ ┴    ┴ └─┘  └─┘└─┘┴└─ └┘ └─┘   ┴ └─┘└─┘o
-
-")
-
-(use-package delight
-  :straight (delight :type git :host github :repo "emacs-straight/delight" :files ("*" (:exclude ".git"))))
-
-;; core packages
-(use-package ts
-  :straight (ts :type git :flavor melpa :host github :repo "alphapapa/ts.el"))
-(use-package s
-  :straight (s :type git :flavor melpa
-               :files ("s.el" "s-pkg.el") :host github :repo "magnars/s.el"))
-(use-package f
-  :straight (f :type git :flavor melpa
-               :files ("f.el" "f-pkg.el") :host github :repo "rejeep/f.el"))
-(use-package request
-  :straight (request :type git :flavor melpa
-              :files ("request.el" "request-pkg.el") :host github :repo "tkf/emacs-request")
+(use-package no-littering
   :config
-  (setq request-storage-directory (expand-file-name "request" aza-savefile-dir)))
+  (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
 
-;; my packages
-(setq auth-sources '("~/.authinfo.gpg"))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
-(use-package keychain-environment)
+;;
+;; looks
+;;
 
-(use-package secrets.el
-  :straight (secrets.el :type git :local-repo "secrets.el"))
+;; set font and size
+(setq default-frame-alist '((font . "Fira Code 15")))
+
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-nord-light t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-env-version nil)
+  (setq doom-modeline-buffer-encoding nil)
+  (setq doom-modeline-indent-info nil)
+  (setq doom-modeline-buffer-file-name-style 'relative-from-project)
+  (setq doom-modeline-percent-position '(-3 ""))
+  :custom-face
+  (mode-line ((t (:family "Victor Mono" :height 1.0))))
+  (mode-line-inactive ((t (:family "Victor Mono" :height 1.0)))))
+
+(use-package yascroll
+  :config
+  (global-yascroll-bar-mode t)
+  :custom-face
+  (yascroll:thumb-fringe ((t (:background "#3b4252" :foreground "#3b4252")))))
+
+(use-package ligature
+  :straight (ligature :type git :flavor melpa :host github :repo "mickeynp/ligature.el")
+  :config
+  (ligature-set-ligatures 't '("www"))
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://")))
+
+;;
+;; global keybindings
+;;
+
+(global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-S-z") 'undo-only)
+(global-set-key (kbd "C-c y") 'jump-to-current-directory)
+(global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "C-c w") 'winner-undo)
+(global-set-key (kbd "C-c p") 'project-find-file)
+(global-set-key (kbd "C-c f") 'find-file)
+
+;; remap from`C-x d` (dired). I uses `C-c y` to acces dired
+(global-set-key (kbd "C-x d") 'delete-other-windows)
+(global-set-key (kbd "C-x ,") 'split-window-below)
+(global-set-key (kbd "C-x .") 'split-window-right)
+(global-set-key (kbd "C-x l") 'delete-window)
+
+(global-set-key (kbd "M-d") 'my-delete-word)
+(global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
+
+(global-set-key [remap kill-ring-save] 'easy-kill)
+(global-set-key [remap mark-sexp] 'easy-mark)
+
+(defun jump-to-current-directory ()
+  (interactive)
+  (find-file "."))
+
+;;
+;; buit-in
+;;
+
+(use-package dired
+  :straight (:type built-in)
+  :bind ((:map dired-mode-map
+               ("/" . ora-dired-up-directory)
+               ("[" . dired-open-directory-in-file-manager)
+               ("]" . term-here)
+               ("'" . dired-omit-mode)))
+  :config
+  ;; sort by time
+  (setq dired-listing-switches "-AltGhF --group-directories-first")
+
+  (add-hook 'dired-mode-hook (lambda ()
+                               (dired-omit-mode 1)
+                               (dired-hide-details-mode +1))))
+
+;; avoid having hard to read `dired-omit-files regexs'
+(defun ora-omit-regex (names postfixes prefixes &optional dotfiles)
+  (mapconcat #'identity
+             (delq nil
+                   (list
+                    (and postfixes (format "\\(?:\\.%s\\)" (regexp-opt postfixes)))
+                    (and prefixes (format "\\(?:\\`%s\\)" (regexp-opt prefixes)))
+                    (and names (regexp-opt names))
+                    (and dotfiles "\\`\\.[^.]")))
+             "\\|"))
+
+(setq dired-omit-files
+      (ora-omit-regex
+       ;; names
+       '("node_modules" "target" "htmlcov")
+       ;; postfixes
+       '("lock" "org_archive" "aux" "log" "egg-info")
+       ;; prefixes
+       '("_minted" "__")
+       ;; dotfiles
+       t))
+
+
+(defun ora-dired-up-directory ()
+  (interactive)
+  (let ((buffer (current-buffer)))
+    (dired-up-directory)
+    (unless (equal buffer (current-buffer))
+      (kill-buffer buffer))))
+
+(defun dired-open-directory-in-file-manager ()
+  (interactive)
+  (start-process "" nil "thunar" "."))
+
+(defun term-here ()
+  (interactive)
+  (message "Opening terminal in current directory...")
+  (start-process "" nil "wezterm-here" default-directory))
+
+(use-package wdired
+  :after dired
+  :config
+  (setq wdired-use-dired-vertical-movement 'sometimes))
+
+(use-package recentf
+  :straight (:type built-in)
+  :config
+  (setq recentf-max-saved-items 200
+        recentf-max-menu-items 15
+        ;; disable recentf-cleanup on Emacs start, because it can cause
+        ;; problems with remote files
+        recentf-auto-cleanup 'never)
+  (setq recentf-exclude '("/\\.emacs\\.d/straight/build/"
+                          "/tmp/" "COMMIT_EDITMSG"
+                          ".jpg" ".png" ".pdf" ".org_archive"))
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
+  (recentf-mode +1))
+
+(use-package winner
+  :straight (:type built-in)
+  :config
+  (winner-mode 1))
+
+(use-package whitespace
+  :straight (:type built-in)
+  :delight ""
+  :init
+  (add-hook 'prog-mode-hook #'whitespace-mode)
+  (add-hook 'before-save-hook #'whitespace-cleanup)
+  :config
+  ;; limit line length
+  (setq whitespace-line-column 80)
+  (setq whitespace-style '(face trailing space-before-tab)))
+
+(use-package org
+  :straight (:type built-in)
+  :config
+  ;; indent file at startup
+  (setq org-startup-indented t))
+;;
+;; My Packages
+;;
 
 (use-package scripts.el
   :demand t
   :after secrets.el
   :straight (scripts.el :type git :host github :repo "azzamsa/scripts.el")
-  :bind (("C-c k" . aza-kill-other-buffers)
-         ("C-c t" . aza-today)
-         ("C-c i" . insert-filename-as-heading)))
+  :bind (("C-c K" . aza-kill-other-buffers)
+         ("C-c t" . aza-today)))
 
-(setq diary-file my-diary-cal)
+;;
+;; workarounds
+;;
 
-;; packages
-(use-package hippie-expand
-  :straight (:type built-in)
-  :bind ("M-/" . hippie-expand)
+(defun my-backward-delete-word (arg)
+  "Delete characters backward until encountering the beginning of a word.
+With argument, do this that many times.
+This command does not push text to `kill-ring'."
+  (interactive "p")
+  (my-delete-word (- arg)))
+
+(defun my-delete-word (arg)
+  "Delete characters forward until encountering the end of a word.
+With argument, do this that many times.
+This command does not push text to `kill-ring'."
+  (interactive "p")
+  (delete-region
+   (point)
+   (progn
+     (forward-word arg)
+     (point))))
+
+(defun aza-delete-line ()
+  "Delete from current position to end of line without pushing to `kill-ring'."
+  (interactive)
+  (delete-region (point) (line-end-position)))
+
+(defun aza-delete-whole-line ()
+  "Delete whole line without pushing to kill-ring."
+  (interactive)
+  (delete-region (line-beginning-position) (line-end-position)))
+
+(defun crux-smart-delete-line ()
+  "Kill to the end of the line and kill whole line on the next call."
+  (interactive)
+  (let ((orig-point (point)))
+    (move-end-of-line 1)
+    (if (= orig-point (point))
+        (aza-delete-whole-line)
+      (goto-char orig-point)
+      (aza-delete-line))))
+
+;;
+;; search and narrowing
+;;
+
+(use-package selectrum
+  :init
+  (selectrum-mode +1))
+
+(use-package selectrum-prescient
+  :after selectrum
   :config
-  ;; hippie expand is dabbrev expand on steroids
-  (setq hippie-expand-try-functions-list '(try-expand-dabbrev
-                                           try-expand-dabbrev-all-buffers
-                                           try-expand-dabbrev-from-kill
-                                           try-complete-file-name-partially
-                                           try-complete-file-name
-                                           try-expand-all-abbrevs
-                                           try-expand-list
-                                           try-expand-line
-                                           try-complete-lisp-symbol-partially
-                                           try-complete-lisp-symbol))
-  (setq dabbrev-ignored-buffer-regexps '(".*\.gpg$" "^ [*].*")))
+  (selectrum-prescient-mode +1)
+  (prescient-persist-mode +1))
 
-(use-package projectile
-  :delight ""
-  :bind ("s-p" . projectile-command-map)
+(use-package consult
+  :after selectrum
+  :bind (("s-m m" . consult-buffer) ;; dwim
+         ("s-m g" . consult-go-to-line)
+         ("s-m o" . consult-outline)
+         ("s-m r" . consult-global-mark)
+         ("s-m s" . consult-ripgrep)
+         ("C-x 4 b" . consult-buffer-other-window))
   :config
-  (setq projectile-completion-system 'default)
-  (setq projectile-indexing-method 'alien)
-  (setq projectile-enable-caching t)
-  (setq projectile-known-projects-file
-        (expand-file-name "projectile-bookmarks.eld" aza-savefile-dir))
-  (setq projectile-cache-file
-        (expand-file-name "projectile.cache" aza-savefile-dir))
+  ;; live preview *loads* a file, thus loads all it's mode
+  ;; and hog the machine
+  (setq consult-preview-key nil)
+  (setq consult-buffer-filter '("^ " "\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf"
+                                "\\*Messages" "\\*Warning" "*magit-" "magit" "*vterm" "vterm" "^:" "*Occur"
+                                "*straight-" "*elfeed-log" "*trace of SMTP session"
+                                "*format-all-error" "*Async-" "COMMIT_EDITMSG"
+                                "*lsp-" "*rust-" "*company-" "*pyls")))
 
-  ;; we mainly want projects defined by a few markers and we always want to take
-  ;; the top-most marker.  Reorder so other cases are secondary
-  ;; @ambihelical
-  (setq projectile-project-root-files #'( ".projectile" ))
-  (setq projectile-project-root-files-functions #'(projectile-root-top-down
-                                                   projectile-root-top-down-recurring
-                                                   projectile-root-bottom-up
-                                                   projectile-root-local))
-  (projectile-mode +1))
-
-(use-package expand-region
-  :bind ("C-c e" . er/expand-region))
-
-(use-package smartparens
-  :delight ""
-  :bind ((:map smartparens-mode-map
-               ("C-M-a" . sp-beginning-of-sexp)
-               ("C-M-e" . sp-end-of-sexp)))
-  :preface
-  (defun prelude-wrap-with (s)
-    "Create a wrapper function for smartparens using S."
-    `(lambda (&optional arg)
-       (interactive "P")
-       (sp-wrap-with-pair ,s)))
-  :config
-  (define-key smartparens-mode-map (kbd "M-(") (prelude-wrap-with "("))
-  (require 'smartparens-config)
-  (setq sp-autoskip-closing-pair 'always)
-  (setq sp-hybrid-kill-entire-symbol nil)
-  (show-smartparens-global-mode +1))
-
-(use-package abbrev
-  :straight (:type built-in)
-  :defer 0.9
-  :delight ""
-  :config
-  (setq abbrev-file-name
-        (expand-file-name "straight/repos/abbrevs/abbrev.el" user-emacs-directory))
-  (setq save-abbrevs t)
-  (setq-default abbrev-mode t)
-  (quietly-read-abbrev-file)
-  ;; bug: emacs28 doesn't save abbrevs count before quit
-  (add-hook 'kill-emacs-hook
-            (lambda ()
-              (write-abbrev-file abbrev-file-name nil))))
-
-(use-package company
-  :defer 0.2
-  :delight ""
-  :bind (:map company-active-map
-              ("C-n" . company-select-next)
-              ("C-p" . company-select-previous))
-  :config
-  (setq company-idle-delay 0.5)
-  (setq company-tooltip-limit 10)
-  (setq company-minimum-prefix-length 2)
-  (setq company-show-numbers t)
-
-  (defun my-company-dabbrev-ignore (buffer)
-    (let (res)
-      ;; don't search in org files, encrypted files, or hidden buffers
-      (dolist (re '("\.gpg$" "^ [*]") res)
-        (if (string-match-p re (buffer-name buffer))
-            (setq res t)))))
-
-  (setq company-dabbrev-ignore-buffers 'my-company-dabbrev-ignore)
-  (global-company-mode +1))
-
-(use-package company-box
-  :after company
-  :delight ""
-  :hook (company-mode . company-box-mode))
-
-(use-package flycheck
-  :defer t)
-
-(use-package undo-tree
-  :delight undo-tree-mode
-  :bind (("C-x u" . undo-tree-visualize)
-         ("C-z" . undo-tree-undo)
-         ("C-S-z". undo-tree-redo))
-  :config
-  (setq undo-tree-history-directory-alist
-        `((".*" . ,temporary-file-directory)))
-  (setq undo-tree-auto-save-history t)
-  (setq undo-tree-visualizer-timestamps t)
-  (setq undo-tree-visualizer-diff t)
-  (global-undo-tree-mode))
-
-(use-package flyspell
-  :defer t
-  :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
-  :config
-  (setq ispell-dictionary "en"
-        ispell-local-dictionary "id"
-        ispell-program-name "aspell" ; use aspell instead of ispell
-        ispell-extra-args '("--sug-mode=ultra"))
-  :custom-face
-  (flyspell-duplicate
-   ((t (:inherit nil :underline (:color "dark violet" :style wave)))))
-  (flyspell-incorrect
-   ((t (:inherit nil :underline (:color "magenta" :style wave))))))
-
-(use-package flyspell-correct
-  :after flyspell
-  :bind (:map flyspell-mode-map
-              ("C-;" . flyspell-correct-previous)))
-
-(use-package uniquify
-  :straight (:type built-in)
-  :defer 0.5
-  :config
-  (setq uniquify-buffer-name-style 'forward)
-  (setq uniquify-separator "/")
-  ;; rename after killing uniquified
-  (setq uniquify-after-kill-buffer-p t)
-  ;; don't muck with special buffers
-  (setq uniquify-ignore-buffers-re "^\\*"))
-
-(use-package super-save
-  :defer 0.5
-  :delight ""
-  :config
-  (add-to-list 'super-save-triggers 'ace-window)
-  (add-to-list 'super-save-triggers 'selectrum)
-  (add-to-list 'super-save-triggers 'dired-jump)
-  (add-to-list 'super-save-triggers 'winner-undo)
-
-  (setq super-save-exclude '(".gpg"))
-
-  (super-save-mode +1))
-
-(use-package rainbow-delimiters
-  :defer 0.9
-  :delight rainbow-delimiters-mode)
-
-(use-package rainbow-mode
-  :defer 0.9
-  :delight rainbow-mode
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-mode))
+;;
+;; git
+;;
 
 (use-package magit
-  ;; TODO use auth-source
-  :bind ("C-x g" . magit-status)
   :config
   (setq magit-diff-refine-hunk 'all)
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
@@ -358,327 +469,86 @@
   (advice-add 'magit-push-current-to-upstream :before #'query-magit-push-upstream)
   (advice-add 'magit-push-current-to-pushremote :before #'query-magit-push-upstream))
 
-(use-package git-timemachine :defer t)
-
-(use-package savehist
-  :defer 0.5
+(use-package diff-hl
+  :defer 0.9
   :config
-  (setq savehist-additional-variables
-        ;; search entries
-        '(search-ring regexp-search-ring)
-        ;; save every minute
-        savehist-autosave-interval 60
-        ;; keep the home clean
-        savehist-file (expand-file-name "savehist" aza-savefile-dir))
-  (savehist-mode +1))
+  (global-diff-hl-mode +1)
+  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
-(use-package saveplace
-  ;; saveplace remembers your location in a file when saving files
-  :defer 0.5
-  :config
-  (save-place-mode 1)
-  (setq save-place-limit 100)
-  (setq save-place-file (expand-file-name "saveplace" aza-savefile-dir))
-  ;; activate it for all buffers
-  (setq-default save-place t))
+;;
+;; dired
+;;
 
-(use-package recentf
-  :defer 0.2
+(use-package dired-ranger
+  :after dired
+  :bind (:map dired-mode-map
+              ("W" . dired-ranger-copy)
+              ("X" . dired-ranger-move)
+              ("Y" . dired-ranger-paste)))
+
+(use-package dired-rainbow
+  :after dired
   :config
-  (setq recentf-save-file (expand-file-name "recentf" aza-savefile-dir)
-        recentf-max-saved-items 200
-        recentf-max-menu-items 15
-        ;; disable recentf-cleanup on Emacs start, because it can cause
-        ;; problems with remote files
-        recentf-auto-cleanup 'never)
-  (setq recentf-exclude '("/\\.emacs\\.d/documents/brain/"
-                          "/\\.emacs\\.d/documents/brain/"
-                          "/thought/brain/"
-                          "/\\.emacs\\.d/elpa/"
-                          "/\\.emacs\\.d/straight/build/"
-                          "/tmp/"
-                          ".jpg" ".png" ".pdf" ".org_archive"
-                          "/Email/memail/"))
-  (recentf-mode +1))
+  (dired-rainbow-define-chmod directory "#81a1c1" "d.*")
+  (dired-rainbow-define html "#81a1c1" ("css" "sass" "scss" "html"))
+  (dired-rainbow-define xml "#8fbcbb" ("xml"  "json" "yaml" "yml" "toml"))
+  (dired-rainbow-define markdown "#5e81ac" ("org" "markdown" "rst" "tex" "txt"))
+  (dired-rainbow-define media "#b48ead" ("mp3" "mp4" "ogg" "wav"))
+  (dired-rainbow-define image "#b48ead" ("gif" "ico" "jpeg" "jpg" "png" "svg"))
+  (dired-rainbow-define vc "#d8dee9" ("git" "gitignore" "gitattributes" "gitmodules"))
+  (dired-rainbow-define-chmod executable-unix "#bf616a" "-.*x.*"))
+
+;;
+;; misc
+;;
 
 (use-package crux
   :bind (([remap move-beginning-of-line] . crux-move-beginning-of-line)
          ("C-a" . crux-move-beginning-of-line)
          ("C-c d" . crux-duplicate-current-line-or-region)
-         ("s-k" . crux-smart-delete-line)
-         ("s-i" . crux-top-join-line)
-         ("s-o" . crux-smart-open-line-above)
-         ("C-c w" . crux-swap-windows)
          ("C-c M-d" . crux-duplicate-and-comment-current-line-or-region)
+         ("C-c k" . crux-smart-delete-line)
+         ("C-c j" . crux-top-join-line)
+         ("C-c o" . crux-smart-open-line-above)
+         ("C-c w" . crux-swap-windows)
          ("C-c n" . crux-cleanup-buffer-or-region)
+         ("C-c D" . crux-delete-file-and-buffer)
          ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
          ([(shift return)] . crux-smart-open-line))
   :config
   ;; add the ability to cut the current line, without marking it (C-w)
   (require 'rect)
-  (crux-with-region-or-line kill-region)
+  (crux-with-region-or-line kill-region))
 
-  (crux-reopen-as-root-mode))
+(use-package multiple-cursors
+  :bind (("C-c m" . 'mc/mark-next-like-this)
+         ("C-c M" . 'mc/mark-all-like-this)))
 
-;; temporarily highlight changes from yanking, etc
-(use-package volatile-highlights
-  :defer 0.9
-  :delight volatile-highlights-mode
+(use-package super-save
+  ;; automatically save buffers associated with files on buffer switch
+  ;; and on windows switch
+  :delight ""
   :config
-  (volatile-highlights-mode +1)
-  :custom-face
-  (vhl/default-face ((t (:background "#688060")))))
+  (add-to-list 'super-save-triggers 'selectrum)
+  (add-to-list 'super-save-triggers 'find-file)
+  (add-to-list 'super-save-triggers 'winner-undo)
+  (super-save-mode +1))
 
-(use-package anzu
-  :delight anzu-mode
-  :bind ("C-c r" . anzu-query-replace-regexp)
-  :config
-  (global-anzu-mode))
+(use-package expand-region
+  :bind ("C-c e" . er/expand-region))
 
-(use-package easy-kill
-  :demand t
-  :config
-  (global-set-key [remap kill-ring-save] 'easy-kill)
-  (global-set-key [remap mark-sexp] 'easy-mark))
-
-(use-package move-text
-  :defer 0.9
-  :bind (([(meta up)] . move-text-up)
-         ([(meta down)] . move-text-down)))
-
-(use-package ace-window
-  :bind ("s-t" . ace-window)
-  :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  (global-set-key [remap other-window] 'ace-window)
-  (setq aw-background nil)
-  :custom-face
-  (aw-leading-char-face
-   ((t (:box (:line-width 5 :color "#78f503" :style released-button)
-             :height 5.0)))))
-
-(use-package zop-to-char
-  :bind (("M-Z" . zop-up-to-char)
-         ("M-z" . zop-to-char)))
-
-(use-package ediff
-  :defer t
-  :config
-  ;; ediff - don't start another frame
-  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
-  ;; put windows side by side
-  (setq ediff-split-window-function (quote split-window-horizontally)))
-
-(use-package perspective
-  :defer 0.9
-  :init
-  (setq persp-mode-prefix-key (kbd "s-v"))
-  (global-unset-key (kbd "C-x x"))
-  :config
-  (add-hook 'kill-emacs-hook #'persp-state-save)
-  (setq persp-initial-frame-name "*")
-  (setq persp-modestring-dividers (quote ("{" "}" "|")))
-  ;;(setq persp-save-dir (expand-file-name "persp-mode/" aza-savefile-dir))
-  (setq persp-state-default-file
-        (expand-file-name "perspective-el" aza-savefile-dir))
-  (persp-mode)
-  :custom-face
-  (persp-selected-face
-   ((t (:inherit mode-line
-                 :foreground "dodger blue"
-                 :weight extra-bold)))))
-
-(use-package bookmark
-  :straight (:type built-in)
-  :config
-  (setq bookmark-default-file (expand-file-name "bookmarks" aza-savefile-dir)
-        bookmark-save-flag 1))
+(use-package easy-kill)
 
 (use-package avy
-  :bind (("s-." . avy-goto-word-or-subword-1)
-         ("s-," . avy-goto-char-timer))
+  :bind ("s-." . avy-goto-char-timer)
   :config
   (global-set-key (kbd "M-g g") 'avy-goto-line)
   (setq avy-background t)
   (setq avy-style 'at-full))
 
-(use-package auto-capitalize
-  :demand
-  :delight " Ac")
+;;
+;; modules
+;;
 
-(use-package alert
-  :defer 0.9
-  :custom (alert-default-style 'libnotify))
-
-(use-package winner
-  :straight (:type built-in)
-  :defer 0.5
-  :config
-  (winner-mode 1))
-
-(use-package helpful
-  :bind (("C-h f" . helpful-callable)
-         ("C-h v" . helpful-variable)
-         ("C-h k" . helpful-key)
-         ("C-c C-d" . helpful-at-point)
-         ("C-h F" . helpful-function)
-         ("C-h C" . helpful-command)))
-
-(use-package origami
-  :bind (:map origami-mode-map
-              ("C-: :" . origami-recursively-toggle-node)
-              ("C-: a" . origami-toggle-all-nodes)
-              ("C-: t" . origami-toggle-node)
-              ("C-: o" . origami-show-only-node)
-              ("C-: C-r" . origami-reset)))
-
-(use-package whitespace
-  :delight ""
-  :defer 0.9
-  :init
-  (dolist (hook '(prog-mode-hook text-mode-hook))
-    (add-hook hook #'whitespace-mode))
-  ;; clean up handled by ws-butler
-  ;; (add-hook 'before-save-hook #'whitespace-cleanup)
-  :config
-  ;; limit line length
-  (setq whitespace-line-column 80)
-  (setq whitespace-style '(face trailing space-before-tab)))
-
-(use-package ws-butler
-  ;; clean only edited lines
-  :delight ""
-  :defer 0.9
-  :config
-  (ws-butler-global-mode t))
-
-(use-package visual-fill-column)
-(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
-
-(use-package multiple-cursors
-  :defer 0.9
-  :bind (("C-c m" . 'mc/mark-next-like-this)
-         ("C-c M" . 'mc/mark-all-like-this))
-  :config
-  (setq mc/list-file (expand-file-name ".mc-lists.el" aza-savefile-dir)))
-
-(use-package transpose-frame
-  :defer 0.9
-  :straight (transpose-frame
-             :type git :flavor melpa :host github :repo "emacsorphanage/transpose-frame"))
-
-(use-package tramp
-  :straight (:type built-in)
-  :config
-  ;; make TRAMP faster
-  (setq remote-file-name-inhibit-cache nil)
-  (setq vc-ignore-dir-regexp
-        (format "%s\\|%s"
-                vc-ignore-dir-regexp
-                tramp-file-name-regexp))
-  (setq tramp-verbose 1)
-  (setq tramp-use-ssh-controlmaster-options nil) ; Don't override SSH config.
-  (setq tramp-default-method "ssh")
-  (setq tramp-auto-save-directory "~/tmp/tramp/")
-  (setq tramp-chunksize 2000))
-
-(use-package exec-path-from-shell)
-
-;;------------------------------------------------
-;; Modules
-;;------------------------------------------------
-;; emacs fix
-(require 'aza-emacs-fix)
-;; emacs enhancements
-(require 'aza-emacs-enhc)
-
-(require 'aza-themes)
-(require 'aza-dired)
-(require 'aza-selectrum)
-(require 'aza-hydra)
-
-;; writing
-(require 'aza-org)
-;;(require 'aza-latex)
-(require 'aza-markdown)
-
-;;; programming modules
-(require 'aza-python)
-(require 'aza-rust)
-(require 'aza-web)
-(require 'aza-js)
-(require 'aza-emacs-lisp)
-;;(require 'aza-common-lisp)
-;;(require 'aza-scheme)
-;;(require 'aza-go)
-;;(require 'aza-java)
-;;(require 'aza-php)
-;;(require 'aza-ocaml)
-(require 'aza-xml)
-(require 'aza-lsp)
-(require 'aza-elgot)
-
-;;; emacs is home
-(require 'aza-home)
-;;(require 'aza-mu4e)
-(require 'aza-fun)
-(require 'aza-calfw)
-;;(require 'aza-screencast)
-
-;; unpublished configuration
-(when (file-exists-p (expand-file-name "aza-local.el" aza-modules-dir))
-  (require 'aza-local))
-
-;;------------------------------------------------
-;; Core
-;;------------------------------------------------
-(require 'aza-ui)
-(require 'aza-global-keybinding)
-(require 'aza-programming)
-
-;;------------------------------------------------
-;; Misc
-;;------------------------------------------------
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "firefox")
-
-;; Litter
-(setq url-configuration-directory
-      (expand-file-name "url/configuration/" aza-savefile-dir))
-(setq url-cache-directory
-      (expand-file-name "url/cache/" aza-savefile-dir))
-(setq custom-file (expand-file-name "custom.el" aza-savefile-dir))
-(setq tramp-auto-save-directory
-      (expand-file-name "tramp/tramp-persistency.el" aza-savefile-dir))
-(setq tramp-persistency-file-name
-      (expand-file-name "tramp/tramp-persistency.el" aza-savefile-dir))
-(setq transient-history-file
-      (expand-file-name "transient/history.el" aza-savefile-dir))
-(setq transient-levels-file
-      (expand-file-name "transient/levels.el" aza-savefile-dir))
-(setq transient-values-file
-      (expand-file-name "transient/values.el" aza-savefile-dir))
-(setq nsm-settings-file
-      (expand-file-name "network-security.data" aza-savefile-dir))
-
-
-(when (file-exists-p custom-file)
-  (load custom-file))
-
-(put 'overwrite-mode 'disabled t)
-;; Run at full power please
-(setq disabled-command-function 'ignore)
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'capitalize-word 'disabled t)
-
-;; delight
-(delight 'auto-fill-function " Af" t)
-(delight 'outline-minor-mode " ⛶" t)
-(delight 'auto-revert-mode)
-(delight 'org-indent-mode)
-(delight 'eldoc-mode "")
-(delight 'visual-line-mode)
-(delight 'auto-capitalize-mode)
-
-;;; init.el ends here
+(require 'programming)
