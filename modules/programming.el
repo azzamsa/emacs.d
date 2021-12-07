@@ -1,13 +1,15 @@
 (use-package yasnippet
+  :defer t
   :delight yas-minor-mode ""
   :config
   (yas-reload-all)
-  (yas-minor-mode))
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
 
 (use-package yasnippet-snippets
   :after yasnippet)
 
 (use-package company
+  :defer 1
   :delight ""
   :bind (:map company-active-map
           ("C-n" . company-select-next)
@@ -20,6 +22,7 @@
   (global-company-mode +1))
 
 (use-package editorconfig
+  :defer 1
   :delight
   :config
   (editorconfig-mode 1))
@@ -65,8 +68,7 @@
 (use-package highlight-indent-guides
   :delight
   :config
-  (setq highlight-indent-guides-method 'character)
-  (highlight-indent-guides-mode))
+  (setq highlight-indent-guides-method 'character))
 
 (use-package markdown-mode
   :mode ((("\\.md\\'" . gfm-mode)

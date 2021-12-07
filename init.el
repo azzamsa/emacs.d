@@ -1,4 +1,16 @@
 ;;
+;; Doc
+;;
+;; When to use `defer ?`
+;; Use it for the package that loads itself directly in the config.
+;; If a package config has `(foo-mode +1)`. It is the one that will
+;; be loaded immediately at startup. Those are the packages that
+;; you need to defer. Packages that have the bind and the one with
+;; implicit/explicit `:mode` keys are lazily loaded
+;; until the key is pressed. So they don't need to have `defer` explicit
+;; declaration
+
+;;
 ;; straigth.el
 ;;
 
@@ -164,6 +176,8 @@
 ;;
 
 (use-package no-littering
+  ;; Can't use defer here
+  ;; Packages will not be loaded
   :config
   (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
 
@@ -220,6 +234,7 @@
   (yascroll:thumb-fringe ((t (:background "#3b4252" :foreground "#3b4252")))))
 
 (use-package ligature
+  :defer 1
   :straight (ligature :type git :flavor melpa :host github :repo "mickeynp/ligature.el")
   :config
   (ligature-set-ligatures 't '("www"))
@@ -334,6 +349,7 @@
   (setq wdired-use-dired-vertical-movement 'sometimes))
 
 (use-package recentf
+  :defer 1
   :straight (:type built-in)
   :config
   (setq recentf-max-saved-items 200
@@ -349,6 +365,7 @@
   (recentf-mode +1))
 
 (use-package winner
+  :defer 1
   :straight (:type built-in)
   :config
   (winner-mode 1))
@@ -480,7 +497,7 @@ This command does not push text to `kill-ring'."
   (advice-add 'magit-push-current-to-pushremote :before #'query-magit-push-upstream))
 
 (use-package diff-hl
-  :defer 0.9
+  :defer 1
   :config
   (global-diff-hl-mode +1)
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
@@ -536,6 +553,7 @@ This command does not push text to `kill-ring'."
          ("C-c M" . 'mc/mark-all-like-this)))
 
 (use-package super-save
+  :defer 1
   ;; automatically save buffers associated with files on buffer switch
   ;; and on windows switch
   :delight ""
