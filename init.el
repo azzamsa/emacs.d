@@ -261,6 +261,11 @@
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key [remap mark-sexp] 'easy-mark)
 
+;; Using M-v is okay, but C-v hurts.
+;; The keys are so close in my keyboard.
+(global-set-key (kbd "s-e") 'scroll-up-command)
+(global-set-key (kbd "s-u") 'scroll-down-command)
+
 (defun jump-to-current-directory ()
   (interactive)
   (find-file "."))
