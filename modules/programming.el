@@ -91,11 +91,21 @@
   :config
   (add-hook 'js-mode-hook 'eglot-ensure))
 
+(use-package sh-mode
+  :straight (:type built-in)
+  :config
+  (add-hook 'sh-mode-hook 'eglot-ensure))
+
+(use-package rainbow-mode)
+(use-package lua-mode)
+
 (defun prog-mode-defaults ()
   (subword-mode)
   (company-mode)
   (highlight-indent-guides-mode)
-  (yas-minor-mode))
+  (yas-minor-mode)
+  (rainbow-mode))
+
 (setq aza-prog-mode-hook 'prog-mode-defaults)
 (add-hook 'prog-mode-hook (lambda ()
                 (run-hooks 'aza-prog-mode-hook)))
