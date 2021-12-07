@@ -178,6 +178,11 @@
 (setq default-frame-alist '((font . "Fira Code 15")))
 
 (use-package doom-themes
+  :straight (doom-themes
+             :type git
+             :flavor melpa
+             :files (:defaults "themes/*.el" "doom-themes-pkg.el")
+             :host github :repo "azzamsa/emacs-doom-themes")
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
