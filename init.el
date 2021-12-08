@@ -14,15 +14,6 @@
 ;; straigth.el
 ;;
 
-(when (boundp 'comp-eln-load-path)
-  (setcar comp-eln-load-path
-          (expand-file-name (convert-standard-filename "var/eln-cache/")
-                            user-emacs-directory)))
-
-;; native compilation
-(setq comp-deferred-compilation t)
-(setq warning-minimum-level :emergency)
-
 (setq straight-repository-branch "develop")
 (setq straight-recipes-gnu-elpa-use-mirror t)
 
