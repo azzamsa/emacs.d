@@ -473,11 +473,11 @@ This command does not push text to `kill-ring'."
 
 (use-package consult
   :after selectrum
-  :bind (("s-m m" . consult-buffer) ;; dwim
-         ("s-m g" . consult-go-to-line)
-         ("s-m o" . consult-outline)
-         ("s-m r" . consult-global-mark)
-         ("s-m s" . consult-ripgrep)
+  :bind (("s-n n" . consult-buffer) ;; dwim
+         ("s-n g" . consult-go-to-line)
+         ("s-n o" . consult-outline)
+         ("s-n r" . consult-global-mark)
+         ("s-n s" . consult-ripgrep)
          ("C-x 4 b" . consult-buffer-other-window))
   :config
   ;; live preview *loads* a file, thus loads all it's mode
