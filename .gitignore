@@ -12,6 +12,7 @@ tramp/
 var
 etc
 eln-cache/
+personal.el
 
 # packages
 projectile-bookmarks.eld

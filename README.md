@@ -24,7 +24,7 @@ If you're looking for a nice (copy and use) scripts, check out my [useful Emacs 
 - Most used command reachable under `C-c` and `super`.
 - Versioned package dependencies using `straight.el`.
 - Blazing fast startup. Thanks to `use-package defer` and native compilation.
-- Separate places for your secrets.
+- Separate places for your personal configuration.
 - Sensible dired: omit non-interesting files, colorize by extension.
 - Ligature support.
 - More...
@@ -36,18 +36,6 @@ Clone the repository:
 ``` bash
 git clone https://github.com/azzamsa/emacs.d
 ```
-
-Change the `use-package scripts.el` declaration into `azzamsa/secrets.el-dummy` as shown below.
-The secrets are used for some functions such as [Ask Github If I Have New Notification](https://azzamsa.com/n/scripts-el/#ask-github-if-i-have-new-notification).
-Separating the secrets this way ensures that my configuration is easy to share without worries.
-
-``` emacs-lisp
-(use-package secrets.el
-  :straight (scripts.el :type git :host github :repo "azzamsa/secrets.el-dummy")
-```
-
-After you have the secrets.el repo locally. Insert your own secrets, then change back the configuration to `:local-repo "secrets.el"`.
-So that it loads yours instead of the dummy one.
 
 Now, Run your Emacs! 🚀
 

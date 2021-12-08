@@ -579,4 +579,8 @@ This command does not push text to `kill-ring'."
 ;; modules
 ;;
 
+(when (file-exists-p  "~/.emacs.d/modules/personal.el")
+  (require 'personal))
+
 (require 'programming)
+
