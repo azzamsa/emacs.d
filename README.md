@@ -15,19 +15,15 @@ My personal Emacs 📜 Configuration.
 
 If you're looking for a nice (copy and use) scripts, check out my [useful Emacs Lisp scripts collection](https://azzamsa.com/n/scripts-el/)
 
-
 <p align="center"><img src="assets/preview1.png"/></p>
 <p align="center"><img src="assets/preview2.png"/></p>
-<p align="center"><img src="assets/preview3.png"/></p>
 
 ## Features
 
+- Slim & Fast. Strive to use built-in feature whenever possilbe.
 - Most used command reachable under `C-c` and `super`.
-- Cryptic command accessible under `hydra` menu.
-- Modular configurations. Enable only what you need.
 - Versioned package dependencies using `straight.el`.
 - Blazing fast startup. Thanks to `use-package defer` and native compilation.
-- Litters are keep in the separate directory.
 - Separate places for your secrets.
 - Sensible dired: omit non-interesting files, colorize by extension.
 - Ligature support.
@@ -60,17 +56,10 @@ Now, Run your Emacs! 🚀
 I don't plan to accept any contribution that adds new functionality. But it is OK for fixes and improvement.
 I don't recommend using this repository directly. Instead, use it as a source of inspiration.
 
-## Credits
+## Notes
 
-Most parts comes from:
+This repo only hold currently used config. For old config visit the archive branch.
 
-- [Bozhidar Batsov](http://batsov.com) - [emacs.d repository](https://github.com/bbatsov/emacs.d) and [Prelude](https://github.com/bbatsov/prelude)
-- [Oleh Krehel](https://oremacs.com/) - [oremacs](https://github.com/abo-abo/oremacs)
+### Credits
 
-Other comes from:
-
-[Steve Purcell](https://github.com/purcell/emacs.d), [John Wiegley](https://github.com/jwiegley/dot-emacs),
-[Dr Ben Maughan](http://pragmaticemacs.com/), [Xah Lee](http://ergoemacs.org),
-[Terencio (rememberYou) Agozzino](https://github.com/rememberYou/.emacs.d),
-and [John Kitchin](http://kitchingroup.cheme.cmu.edu/about.html).
-I also look to various .emacs.d repositories to take any insight, so the credits also go for them.
+- [Nord Theme](https://www.nordtheme.com/)
