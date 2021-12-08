@@ -254,6 +254,7 @@
 (global-set-key (kbd "C-c w") 'winner-undo)
 (global-set-key (kbd "C-c p") 'project-find-file)
 (global-set-key (kbd "C-c f") 'find-file)
+(global-set-key (kbd "s-n o") 'other-window)
 
 ;; remap from`C-x d` (dired). I uses `C-c y` to acces dired
 (global-set-key (kbd "C-x d") 'delete-other-windows)
@@ -377,16 +378,37 @@
   :config
   ;; indent file at startup
   (setq org-startup-indented t))
+
+(use-package flyspell
+  :defer t
+  :hook ((markdown-mode
+          org-mode
+          text-mode) . flyspell-mode)
+  :config
+  (setq ispell-dictionary "en"
+        ispell-local-dictionary "id"
+        ispell-program-name "aspell" ; use aspell instead of ispell
+        ispell-extra-args '("--sug-mode=ultra"))
+  :custom-face
+  (flyspell-duplicate
+   ((t (:inherit nil :underline (:color "#842879" :style wave)))))
+  (flyspell-incorrect
+   ((t (:inherit nil :underline (:color "#842879" :style wave))))))
+
+(use-package flyspell-correct
+  :after flyspell
+  :bind (:map flyspell-mode-map
+              ("s-n ;" . flyspell-correct-previous)))
+
+
 ;;
 ;; My Packages
 ;;
 
 (use-package scripts.el
-  :demand t
   :after secrets.el
   :straight (scripts.el :type git :host github :repo "azzamsa/scripts.el")
-  :bind (("C-c K" . aza-kill-other-buffers)
-         ("C-c t" . aza-today)))
+  :bind (("C-c K" . aza-kill-other-buffers)))
 
 ;;
 ;; workarounds
@@ -527,13 +549,14 @@ This command does not push text to `kill-ring'."
          ("C-c d" . crux-duplicate-current-line-or-region)
          ("C-c M-d" . crux-duplicate-and-comment-current-line-or-region)
          ("C-c k" . crux-smart-delete-line)
-         ("C-c j" . crux-top-join-line)
+         ("C-c t" . crux-top-join-line)
          ("C-c o" . crux-smart-open-line-above)
          ("C-c w" . crux-swap-windows)
          ("C-c n" . crux-cleanup-buffer-or-region)
          ("C-c D" . crux-delete-file-and-buffer)
          ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
-         ([(shift return)] . crux-smart-open-line))
+         ([(shift return)] . crux-smart-open-line)
+         ("C-<backspace>" . crux-kill-line-backwards))
   :config
   ;; add the ability to cut the current line, without marking it (C-w)
   (require 'rect)
@@ -565,6 +588,31 @@ This command does not push text to `kill-ring'."
   (global-set-key (kbd "M-g g") 'avy-goto-line)
   (setq avy-background t)
   (setq avy-style 'at-full))
+
+(use-package smartparens
+  :delight ""
+  :bind ((:map smartparens-mode-map
+               ("C-M-a" . sp-beginning-of-sexp)
+               ("C-M-e" . sp-end-of-sexp)))
+  :config
+  (require 'smartparens-config)
+  (setq sp-autoskip-closing-pair 'always)
+  (setq sp-hybrid-kill-entire-symbol nil)
+  (show-smartparens-global-mode +1))
+
+(use-package anzu
+  :delight anzu-mode
+  :bind ("C-c r" . anzu-query-replace-regexp)
+  :config
+  (global-anzu-mode))
+
+(use-package move-text
+  :bind (([(meta up)] . move-text-up)
+         ([(meta down)] . move-text-down)))
+
+(use-package zop-to-char
+  :bind (("M-Z" . zop-up-to-char)
+         ("M-z" . zop-to-char)))
 
 ;;
 ;; modules

@@ -118,7 +118,8 @@
   (company-mode)
   (highlight-indent-guides-mode)
   (yas-minor-mode)
-  (rainbow-mode))
+  (rainbow-mode)
+  (flyspell-prog-mode))
 
 (setq aza-prog-mode-hook 'prog-mode-defaults)
 (add-hook 'prog-mode-hook (lambda ()
