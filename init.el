@@ -290,8 +290,8 @@
   :straight (:type built-in)
   :bind ((:map dired-mode-map
                ("/" . ora-dired-up-directory)
-               ("[" . dired-open-directory-in-file-manager)
-               ("]" . term-here)
+               ("[" . file-manager-here)
+               ("]" . terminal-here)
                ("'" . dired-omit-mode)))
   :config
   ;; sort by time
@@ -331,14 +331,17 @@
     (unless (equal buffer (current-buffer))
       (kill-buffer buffer))))
 
-(defun dired-open-directory-in-file-manager ()
+(defun file-manager-here ()
   (interactive)
+  (message "Opening file manager in current directory...")
   (start-process "" nil "thunar" "."))
 
-(defun term-here ()
+(defun terminal-here ()
   (interactive)
-  (message "Opening terminal in current directory...")
-  (start-process "" nil "wezterm-here" default-directory))
+  (message "Opening terminal in %s" default-directory)
+  ;; Need to use `expand-file-name` to expand `~` into a full path
+  ;; Otherwise, wezeterm-here fallback to `$HOME`
+  (start-process "" nil "wezterm-here"  (expand-file-name default-directory)))
 
 (use-package wdired
   :after dired
