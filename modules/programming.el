@@ -1,3 +1,32 @@
+;;
+;; built-in
+;;
+(use-package emacs-lisp-mode
+  :straight (:type built-in)
+  :bind (:map emacs-lisp-mode-map
+              ("C-c C-r" . eval-region)
+              ("C-c C-d" . eval-defun)
+              ("C-c C-b" . eval-buffer))
+  :config
+  (add-hook 'emacs-lisp-mode-hook (lambda ()
+                                    (run-hooks 'aza-prog-mode-hooks))))
+
+(use-package sh-script
+  ;; defined in lisp/progmodes/sh-script.el
+  ;; using `use-package sh-mode' won't work
+  :straight (:type built-in)
+  :ensure nil
+  :config
+  (add-hook 'sh-mode-hook 'eglot-ensure))
+
+(use-package js
+  ;; defined in lisp/progmodes/js.el
+  ;; using `use-package js-mode' won't work
+  :straight (:type built-in)
+  :ensure nil
+  :config
+  (add-hook 'js-mode-hook 'eglot-ensure))
+
 (use-package yasnippet
   :defer t
   :delight yas-minor-mode ""
@@ -26,13 +55,6 @@
   :delight
   :config
   (editorconfig-mode 1))
-
-;; elisp
-;; oddly enough that emacs-lisp config never works inside `use-package`
-(define-key emacs-lisp-mode-map (kbd "C-c C-c") 'eval-defun)
-(define-key emacs-lisp-mode-map (kbd "C-c C-b") 'eval-buffer)
-(add-hook 'emacs-lisp-mode-hook (lambda ()
-                  (run-hooks 'aza-prog-mode-hooks)))
 
 (use-package eglot
   :config
@@ -87,16 +109,6 @@
 (use-package typescript-mode
   :config
   (add-hook 'typescript -mode-hook 'eglot-ensure))
-
-(use-package js-mode
-  :straight (:type built-in)
-  :config
-  (add-hook 'js-mode-hook 'eglot-ensure))
-
-(use-package sh-mode
-  :straight (:type built-in)
-  :config
-  (add-hook 'sh-mode-hook 'eglot-ensure))
 
 (use-package rainbow-mode)
 (use-package lua-mode)
