@@ -1,33 +1,9 @@
-# emacs
-*~
-*.elc
-auto-save-list/
-elpa/
-straight/
-elisp/
-url/
-savefile/*
-session*
-tramp/
+# package manager
+straight
+eln-cache
+
+# litters
 var
 etc
-eln-cache/
+
 personal.el
-
-# packages
-projectile-bookmarks.eld
-games/
-snippets/
-.org-id-locations
-.lsp-session-*
-
-# Documents
-image-dired/
-
-# git
-.git-credential-cache/
-*.patch
-
-# languages
-.python-environments/
-meghanada/
