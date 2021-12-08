@@ -56,10 +56,11 @@
 ;; Initial buffer
 (setq initial-buffer-choice nil)
 
-;; No frame title
-;; `setq' has inconsistence behavior here.
-;; use `setq-default'
-(setq-default  frame-title-format '("" invocation-name " - " "%b"))
+;; No hostname in frame title
+;; Without setting the `icon-title-format`. The window title will revert
+;; back to its original value after loosing its focus.
+(setq frame-title-format '("" invocation-name " - " "%b"))
+(setq icon-title-format '("" invocation-name " - " "%b"))
 
 ;; No file dialog
 (setq use-file-dialog nil)
