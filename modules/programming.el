@@ -41,8 +41,8 @@
   :defer 1
   :delight ""
   :bind (:map company-active-map
-          ("C-n" . company-select-next)
-          ("C-p" . company-select-previous))
+              ("C-n" . company-select-next)
+              ("C-p" . company-select-previous))
   :config
   (setq company-idle-delay 0.5)
   (setq company-tooltip-limit 10)
@@ -69,23 +69,23 @@
 (use-package rust-mode
   :config
   (add-hook 'rust-mode-hook (lambda ()
-                  (eglot-ensure))))
+                              (eglot-ensure))))
 
 (use-package python
   :straight (:type built-in)
   :config
   (add-hook 'python-mode-hook (lambda ()
-                (pyvenv-mode)
-                (highlight-indent-guides-mode)
-                (eglot-ensure))))
+                                (pyvenv-mode)
+                                (highlight-indent-guides-mode)
+                                (eglot-ensure))))
 
 (use-package pyvenv
   :after python
   :config
-   (setq pyvenv-mode-line-indicator
-     '(pyvenv-virtual-env-name ("[venv:" pyvenv-virtual-env-name "] ")))
-   (setq pyvenv-workon "global3")
-   (pyvenv-tracking-mode 1))
+  (setq pyvenv-mode-line-indicator
+        '(pyvenv-virtual-env-name ("[venv:" pyvenv-virtual-env-name "] ")))
+  (setq pyvenv-workon "global3")
+  (pyvenv-tracking-mode 1))
 
 (use-package highlight-indent-guides
   :delight
@@ -94,7 +94,7 @@
 
 (use-package markdown-mode
   :mode ((("\\.md\\'" . gfm-mode)
-      ("\\.markdown\\'" . markdown-mode)))
+          ("\\.markdown\\'" . markdown-mode)))
   :config
   (setq markdown-asymmetric-header t))
 
@@ -108,7 +108,7 @@
 
 (use-package typescript-mode
   :config
-  (add-hook 'typescript -mode-hook 'eglot-ensure))
+  (add-hook 'typescript-mode-hook 'eglot-ensure))
 
 (use-package rainbow-mode)
 (use-package lua-mode)
@@ -122,6 +122,6 @@
 
 (setq aza-prog-mode-hook 'prog-mode-defaults)
 (add-hook 'prog-mode-hook (lambda ()
-                (run-hooks 'aza-prog-mode-hook)))
+                            (run-hooks 'aza-prog-mode-hook)))
 
 (provide 'programming)
