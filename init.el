@@ -57,7 +57,9 @@
 (setq initial-buffer-choice nil)
 
 ;; No frame title
-(setq frame-title-format " ")
+;; `setq' has inconsistence behavior here.
+;; use `setq-default'
+(setq-default  frame-title-format '("" invocation-name " - " "%b"))
 
 ;; No file dialog
 (setq use-file-dialog nil)
@@ -125,11 +127,10 @@
 (setq window-min-height 1)
 
 ;; Buffer encoding
-(prefer-coding-system       'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-language-environment   'utf-8)
+(set-language-environment "UTF-8")
+
+;; set-language-enviornment sets default-input-method, which is unwanted
+(setq default-input-method nil)
 
 ;; Unique buffer names
 (require 'uniquify)
@@ -156,6 +157,10 @@
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 
 (setq scroll-preserve-screen-position 'always)
+
+;; warn when opening files bigger than 100MB
+(setq large-file-warning-threshold 100000000)
+
 ;;
 ;;
 ;;
