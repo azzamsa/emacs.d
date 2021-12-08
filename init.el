@@ -416,7 +416,7 @@
 (use-package scripts.el
   :after secrets.el
   :straight (scripts.el :type git :host github :repo "azzamsa/scripts.el")
-  :bind (("C-c K" . aza-kill-other-buffers)))
+  :bind (("s-n K" . aza-kill-other-buffers)))
 
 ;;
 ;; workarounds
