@@ -257,7 +257,6 @@
 (global-set-key (kbd "C-S-z") 'undo-only)
 (global-set-key (kbd "C-c y") 'jump-to-current-directory)
 (global-set-key (kbd "C-c g") 'magit-status)
-(global-set-key (kbd "C-c w") 'winner-undo)
 (global-set-key (kbd "C-c p") 'project-find-file)
 (global-set-key (kbd "C-c f") 'find-file)
 (global-set-key (kbd "s-n o") 'other-window)
@@ -368,6 +367,7 @@
 (use-package winner
   :defer 1
   :straight (:type built-in)
+  :bind (("s-n w" . winner-undo))
   :config
   (winner-mode 1))
 
