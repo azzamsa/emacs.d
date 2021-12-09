@@ -413,9 +413,16 @@
 ;;
 
 (use-package scripts.el
-  :after secrets.el
-  :straight (scripts.el :type git :host github :repo "azzamsa/scripts.el")
-  :bind (("s-n K" . aza-kill-other-buffers)))
+  :straight (scripts.el :type git :host github :repo "azzamsa/scripts.el" :branch "mine")
+  :bind (("s-n K" . aza-kill-other-buffers))
+  :init
+  (use-package ts
+    :straight (ts :type git :flavor melpa :host github :repo "alphapapa/ts.el"))
+  (use-package s
+    :straight (s :type git :flavor melpa
+                 :files ("s.el" "s-pkg.el") :host github :repo "magnars/s.el"))
+  :config
+  (require 'scripts.el))
 
 ;;
 ;; workarounds
