@@ -267,6 +267,7 @@
 
 (global-set-key (kbd "M-d") 'my-delete-word)
 (global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
+(global-set-key (kbd "<C-backspace>") 'aza-delete-whole-line)
 
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key [remap mark-sexp] 'easy-mark)
@@ -590,8 +591,7 @@ This command does not push text to `kill-ring'."
          ("C-c n" . crux-cleanup-buffer-or-region)
          ("C-c D" . crux-delete-file-and-buffer)
          ("C-c TAB" . crux-indent-rigidly-and-copy-to-clipboard)
-         ([(shift return)] . crux-smart-open-line)
-         ("C-<backspace>" . crux-kill-line-backwards))
+         ([(shift return)] . crux-smart-open-line))
   :config
   ;; add the ability to cut the current line, without marking it (C-w)
   (require 'rect)
