@@ -518,7 +518,7 @@ This command does not push text to `kill-ring'."
                                 "\\*Messages" "\\*Warning" "*magit-" "magit" "*vterm" "vterm" "^:" "*Occur"
                                 "*straight-" "*elfeed-log" "*trace of SMTP session"
                                 "*format-all-error" "*Async-" "COMMIT_EDITMSG"
-                                "*lsp-" "*rust-" "*company-" "*pyls")))
+                                "*lsp-" "*EGLOT" "*rust-" "*company-" "*pyls")))
 
 ;;
 ;; git
