@@ -112,6 +112,7 @@
 
 (use-package rainbow-mode)
 (use-package lua-mode)
+(use-package fish-mode)
 
 (defun prog-mode-defaults ()
   (subword-mode)
