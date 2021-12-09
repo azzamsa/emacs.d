@@ -661,6 +661,10 @@ This command does not push text to `kill-ring'."
   :config
   (projectile-mode +1))
 
+(use-package which-key
+  :config
+  (which-key-mode))
+
 ;;
 ;; modules
 ;;
