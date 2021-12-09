@@ -31,6 +31,16 @@
   :defer t
   :delight yas-minor-mode ""
   :config
+  ;; yas dirs
+  (setq yas-snippet-dirs nil)
+  ;; ~/.emacs.d/etc/yasnippet/snippets
+  (setq private-yas-dir (no-littering-expand-etc-file-name "yasnippet/snippets"))
+  ;; ~/.emacs.d/straight/repos/yasnippet-snippets/snippets
+  (setq public-yas-dir (expand-file-name "straight/repos/yasnippet-snippets/snippets" user-emacs-directory))
+
+  (push private-yas-dir yas-snippet-dirs)
+  (push public-yas-dir yas-snippet-dirs)
+
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode))
 
