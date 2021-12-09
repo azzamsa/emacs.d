@@ -217,10 +217,7 @@
   (setq doom-modeline-buffer-encoding nil)
   (setq doom-modeline-indent-info nil)
   (setq doom-modeline-buffer-file-name-style 'relative-from-project)
-  (setq doom-modeline-percent-position '(-3 ""))
-  :custom-face
-  (mode-line ((t (:family "Victor Mono" :height 1.0))))
-  (mode-line-inactive ((t (:family "Victor Mono" :height 1.0)))))
+  (setq doom-modeline-percent-position '(-3 "")))
 
 (use-package yascroll
   :config
