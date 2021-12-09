@@ -120,7 +120,8 @@
   (highlight-indent-guides-mode)
   (yas-minor-mode)
   (rainbow-mode)
-  (flyspell-prog-mode))
+  (flyspell-prog-mode)
+  (smartparens-mode))
 
 (setq aza-prog-mode-hook 'prog-mode-defaults)
 (add-hook 'prog-mode-hook (lambda ()
