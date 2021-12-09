@@ -84,6 +84,8 @@
               ("M-p" . flycheck-previous-error)))
 
 (use-package rust-mode
+  :bind (:map rust-mode-map
+              ("C-c C-r" . rust-run))
   :config
   (add-hook 'rust-mode-hook (lambda ()
                               (eglot-ensure))))
