@@ -414,10 +414,20 @@
   (flyspell-incorrect
    ((t (:inherit nil :underline (:color "#842879" :style wave))))))
 
-(use-package flyspell-correct
-  :after flyspell
-  :bind (:map flyspell-mode-map
-              ("s-n ;" . flyspell-correct-previous)))
+(use-package abbrev
+  :straight (:type built-in)
+  :defer 1
+  :delight ""
+  :config
+  (setq abbrev-file-name
+        (expand-file-name "straight/repos/aza-abbrevs/aza-abbrev.el" user-emacs-directory))
+  (setq save-abbrevs t)
+  (setq-default abbrev-mode t)
+  (quietly-read-abbrev-file)
+  ;; bug: emacs28 doesn't save abbrevs count before quit
+  (add-hook 'kill-emacs-hook
+            (lambda ()
+              (write-abbrev-file abbrev-file-name nil))))
 
 
 ;;
@@ -638,6 +648,11 @@ This command does not push text to `kill-ring'."
 (use-package zop-to-char
   :bind (("M-Z" . zop-up-to-char)
          ("M-z" . zop-to-char)))
+
+(use-package flyspell-correct
+  :after flyspell
+  :bind (:map flyspell-mode-map
+              ("s-n ;" . flyspell-correct-previous)))
 
 (use-package projectile
   :demand t
