@@ -358,9 +358,21 @@
   (setq recentf-exclude '("/\\.emacs\\.d/straight/build/"
                           "/tmp/" "COMMIT_EDITMSG"
                           ".jpg" ".png" ".pdf" ".org_archive"))
+
+  ;; Can't put this in no-littering config.
+  ;; Because recentf still not loaded
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory)
   (recentf-mode +1))
+
+(use-package saveplace
+  ;; saveplace remembers your location in a file when saving files
+  :defer 0.5
+  :config
+  (save-place-mode 1)
+  (setq save-place-limit 100)
+  ;; activate it for all buffers
+  (setq-default save-place t))
 
 (use-package winner
   :defer 1
@@ -626,6 +638,13 @@ This command does not push text to `kill-ring'."
 (use-package zop-to-char
   :bind (("M-Z" . zop-up-to-char)
          ("M-z" . zop-to-char)))
+
+(use-package projectile
+  :demand t
+  :delight ""
+  :bind ("s-p" . projectile-command-map)
+  :config
+  (projectile-mode +1))
 
 ;;
 ;; modules
