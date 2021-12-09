@@ -260,10 +260,10 @@
 (global-set-key (kbd "s-n o") 'other-window)
 
 ;; remap from`C-x d` (dired). I uses `C-c y` to acces dired
-(global-set-key (kbd "C-x d") 'delete-other-windows)
+(global-set-key (kbd "C-x l") 'delete-other-windows)
+(global-set-key (kbd "C-x L") 'delete-window)
 (global-set-key (kbd "C-x ,") 'split-window-below)
 (global-set-key (kbd "C-x .") 'split-window-right)
-(global-set-key (kbd "C-x l") 'delete-window)
 
 (global-set-key (kbd "M-d") 'my-delete-word)
 (global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
@@ -476,11 +476,10 @@ This command does not push text to `kill-ring'."
 (use-package consult
   :after selectrum
   :bind (("s-n n" . consult-buffer) ;; dwim
+         ("s-n N" . consult-buffer-other-window)
          ("s-n g" . consult-go-to-line)
-         ("s-n o" . consult-outline)
          ("s-n r" . consult-global-mark)
-         ("s-n s" . consult-ripgrep)
-         ("C-x 4 b" . consult-buffer-other-window))
+         ("s-n s" . consult-ripgrep))
   :config
   ;; live preview *loads* a file, thus loads all it's mode
   ;; and hog the machine
