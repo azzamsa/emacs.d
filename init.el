@@ -37,12 +37,6 @@
 ;; better defaults
 ;;
 
-;; store all backup and autosave files in the tmp dir
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-
 ;; No startup  screen
 (setq inhibit-startup-screen t)
 
@@ -176,6 +170,10 @@
   ;; Can't use defer here
   ;; Packages will not be loaded
   :config
+  ;; store all backup and autosave files in the tmp dir
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
   (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
 
 (when (file-exists-p custom-file)
