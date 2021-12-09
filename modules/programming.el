@@ -76,6 +76,13 @@
   (add-to-list 'eglot-server-programs '(svelte-mode . ("svelteserver")))
   (add-to-list 'eglot-server-programs '(python-mode . ("pyls"))))
 
+(use-package flycheck
+  :defer t
+  ;; both keys are free
+  :bind (:map flycheck-mode-map
+              ("M-n" . flycheck-next-error)
+              ("M-p" . flycheck-previous-error)))
+
 (use-package rust-mode
   :config
   (add-hook 'rust-mode-hook (lambda ()
@@ -131,7 +138,8 @@
   (yas-minor-mode)
   (rainbow-mode)
   (flyspell-prog-mode)
-  (smartparens-mode))
+  (smartparens-mode)
+  (flycheck-mode))
 
 (setq aza-prog-mode-hook 'prog-mode-defaults)
 (add-hook 'prog-mode-hook (lambda ()
