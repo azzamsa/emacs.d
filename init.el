@@ -566,13 +566,14 @@ This command does not push text to `kill-ring'."
 (use-package dired-rainbow
   :after dired
   :config
-  (dired-rainbow-define-chmod directory "#81a1c1" "d.*")
-  (dired-rainbow-define html "#81a1c1" ("css" "sass" "scss" "html"))
-  (dired-rainbow-define xml "#8fbcbb" ("xml"  "json" "yaml" "yml" "toml"))
-  (dired-rainbow-define markdown "#5e81ac" ("org" "markdown" "rst" "tex" "txt"))
-  (dired-rainbow-define media "#b48ead" ("mp3" "mp4" "ogg" "wav"))
-  (dired-rainbow-define image "#b48ead" ("gif" "ico" "jpeg" "jpg" "png" "svg"))
-  (dired-rainbow-define vc "#d8dee9" ("git" "gitignore" "gitattributes" "gitmodules"))
+  (dired-rainbow-define-chmod directory "#5e81ac" "d.*")
+  ;; my primary language
+  (dired-rainbow-define lang1 "#a3be8c" ("rs" "py" "js" "el"))
+  ;; secondary language
+  (dired-rainbow-define lang2 "#b48ead" ("lua" "css" "sass" "scss" "html" "json"))
+  (dired-rainbow-define text "#88c0d0" ("org" "md" "toml" "yml" "yaml" "txt"))
+  (dired-rainbow-define document "#88c0d0" ("odt" "pdf" "epub" "odp"))
+  (dired-rainbow-define media "#d08770" ("webm" "webp" "jpg" "jpeg" "png" "svg"))
   (dired-rainbow-define-chmod executable-unix "#bf616a" "-.*x.*"))
 
 ;;
