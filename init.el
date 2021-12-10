@@ -364,6 +364,11 @@
   ;; Because recentf still not loaded
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory)
+
+  (add-hook 'kill-emacs-hook
+            (lambda ()
+              (recentf-cleanup)))
+
   (recentf-mode +1))
 
 (use-package saveplace
