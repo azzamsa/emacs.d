@@ -287,14 +287,19 @@
 
 (use-package dired
   :straight (:type built-in)
-  :bind ((:map dired-mode-map
-               ("/" . ora-dired-up-directory)
-               ("[" . file-manager-here)
-               ("]" . terminal-here)
-               ("'" . dired-omit-mode)))
+  :bind (:map dired-mode-map
+              ("/" . ora-dired-up-directory)
+              ("[" . file-manager-here)
+              ("]" . terminal-here)
+              ("'" . dired-omit-mode))
   :config
   ;; sort by time
   (setq dired-listing-switches "-AltGhF --group-directories-first")
+
+  ;; Need to use remap here.
+  ;; Otherwise it always override `dired-ranger-paste'
+  ;; Putting it inside `dired-ranger' config does not work.
+  (define-key dired-mode-map [remap dired-do-relsymlink] 'dired-ranger-paste)
 
   (add-hook 'dired-mode-hook (lambda ()
                                (dired-omit-mode 1)
