@@ -1,15 +1,17 @@
 ;;
 ;; built-in
 ;;
-(use-package emacs-lisp-mode
+(use-package elisp-mode
+  ;; defined in lisp/progmodes/elisp-mode.el
+  ;; using `use-package emacs-lisp-mode' produces
+  ;; so many oddities
   :straight (:type built-in)
   :bind (:map emacs-lisp-mode-map
               ("C-c C-r" . eval-region)
               ("C-c C-d" . eval-defun)
               ("C-c C-b" . eval-buffer))
   :config
-  (add-hook 'emacs-lisp-mode-hook (lambda ()
-                                    (run-hooks 'aza-prog-mode-hooks))))
+  (add-hook 'emacs-lisp-mode-hook 'prog-mode-defaults))
 
 (use-package sh-script
   ;; defined in lisp/progmodes/sh-script.el
@@ -143,8 +145,6 @@
   (smartparens-mode)
   (flycheck-mode))
 
-(setq aza-prog-mode-hook 'prog-mode-defaults)
-(add-hook 'prog-mode-hook (lambda ()
-                            (run-hooks 'aza-prog-mode-hook)))
+(add-hook 'prog-mode-hook 'prog-mode-defaults)
 
 (provide 'programming)
