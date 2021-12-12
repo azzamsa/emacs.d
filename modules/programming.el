@@ -134,6 +134,9 @@
 (use-package rainbow-mode)
 (use-package lua-mode)
 (use-package fish-mode)
+(use-package yaml-mode
+  :config
+  (add-hook 'yaml-mode-hook 'prog-mode-defaults))
 
 (defun prog-mode-defaults ()
   (subword-mode)
