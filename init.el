@@ -686,13 +686,27 @@ This command does not push text to `kill-ring'."
 
 (defhydra hydra-menu (:color pink)
   "
-  _q_uit               _r_ winner-redo
-          _m_ mc/next  _t_ winner-undo
+  _q_uit _m_ mc/next    _r_ winner-redo
+         _w_inner-undo
   "
   ("q" nil)
   ("m" mc/mark-next-like-this)
-  ("r" winner-undo)
-  ("t" winner-redo))
+  ("w" winner-undo)
+  ("r" winner-redo))
+
+(use-package dimmer
+  ;; Active buffer hard to spot without dimming the whole
+  ;; buffer. Doom-modeline dims the modeline but it hard to
+  ;; notice.
+  :defer 1
+  :config
+  (setq dimmer-exclusion-predicates '(window-minibuffer-p))
+  (setq dimmer-exclusion-regexp-list
+        '("^\\*Minibuf-[0-9]+\\*"
+          "^.\\*which-key\\*$" "^*Messages*"
+          "transient"))
+  (setq dimmer-fraction 0.50)
+  (dimmer-mode t))
 
 ;;
 ;; modules
