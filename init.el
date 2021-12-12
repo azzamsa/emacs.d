@@ -185,6 +185,9 @@
 
 ;; set font and size
 (setq default-frame-alist '((font . "Fira Code 15")))
+;; cursor type
+(blink-cursor-mode -1)
+(setq-default cursor-type 'bar)
 
 (use-package doom-themes
   :straight (doom-themes
