@@ -562,6 +562,8 @@ This command does not push text to `kill-ring'."
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
+(use-package git-timemachine :defer t)
+
 ;;
 ;; dired
 ;;
@@ -675,6 +677,19 @@ This command does not push text to `kill-ring'."
 (use-package which-key
   :config
   (which-key-mode))
+
+(use-package hydra
+  :bind (("s-n h" . hydra-menu/body)))
+
+(defhydra hydra-menu (:color pink)
+  "
+  _q_uit               _r_ winner-redo
+          _m_ mc/next  _t_ winner-undo
+  "
+  ("q" nil)
+  ("m" mc/mark-next-like-this)
+  ("r" winner-undo)
+  ("t" winner-redo))
 
 ;;
 ;; modules
