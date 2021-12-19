@@ -16,6 +16,8 @@
 
 (setq straight-repository-branch "develop")
 (setq straight-recipes-gnu-elpa-use-mirror t)
+(setq straight-default-vc 'git)
+(setq straight-use-package-by-default t)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -31,8 +33,6 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
-
 ;;
 ;; better defaults
 ;;
@@ -201,10 +201,10 @@
 
 (use-package doom-themes
   :straight (doom-themes
-             :type git
              :flavor melpa
              :files (:defaults "themes/*.el" "doom-themes-pkg.el")
-             :host github :repo "azzamsa/emacs-doom-themes")
+             :host github :repo "hlissner/emacs-doom-themes"
+             :fork (:host github :repo "azzamsa/emacs-doom-themes" :branch "mine"))
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
