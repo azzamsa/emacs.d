@@ -143,6 +143,13 @@
 ;; Revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
 
+; Don't prompt for running process when quitting Emacs
+(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+  (cl-letf (((symbol-function #'process-list) (lambda ())))
+    ad-do-it))
+(setq kill-buffer-query-functions nil)
+
 ;; Make it hard to kill emacs
 (setq confirm-kill-emacs #'y-or-n-p)
 
