@@ -167,10 +167,27 @@
 (put 'overwrite-mode 'disabled t)
 
 ;;
+;; Configuration sturcture
 ;;
+;;
+
+;; Without defining the `config-root-dir`
+;; running the `init.el` from non-default directory will fails.
+;; Such in CI machine.
+(defvar config-root-dir (file-name-directory load-file-name))
+
+(defvar aza-modules-dir (expand-file-name  "modules" config-root-dir)
+    "This directory houses all of the additional modules.")
+(defvar straight-repos-dir (expand-file-name  "straight/repos" config-root-dir)
+    "This directory houses all package repositories.")
+
+;; Add config directories to Emacs's `load-path'
+(add-to-list 'load-path aza-modules-dir)
+
+;;
+;; Paths
 ;;
 (use-package exec-path-from-shell)
-(add-to-list 'load-path "~/.emacs.d/modules/")
 
 ;;
 ;; no littering
@@ -438,20 +455,23 @@
   (flyspell-incorrect
    ((t (:inherit nil :underline (:color "#842879" :style wave))))))
 
-(use-package abbrev
-  :straight (:type built-in)
-  :defer 1
-  :delight ""
-  :config
-  (setq abbrev-file-name
-        (expand-file-name "straight/repos/aza-abbrevs/aza-abbrev.el" user-emacs-directory))
-  (setq save-abbrevs t)
-  (setq-default abbrev-mode t)
-  (quietly-read-abbrev-file)
-  ;; bug: emacs28 doesn't save abbrevs count before quit
-  (add-hook 'kill-emacs-hook
-            (lambda ()
-              (write-abbrev-file abbrev-file-name nil))))
+;; Disable abbrev it the dictionary does not exists
+(setq abbrev-file-name
+      (expand-file-name "/aza-abbrevs/aza-abbrev.el" straight-repos-dir))
+
+(when (file-exists-p abbrev-file-name)
+  (use-package abbrev
+    :straight (:type built-in)
+    :defer 1
+    :delight ""
+    :config
+    (setq save-abbrevs t)
+    (setq-default abbrev-mode t)
+    (quietly-read-abbrev-file)
+    ;; bug: emacs28 doesn't save abbrevs count before quit
+    (add-hook 'kill-emacs-hook
+              (lambda ()
+                (write-abbrev-file abbrev-file-name nil)))))
 
 
 ;;
@@ -722,7 +742,7 @@ This command does not push text to `kill-ring'."
 ;; modules
 ;;
 
-(when (file-exists-p  "~/.emacs.d/modules/personal.el")
+(when (file-exists-p (expand-file-name  "personal.el" aza-modules-dir))
   (require 'personal))
 
 (require 'programming)

@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  test:
+    name: ${{ matrix.job.os }} (${{ matrix.job.emacs_version }})
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        # these matrix need to be inside intermediate variable such `job`
+        job:
+          - { os: ubuntu-20.04, emacs_version: 27.2        }
+          - { os: ubuntu-20.04, emacs_version: snapshot    }
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+        path: .emacs.d
+
+    - uses: purcell/setup-emacs@master
+      with:
+        version: ${{ matrix.job.emacs_version }}
+
+    - name: Test the config
+      run: |
+        emacs --no-init-file --load .emacs.d/init.el --batch

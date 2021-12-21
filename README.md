@@ -9,6 +9,10 @@ My personal Emacs 📜 Configuration.
     <img src="https://img.shields.io/badge/GNU%20Emacs-29.0.50-blue" alt="GNU Emacs version" />
 </a>
 
+<a href="https://github.com/azzamsa/emacs.d/workflows/ci.yml">
+    <img src="https://github.com/azzamsa/emacs.d/workflows/ci/badge.svg" alt="Build status" />
+</a>
+
 </div>
 
 ---

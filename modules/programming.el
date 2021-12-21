@@ -38,7 +38,7 @@
   ;; ~/.emacs.d/etc/yasnippet/snippets
   (setq private-yas-dir (no-littering-expand-etc-file-name "yasnippet/snippets"))
   ;; ~/.emacs.d/straight/repos/yasnippet-snippets/snippets
-  (setq public-yas-dir (expand-file-name "straight/repos/yasnippet-snippets/snippets" user-emacs-directory))
+  (setq public-yas-dir (expand-file-name "/yasnippet-snippets/snippets" straight-repos-dir))
 
   (push private-yas-dir yas-snippet-dirs)
   (push public-yas-dir yas-snippet-dirs)
