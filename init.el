@@ -238,7 +238,9 @@
   (doom-themes-treemacs-config)
 
   ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+  :custom-face
+  (doom-themes-visual-bell ((t (:background "#bf616a")))))
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
