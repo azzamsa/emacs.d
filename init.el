@@ -309,6 +309,11 @@
 (global-set-key (kbd "s-e") 'scroll-up-command)
 (global-set-key (kbd "s-u") 'scroll-down-command)
 
+(global-set-key (kbd "s-U") 'beginning-of-buffer)
+(global-set-key (kbd "s-E") 'end-of-buffer)
+
+(global-set-key (kbd "M-g g") 'avy-goto-line)
+
 (defun jump-to-current-directory ()
   (interactive)
   (find-file "."))
@@ -668,7 +673,6 @@ This command does not push text to `kill-ring'."
 (use-package avy
   :bind ("s-." . avy-goto-char-timer)
   :config
-  (global-set-key (kbd "M-g g") 'avy-goto-line)
   (setq avy-background t)
   (setq avy-style 'at-full))
 
