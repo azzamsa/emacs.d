@@ -211,7 +211,13 @@
 ;;
 
 ;; set font and size
-(setq default-frame-alist '((font . "Fira Code 15")))
+(cond
+ ((find-font (font-spec :name "Victor Mono"))
+  ;; regular font is too thin for me
+  (set-frame-font "Victor Mono SemiBold-16"))
+ ((find-font (font-spec :name "Fira Code"))
+  (set-frame-font "Fira Code-16")))
+
 ;; cursor type
 (blink-cursor-mode -1)
 (setq-default cursor-type 'bar)
