@@ -193,6 +193,8 @@
 ;; no littering
 ;;
 
+;; Using third-party package `no-littering' has a similar
+;; performance compared to load those environments manually.
 (use-package no-littering
   ;; Can't use defer here
   ;; Packages will not be loaded
