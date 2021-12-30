@@ -341,6 +341,23 @@
               ("]" . terminal-here)
               ("'" . dired-omit-mode))
   :config
+  ;; always delete and copy recursively
+  (setq dired-recursive-deletes 'always)
+  (setq dired-recursive-copies 'always)
+
+  ;; revert dired buffer if underlying content changes
+  (setq dired-auto-revert-buffer t)
+
+  ;; move deleted files to trash
+  (setq delete-by-moving-to-trash t)
+
+  ;; follow original dir in sysmlink
+  (setq find-file-visit-truename t)
+
+  ;; if there is a dired buffer displayed in the next window, use its
+  ;; current subdir, instead of the current subdir of this dired buffer
+  (setq dired-dwim-target t)
+
   ;; sort by time
   (setq dired-listing-switches "-AltGhF --group-directories-first")
 
