@@ -715,7 +715,8 @@ This command does not push text to `kill-ring'."
 (use-package flyspell-correct
   :after flyspell
   :bind (:map flyspell-mode-map
-              ("s-n ;" . flyspell-correct-previous)))
+              ;; this is the default key of flyspell
+              ("C-;" . flyspell-correct-previous)))
 
 (use-package projectile
   :demand t
