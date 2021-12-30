@@ -574,7 +574,12 @@ This command does not push text to `kill-ring'."
   :config
   ;; live preview *loads* a file, thus loads all it's mode
   ;; and hog the machine
-  (setq consult-preview-key nil)
+  ;;(setq consult-preview-key nil)
+  (consult-customize
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
+   :preview-key (kbd "M-."))
+
   (setq consult-buffer-filter '("^ " "\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf"
                                 "\\*Messages" "\\*Warning" "*magit-" "magit" "*vterm" "vterm" "^:" "*Occur"
                                 "*straight-" "*elfeed-log" "*trace of SMTP session"
