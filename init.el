@@ -166,6 +166,9 @@
 ;; I never use overwrite-mode
 (put 'overwrite-mode 'disabled t)
 
+;; Show non-existent lines with a special glyph in the left fringe
+(setq-default indicate-empty-lines t)
+
 ;;
 ;; Configuration structure
 ;;
