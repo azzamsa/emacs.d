@@ -108,7 +108,7 @@
 ;; y/n for  answering yes/no questions
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; No tabs
+;; Use spaces for indentation
 (setq-default indent-tabs-mode nil)
 
 ;; Tab.space equivalence
@@ -167,7 +167,7 @@
 (put 'overwrite-mode 'disabled t)
 
 ;;
-;; Configuration sturcture
+;; Configuration structure
 ;;
 ;;
 
