@@ -116,7 +116,19 @@
 
   ;; Automatically use pyvenv-workon via dir-locals
   ;; Use `M-x add-dir-local-variable' -> python-mode -> pyenv-workon -> venv name
-  (pyvenv-tracking-mode 1))
+  (pyvenv-tracking-mode 1)
+
+  ;; Update venv name after the venv changes.
+  ;; It doesn't handled by default
+  (defun my/pyvenv-post-activation ()
+    "Update venv name after activation. "
+    (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python3")))
+  (defun my/pyvenv-post-deactivation ()
+    "Update venv name after deactivation."
+    (setq python-shell-interpreter "python3"))
+
+  (add-hook 'pyvenv-post-activate-hooks #'my/pyvenv-post-activation)
+  (add-hook 'pyvenv-post-deactivate-hooks #'my/pyvenv-post-deactivation))
 
 (use-package highlight-indent-guides
   :delight
