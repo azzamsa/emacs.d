@@ -366,6 +366,16 @@
   ;; Putting it inside `dired-ranger' config does not work.
   (define-key dired-mode-map [remap dired-do-relsymlink] 'dired-ranger-paste)
 
+  ;; Default app for specific file
+  (setq dired-guess-shell-alist-user
+      '(("\\.pdf\\'" "evince" "okular")
+        ("\\.\\(?:djvu\\|eps\\)\\'" "evince")
+        ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\)\\'" "nomacs")
+        ("\\.\\(?:xcf\\)\\'" "gimp")
+        ("\\.\\(?:mp4\\|mp3\\|ogv\\|webm\\)\\(?:\\.part\\)?\\'" "mpv --force-window --loop")
+        ("\\.html?\\'" "firefox")
+        ("\\.\\(?:pptx?\\|odt\\|fodt\\|xlsx?\\|docx?\\)\\'" "libreoffice")))
+
   (add-hook 'dired-mode-hook (lambda ()
                                (dired-omit-mode 1)
                                (dired-hide-details-mode +1))))
