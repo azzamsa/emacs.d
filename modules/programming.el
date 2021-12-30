@@ -101,11 +101,18 @@
                                 (eglot-ensure))))
 
 (use-package pyvenv
+  ;; Using `(setq pyvenv-workon "foovenv")' as default in configuration
+  ;; resulting in `foovenv' being used in non-visiting buffer such magit
+  ;; before Emacs reading `pyvevn-workon' set in the `.dir-locals'.
+  ;;
+  ;; This creates a bug, where you can't change the venv anymore.
+  ;; https://github.com/jorgenschaefer/pyvenv/pull/82/files
+  ;; This behavior introduced by PR#28. It prevent re-activating new venv
+  ;; if any venv already activated.
   :after python
   :config
   (setq pyvenv-mode-line-indicator
         '(pyvenv-virtual-env-name ("(🐍" pyvenv-virtual-env-name ") ")))
-  (setq pyvenv-workon "global3")
   (pyvenv-tracking-mode 1))
 
 (use-package highlight-indent-guides
