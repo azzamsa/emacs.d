@@ -77,8 +77,12 @@
 ;; Text mode is default major mode
 (setq default-major-mode 'text-mode)
 
-;; Moderate font lock
-(setq font-lock-maximum-decoration nil)
+;; Enable all font-lock decoration.
+;; This is disabled by default due performance reason on old machines.
+;; Thus resulting in some keywords not highlighted in programming modes.
+;;
+;; Available options are `1', `2' or `t'. `t' is maximum value.
+(setq font-lock-maximum-decoration t)
 
 ;; No limit on font lock
 (setq font-lock-maximum-size nil)
