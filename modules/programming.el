@@ -113,6 +113,9 @@
   :config
   (setq pyvenv-mode-line-indicator
         '(pyvenv-virtual-env-name ("(🐍" pyvenv-virtual-env-name ") ")))
+
+  ;; Automatically use pyvenv-workon via dir-locals
+  ;; Use `M-x add-dir-local-variable' -> python-mode -> pyenv-workon -> venv name
   (pyvenv-tracking-mode 1))
 
 (use-package highlight-indent-guides
