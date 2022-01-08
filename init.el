@@ -343,7 +343,8 @@
               ("/" . ora-dired-up-directory)
               ("[" . file-manager-here)
               ("]" . terminal-here)
-              ("'" . dired-omit-mode))
+              ("'" . dired-omit-mode)
+              ("s" . xah-dired-sort))
   :config
   ;; always delete and copy recursively
   (setq dired-recursive-deletes 'always)
@@ -425,6 +426,22 @@
   ;; Need to use `expand-file-name` to expand `~` into a full path
   ;; Otherwise, wezeterm-here fallback to `$HOME`
   (start-process "" nil "wezterm-here"  (expand-file-name default-directory)))
+
+(defun xah-dired-sort ()
+  "Sort dired dir listing in different ways.
+Prompt for a choice.
+URL `http://ergoemacs.org/emacs/dired_sort.html'
+Modified for my needs."
+  (interactive)
+  (let (sort-by arg)
+    (setq sort-by (completing-read "Sort by:" '( "date" "size" "name" "dir")))
+    (cond
+     ((equal sort-by "name") (setq arg "-Al"))
+     ((equal sort-by "date") (setq arg "-Al -t"))
+     ((equal sort-by "size") (setq arg "-Al -S"))
+     ((equal sort-by "dir") (setq arg "-Al --group-directories-first"))
+     (t (error "logic error 09535" )))
+    (dired-sort-other arg)))
 
 (use-package wdired
   :after dired
