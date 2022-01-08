@@ -502,8 +502,23 @@ Modified for my needs."
 (use-package org
   :straight (:type built-in)
   :config
+  (defun goto-last-heading ()
+    "Useful when adding new heading"
+    (interactive)
+    (org-end-of-subtree))
+
   ;; indent file at startup
-  (setq org-startup-indented t))
+  (setq org-startup-indented t)
+
+  ;; add time information when a task moves to a DONE state
+  (setq org-log-done 'time)
+
+  ;; Fancy TODO states
+  ;; https://thraxys.wordpress.com/2016/01/14/pimp-up-your-org-agenda/
+  (setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✓ DONE(d!)")
+                            (sequence "⚑ WAITING(w@/!)" "|")
+                            (sequence "◐ DOING(s!)" "|")
+                            (sequence "|" "✘ CANCELED(c@)"))))
 
 (use-package flyspell
   :defer t
@@ -817,4 +832,5 @@ This command does not push text to `kill-ring'."
   (require 'personal))
 
 (require 'programming)
+(require 'writing)
 
