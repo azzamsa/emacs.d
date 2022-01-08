@@ -555,6 +555,11 @@ Modified for my needs."
                 (write-abbrev-file abbrev-file-name nil)))))
 
 
+(use-package simple
+  ;; `visual-line-mode' defined in lisp/simple.el
+  :straight (:type built-in)
+  :hook ((org-mode gfm-mode) . visual-line-mode))
+
 ;;
 ;; My Packages
 ;;
