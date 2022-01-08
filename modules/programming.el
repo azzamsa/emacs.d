@@ -6,28 +6,11 @@
   ;; using `use-package emacs-lisp-mode' produces
   ;; so many oddities
   :straight (:type built-in)
+  :hook (prog-mode-defaults . emacs-lisp-mode)
   :bind (:map emacs-lisp-mode-map
               ("C-c C-r" . eval-region)
               ("C-c C-d" . eval-defun)
-              ("C-c C-b" . eval-buffer))
-  :config
-  (add-hook 'emacs-lisp-mode-hook 'prog-mode-defaults))
-
-(use-package sh-script
-  ;; defined in lisp/progmodes/sh-script.el
-  ;; using `use-package sh-mode' won't work
-  :straight (:type built-in)
-  :ensure nil
-  :config
-  (add-hook 'sh-mode-hook 'eglot-ensure))
-
-(use-package js
-  ;; defined in lisp/progmodes/js.el
-  ;; using `use-package js-mode' won't work
-  :straight (:type built-in)
-  :ensure nil
-  :config
-  (add-hook 'js-mode-hook 'eglot-ensure))
+              ("C-c C-b" . eval-buffer)))
 
 (use-package yasnippet
   :defer t
@@ -69,6 +52,8 @@
   (editorconfig-mode 1))
 
 (use-package eglot
+  :hook ((sh-mode js-mode rust-mode
+                  svelte-mode typescript-mode python-mode) . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs '(rust-mode . ("rust-analyzer")))
 
@@ -87,18 +72,7 @@
 
 (use-package rust-mode
   :bind (:map rust-mode-map
-              ("C-c C-r" . rust-run))
-  :config
-  (add-hook 'rust-mode-hook (lambda ()
-                              (eglot-ensure))))
-
-(use-package python
-  :straight (:type built-in)
-  :config
-  (add-hook 'python-mode-hook (lambda ()
-                                (pyvenv-mode)
-                                (highlight-indent-guides-mode)
-                                (eglot-ensure))))
+              ("C-c C-r" . rust-run)))
 
 (use-package pyvenv
   ;; Using `(setq pyvenv-workon "foovenv")' as default in configuration
@@ -110,6 +84,7 @@
   ;; This behavior introduced by PR#28. It prevent re-activating new venv
   ;; if any venv already activated.
   :after python
+  :hook python-mode
   :config
   (setq pyvenv-mode-line-indicator
         '(pyvenv-virtual-env-name ("(🐍" pyvenv-virtual-env-name ") ")))
@@ -132,6 +107,7 @@
 
 (use-package highlight-indent-guides
   :delight
+  :hook python-mode
   :config
   (setq highlight-indent-guides-method 'character))
 
@@ -143,22 +119,15 @@
 
 (use-package web-mode)
 (use-package css-mode)
-
-(use-package svelte-mode
-  :mode "\\.svelte\\'"
-  :config
-  (add-hook 'svelte-mode-hook 'eglot-ensure))
-
-(use-package typescript-mode
-  :config
-  (add-hook 'typescript-mode-hook 'eglot-ensure))
+(use-package svelte-mode)
+(use-package typescript-mode)
 
 (use-package rainbow-mode)
 (use-package lua-mode)
 (use-package fish-mode)
+
 (use-package yaml-mode
-  :config
-  (add-hook 'yaml-mode-hook 'prog-mode-defaults))
+  :hook (prog-mode-defaults . yaml-mode))
 
 (defun prog-mode-defaults ()
   (subword-mode)

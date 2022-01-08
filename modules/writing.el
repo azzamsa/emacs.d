@@ -1,9 +1,6 @@
 (use-package org-superstar
-  :after org
-  :config
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (org-superstar-mode +1))))
+  :hook (org-mode . org-superstar-mode)
+  :after org)
 
 (use-package org-cliplink
   :after org
@@ -14,7 +11,7 @@
   (setq org-cliplink-transport-implementation 'curl))
 
 (use-package svg-tag-mode
-  :after org
+  :hook org-mode
   :config
 
   (defconst date-re "[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}")
@@ -83,10 +80,6 @@
               (svg-tag-make tag :beg 1 :inverse nil :crop-right t :margin 0 :face 'org-date))))
           (,(format "\\[%s *\\(%s\\]\\)" date-re time-re) .
            ((lambda (tag)
-              (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0 :face 'org-date))))))
-
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (svg-tag-mode +1))))
+              (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0 :face 'org-date)))))))
 
 (provide 'writing)

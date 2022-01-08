@@ -451,6 +451,7 @@ Modified for my needs."
 (use-package recentf
   :defer 1
   :straight (:type built-in)
+  :hook (kill-emacs . recentf-cleanup)
   :config
   (setq recentf-max-saved-items 200
         recentf-max-menu-items 15
@@ -466,20 +467,17 @@ Modified for my needs."
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory)
 
-  (add-hook 'kill-emacs-hook
-            (lambda ()
-              (recentf-cleanup)))
-
   (recentf-mode +1))
 
 (use-package saveplace
   ;; saveplace remembers your location in a file when saving files
   :defer 0.5
   :config
-  (save-place-mode 1)
   (setq save-place-limit 100)
   ;; activate it for all buffers
-  (setq-default save-place t))
+  (setq-default save-place t)
+
+  (save-place-mode 1))
 
 (use-package winner
   :defer 1
@@ -491,9 +489,8 @@ Modified for my needs."
 (use-package whitespace
   :straight (:type built-in)
   :delight ""
-  :init
-  (add-hook 'prog-mode-hook #'whitespace-mode)
-  (add-hook 'before-save-hook #'whitespace-cleanup)
+  :hook ((prog-mode . whitespace-mode)
+         (before-save . whitespace-cleanup))
   :config
   ;; limit line length
   (setq whitespace-line-column 80)
@@ -681,10 +678,10 @@ This command does not push text to `kill-ring'."
 
 (use-package diff-hl
   :defer 1
+  :hook ((dired-mode . diff-hl-dir-mode)
+         (magit-post-refresh . diff-hl-magit-post-refresh))
   :config
-  (global-diff-hl-mode +1)
-  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+  (global-diff-hl-mode +1))
 
 (use-package git-timemachine :defer t)
 
