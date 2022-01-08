@@ -147,7 +147,7 @@
 ;; Revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
 
-; Don't prompt for running process when quitting Emacs
+;; Don't prompt for running process when quitting Emacs
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (cl-letf (((symbol-function #'process-list) (lambda ())))
@@ -184,9 +184,9 @@
 (defvar config-root-dir (file-name-directory load-file-name))
 
 (defvar aza-modules-dir (expand-file-name  "modules" config-root-dir)
-    "This directory houses all of the additional modules.")
+  "This directory houses all of the additional modules.")
 (defvar straight-repos-dir (expand-file-name  "straight/repos" config-root-dir)
-    "This directory houses all package repositories.")
+  "This directory houses all package repositories.")
 
 ;; Add config directories to Emacs's `load-path'
 (add-to-list 'load-path aza-modules-dir)
@@ -373,13 +373,13 @@
 
   ;; Default app for specific file
   (setq dired-guess-shell-alist-user
-      '(("\\.pdf\\'" "evince" "okular")
-        ("\\.\\(?:djvu\\|eps\\)\\'" "evince")
-        ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\)\\'" "nomacs")
-        ("\\.\\(?:xcf\\)\\'" "gimp")
-        ("\\.\\(?:mp4\\|mp3\\|ogv\\|webm\\)\\(?:\\.part\\)?\\'" "mpv --force-window --loop")
-        ("\\.html?\\'" "firefox")
-        ("\\.\\(?:pptx?\\|odt\\|fodt\\|xlsx?\\|docx?\\)\\'" "libreoffice")))
+        '(("\\.pdf\\'" "evince" "okular")
+          ("\\.\\(?:djvu\\|eps\\)\\'" "evince")
+          ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\)\\'" "nomacs")
+          ("\\.\\(?:xcf\\)\\'" "gimp")
+          ("\\.\\(?:mp4\\|mp3\\|ogv\\|webm\\)\\(?:\\.part\\)?\\'" "mpv --force-window --loop")
+          ("\\.html?\\'" "firefox")
+          ("\\.\\(?:pptx?\\|odt\\|fodt\\|xlsx?\\|docx?\\)\\'" "libreoffice")))
 
   (add-hook 'dired-mode-hook (lambda ()
                                (dired-omit-mode 1)
