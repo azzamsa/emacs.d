@@ -107,7 +107,6 @@
 
 (use-package highlight-indent-guides
   :delight
-  :hook python-mode
   :config
   (setq highlight-indent-guides-method 'character))
 
@@ -115,7 +114,11 @@
   :mode ((("\\.md\\'" . gfm-mode)
           ("\\.markdown\\'" . markdown-mode)))
   :config
-  (setq markdown-asymmetric-header t))
+  (defun my-gfm-mode-hook ()
+    (visual-line-mode 1))
+
+  (setq markdown-asymmetric-header t)
+  (add-hook 'gfm-mode-hook 'my-gfm-mode-hook))
 
 (use-package web-mode)
 (use-package css-mode)
@@ -127,7 +130,8 @@
 (use-package fish-mode)
 
 (use-package yaml-mode
-  :hook (prog-mode-defaults . yaml-mode))
+  :config
+  (add-hook 'yaml-mode-hook 'prog-mode-defaults))
 
 (defun prog-mode-defaults ()
   (subword-mode)
