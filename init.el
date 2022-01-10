@@ -563,7 +563,8 @@ Modified for my needs."
 
 (use-package scripts.el
   :straight (scripts.el :type git :host github :repo "azzamsa/scripts.el" :branch "mine")
-  :bind (("s-n K" . aza-kill-other-buffers))
+  :bind (("s-n K" . aza-kill-other-buffers)
+         ("s-n t" . aza-today))
   :init
   (use-package ts
     :straight (ts :type git :flavor melpa :host github :repo "alphapapa/ts.el"))
