@@ -833,6 +833,11 @@ This command does not push text to `kill-ring'."
   (setq dimmer-fraction 0.50)
   (dimmer-mode t))
 
+(use-package symbol-overlay
+  :defer 1
+  :delight ""
+  :bind ("s-n '" . symbol-overlay-put))
+
 ;;
 ;; modules
 ;;
