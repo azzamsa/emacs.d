@@ -74,6 +74,11 @@
   :bind (:map rust-mode-map
               ("C-c C-r" . rust-run)))
 
+(use-package python
+  :straight (:type built-in)
+  :config
+  (add-hook 'python-mode-hook #'pyvenv-mode))
+
 (use-package pyvenv
   ;; Using `(setq pyvenv-workon "foovenv")' as default in configuration
   ;; resulting in `foovenv' being used in non-visiting buffer such magit
@@ -83,8 +88,10 @@
   ;; https://github.com/jorgenschaefer/pyvenv/pull/82/files
   ;; This behavior introduced by PR#28. It prevent re-activating new venv
   ;; if any venv already activated.
-  :after python
-  :hook python-mode
+
+  ;; `:hook: python-mode' won't work. It says pyvenv undefined.
+  ;; Maybe because `python-mode' has `(provide 'python) instead of `(provide 'python-mode)'
+  ;; Need to use plain hook in the Python configuration above
   :config
   (setq pyvenv-mode-line-indicator
         '(pyvenv-virtual-env-name ("(🐍" pyvenv-virtual-env-name ") ")))
