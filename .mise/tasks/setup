@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#MISE description="Setup"
+
+# lsp
+cargo binstall emacs-lsp-booster
+
+npm install -g --prefix="$HOME/.local/bin/node/" yaml-language-server
+
+# emacs, jinx
+sudo dnf install markdown enchant2 aspell aspell-en aspell-id hunspell hunspell-id
+
