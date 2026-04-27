@@ -2,7 +2,6 @@
 
 ;; A template system for Emacs
 (use-package yasnippet
-  :disabled
   :ensure t
   :defer t  ; don't load until needed
   :hook ((prog-mode text-mode) . yas-minor-mode)  ; instead of global
@@ -12,13 +11,13 @@
 
 ;; A collection of yasnippet snippets for many languages
 (use-package yasnippet-snippets
-  :disabled
   :ensure t
   :after yasnippet)
 
 ;; The Doom Emacs snippets library
-;; (use-package doom-snippets
-;;   :ensure (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*"))
-;;   :after yasnippet)
+(use-package doom-snippets
+  :disabled
+  :after yasnippet
+  :ensure (doom-snippets :type git :host github :repo "doomemacs/snippets" :files ("*.el" "*")))
 
 (provide '+snippets)

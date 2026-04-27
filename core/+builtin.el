@@ -258,7 +258,6 @@
         which-key-min-display-lines 6
         which-key-side-window-slot -10)
   :config
-  (setq which-key-idle-delay 0.3)
   (which-key-mode)
   (which-key-setup-minibuffer))
 
@@ -445,6 +444,13 @@ Modified for my needs."
   (setq whitespace-style '(face trailing lines-tail space-before-tab)))
 
 (use-package eglot
+  :hook ((rust-ts-mode
+          go-ts-mode
+          python-ts-mode
+          typescript-ts-mode
+          js-ts-mode
+          yaml-ts-mode
+          lua-tsmode) . eglot-ensure)
   :config
   (setq eglot-autoshutdown t ; shutdown after closing the last managed buffer
         eglot-sync-connect 0 ; async, do not block

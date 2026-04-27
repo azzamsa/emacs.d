@@ -71,7 +71,7 @@
 ;; Fast, configurable indentation guide-bars for Emacs
 (use-package indent-bars
   :ensure t
-  :hook ((prog-mode) . indent-bars-mode)
+  :hook ((prog-mode text-mode conf-mode) . indent-bars-mode)
   :config
   (setq indent-bars-prefer-character
         (or

@@ -11,8 +11,8 @@
   (setq rustic-lsp-client 'eglot))
 
 (use-package rust-mode
-  :ensure t
   :disabled
+  :ensure t
   :init
   (setq rust-mode-treesitter-derive t)
   :config
