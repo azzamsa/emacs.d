@@ -112,6 +112,21 @@
   :init
   (keymap-set minibuffer-local-map "C-r"   'consult-history)
   (keymap-set minibuffer-local-map "C-S-v" 'consult-yank-pop)
+  (+map!
+    [remap bookmark-jump]                 '(consult-bookmark        :wk "Jump to bookmark")
+    [remap evil-show-marks]               '(consult-mark            :wk "Show marks")
+    [remap evil-show-registers]           '(consult-register        :wk "Show registers")
+    [remap goto-line]                     '(consult-line            :wk "Go to line")
+    [remap imenu]                         '(consult-imenu           :wk "Imenu")
+    [remap Info-search]                   '(consult-info            :wk "Search in Info")
+    [remap locate]                        '(consult-locate          :wk "Locate")
+    [remap load-theme]                    '(consult-theme           :wk "Load theme")
+    [remap man]                           '(consult-man             :wk "Man")
+    [remap recentf-open-files]            '(consult-recent-file     :wk "Open recent file")
+    [remap switch-to-buffer]              '(consult-buffer          :wk "Switch to buffer")
+    [remap switch-to-buffer-other-window] '(consult-buffer-other-window :wk "Switch to buffer (other window)")
+    [remap switch-to-buffer-other-frame]  '(consult-buffer-other-frame  :wk "Switch to buffer (other frame)")
+    [remap yank-pop]                      '(consult-yank-pop        :wk "Yank pop"))
   :config
   (setq-default completion-in-region-function #'consult-completion-in-region)
   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)

@@ -1,4 +1,4 @@
-;;
+;;  -*- lexical-binding: t; -*-
 ;; 🍿 A collection of small QoL scripts
 
 ;;;###autoload
