@@ -23,8 +23,4 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-;; Magit wont work with old built-in? transient
-(use-package transient
-  :ensure t)
-
 (provide '+base)
