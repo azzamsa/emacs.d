@@ -61,7 +61,7 @@
    ;; Kill the shell buffer after exit
    shell-kill-buffer-on-exit t
    ;; Emacs doesn't play well with fish
-   shell-file-name "/bin/bash"
+   shell-file-name (executable-find "fish")
    ;; Revert non-file buffers like dired
    global-auto-revert-non-file-buffers t
    ;; Don't prompt for confirmation when we create a new file or buffer
