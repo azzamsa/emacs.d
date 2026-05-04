@@ -4,56 +4,50 @@ actionlint = "latest"
 zizmor = "latest"
 
 [tasks.setup]
-confirm = 'Are you sure?'
+hide = true
+confirm = "⚠️ This command will alter your system. Continue?"
 description = "Setup the project"
 depends = ["hooks"]
 
-[tasks.hooks]
+[tasks.audit]
+# Extras, deep, thorough checks. Should be run locally.
 hide = true
-description = "Setup Git hooks"
-run = "mise hooks"
-
-[tasks.qc]
-description = "Fix before check"
-depends = ["fix", "qq"]
-
-[tasks.qqq]
 description = "Exhaustive quality check"
-depends = ["qa", "meta"]
-
-[tasks.qq]
-description = "Quality check"
-depends = ["qa"]
-
-[tasks.qa]
-description = "Quick quality check"
-depends = ["fmt-check", "lint"]
+depends = ["check", "audit:*"]
 
 [tasks.fix]
+# Apply automatic fixes, then check.
+# Intended for use before commit or push.
 description = "Enforce rules"
-depends = ["fmt", "lint"]
+depends = ["update-emacs-version", "fmt", "lint"]
+
+[tasks.check]
+# Quality check. Primarily used in CI.
+hide = true
+description = "Quality check"
+depends = ["lint"]
 
 [tasks.fmt]
+hide = true
 description = "Format"
 
-[tasks.fmt-check]
-description = "Check formatting"
-
 [tasks.lint]
-description = "Lint"
-depends = ["fmt-check"]
-run = "typos"
-
-[tasks.update-emacs-version]
-description = "Generate Emacs build"
+# Minimal, fast feedback checks.
 hide = true
-run = "mise run update-emacs-version"
+description = "Lint"
+run = [
+    # typos
+    "typos",
+]
 
-[tasks.release]
-description = "Create a new release"
-run = "./release $1"
-
-[tasks.meta]
-description = "Dependency analysis"
+[tasks."audit:extras"]
+hide = true
 interactive = true
-run = ["pnpx actions-up", "actionlint", "zizmor .github/workflows/*"]
+description = "Dependency analysis"
+run = [
+    # Dependencies
+    "pnpx actions-up",
+    # GitHub CI
+    "actionlint",
+    "zizmor .github/workflows/*",
+]

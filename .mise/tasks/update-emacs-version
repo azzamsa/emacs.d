@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 #MISE description="Emacs Build Info"
+#MISE hide=true
 
 emacs -Q --batch --eval "(princ (emacs-version))" > emacs-version

@@ -1,5 +1,6 @@
 #!/usr/bin/env nu
 #MISE description="Create a release with the given tag"
+#MISE hide=true
 
 def main [tag: string] {
     # Validate tag

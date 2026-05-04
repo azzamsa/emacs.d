@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #MISE description="Setup"
+#MISE hide=true
 
 # lsp
 cargo binstall emacs-lsp-booster
