@@ -444,7 +444,7 @@ Modified for my needs."
   (setq whitespace-style '(face trailing lines-tail space-before-tab)))
 
 (use-package eglot
-  :hook ((rust-ts-mode
+  :hook ((rust-mode
           go-ts-mode
           python-ts-mode
           typescript-ts-mode
