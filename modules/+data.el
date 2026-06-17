@@ -69,4 +69,7 @@
   :mode "\\.hurl\\'"
   :ensure (:host github :repo "jaszhe/hurl-mode"))
 
+(use-package kdl-mode
+  :ensure t)
+
 (provide '+data)
