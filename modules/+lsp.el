@@ -3,10 +3,10 @@
 ;; Extra non-standard functionalities for Eglot
 (use-package eglot-x
 	:after eglot
-  :ensure (:host github :repo "nemethf/eglot-x")
+  :ensure t
   :commands (eglot-x-setup))
 
-;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
+;; Boost `eglot' using `emacs-lsp-booster'
 (use-package eglot-booster
   :ensure (:host github :repo "jdtsmith/eglot-booster")
 	:after eglot

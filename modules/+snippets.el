@@ -18,6 +18,6 @@
 (use-package doom-snippets
   :disabled
   :after yasnippet
-  :ensure (doom-snippets :type git :host github :repo "doomemacs/snippets" :files ("*.el" "*")))
+  :ensure t)
 
 (provide '+snippets)

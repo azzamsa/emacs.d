@@ -22,12 +22,11 @@
           (border-mode-line-inactive bg-mode-line-inactive)
           ;; Line numbers
           (bg-line-number-active bg-dim)))
-  ;; (load-theme 'modus-vivendi t))
-  (load-theme 'modus-vivendi-tinted t))
+  (load-theme 'modus-vivendi t))
 
 (use-package batppuccin
   :disabled
-  :ensure (:host github :repo "bbatsov/batppuccin-emacs")
+  :ensure t
   :config
   (setq batppuccin-override-colors-alist
         '(("bat-base" . "#000000")
@@ -36,7 +35,7 @@
 
 (use-package tokyo-night
   :disabled
-  :vc (:url "https://github.com/bbatsov/tokyo-night-emacs" :rev :newest)
+  :ensure t
   :config
   (setq  tokyo-night-override-colors-alist
          '(

@@ -66,8 +66,7 @@
   :defer t)
 
 (use-package hurl-mode
-  :mode "\\.hurl\\'"
-  :ensure (:host github :repo "jaszhe/hurl-mode"))
+  :mode "\\.hurl\\'")
 
 (use-package kdl-mode
   :ensure t)

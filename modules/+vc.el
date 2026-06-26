@@ -57,7 +57,8 @@
 
 ;; Jujutsu version control mode for Emacs inspired by Magit
 (use-package jj-mode
-  :ensure (:host github :repo "bolivier/jj-mode.el")
+  :disabled
+  :ensure t
   :config
   (setq jj-log-display-function #'switch-to-buffer))
 

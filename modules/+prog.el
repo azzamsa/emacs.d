@@ -67,7 +67,7 @@
 
 ;; Highlight TODO keywords
 (use-package hl-todo
-  :ensure (:host github :repo "tarsius/hl-todo")
+  :ensure t
   :hook (prog-mode . hl-todo-mode)
   :config
   (cl-callf append hl-todo-keyword-faces

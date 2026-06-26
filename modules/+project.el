@@ -35,7 +35,7 @@
 ;; One tab per project, with unique names - simple implementation of workspaces
 (use-package otpp
   :disabled
-  :ensure (:host github :repo "abougouffa/one-tab-per-project")
+  :ensure t
   :after project
   :config
   (setq otpp-project-aware-commands-regexp (rx (seq bol (or "project-" "+project-" "projection-")))))
