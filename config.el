@@ -11,8 +11,7 @@
 ;;
 ;; UI
 ;;
-
-(setq +font-family "Maple Mono NF"
+(setq +font-family "JetBrainsMono Nerd Font"
       +font-size 19
       +emoji-font "Twemoji")
 
