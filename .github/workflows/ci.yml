@@ -23,7 +23,7 @@ jobs:
 
       - name: Quality Check
         run: |
-          mise qq
+          mise check
 
   msv:
     name: Minimum supported version
