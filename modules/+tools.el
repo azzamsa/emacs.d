@@ -12,11 +12,22 @@
 (use-package dockerfile-ts-mode
   :mode "\\Dockerfile\\'")
 
+(use-package ghostel
+  :ensure t
+  :bind (:map ghostel-semi-char-mode-map
+              ("C-s"  . consult-line))
+  :config
+  (keymap-global-set "C-;" #'ghostel))
+
+(use-package evil-ghostel
+  :ensure t
+  :after (ghostel evil)
+  :hook (ghostel-mode . evil-ghostel-mode))
+
 ;; Emulate A Terminal, in a region, in a buffer and in Eshell
 (use-package eat
-  :ensure t
-  :config
-  (keymap-global-set "C-/" 'eat-toggle))
+  :disabled
+  :ensure t)
 
 (defun eat-toggle ()
   (interactive)

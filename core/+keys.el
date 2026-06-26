@@ -110,7 +110,7 @@
     "o"   '(nil :wk "open")
     "oo"  '(file-manager-here :wk "Open file manager here")
     "op"  '(neotree-project-dir :wk "Side panel")
-    "ot"  '(camp-eat :wk "Open terminal")
+    "ot"  '(ghostel :wk "Open terminal")
     "oT"  '(terminal-here :wk "Open terminal here")
     "ov"  '(vundo :wk "Visual Undo")
 
@@ -119,6 +119,8 @@
     "pb"  '(consult-project-buffer       :wk "Switch to project buffer")
     "pf"  '(project-find-file            :wk "Find file in project")
     "pk"  '(project-kill-buffers         :wk "Kill project buffers")
+    "pm"  '(ghostel-project              :wk "Switch project")
+    "pM"  '(ghostel-project-list-buffers :wk "Switch project")
     "pp"  '(project-switch-project       :wk "Switch project")
 
     ;;; <leader> q --- quit/session

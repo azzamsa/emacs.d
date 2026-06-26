@@ -60,6 +60,7 @@
   ;; out of the box. Including with `start-process'.
   ;; See https://github.com/azzamsa/dotfiles/blob/master/xtool/src/termhere.rs
   (call-process-shell-command (concat "termhere " (expand-file-name default-directory))))
+
 (defun save-all-buffers-silently ()
   (save-some-buffers t))
 
