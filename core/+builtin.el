@@ -72,6 +72,9 @@
    read-file-name-completion-ignore-case t
    read-buffer-completion-ignore-case t
    completion-ignore-case t
+   ;; Built-In Tree-Sitter
+   treesit-auto-install-grammar 'always
+   treesit-enabled-modes t
 
    ;; === Performances ===
    ;; Disable Bidirectional Text Scanning (arabic)
@@ -460,6 +463,7 @@ Modified for my needs."
 
 (use-package eldoc
   :config
-  (setq eldoc-idle-delay 3))
+  (setq eldoc-idle-delay 3
+        eldoc-help-at-pt t))
 
 (provide '+builtin)

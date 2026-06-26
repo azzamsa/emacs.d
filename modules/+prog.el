@@ -1,6 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package treesit-auto
+  ;; Emacs 31 support treesiter out of the box
+  :disabled
   :ensure t
   :after treesit
   :custom
