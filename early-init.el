@@ -1,17 +1,22 @@
-;;; early-init.el -*- lexical-binding: t; -*-
+;; -*- lexical-binding: t; -*-
 
+;; Let Elpaca manage the packages
 (setq package-enable-at-startup nil)
 
 (setq load-prefer-newer t)
-;;; Garbage collection
 ;; Increase the GC threshold for faster startup
-(setq gc-cons-threshold (* 64 1024 1024))
+(setq gc-cons-threshold 10000000)
 
-;; Add directories to `load-path'
-(add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
+;; Startup speed, annoyance suppression
+(setq byte-compile-warnings '(not obsolete))
+(setq warning-suppress-log-types '((comp) (bytecomp)))
+(setq native-comp-async-report-warnings-errors 'silent)
 
-(require '+vars)
-(require '+utils)
+;; Silence stupid startup message
+(setq inhibit-startup-echo-area-message (user-login-name))
+
+;; Default frame configuration: full screen, good-looking title bar on macOS
+(setq frame-resize-pixelwise t)
 
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

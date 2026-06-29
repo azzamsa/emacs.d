@@ -1,4 +1,5 @@
 [tools]
+dprint = "latest"
 typos = "latest"
 actionlint = "latest"
 zizmor = "latest"
@@ -30,14 +31,17 @@ depends = ["lint"]
 [tasks.fmt]
 hide = true
 description = "Format"
+run = "dprint fmt"
 
 [tasks.lint]
 # Minimal, fast feedback checks.
 hide = true
 description = "Lint"
 run = [
-    # typos
-    "typos",
+  # format
+  "dprint check",
+  # typos
+  "typos",
 ]
 
 [tasks."audit:extras"]
@@ -45,9 +49,9 @@ hide = true
 interactive = true
 description = "Dependency analysis"
 run = [
-    # Dependencies
-    "pnpx actions-up",
-    # GitHub CI
-    "actionlint",
-    "zizmor .github/workflows/*",
+  # Dependencies
+  "pnpx actions-up",
+  # GitHub CI
+  "actionlint",
+  "zizmor .github/workflows/*",
 ]

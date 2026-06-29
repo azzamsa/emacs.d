@@ -1,6 +1,6 @@
-elpaca/
 var/
-etc/themes/
-
-tree-sitter/
 eln-cache/
+elpa/
+elpaca/
+tree-sitter/
+custom.el*

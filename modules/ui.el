@@ -1,7 +1,28 @@
 ;; -*- lexical-binding: t; -*-
 
-;;
-;; Icons
+(use-package modus-themes
+  :ensure t
+  :config
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t)
+  (setq modus-themes-common-palette-overrides
+        '(
+          ;; magenta-intense is too harsh
+          ;; (cursor magenta-warmer)
+
+          (bg-main     "#000000")
+          (bg-dim      "#0d0e1c") ; bg-main
+          (bg-active   "#1d2235") ; bg-dim
+
+          (bg-main   bg-main)
+          ;; Modeline
+          (bg-mode-line-active bg-active)
+          (border-mode-line-active bg-mode-line-active)
+          (bg-mode-line-inactive bg-dim)
+          (border-mode-line-inactive bg-mode-line-inactive)
+          ;; Line numbers
+          (bg-line-number-active bg-dim)))
+  (load-theme 'modus-vivendi t))
 
 ;; Nerd Font icons for Emacs
 (use-package nerd-icons
@@ -36,43 +57,26 @@
                             ;; Typography
                             "ff" "fi" "fl" "ffi")))
 
-(use-package visual-fill-column
-  :ensure t
-  :custom
-  (visual-fill-column-width nil)
-  (visual-fill-column-center-text t))
-
-(use-package minimap
-  :ensure t
-  :defer t
-  :config
-  (setq minimap-window-location 'right
-        minimap-update-delay 0
-        minimap-width-fraction 0.09
-        minimap-minimum-width 5))
-
 (use-package dashboard
   :ensure t
   :demand t
   :init
   (defun daily-quote (_list-size)
     (insert (propertize "🦾 Practice, It's Practice, Practice." 'face 'bold)))
-  :custom
-  (dashboard-center-content t)
-  (dashboard-set-heading-iconQ t)
-  (dashboard-set-file-icons t)
-  (dashboard-icon-type 'nerd-icons)
-  (dashboard-banner-logo-title "Want to go camping?")
-  (dashboard-startup-banner (concat user-emacs-directory "docs/logo.png"))
-  (dashboard-image-banner-max-width 600)
-  (dashboard-projects-backend 'project-el)
-  (dashboard-items '((daily-quote)
-                     (recents . 5)
-                     (projects . 5)))
-  (dashboard-item-generators '((daily-quote . daily-quote)
-                               (recents . dashboard-insert-recents)
-                               (projects . dashboard-insert-projects)))
   :config
-  (dashboard-setup-startup-hook))
+  (setq dashboard-center-content t
+	dashboard-set-heading-icons t
+	dashboard-set-file-icons t
+	dashboard-icon-type 'nerd-icons
+	dashboard-banner-logo-title "Want to go camping?"
+	dashboard-startup-banner (concat user-emacs-directory "docs/logo.png")
+	dashboard-image-banner-max-width 200
+	dashboard-projects-backend 'project-el
+	dashboard-items '((daily-quote)
+			  (recents . 2)
+			  (projects . 2))
+	dashboard-item-generators '((daily-quote . daily-quote)
+				    (recents . dashboard-insert-recents)
+				    (projects . dashboard-insert-projects)))
 
-(provide '+ui)
+  (dashboard-setup-startup-hook))

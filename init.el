@@ -1,54 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
-(defvar camp-core-modules
-  '(bootstrap base builtin keys evil completion utils vars))
+(defvar roujack-modules
+  '(pkg utils core base code completion langs lsp ui vc files helix keys))
 
-(defvar camp-modules
-  '(snacks data editor prog lsp project spell tools ui theme vc files snippets checkers))
+(dolist (module (mapcar #'symbol-name roujack-modules))
+  (load (expand-file-name (format "modules/%s.el" module) user-emacs-directory)))
 
-(defvar camp-langs
-  '(go rust python web lua shell))
-
-(defun camp-reload (&optional without-core)
-  "Reload all configuration, including user's config.el."
-  (interactive)
-  ;; Core
-  (dolist (module (mapcar #'symbol-name camp-core-modules))
-    (+log "Loading core module \"%s\"" module)
-    (load (expand-file-name (format "core/+%s.el" module) user-emacs-directory) nil (not init-file-debug)))
-
-  ;; Modules
-  (dolist (module (mapcar #'symbol-name camp-modules))
-    (+log "Loading module \"%s\"" module)
-    (load (expand-file-name (format "modules/+%s.el" module) user-emacs-directory) nil (not init-file-debug)))
-
-  ;; Langs
-  (dolist (module (mapcar #'symbol-name camp-langs))
-    (+log "Loading langs \"%s\"" module)
-    (load (expand-file-name (format "langs/+%s.el" module) user-emacs-directory) nil (not init-file-debug)))
-
-  ;; Load user config when available
-  (let ((config (expand-file-name "config.el" user-emacs-directory)))
-    (when (file-exists-p config)
-      (+log "Loading user config file from \"%s\"" config)
-      (load config nil (not init-file-debug))))
-
-  ;; Load personal config when available
-  (let ((config (expand-file-name "personal.el" user-emacs-directory)))
-    (when (file-exists-p config)
-      (+log "Loading personal config file from \"%s\"" config)
-      (load config nil (not init-file-debug)))))
-
-;; Load for the first time
-(camp-reload)
-
-;; Load fonts early (they are read from the default `camp-default-fonts').
-(+set-fonts)
-
-(+log "Loaded init.el")
-
-;; Local Variables:
-;; no-byte-compile: t
-;; no-native-compile: t
-;; no-update-autoloads: t
-;; End:
+;; Restore default GC value
+(setq gc-cons-threshold 800000)

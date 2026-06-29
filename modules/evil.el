@@ -17,23 +17,6 @@
   (evil-respect-visual-line-mode nil)
   (evil-ex-interactive-search-highlight 'selected-window)
   :config
-  (+nvmap!
-    "C-u" '(evil-scroll-up :wk "Scroll up"))
-
-  (+map!
-    ;; buffer
-    "bN" '(evil-buffer-new :wk "New buffer")
-    ;; window
-    "ww" '(evil-window-next :wk "Next")
-    "wW" '(evil-window-prev :wk "Previous")
-    "ws" '(evil-window-split :wk "Split")
-    "wv" '(evil-window-vsplit :wk "Vertical split")
-    "wr" '(evil-window-rotate-downwards :wk "Rotate downwards")
-    "wR" '(evil-window-rotate-upwards :wk "Rotate upwards")
-    "w+" '(evil-window-increase-width :wk "Increase width")
-
-    "w-" '(evil-window-decrease-width :wk "Decrease width"))
-  :config
   (evil-mode 1))
 
 (use-package evil-collection
@@ -58,11 +41,7 @@
 
 (use-package evil-avy
   :ensure t
-  :after evil
-  :config
-  (+nvmap!
-    "gss" '(evil-avy-goto-char-2 :wk "Avy go to char")
-    "gs/" '(evil-avy-goto-char-timer :wk "Avy go to char")))
+  :after evil)
 
 (use-package evil-surround
   :ensure t
@@ -70,22 +49,12 @@
              evil-surround-edit
              evil-Surround-edit
              evil-surround-region)
-  :init
-  (+vmap!
-    "S" '(evil-surround-region :wk "Surround region"))
-  (+omap!
-    "s" '(evil-surround-edit :wk "Surround edit")
-    "S" '(evil-Surround-edit :wk "Surround edit"))
   :config
   (global-evil-surround-mode 1))
 
 (use-package evil-nerd-commenter
   :ensure t
-  :after evil
-  :init
-  (+nvmap!
-    "gc" '(evilnc-comment-operator :wk "Comment")
-    "gC" '(evilnc-copy-and-comment-operator :wk "Copy and comment")))
+  :after evil)
 
 (use-package evil-matchit
   :ensure t
@@ -103,16 +72,5 @@
 (use-package evil-multiedit
   :ensure t
   :after evil
-  :init
-  (+nvmap!
-    "R"      '(evil-multiedit-match-all              :wk "Match all occurrences")
-    "M-d"    '(evil-multiedit-match-symbol-and-next  :wk "Match symbol and go to next")
-    "M-D"    '(evil-multiedit-match-symbol-and-prev  :wk "Match symbol and go to previous")
-    "M-d"    '(evil-multiedit-match-and-next         :wk "Match and go to next")
-    "M-D"    '(evil-multiedit-match-and-prev         :wk "Match and go to previous")
-    "C-M-d"  '(evil-multiedit-restore                :wk "Restore previous match"))
   :config
   (evil-multiedit-default-keybinds))
-
-
-(provide '+evil)

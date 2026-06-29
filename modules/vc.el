@@ -1,5 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
+(use-package transient
+  :ensure t)
+
 ;; It's Magit! A Git Porcelain inside Emacs.
 (use-package magit
   :ensure t
@@ -7,21 +10,18 @@
   ;; Only enable this to debug your productivity calendar.
   ;; Relative time is hard to pin point.
   ;; (setq magit-log-margin '(t "%Y-%b-%d %I:%M %p " magit-log-margin-width t 18))
-
   (setq magit-save-repository-buffers nil
-        ;; Show in new window
-        magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
-
+	;; Show in new window
+	magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
   (setq magit-format-file-function #'magit-format-file-nerd-icons))
 
 ;; Edit Git commit messages - part of `magit'
 (use-package git-commit
   :after magit
   :commands (global-git-commit-mode)
-  :hook (git-commit-setup . +git-insert-commit-prefix)
-  :custom
-  (git-commit-summary-max-length 72) ; defaults to Github's max commit message length
-  (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
+  :config
+  (setq git-commit-summary-max-length 72 ; defaults to Github's max commit message length
+	git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :init
   (global-git-commit-mode 1))
 
@@ -54,12 +54,3 @@
 (use-package git-modes
   :ensure t
   :mode ("/\\.\\(docker\\|fd\\|rg\\|ag\\|hg\\)?ignore\\'" . gitignore-mode))
-
-;; Jujutsu version control mode for Emacs inspired by Magit
-(use-package jj-mode
-  :disabled
-  :ensure t
-  :config
-  (setq jj-log-display-function #'switch-to-buffer))
-
-(provide '+vc)
