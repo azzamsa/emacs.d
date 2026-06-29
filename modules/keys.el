@@ -45,9 +45,9 @@
 
          ;; File
          ([remap recentf-open-files]            . consult-recent-file)
-
-         ("C-c f d" . dired)
          ("C-c f f" . find-file)
+         ("C-c f d" . dirvish)
+         ("C-c f -" . dirvish)
          ("C-c f r" . consult-recent-file)
          ("C-c f D" . crux-delete-file-and-buffer)
          ("C-c f u" . crux-sudo-edit)
@@ -71,12 +71,12 @@
          ("C-c o v" . vundo)
 
          ;; Project
-         ("C-c p b" . consult-project-buffer)
          ("C-c p p" . project-switch-project)
+         ("C-c p b" . consult-project-buffer)
 
          ;; Search
-         ("C-c s b" . consult-line)
          ("C-c s s" . consult-ripgrep)
+         ("C-c s b" . consult-line)
          ("C-c s m" . consult-bookmark)
          ("C-c s I" . consult-imenu-multi)
          ("C-c s ." . vertico-repeat)
@@ -90,6 +90,7 @@
          ("C-c t w" . visual-line-mode)
 
          ;; VC
+         ("C-c v v" . magit-status)
          ("C-c v g" . magit-status)
          ("C-c v t" . git-timemachine-toggle)
          ("C-c v B" . magit-blame-addition)

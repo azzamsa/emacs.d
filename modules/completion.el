@@ -43,7 +43,7 @@
   :ensure nil
   :after vertico
   :bind (:map vertico-map
-    ("M-DEL" . vertico-directory-delete-word)))
+              ("M-DEL" . vertico-directory-delete-word)))
 
 ;; Marginalia: annotations for minibuffer
 (use-package marginalia
@@ -58,9 +58,9 @@
   (global-corfu-mode)
   :bind
   (:map corfu-map
-    ("SPC" . corfu-insert-separator)
-    ("C-n" . corfu-next)
-    ("C-p" . corfu-previous)))
+        ("SPC" . corfu-insert-separator)
+        ("C-n" . corfu-next)
+        ("C-p" . corfu-previous)))
 
 ;; Part of corfu
 (use-package corfu-popupinfo

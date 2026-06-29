@@ -16,10 +16,7 @@
   (super-save-mode +1))
 
 ;; Collection of Ridiculously Useful eXtensions for Emacs
-(use-package crux
-  :ensure t
-  :bind (("C-c f D" . crux-delete-file-and-buffer)
-	 ("C-c f u" . crux-sudo-edit)))
+(use-package crux :ensure t)
 
 ;; a better *help* buffer
 (use-package helpful
@@ -41,17 +38,16 @@
   :ensure t
   :config
   (setq vundo-compact-display t
-	vundo-window-max-height 6
-	vundo-glyph-alist
-	'((selected-node   . ?●)
-	  (node            . ?○)
-	  (vertical-stem   . ?│)
-	  (branch          . ?├)
-	  (last-branch     . ?╰)
-	  (horizontal-stem . ?─))))
+	      vundo-window-max-height 6
+	      vundo-glyph-alist
+	      '((selected-node   . ?●)
+	        (node            . ?○)
+	        (vertical-stem   . ?│)
+	        (branch          . ?├)
+	        (last-branch     . ?╰)
+	        (horizontal-stem . ?─))))
 
-(use-package undo-fu
-  :ensure t)
+(use-package undo-fu :ensure t)
 
 (use-package undo-fu-session
   :ensure t
@@ -61,8 +57,12 @@
   (global-undo-fu-session-mode 1))
 
 ;; Drag stuff around in Emacs
-(use-package drag-stuff
-  :ensure t)
+(use-package drag-stuff :disabled :ensure t)
+
+(use-package move-text
+  :ensure t
+  :config
+  (move-text-default-bindings))
 
 ;; Fast, configurable indentation guide-bars for Emacs
 (use-package indent-bars
@@ -70,25 +70,25 @@
   :hook ((prog-mode text-mode conf-mode) . indent-bars-mode)
   :config
   (setq indent-bars-prefer-character
-	(or
-	 ;; Bitmaps are far slower on MacOS, inexplicably, but this needs more
-	 ;; testing to see if it's specific to ns or emacs-mac builds, or is
-	 ;; just a general MacOS issue.
-	 (featurep :system 'macos)
-	 ;; A bitmap init bug in emacs-pgtk (before v30) could cause
-	 ;; crashes (see jdtsmith/indent-bars#3).
-	 (and (featurep 'pgtk)
+	      (or
+	       ;; Bitmaps are far slower on MacOS, inexplicably, but this needs more
+	       ;; testing to see if it's specific to ns or emacs-mac builds, or is
+	       ;; just a general MacOS issue.
+	       (featurep :system 'macos)
+	       ;; A bitmap init bug in emacs-pgtk (before v30) could cause
+	       ;; crashes (see jdtsmith/indent-bars#3).
+	       (and (featurep 'pgtk)
               (< emacs-major-version 30)))
 
-	;; Show indent guides starting from the first column.
-	indent-bars-starting-column 0
-	;; Make indent guides subtle; the default is too distractingly colorful.
-	indent-bars-width-frac 0.1  ; make bitmaps thinner
-	indent-bars-color-by-depth nil
-	indent-bars-color '(font-lock-comment-face :face-bg nil :blend 0.250)
-	;; Don't highlight current level indentation; it's distracting and is
-	;; unnecessary overhead for little benefit.
-	indent-bars-highlight-current-depth nil))
+	      ;; Show indent guides starting from the first column.
+	      indent-bars-starting-column 0
+	      ;; Make indent guides subtle; the default is too distractingly colorful.
+	      indent-bars-width-frac 0.1  ; make bitmaps thinner
+	      indent-bars-color-by-depth nil
+	      indent-bars-color '(font-lock-comment-face :face-bg nil :blend 0.250)
+	      ;; Don't highlight current level indentation; it's distracting and is
+	      ;; unnecessary overhead for little benefit.
+	      indent-bars-highlight-current-depth nil))
 
 ;; Clean only edited lines
 (use-package ws-butler
@@ -100,7 +100,7 @@
   :ensure t
   :config
   (setq avy-background t
-	avy-style 'at-full))
+	      avy-style 'at-full))
 
 ;; Eat: Emulate A Terminal
 (use-package eat
@@ -125,19 +125,16 @@
 (use-package jinx
   :ensure t
   :hook (emacs-startup . global-jinx-mode)
-  :bind ([remap ispell-word] . jinx-correct)
   :config
   (setq jinx-languages "en_US id_ID"
         jinx-camel-modes '(prog-mode)
         jinx-delay 0.01))
 
 ;; Olivetti: Set the window margins so your text is centered
-(use-package olivetti
-  :ensure t)
+(use-package olivetti :ensure t)
 
 ;; Distraction-free words correction with `flyspell' via `completing-read'
-(use-package flyspell-correct
-  :ensure t)
+(use-package flyspell-correct :ensure t)
 
 ;; Run code formatter on buffer contents without moving point
 (use-package apheleia

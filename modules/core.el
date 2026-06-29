@@ -28,208 +28,208 @@
   (horizontal-scroll-bar-mode -1)
 
   (setq
-    ;; Save existing clipboard text into the kill ring before replacing it.
-    save-interprogram-paste-before-kill t
-    apropos-do-all t
-    mouse-yank-at-point t
-    ;; End files with newline
-    require-final-newline t
-    ;; Flash!
-    visible-bell t
-    load-prefer-newer t
-    ;; Copy instead of renaming current file
-    backup-by-copying t
-    search-default-mode t
-    frame-inhibit-implied-resize t
-    read-file-name-completion-ignore-case t
-    read-buffer-completion-ignore-case t
-    completion-ignore-case t
-    ediff-window-setup-function 'ediff-setup-windows-plain
-    custom-file (expand-file-name "custom.el" user-emacs-directory)
-    backup-directory-alist `(("." . ,(concat no-littering-var-directory "backups/"))))
+   ;; Save existing clipboard text into the kill ring before replacing it.
+   save-interprogram-paste-before-kill t
+   apropos-do-all t
+   mouse-yank-at-point t
+   ;; End files with newline
+   require-final-newline t
+   ;; Flash!
+   visible-bell t
+   load-prefer-newer t
+   ;; Copy instead of renaming current file
+   backup-by-copying t
+   search-default-mode t
+   frame-inhibit-implied-resize t
+   read-file-name-completion-ignore-case t
+   read-buffer-completion-ignore-case t
+   completion-ignore-case t
+   ediff-window-setup-function 'ediff-setup-windows-plain
+   custom-file (expand-file-name "custom.el" user-emacs-directory)
+   backup-directory-alist `(("." . ,(concat no-littering-var-directory "backups/"))))
 
   ;;
   ;; Defaults
   ;;
   (setopt
-    ;; Inhibit startup message
-    inhibit-startup-message t
-    ;; Do not ring
-    ring-bell-function #'ignore
-    ;; Increase the large file threshold to 50 MiB
-    large-file-warning-threshold (* 50 1024 1024)
-    ;; No message in scratch buffer
-    initial-scratch-message nil
-    ;; Set initial buffer to fundamental-mode for faster load
-    initial-major-mode 'fundamental-mode
-    ;; Always prompt in minibuffer (no GUI)
-    use-dialog-box nil
-    ;; Use y or n instead of yes or no
-    use-short-answers t
-    ;; Confirm before quitting
-    confirm-kill-emacs #'y-or-n-p
-    ;; Filter duplicate entries in kill ring
-    kill-do-not-save-duplicates t
-    ;; Save files only in sub-directories of current project
-    save-some-buffers-default-predicate #'save-some-buffers-root
-    ;; Use single space between sentences
-    sentence-end-double-space nil
-    ;; Move stuff to trash
-    delete-by-moving-to-trash t
-    ;; Select help window for faster quit!
-    help-window-select t
-    ;; More info on completions
-    completions-detailed t
-    ;; Do not ask obvious questions, follow symlinks
-    vc-follow-symlinks t
-    ;; Display the true file name for symlinks
-    find-file-visit-truename t
-    ;; Use completion in the minibuffer instead of definitions buffer
-    xref-show-definitions-function #'xref-show-definitions-completing-read
-    ;; Enable recursive calls to minibuffer
-    enable-recursive-minibuffers t
-    ;; Kill the shell buffer after exit
-    shell-kill-buffer-on-exit t
-    ;; Emacs doesn't play well with fish
-    shell-file-name (executable-find "fish")
-    ;; Revert non-file buffers like dired
-    global-auto-revert-non-file-buffers t
+   ;; Inhibit startup message
+   inhibit-startup-message t
+   ;; Do not ring
+   ring-bell-function #'ignore
+   ;; Increase the large file threshold to 50 MiB
+   large-file-warning-threshold (* 50 1024 1024)
+   ;; No message in scratch buffer
+   initial-scratch-message nil
+   ;; Set initial buffer to fundamental-mode for faster load
+   initial-major-mode 'fundamental-mode
+   ;; Always prompt in minibuffer (no GUI)
+   use-dialog-box nil
+   ;; Use y or n instead of yes or no
+   use-short-answers t
+   ;; Confirm before quitting
+   confirm-kill-emacs #'y-or-n-p
+   ;; Filter duplicate entries in kill ring
+   kill-do-not-save-duplicates t
+   ;; Save files only in sub-directories of current project
+   save-some-buffers-default-predicate #'save-some-buffers-root
+   ;; Use single space between sentences
+   sentence-end-double-space nil
+   ;; Move stuff to trash
+   delete-by-moving-to-trash t
+   ;; Select help window for faster quit!
+   help-window-select t
+   ;; More info on completions
+   completions-detailed t
+   ;; Do not ask obvious questions, follow symlinks
+   vc-follow-symlinks t
+   ;; Display the true file name for symlinks
+   find-file-visit-truename t
+   ;; Use completion in the minibuffer instead of definitions buffer
+   xref-show-definitions-function #'xref-show-definitions-completing-read
+   ;; Enable recursive calls to minibuffer
+   enable-recursive-minibuffers t
+   ;; Kill the shell buffer after exit
+   shell-kill-buffer-on-exit t
+   ;; Emacs doesn't play well with fish
+   shell-file-name (executable-find "fish")
+   ;; Revert non-file buffers like dired
+   global-auto-revert-non-file-buffers t
 
-    ;; Automatically reread from disk if the underlying file changes
-    auto-revert-avoid-polling t
-    ;; Some systems don't do file notifications well; see
-    ;; https://todo.sr.ht/~ashton314/emacs-bedrock/11
-    auto-revert-interval 5
-    auto-revert-check-vc-info t
+   ;; Automatically reread from disk if the underlying file changes
+   auto-revert-avoid-polling t
+   ;; Some systems don't do file notifications well; see
+   ;; https://todo.sr.ht/~ashton314/emacs-bedrock/11
+   auto-revert-interval 5
+   auto-revert-check-vc-info t
 
-    ;; Don't prompt for confirmation when we create a new file or buffer
-    confirm-nonexistent-file-or-buffer nil
-    ;; More intuitive buffer naming style
-    uniquify-buffer-name-style 'forward
-    ;; Disable case-sensitivity for file and buffer matching
-    read-file-name-completion-ignore-case t
-    read-buffer-completion-ignore-case t
-    completion-ignore-case t
-    ;; Built-In Tree-Sitter
-    treesit-auto-install-grammar 'always
-    treesit-enabled-modes t
+   ;; Don't prompt for confirmation when we create a new file or buffer
+   confirm-nonexistent-file-or-buffer nil
+   ;; More intuitive buffer naming style
+   uniquify-buffer-name-style 'forward
+   ;; Disable case-sensitivity for file and buffer matching
+   read-file-name-completion-ignore-case t
+   read-buffer-completion-ignore-case t
+   completion-ignore-case t
+   ;; Built-In Tree-Sitter
+   treesit-auto-install-grammar 'always
+   treesit-enabled-modes t
 
-    ;; === Performances ===
-    ;; Disable Bidirectional Text Scanning (arabic)
-    bidi-display-reordering 'left-to-right
-    bidi-paragraph-direction 'left-to-right
-    bidi-inhibit-bpa t
-    ;; Skip Fontification During Input
-    redisplay-skip-fontification-on-input t
+   ;; === Performances ===
+   ;; Disable Bidirectional Text Scanning (arabic)
+   bidi-display-reordering 'left-to-right
+   bidi-paragraph-direction 'left-to-right
+   bidi-inhibit-bpa t
+   ;; Skip Fontification During Input
+   redisplay-skip-fontification-on-input t
 
-    ;; Don’t compact font caches during GC
-    inhibit-compacting-font-caches t
-    ;; Increase Process Output Buffer for LSP (default 4096)
-    read-process-output-max (* 4 1024 1024) ; 4MB
-    ;; Don’t Render Cursors in Non-Focused Windows
-    cursor-in-non-selected-windows nil
-    highlight-nonselected-windows nil
+   ;; Don’t compact font caches during GC
+   inhibit-compacting-font-caches t
+   ;; Increase Process Output Buffer for LSP (default 4096)
+   read-process-output-max (* 4 1024 1024) ; 4MB
+   ;; Don’t Render Cursors in Non-Focused Windows
+   cursor-in-non-selected-windows nil
+   highlight-nonselected-windows nil
 
-    ;; === Aesthetics and UI ===
-    ;; Do force frame size to be a multiple of char size
-    frame-resize-pixelwise t
-    ;; Stretch cursor to the glyph width
-    x-stretch-cursor t
-    ;; Resize window combinations proportionally
-    window-combination-resize t
-    ;; No ugly button for widgets
-    widget-image-enable nil
-    ;; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
-    prettify-symbols-unprettify-at-point t
-    ;; Make tooltips last a bit longer (default 10s)
-    tooltip-hide-delay 20
-    ;; Use small frames to display tooltips instead of the default OS tooltips
-    use-system-tooltips nil
-    ;; Set line width for the divider in `window-divider-mode' to 2px
-    window-divider-default-bottom-width 2
-    window-divider-default-right-width 2
+   ;; === Aesthetics and UI ===
+   ;; Do force frame size to be a multiple of char size
+   frame-resize-pixelwise t
+   ;; Stretch cursor to the glyph width
+   x-stretch-cursor t
+   ;; Resize window combinations proportionally
+   window-combination-resize t
+   ;; No ugly button for widgets
+   widget-image-enable nil
+   ;; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
+   prettify-symbols-unprettify-at-point t
+   ;; Make tooltips last a bit longer (default 10s)
+   tooltip-hide-delay 20
+   ;; Use small frames to display tooltips instead of the default OS tooltips
+   use-system-tooltips nil
+   ;; Set line width for the divider in `window-divider-mode' to 2px
+   window-divider-default-bottom-width 2
+   window-divider-default-right-width 2
 
-    ;; === Undo ===
-    ;; 10MB (default is 160kB)
-    undo-limit 10000000
-    ;; 50MB (default is 240kB)
-    undo-strong-limit 50000000
-    ;; 50MB (default is 24MB)
-    undo-outer-limit 50000000
+   ;; === Undo ===
+   ;; 10MB (default is 160kB)
+   undo-limit 10000000
+   ;; 50MB (default is 240kB)
+   undo-strong-limit 50000000
+   ;; 50MB (default is 24MB)
+   undo-outer-limit 50000000
 
-    ;; === Editing ===
-    ;; Hitting TAB behavior
-    tab-always-indent 'complete
-    ;; Enable Drag-and-Drop of regions
-    mouse-drag-and-drop-region t
-    ;; Enable Drag-and-Drop of regions from Emacs to external programs
-    mouse-drag-and-drop-region-cross-program t
+   ;; === Editing ===
+   ;; Hitting TAB behavior
+   tab-always-indent 'complete
+   ;; Enable Drag-and-Drop of regions
+   mouse-drag-and-drop-region t
+   ;; Enable Drag-and-Drop of regions from Emacs to external programs
+   mouse-drag-and-drop-region-cross-program t
 
-    ;; === Backups ===
-    ;; Disable lockfiles
-    create-lockfiles nil
-    ;; Enable making backup files
-    make-backup-files t
-    ;; Number each backup file
-    version-control t
-    ;; Clean up after itself
-    delete-old-versions t
-    ;; Keep up to 5 old versions of each file
-    kept-old-versions 5
-    ;; Keep up to 5 new versions of each file
-    kept-new-versions 5
+   ;; === Backups ===
+   ;; Disable lockfiles
+   create-lockfiles nil
+   ;; Enable making backup files
+   make-backup-files t
+   ;; Number each backup file
+   version-control t
+   ;; Clean up after itself
+   delete-old-versions t
+   ;; Keep up to 5 old versions of each file
+   kept-old-versions 5
+   ;; Keep up to 5 new versions of each file
+   kept-new-versions 5
 
-    ;; === Scrolling ===
-    ;; Do not adjust window-vscroll to view tall lines. Fixes some lag issues see:
-    ;; emacs.stackexchange.com/a/28746
-    auto-window-vscroll nil
-    ;; Fast scrolling
-    fast-but-imprecise-scrolling t
-    ;; Keep the point in the same position while scrolling
-    scroll-preserve-screen-position t
-    ;; Do not move cursor to the center when scrolling
-    scroll-conservatively 101
-    ;; Scroll at a margin of one line
-    scroll-margin 1
-    ;; The number of lines to scroll
-    scroll-step 1
-    ;; Columns from the window edge point allowed before horizontal scroll
-    hscroll-margin 2
-    ;; The number of columns to scroll
-    hscroll-step 1
-    ;; Make mouse scroll a little faster
-    mouse-wheel-scroll-amount  '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale))
-    ;; Make mouse scroll a little faster horizontally
-    mouse-wheel-scroll-amount-horizontal 2
+   ;; === Scrolling ===
+   ;; Do not adjust window-vscroll to view tall lines. Fixes some lag issues see:
+   ;; emacs.stackexchange.com/a/28746
+   auto-window-vscroll nil
+   ;; Fast scrolling
+   fast-but-imprecise-scrolling t
+   ;; Keep the point in the same position while scrolling
+   scroll-preserve-screen-position t
+   ;; Do not move cursor to the center when scrolling
+   scroll-conservatively 101
+   ;; Scroll at a margin of one line
+   scroll-margin 1
+   ;; The number of lines to scroll
+   scroll-step 1
+   ;; Columns from the window edge point allowed before horizontal scroll
+   hscroll-margin 2
+   ;; The number of columns to scroll
+   hscroll-step 1
+   ;; Make mouse scroll a little faster
+   mouse-wheel-scroll-amount  '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale))
+   ;; Make mouse scroll a little faster horizontally
+   mouse-wheel-scroll-amount-horizontal 2
 
-    ;; === Auto-Saving, sessions ===
-    ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
-    auto-save-default t
-    ;; Include big deletions
-    auto-save-include-big-deletions t
-    ;; Set file naming transform
-    auto-save-file-name-transforms
-    `(;; Prefix tramp autosaves with "tramp-"
-      ("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat auto-save-list-file-prefix "tramp-\\2") t)
-      ;; Local autosaves
-      (".*" ,auto-save-list-file-prefix t)))
+   ;; === Auto-Saving, sessions ===
+   ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
+   auto-save-default t
+   ;; Include big deletions
+   auto-save-include-big-deletions t
+   ;; Set file naming transform
+   auto-save-file-name-transforms
+   `(;; Prefix tramp autosaves with "tramp-"
+     ("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat auto-save-list-file-prefix "tramp-\\2") t)
+     ;; Local autosaves
+     (".*" ,auto-save-list-file-prefix t)))
 
   (setq-default
-    ;; === Buffer-local variables ===
-    ;; Display long lines
-    truncate-lines nil
-    ;; Default fill column width
-    fill-column 80
-    ;; Never mix, use only spaces
-    indent-tabs-mode nil
-    ;; Width for line numbers
-    display-line-numbers-width nil
-    ;; Display absolute line numbers in narrowed regions
-    display-line-numbers-widen t
-    ;; Relative line numbering
-    display-line-numbers-type 'relative
-    ;; Small tab is enough!
-    tab-width 2)
+   ;; === Buffer-local variables ===
+   ;; Display long lines
+   truncate-lines nil
+   ;; Default fill column width
+   fill-column 80
+   ;; Never mix, use only spaces
+   indent-tabs-mode nil
+   ;; Width for line numbers
+   display-line-numbers-width nil
+   ;; Display absolute line numbers in narrowed regions
+   display-line-numbers-widen t
+   ;; Relative line numbering
+   display-line-numbers-type 'relative
+   ;; Small tab is enough!
+   tab-width 2)
 
   ;; === Tweaks on file save ===
   ;; Make scripts (files starting with shebang "#!") executable when saved
@@ -252,7 +252,7 @@
 
   ;; Scroll pixel by pixel, in Emacs29+ there is a more precise mode way to scroll
   (if (>= emacs-major-version 29)
-    (pixel-scroll-precision-mode 1)
+      (pixel-scroll-precision-mode 1)
     (pixel-scroll-mode 1))
 
   ;; Replace selection after start typing
@@ -287,11 +287,11 @@
 (use-package which-key
   :init
   (setq which-key-sort-order #'which-key-key-order-alpha
-    which-key-sort-uppercase-first nil
-    which-key-add-column-padding 1
-    which-key-max-display-columns nil
-    which-key-min-display-lines 6
-    which-key-side-window-slot -10)
+        which-key-sort-uppercase-first nil
+        which-key-add-column-padding 1
+        which-key-max-display-columns nil
+        which-key-min-display-lines 6
+        which-key-side-window-slot -10)
   :config
   (which-key-add-key-based-replacements
     "C-c b" "buffer"
@@ -309,8 +309,6 @@
   (which-key-setup-minibuffer))
 
 (use-package winner
-  :bind (("C-c w u" . winner-undo)
-    ("C-c w U" . winner-redo))
   :config
   (winner-mode 1))
 
@@ -323,30 +321,30 @@
   :after no-littering
   :config
   (setq recentf-save-file (concat no-littering-var-directory "recentf-save.el")
-    recentf-max-saved-items 500
-    recentf-max-menu-items 15
-    ;; disable recentf-cleanup on Emacs start, because it can cause
-    ;; problems with remote files
-    recentf-auto-cleanup 'never
-    recentf-case-fold-search t)
+        recentf-max-saved-items 500
+        recentf-max-menu-items 15
+        ;; disable recentf-cleanup on Emacs start, because it can cause
+        ;; problems with remote files
+        recentf-auto-cleanup 'never
+        recentf-case-fold-search t)
 
   (add-to-list 'recentf-exclude
-    (recentf-expand-file-name no-littering-var-directory))
+               (recentf-expand-file-name no-littering-var-directory))
   (add-to-list 'recentf-exclude
-    (recentf-expand-file-name no-littering-etc-directory))
+               (recentf-expand-file-name no-littering-etc-directory))
 
   (recentf-mode +1))
 
 (use-package savehist
   :config
   (setq savehist-autosave-interval 60     ; save on kill only
-    savehist-save-minibuffer-history t
-    savehist-additional-variables
-    ;; persist marks
-    '(mark-ring
-      global-mark-ring
-      ;; persist searches
-      search-ring regexp-search-ring vertico-repeat-history))
+        savehist-save-minibuffer-history t
+        savehist-additional-variables
+        ;; persist marks
+        '(mark-ring
+          global-mark-ring
+          ;; persist searches
+          search-ring regexp-search-ring vertico-repeat-history))
   (savehist-mode +1))
 
 ;; Remember last cursor position in a file

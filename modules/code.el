@@ -3,13 +3,13 @@
 (use-package project
   :config
   (setq project-mode-line t ; show project name in modeline
-	project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project" ".jj")
-	project-switch-commands
-	'((?f "Find file" project-find-file)
-	  (?/ "grep" consult-ripgrep)
-	  (?d "Dired" project-dired)
-	  (?g "Magit" magit-project-status)
-	  (?\e "Escape" keyboard-escape-quit))))
+	      project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project" ".jj")
+	      project-switch-commands
+	      '((?f "Find file" project-find-file)
+	        (?/ "grep" consult-ripgrep)
+	        (?d "Dired" project-dired)
+	        (?g "Magit" magit-project-status)
+	        (?\e "Escape" keyboard-escape-quit))))
 
 ;; Highlight TODO keywords
 (use-package hl-todo

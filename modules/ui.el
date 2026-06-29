@@ -65,18 +65,18 @@
     (insert (propertize "🦾 Practice, It's Practice, Practice." 'face 'bold)))
   :config
   (setq dashboard-center-content t
-	dashboard-set-heading-icons t
-	dashboard-set-file-icons t
-	dashboard-icon-type 'nerd-icons
-	dashboard-banner-logo-title "Want to go camping?"
-	dashboard-startup-banner (concat user-emacs-directory "docs/logo.png")
-	dashboard-image-banner-max-width 200
-	dashboard-projects-backend 'project-el
-	dashboard-items '((daily-quote)
-			  (recents . 2)
-			  (projects . 2))
-	dashboard-item-generators '((daily-quote . daily-quote)
-				    (recents . dashboard-insert-recents)
-				    (projects . dashboard-insert-projects)))
+	      dashboard-set-heading-icons t
+	      dashboard-set-file-icons t
+	      dashboard-icon-type 'nerd-icons
+	      dashboard-banner-logo-title "Want to go camping?"
+	      dashboard-startup-banner (concat user-emacs-directory "docs/logo.png")
+	      dashboard-image-banner-max-width 200
+	      dashboard-projects-backend 'project-el
+	      dashboard-items '((daily-quote)
+			                    (recents . 2)
+			                    (projects . 2))
+	      dashboard-item-generators '((daily-quote . daily-quote)
+				                            (recents . dashboard-insert-recents)
+				                            (projects . dashboard-insert-projects)))
 
   (dashboard-setup-startup-hook))

@@ -11,8 +11,8 @@
   ;; Relative time is hard to pin point.
   ;; (setq magit-log-margin '(t "%Y-%b-%d %I:%M %p " magit-log-margin-width t 18))
   (setq magit-save-repository-buffers nil
-	;; Show in new window
-	magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
+	      ;; Show in new window
+	      magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
   (setq magit-format-file-function #'magit-format-file-nerd-icons))
 
 ;; Edit Git commit messages - part of `magit'
@@ -21,7 +21,7 @@
   :commands (global-git-commit-mode)
   :config
   (setq git-commit-summary-max-length 72 ; defaults to Github's max commit message length
-	git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
+	      git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :init
   (global-git-commit-mode 1))
 
