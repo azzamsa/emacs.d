@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](https://github.com/azzamsa/camp.d/compare/v1.1.1..v2.0.0) - 2026-06-29
+
+### ⛰️  Features
+
+- Simplify keybinding structure - ([fd5cdff](https://github.com/azzamsa/camp.d/commit/fd5cdfff5ff2f1ba1a32614a79a9e65a246a89e9))
+- Use built-in tree-sitter in Emacs 31 - ([bfedcdd](https://github.com/azzamsa/camp.d/commit/bfedcddf789c52d3bcd772aa4c62163dda8cd8a8))
+- Support ghostel - ([849b513](https://github.com/azzamsa/camp.d/commit/849b51385f50befd0f4d9b31eef894cbb5a2b8dd))
+- Support kdl-mode - ([ca81470](https://github.com/azzamsa/camp.d/commit/ca8147013c1d8b41a2ec022812ac3d0e7c0a8af0))
+- I need `rainbow-mode` most of the time - ([992d41b](https://github.com/azzamsa/camp.d/commit/992d41b900b383499bf4cdeb8f182a35c9f317d0))
+- Use `consult` everywhere - ([5cf3ab3](https://github.com/azzamsa/camp.d/commit/5cf3ab388a51a33f874dfacc4fbf9262a60c3967))
+- Re-enable IDE-features - ([0619192](https://github.com/azzamsa/camp.d/commit/06191925931a62c4948df3570dcf36dc76737fc7))
+- Support jsonnet - ([2e199a4](https://github.com/azzamsa/camp.d/commit/2e199a4178551e4949439b4eb8159f0480b600ca))
+- Enable `jinx` globally - ([b8b205a](https://github.com/azzamsa/camp.d/commit/b8b205aaddd514c23081cc9a9ca8bac5dbe4b622))
+
+### 🐛 Bug Fixes
+
+- I migrated to vanilla evil months ago. - ([9a71c35](https://github.com/azzamsa/camp.d/commit/9a71c354b1d415c4cbde2f8e897aba58e8a52789))
+- Update `elpaca` packaged database - ([f8af75d](https://github.com/azzamsa/camp.d/commit/f8af75d626701f3725c487a52650028d30bd78ea))
+- Use `rust-mode` - ([5ece2dd](https://github.com/azzamsa/camp.d/commit/5ece2dde37622c817728802941d9beffd15f3f79))
+- Will `fish` works well with emacs - ([213b2a9](https://github.com/azzamsa/camp.d/commit/213b2a95b0916368f3e279c0598b7bf486e19fc0))
+
+### 🚜 Refactor
+
+- Better config structure - ([6bffc8d](https://github.com/azzamsa/camp.d/commit/6bffc8d01fdeff35d17d5365d4b70ffb61911fd9))
+
+### ⚡ Performance
+
+- I use Zed for IDE - ([d2d5cb3](https://github.com/azzamsa/camp.d/commit/d2d5cb39c2f4940d44fc826bb3d2e0128bcddcad))
+
+### 🎨 Styling
+
+- Change font to 'JetBrainsMono' - ([9374a6a](https://github.com/azzamsa/camp.d/commit/9374a6adc7e65fdd6278bf8a69cbe618b639b5bc))
+- Add more themes - ([755a1e6](https://github.com/azzamsa/camp.d/commit/755a1e6913e5cf2a5b37c62d83a561e700fb0bce))
+- Build the black variant based on moon - ([466811a](https://github.com/azzamsa/camp.d/commit/466811aba97fc23759cb187c0a920f593b32a95b))
+- Try new bbatsov's tokyo night theme - ([031d470](https://github.com/azzamsa/camp.d/commit/031d47055d00d9c60b00d8ba6e1ca65f185c02a8))
+
+### 🛠️ Build
+
+- Upgrade to emacs 31 - ([cf377a7](https://github.com/azzamsa/camp.d/commit/cf377a78eecd8abab40436afcaf357cb93763dc7))
+- Better task - ([c4ff16e](https://github.com/azzamsa/camp.d/commit/c4ff16ee26fcb37cd6d2d131f01d39b7cb461967))
+- Migrate to `mise` - ([bd338c3](https://github.com/azzamsa/camp.d/commit/bd338c3a0c295ff55446b71d71010de23a739d21))
+- Migrate to `mise` - ([50a6c44](https://github.com/azzamsa/camp.d/commit/50a6c445c4b2926bc78917053964dbb03995bb0f))
+
+### ⚙️ Miscellaneous Tasks
+
+- Better structure - ([ccec308](https://github.com/azzamsa/camp.d/commit/ccec3086cb08bb0c841f34c79075077bf6ec28a4))
+- Outdated command - ([797d2ae](https://github.com/azzamsa/camp.d/commit/797d2aeb08d5329364e6f9b30841f6ac924f733a))
+
 ## [1.1.1](https://github.com/azzamsa/camp.d/compare/v1.1.0..v1.1.1) - 2026-04-08
 
 ### ⚙️ Miscellaneous Tasks
