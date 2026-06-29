@@ -3,6 +3,7 @@ dprint = "latest"
 typos = "latest"
 actionlint = "latest"
 zizmor = "latest"
+'cargo:git-cliff' = "latest"
 
 [tasks.setup]
 hide = true

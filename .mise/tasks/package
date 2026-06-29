@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#MISE description="Build a release archive for a single target"
+#MISE hide=true
+
+PKG_SUFFIX=".tar.gz"
+PKG_BASENAME="${REPO_NAME}-${RELEASE_VERSION}"
+PKG_NAME="${PKG_BASENAME}${PKG_SUFFIX}"
+PKG_STAGING="/tmp/package"
+ARCHIVE_DIR="${PKG_STAGING}/${PKG_BASENAME}"
+mkdir -p "${ARCHIVE_DIR}"
+# Copy everything except .git to avoid bloating the archive
+rsync -a --exclude='.git' . "${ARCHIVE_DIR}/"
+pushd "${PKG_STAGING}/" >/dev/null
+tar czf "${PKG_NAME}" "${PKG_BASENAME}/"
+popd >/dev/null
+echo "PKG_NAME=${PKG_NAME}" >> "$GITHUB_OUTPUT"
+echo "PKG_PATH=${PKG_STAGING}/${PKG_NAME}" >> "$GITHUB_OUTPUT"
