@@ -54,6 +54,16 @@
          ("C-c f y" . +yank-buffer-path)
          ("C-c f Y" . +yank-buffer-path-relative-to-project)
 
+         ;; Git
+         ("C-c g v" . magit-status)
+         ("C-c g g" . magit-status)
+         ("C-c g t" . git-timemachine-toggle)
+         ("C-c g B" . magit-blame-addition)
+         ("C-c g F" . magit-fetch)
+         ("C-c g L" . magit-log-buffer-file)
+         ("C-c g S" . magit-stage-file)
+         ("C-c g U" . magit-unstage-file)
+
          ;; Help
          ([remap describe-function]             . helpful-callable)
          ([remap describe-command]              . helpful-command)
@@ -89,16 +99,6 @@
          ("C-c t r" . read-only-mode)
          ("C-c t w" . visual-line-mode)
 
-         ;; VC
-         ("C-c v v" . magit-status)
-         ("C-c v g" . magit-status)
-         ("C-c v t" . git-timemachine-toggle)
-         ("C-c v B" . magit-blame-addition)
-         ("C-c v F" . magit-fetch)
-         ("C-c v L" . magit-log-buffer-file)
-         ("C-c v S" . magit-stage-file)
-         ("C-c v U" . magit-unstage-file)
-
          ;; Window
          ("C-c w d"   . delete-window)
          ("C-c w ="   . balance-windows)
@@ -113,6 +113,10 @@
          ("C-c q r" . restart-emacs)
          ("C-c q q" . save-buffers-kill-terminal)
          ("C-c q Q" . kill-emacs)
+
+         ;; Misc
+         ([remap ispell-correct]             . jinx-correct)
+         ("C-c z =" . jinx-correct)
 
          ;; Misc
          ("C-c a" . embark-act)))
