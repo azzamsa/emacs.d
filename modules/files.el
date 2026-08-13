@@ -78,8 +78,8 @@
               ("yy"    . dired-do-copy))
   :init
   (setq dirvish-hide-details t)
-  :config
   (dirvish-override-dired-mode)
+  :config
   (setq dirvish-attributes '(nerd-icons subtree-state file-size))
   (setq dirvish-quick-access-entries
         '(("h" "~/"      "Home")
