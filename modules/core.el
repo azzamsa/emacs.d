@@ -294,17 +294,17 @@
         which-key-side-window-slot -10)
   :config
   (which-key-add-key-based-replacements
-    "C-c b" "buffer"
-    "C-c c" "code"
-    "C-c f" "file"
-    "C-c h" "help"
-    "C-c o" "open"
-    "C-c p" "project"
-    "C-c s" "search"
-    "C-c t" "toggle"
-    "C-c v" "vc"
-    "C-c w" "window"
-    "C-c q" "quit")
+    "s-s b" "buffer"
+    "s-s c" "code"
+    "s-s f" "file"
+    "s-s h" "help"
+    "s-s o" "open"
+    "s-s p" "project"
+    "s-s s" "search"
+    "s-s t" "toggle"
+    "s-s v" "vc"
+    "s-s w" "window"
+    "s-s q" "quit")
   (which-key-mode)
   (which-key-setup-minibuffer))
 
