@@ -9,7 +9,8 @@
 	        (?/ "grep" consult-ripgrep)
 	        (?d "Dired" project-dired)
 	        (?g "Magit" magit-project-status)
-	        (?\e "Escape" keyboard-escape-quit))))
+	        (?\e "Escape" keyboard-escape-quit)
+          (?t "Term" ghostel-project))))
 
 ;; Highlight TODO keywords
 (use-package hl-todo

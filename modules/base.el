@@ -104,12 +104,13 @@
 
 ;; Eat: Emulate A Terminal
 (use-package eat
+  :ensure t)
+
+;; Terminal emulator powered by libghostty
+(use-package ghostel
   :ensure t
-  :custom
-  (eat-term-name "xterm")
-  :config
-  (eat-eshell-mode)                     ; use Eat to handle term codes in program output
-  (eat-eshell-visual-command-mode))     ; commands like less will be handled by Eat
+  :bind (:map ghostel-semi-char-mode-map
+              ("C-s"  . consult-line)))
 
 ;; Modify search results en masse
 (use-package wgrep
@@ -132,9 +133,6 @@
 
 ;; Olivetti: Set the window margins so your text is centered
 (use-package olivetti :ensure t)
-
-;; Distraction-free words correction with `flyspell' via `completing-read'
-(use-package flyspell-correct :ensure t)
 
 ;; Run code formatter on buffer contents without moving point
 (use-package apheleia

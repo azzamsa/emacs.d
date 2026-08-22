@@ -1,8 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
+(keymap-global-set "C-/" #'ghostel-project)
+
 (use-package emacs
-  :config
-  (keymap-global-set "C-/" #'+eat-toggle)
   :bind (
          ;; Emacs
          ([remap bookmark-jump]                 . consult-bookmark)
@@ -82,7 +82,9 @@
 
          ;; Project
          ("C-c p p" . project-switch-project)
-         ("C-c p b" . consult-project-buffer)
+         ("C-c p b" . project-find-file)
+         ("C-c p f" . project-find-file)
+         ("C-c p s" . consult-ripgrep)
 
          ;; Search
          ("C-c s s" . consult-ripgrep)
@@ -116,7 +118,7 @@
 
          ;; Misc
          ([remap ispell-correct]             . jinx-correct)
-         ("C-c z =" . jinx-correct)
+         ("C-c z z" . jinx-correct)
 
          ;; Misc
          ("C-c a" . embark-act)))

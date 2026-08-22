@@ -139,4 +139,4 @@ With non-nil prefix INCLUDE-ROOT, also include the project's root."
   (interactive)
   (if (string= (buffer-name) "*eat*")
       (delete-window)
-    (eat-other-window)))
+    (eat-project-other-window)))
