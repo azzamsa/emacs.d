@@ -351,7 +351,8 @@
 (use-package saveplace
   :config
   ;; activate it for all buffers
-  (setq-default save-place t))
+  (setq-default save-place t)
+  (save-place-mode 1))
 
 (use-package password-cache
   :custom
