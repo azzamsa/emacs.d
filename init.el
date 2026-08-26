@@ -1,9 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 
-(defvar roujack-modules
-  '(pkg utils core base code completion langs lsp ui vc files helix keys))
+(defvar +modules
+  '(pkg utils core base code completion langs lsp ui vc files keys evil))
 
-(dolist (module (mapcar #'symbol-name roujack-modules))
+(dolist (module (mapcar #'symbol-name +modules))
   (load (expand-file-name (format "modules/%s.el" module) user-emacs-directory)))
 
 ;; Restore default GC value

@@ -4,3 +4,4 @@ extend-exclude = ["CHANGELOG.md"]
 [default.extend-words]
 # don't correct these false positives
 hel = "hel" # helix
+ot = "ot" # opan terminal
